@@ -3,7 +3,7 @@
 
 typedef double numeric;
 
-namespace fragile
+namespace agile
 {
 	typedef Matrix<numeric, Dynamic, Dynamic> matrix;
 	typedef Matrix<numeric, Dynamic, 1>  colvec;
