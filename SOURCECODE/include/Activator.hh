@@ -7,6 +7,7 @@ class Activator
 public:
 	Activator();
 	~Activator();
+	
 	agile::vector activate(const agile::vector& v);
 	agile::vector deriv_activate(const agile::vector& v);
 
