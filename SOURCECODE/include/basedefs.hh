@@ -5,6 +5,7 @@
 #include <Eigen/Dense>
 #include <memory>
 #include <utility>
+#include <vector>
 #include <cmath>
 #include <random>
 
@@ -17,7 +18,7 @@ namespace agile
 	typedef Eigen::Matrix<numeric, 1, Eigen::Dynamic>  rowvec;
 	typedef colvec vector;
 
-	inline std::mt19937_64& mersenne_engine()
+	inline std::mt19937_64& mersenne_engine() // dumb random number generator
 	{
 		static std::mt19937_64 _eng{};
 		return _eng;

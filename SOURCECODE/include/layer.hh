@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include "basedefs.hh"
+#include "activation.hh"
+
+
 
 class layer
 {
@@ -17,15 +20,20 @@ public:
 	// pass an input vector, the layer class holds the "charge"
 	void charge(const agile::vector& v); 
 	// Fire the charge.
-	agile::vector fire();
+	virtual agile::vector fire();
 
-	~layer();
-	
+
+	~layer();	
 private:
 	int m_inputs, m_outputs, m_batch_size;
 	agile::matrix W, W_old;
-	agile::vector b, b_old, m_out, delta;
+	agile::vector b, b_old, m_out, m_in, delta;
 };
+
+// namespace agile
+// {
+// 	typedef std::vector<std::unique_ptr<layer>> layer_stack;
+// }
 
 #endif
 
