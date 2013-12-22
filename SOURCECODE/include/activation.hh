@@ -16,7 +16,7 @@ inline agile::vector exp_sigmoid(const agile::vector &v)
 	{
 		w(row) = 1 / (1 + exp(-w(row)));
 	}
-	return std::move(w);
+	return (w);
 }
 
 // this is for s'(x) = s(x) * (1 - s(x))

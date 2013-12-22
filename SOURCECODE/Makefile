@@ -32,7 +32,7 @@ CXXFLAGS += $(ROOTCFLAGS)
 LIBS += $(ROOTLIBS)
 LDFLAGS += $(ROOTLDFLAGS)
 
-OBJ = main.o layer.o
+OBJ = main.o layer.o architecture.o
 
 # HEADER = JetTagger.h
 
