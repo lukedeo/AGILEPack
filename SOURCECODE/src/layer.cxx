@@ -1,16 +1,16 @@
 #include "layer.hh"
-
-layer::layer(int n_inputs, int n_outputs) 
+#include <stdlib.h>
+layer::layer(int n_inputs, int n_outputs, layer_type type) 
 : m_inputs(n_inputs), m_outputs(n_outputs), m_batch_size(1), W(n_outputs, n_inputs), 
 W_old(n_outputs, n_inputs), W_change(n_outputs, n_inputs), 
 b(n_outputs), b_old(n_outputs),b_change(n_outputs), m_out(n_outputs), m_in(n_inputs),
-learning(0.1), momentum(0.0), regularizer(0.00)
+learning(0.1), momentum(0.0), regularizer(0.00), m_layer_type(type)
 {
 	ctr = 0;
 	reset_weights(sqrt((numeric)1 / (numeric)(n_inputs + n_outputs)));
 }
 
-void layer::construct(int n_inputs, int n_outputs)
+void layer::construct(int n_inputs, int n_outputs, layer_type type)
 {
 	m_inputs = n_inputs;
 	m_outputs = n_outputs;
@@ -20,6 +20,7 @@ void layer::construct(int n_inputs, int n_outputs)
 	b_old.resize(n_outputs, Eigen::NoChange);
 	m_out.resize(n_outputs, Eigen::NoChange);
 	m_in.resize(n_inputs, Eigen::NoChange);
+	m_layer_type = type;
 }
 
 void layer::reset_weights(numeric bound)
@@ -55,12 +56,30 @@ void layer::charge(const agile::vector& v)
 // Fire the charge.
 agile::vector layer::fire()
 {
-	return (m_out);
+ 	switch(m_layer_type)
+ 	{
+ 		case sigmoid:
+ 			return agile::functions::exp_sigmoid(m_out);
+ 		case softmax:
+ 			return agile::functions::softmax(m_out);
+ 		case linear:
+ 			return m_out;
+ 		default:
+	 		return m_out;
+
+ 	}	
 }
 
 void layer::backpropagate(const agile::vector &v)
 {
 	delta.noalias() = v;
+
+	if (m_layer_type == sigmoid)
+	{
+		delta = delta.cwiseProduct(agile::functions::exp_sigmoid_deriv(agile::functions::exp_sigmoid(m_out)));
+	}
+	getchar();
+	
 
 	m_dump_below = W.transpose() * delta; // we need something to make this not happen for base 0layer
 

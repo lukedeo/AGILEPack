@@ -1,4 +1,5 @@
 #include "architecture.hh"
+#include "layer.hh"
 
 int main(int argc, char const *argv[])
 {
@@ -12,21 +13,17 @@ int main(int argc, char const *argv[])
 	agile::matrix T(4, 1);
 	T << 0.0,
 	     1.0,
-	     1.0, 
+	     1.0,
 	     1.0;
 
 
 	architecture arch;
 
-	layer l1(2, 4);
-	layer l2(4, 3);
-	layer l3(3, 2);
-	layer l4(2, 1);
+	layer l1(2, 3, sigmoid);
+	layer l2(3, 1, sigmoid);
 
 	arch.push_back(l1);
 	arch.push_back(l2);
-	arch.push_back(l3);
-	arch.push_back(l4);
 
 
 	for (int i = 0; i < 1000; ++i)

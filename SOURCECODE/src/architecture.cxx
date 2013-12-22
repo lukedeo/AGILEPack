@@ -1,7 +1,8 @@
 #include "architecture.hh"
 
-architecture::architecture() : n_layers(0)
+architecture::architecture(int num_layers) : n_layers(num_layers)
 {
+	stack.resize(num_layers);
 }
 architecture::~architecture()
 {
@@ -21,6 +22,7 @@ unsigned int architecture::size()
 {
 	return n_layers;
 }
+
 agile::vector architecture::predict(const agile::vector &v)
 {
 	stack.at(0).charge(v);

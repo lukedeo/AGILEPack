@@ -11,7 +11,7 @@
 class architecture
 {
 public:
-	architecture();
+	architecture(int num_layers = 0);
 	~architecture();
 	void push_back(layer &L);
 	void pop_back();
