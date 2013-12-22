@@ -11,9 +11,9 @@ int main(int argc, char const *argv[])
 
 	agile::matrix T(4, 1);
 	T << 0.0,
-	     3.5,
-	     3.5, 
-	     3.5;
+	     1.0,
+	     1.0, 
+	     1.0;
 
 
 	architecture arch;
