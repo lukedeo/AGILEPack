@@ -1,13 +1,26 @@
 #include "layer.hh"
 #include <stdlib.h>
 layer::layer(int n_inputs, int n_outputs, layer_type type) 
-: m_inputs(n_inputs), m_outputs(n_outputs), m_batch_size(1), W(n_outputs, n_inputs), 
+: m_inputs(n_inputs), m_outputs(n_outputs), m_batch_size(3), W(n_outputs, n_inputs), 
 W_old(n_outputs, n_inputs), W_change(n_outputs, n_inputs), 
 b(n_outputs), b_old(n_outputs),b_change(n_outputs), m_out(n_outputs), m_in(n_inputs),
-learning(0.1), momentum(0.0), regularizer(0.00), m_layer_type(type)
+learning(0.2), momentum(0.5), regularizer(0.00), m_layer_type(type)
 {
 	ctr = 0;
-	reset_weights(sqrt((numeric)1 / (numeric)(n_inputs + n_outputs)));
+	// reset_weights(std::min(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)), 0.05));
+	reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
+}
+
+
+layer::layer(const layer &L)
+: m_inputs(L.m_inputs), m_outputs(L.m_outputs), m_batch_size(L.m_batch_size), W(L.W), 
+W_old(L.W_old), W_change(L.W_change), 
+b(L.b), b_old(L.b_old),b_change(L.b_change), m_out(L.m_out), m_in(L.m_in),
+learning(L.learning), momentum(L.momentum), regularizer(L.regularizer), m_layer_type(L.m_layer_type)
+{
+	ctr = 0;
+	// reset_weights(std::min(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)), 0.05));
+	// reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }
 
 void layer::construct(int n_inputs, int n_outputs, layer_type type)
@@ -49,13 +62,18 @@ void layer::reset_weights(numeric bound)
 
 // pass an input vector, the layer class holds the "charge"
 void layer::charge(const agile::vector& v)
-{
+{	
+	// std::cout << "input: " << v << std::endl;
 	m_in = v;
+
 	m_out.noalias() = W * v + b;
+	// std::cout << "output: " << m_out << std::endl;
+
 }
 // Fire the charge.
 agile::vector layer::fire()
 {
+	// std::cout << "output: " << m_out << std::endl;
  	switch(m_layer_type)
  	{
  		case sigmoid:
@@ -66,7 +84,6 @@ agile::vector layer::fire()
  			return m_out;
  		default:
 	 		return m_out;
-
  	}	
 }
 
@@ -76,12 +93,11 @@ void layer::backpropagate(const agile::vector &v)
 
 	if (m_layer_type == sigmoid)
 	{
-		delta = delta.cwiseProduct(agile::functions::exp_sigmoid_deriv(agile::functions::exp_sigmoid(m_out)));
+		delta = delta.array() * (agile::functions::exp_sigmoid_deriv(agile::functions::exp_sigmoid(m_out))).array();
 	}
-	getchar();
 	
 
-	m_dump_below = W.transpose() * delta; // we need something to make this not happen for base 0layer
+	m_dump_below.noalias() = W.transpose() * delta; // we need something to make this not happen for base 0layer
 
 	W_change += delta * m_in.transpose(); 
 	b_change += delta;
@@ -100,19 +116,49 @@ agile::vector layer::dump_below()
 	return m_dump_below;
 }
 
+
 void layer::update()
 {
 	W_change /= m_batch_size;
-	// std::cout << W_change << std::endl;
 	W_old = momentum * W_old - learning * (W_change + regularizer * W);
 	W += W_old;
-
 	b_change /= m_batch_size;
 	b_old = momentum * b_old - learning * b_change;
 	b += b_old;
 
 	b_change.fill(0.00);
 	W_change.fill(0.00);
+}
+
+
+YAML::Emitter& operator << (YAML::Emitter& out, const layer &L) 
+{
+	out << YAML::BeginMap;
+	out << YAML::Key << "inputs" << YAML::Value << L.m_inputs;
+	out << YAML::Key << "outputs" << YAML::Value << L.m_outputs;
+	out << YAML::Key << "learning" << YAML::Value << L.learning;
+	out << YAML::Key << "momentum" << YAML::Value << L.momentum;
+	out << YAML::Key << "regularizer" << YAML::Value << L.regularizer;
+	out << YAML::Key << "batchsize" << YAML::Value << L.m_batch_size;
+	out << YAML::Key << "activation";
+
+	if (L.m_layer_type == linear)
+	{
+		out << YAML::Value << "linear";
+	}
+	else if (L.m_layer_type == softmax)
+	{
+		out << YAML::Value << "softmax";
+	}
+	else
+	{
+		out << YAML::Value << "sigmoid";
+	}
+
+	out << YAML::Key << "weights" << YAML::Value << agile::stringify(L.W);
+	out << YAML::Key << "bias" << YAML::Value << agile::stringify(L.b);
+    out << YAML::EndMap;
+    return out;
 }
 
 

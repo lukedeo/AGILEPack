@@ -1,0 +1,35 @@
+network:
+  layer_hash:
+    - u+wYOb5IbxZ6GAGBPj3UFUPzqUdHFfc/
+    - CYXnBoLOoddhdceV4Y6hspLZAbxHFfc/
+    - KXkWjSnfSdgTdslM24sve2LM0+NHFfc/
+  u+wYOb5IbxZ6GAGBPj3UFUPzqUdHFfc/:
+    inputs: 2
+    outputs: 4
+    learning: 0.2
+    momentum: 0.5
+    regularizer: 0
+    batchsize: 3
+    activation: sigmoid
+    weights: "#EM|4|2,3.74526984518246,-3.61842085851671,-1.39206524166724,1.37891732083953,0.826900496052416,-0.735102952160745,3.62470655403188,-3.86328521282086"
+    bias: "#EM|4|1,1.87311423194691,-0.361556765480529,-0.724758200286476,-1.9866600740412"
+  CYXnBoLOoddhdceV4Y6hspLZAbxHFfc/:
+    inputs: 4
+    outputs: 3
+    learning: 0.2
+    momentum: 0.5
+    regularizer: 0
+    batchsize: 3
+    activation: sigmoid
+    weights: "#EM|3|4,-4.08544488293745,2.24730232619318,-0.0355558796792441,-0.810091894437726,-1.32157111950571,-0.054869042702051,0.0762754813762049,3.46842524427836,2.29476350635166,-0.303104430880475,-1.06816062881811,-3.85547086629012"
+    bias: "#EM|3|1,0.247054706301648,-0.353442771577085,0.0964653682281018"
+  KXkWjSnfSdgTdslM24sve2LM0+NHFfc/:
+    inputs: 3
+    outputs: 1
+    learning: 0.2
+    momentum: 0.5
+    regularizer: 0
+    batchsize: 3
+    activation: sigmoid
+    weights: "#EM|1|3,4.34890566019544,3.85280031292055,-4.87611107742494"
+    bias: "#EM|1|1,0.111118327137387"
