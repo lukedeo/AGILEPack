@@ -14,19 +14,19 @@ This is a work in progress, with the ultimate goal of a versatile Deep Learning 
 ####Algorithms and General Features
 
 - [x] Backpropagation for arbitrary layer structure.
-- [] Support for:
+- [ ] Support for:
   - [x] Linear layers with SSE loss.
   - [x] Sigmoidal layers with SSE loss.
   - [x] Softmax layers with Cross Entropy loss.
-  - [] Rectified linear unit layers.
-  - [] Autoencoder pre-training (stacked, denoising, etc.)
-  - [] Restricted Boltzmann Machine pre-training.
-  - [] Dropout/DropConnect layers.
-  - [] Inverted Deep Network Encoding. 
+  - [ ] Rectified linear unit layers.
+  - [ ] Autoencoder pre-training (stacked, denoising, etc.)
+  - [ ] Restricted Boltzmann Machine pre-training.
+  - [ ] Dropout/DropConnect layers.
+  - [ ] Inverted Deep Network Encoding. 
 - [x] Dynamic changes to layers (additions, deletions).
-- [] Interface with the CERN `ROOT` framework.
+- [ ] Interface with the CERN `ROOT` framework.
 - [x] Complete serialization of network structure with `YAML` file.
-- [] More to come...
+- [ ] More to come...
 
 
 
