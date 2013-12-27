@@ -5,8 +5,6 @@
 #include "basedefs.hh"
 #include "activation.hh"
 
-enum layer_type { linear, sigmoid, softmax };
-
 
 class layer
 {
@@ -51,9 +49,11 @@ namespace agile
 //-----------------------------------------------------------------------------
 //	PUT COUTS HERE TO DEBUG
 //-----------------------------------------------------------------------------
-namespace YAML {
+namespace YAML 
+{
 	template<>
-	struct convert<layer> {
+	struct convert<layer> 
+	{
 		static Node encode(const layer& L)
 		{
 			Node node;
@@ -82,7 +82,8 @@ namespace YAML {
 			return node;
 		}
 
-		static bool decode(const Node& node, layer& L) {
+		static bool decode(const Node& node, layer& L) 
+		{
 
 			L.m_inputs = node["inputs"].as<int>();
 			L.m_outputs = node["outputs"].as<int>();

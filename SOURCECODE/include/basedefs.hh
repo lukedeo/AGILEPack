@@ -1,6 +1,7 @@
 #ifndef BASEDEFS_HH
 #define BASEDEFS_HH 
 
+#include <stdexcept>
 #include <iostream>
 #include <Eigen/Dense>
 #include <memory>
@@ -15,10 +16,10 @@
 #include <cstddef>
 #include <stdlib.h>
 #include <yaml-cpp/yaml.h> 
-#include "base64.hh"
 #include "sha1.hh"
 
 typedef double numeric;
+enum layer_type { linear, sigmoid, softmax };
 
 namespace agile
 {
@@ -26,6 +27,8 @@ namespace agile
 	typedef Eigen::Matrix<numeric, Eigen::Dynamic, 1>  colvec;
 	typedef Eigen::Matrix<numeric, 1, Eigen::Dynamic>  rowvec;
 	typedef colvec vector;
+
+
 
 	inline std::mt19937_64& mersenne_engine() // dumb random number generator
 	{
@@ -76,7 +79,7 @@ namespace agile
 	    		M(i, j) = data.at(i * cols + j);
 	    	}
 	    }
-	    return M;
+	    return std::move(M);
 	}
 }
 

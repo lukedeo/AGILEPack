@@ -16,7 +16,7 @@ inline agile::vector exp_sigmoid(const agile::vector &v)
 	{
 		w(row) = 1 / (1 + exp(-w(row)));
 	}
-	return (w);
+	return std::move(w);
 }
 
 // this is for s'(x) = s(x) * (1 - s(x))
@@ -27,7 +27,7 @@ inline agile::vector exp_sigmoid_deriv(const agile::vector &v)
 	{
 		w(row) = w(row) * (1 - w(row));
 	}
-	return (w);
+	return std::move(w);
 }
 
 inline agile::vector softmax(const agile::vector &v)
@@ -38,7 +38,7 @@ inline agile::vector softmax(const agile::vector &v)
 		w(row) = exp(w(row));
 	}
 	w /= w.sum();
-	return (w);
+	return std::move(w);
 }
 
 }

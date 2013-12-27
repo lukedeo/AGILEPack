@@ -25,15 +25,24 @@ learning(L.learning), momentum(L.momentum), regularizer(L.regularizer), m_layer_
 
 void layer::construct(int n_inputs, int n_outputs, layer_type type)
 {
+	ctr = 0;
+	m_batch_size = 3;
+	learning = 0.2;
+	momentum = 0.5;
+	regularizer = 0.00;
 	m_inputs = n_inputs;
 	m_outputs = n_outputs;
 	W.resize(n_outputs, n_inputs);
+	W_change.resize(n_outputs, n_inputs);
 	W_old.resize(n_outputs, n_inputs);
 	b.resize(n_outputs, Eigen::NoChange);
+	b_change.resize(n_outputs, Eigen::NoChange);
 	b_old.resize(n_outputs, Eigen::NoChange);
 	m_out.resize(n_outputs, Eigen::NoChange);
 	m_in.resize(n_inputs, Eigen::NoChange);
 	m_layer_type = type;
+
+	reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
 }
 
 void layer::reset_weights(numeric bound)
@@ -134,12 +143,12 @@ void layer::update()
 YAML::Emitter& operator << (YAML::Emitter& out, const layer &L) 
 {
 	out << YAML::BeginMap;
-	out << YAML::Key << "inputs" << YAML::Value << L.m_inputs;
-	out << YAML::Key << "outputs" << YAML::Value << L.m_outputs;
-	out << YAML::Key << "learning" << YAML::Value << L.learning;
-	out << YAML::Key << "momentum" << YAML::Value << L.momentum;
+	out << YAML::Key << "inputs"      << YAML::Value << L.m_inputs;
+	out << YAML::Key << "outputs"     << YAML::Value << L.m_outputs;
+	out << YAML::Key << "learning"    << YAML::Value << L.learning;
+	out << YAML::Key << "momentum"    << YAML::Value << L.momentum;
 	out << YAML::Key << "regularizer" << YAML::Value << L.regularizer;
-	out << YAML::Key << "batchsize" << YAML::Value << L.m_batch_size;
+	out << YAML::Key << "batchsize"   << YAML::Value << L.m_batch_size;
 	out << YAML::Key << "activation";
 
 	if (L.m_layer_type == linear)
@@ -156,7 +165,7 @@ YAML::Emitter& operator << (YAML::Emitter& out, const layer &L)
 	}
 
 	out << YAML::Key << "weights" << YAML::Value << agile::stringify(L.W);
-	out << YAML::Key << "bias" << YAML::Value << agile::stringify(L.b);
+	out << YAML::Key << "bias"    << YAML::Value << agile::stringify(L.b);
     out << YAML::EndMap;
     return out;
 }

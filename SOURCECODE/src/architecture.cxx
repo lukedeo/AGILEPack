@@ -1,8 +1,9 @@
 #include "architecture.hh"
 
-architecture::architecture(int num_layers) : n_layers(num_layers)
+architecture::architecture(int num_layers) : n_layers(num_layers), stack(num_layers)
 {
-	stack.resize(num_layers);
+	// stack.resize(num_layers);
+
 }
 architecture::~architecture()
 {
@@ -11,6 +12,12 @@ void architecture::push_back(layer &L)
 {
 	stack.push_back(L);
 	++n_layers;
+}
+
+void architecture::resize(unsigned int size)
+{
+	stack.resize(size);
+	n_layers = size;
 }
 
 void architecture::pop_back()
@@ -23,8 +30,18 @@ unsigned int architecture::size()
 	return n_layers;
 }
 
+void architecture::clear()
+{
+	n_layers = 0;
+	stack.clear();
+}
+
 layer& architecture::at(unsigned int idx)
 {
+	if (idx >= n_layers)
+	{
+		throw std::out_of_range("Accessing layer in 'Class: architecture' beyond contained range.");
+	}
 	return stack.at(idx);
 }
 
@@ -56,21 +73,22 @@ YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch)
 {
 	out << YAML::BeginMap << YAML::Key << "layer_hash" << YAML::Key << YAML::BeginSeq;
 	unsigned char hash[20];
+	char hexstring[41];
 	std::string weight_string;
 	for (auto &entry : arch.stack)
 	{
 		weight_string = agile::stringify(entry.W);
 		sha1::calc(weight_string.c_str(),weight_string.size(),hash); // 10 is the length of the string
-		std::string hash_string(reinterpret_cast<const char*>(hash));
-		out << base64_encode(reinterpret_cast<const unsigned char*>(hash_string.c_str()), hash_string.length());
+		sha1::toHexString(hash, hexstring);
+		out << hexstring;
 	}
 	out << YAML::EndSeq;
 	for (auto &entry : arch.stack)
 	{
 		weight_string = agile::stringify(entry.W);
 		sha1::calc(weight_string.c_str(),weight_string.size(),hash); // 10 is the length of the string
-		std::string hash_string(reinterpret_cast<const char*>(hash));
-		out << YAML::Key << base64_encode(reinterpret_cast<const unsigned char*>(hash_string.c_str()), hash_string.length());
+		sha1::toHexString(hash, hexstring);
+		out << YAML::Key << hexstring;
 		out << YAML::Value << entry;
 	}
 	out << YAML::EndMap;
