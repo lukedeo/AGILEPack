@@ -65,7 +65,7 @@ int main(int argc, char const *argv[])
 	// std::cout << NEW.b << std::endl;
 	// arch.push_back(NEW);
 
-	layer l = ARCH.at(6);
+	layer l = ARCH.at(6); // make sure this throws an error correctly
 
 
 	std::cout << "loaded: " << std::endl;
