@@ -72,6 +72,10 @@ namespace YAML
 			{
 				node["activation"] = "softmax";
 			}
+			else if (L.m_layer_type == rectified)
+			{
+				node["activation"] = "rectified";
+			}
 			else
 			{
 				node["activation"] = "softmax";
@@ -105,6 +109,10 @@ namespace YAML
 			else if (tmp_str == "sigmoid")
 			{
 				L.m_layer_type = sigmoid;
+			}
+			else if (tmp_str == "rectified")
+			{
+				L.m_layer_type = rectified;
 			}
 			else
 			{

@@ -19,7 +19,7 @@
 #include "sha1.hh"
 
 typedef double numeric;
-enum layer_type { linear, sigmoid, softmax };
+enum layer_type { linear, rectified, sigmoid, softmax };
 
 namespace agile
 {

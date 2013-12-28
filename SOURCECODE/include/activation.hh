@@ -7,7 +7,26 @@ namespace agile
 {
 namespace functions
 {
+ 
+inline agile::vector rect_lin_unit(const agile::vector &v)
+{
+	agile::vector w(v);
+	for (int row = 0; row < v.rows(); ++row)
+	{
+		w(row) = std::max(w(row), 0.0);
+	}
+	return std::move(w);
+}
 
+inline agile::vector rect_lin_unit_deriv(const agile::vector &v)
+{
+	agile::vector w(v);
+	for (int row = 0; row < v.rows(); ++row)
+	{
+		w(row) = (w(row) > 0) ? 1.0 : 0.0;
+	}
+	return std::move(w);
+}
 
 inline agile::vector exp_sigmoid(const agile::vector &v)
 {

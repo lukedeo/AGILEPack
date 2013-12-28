@@ -91,6 +91,8 @@ agile::vector layer::fire()
  			return agile::functions::softmax(m_out);
  		case linear:
  			return m_out;
+ 		case rectified:
+ 			return agile::functions::rect_lin_unit(m_out);
  		default:
 	 		return m_out;
  	}	
@@ -103,6 +105,10 @@ void layer::backpropagate(const agile::vector &v)
 	if (m_layer_type == sigmoid)
 	{
 		delta = delta.array() * (agile::functions::exp_sigmoid_deriv(agile::functions::exp_sigmoid(m_out))).array();
+	}
+	if (m_layer_type == rectified)
+	{
+		delta = delta.array() * (agile::functions::rect_lin_unit_deriv(agile::functions::rect_lin_unit(m_out))).array();
 	}
 	
 
@@ -158,6 +164,10 @@ YAML::Emitter& operator << (YAML::Emitter& out, const layer &L)
 	else if (L.m_layer_type == softmax)
 	{
 		out << YAML::Value << "softmax";
+	}
+	else if (L.m_layer_type == rectified)
+	{
+		out << YAML::Value << "rectified";
 	}
 	else
 	{
