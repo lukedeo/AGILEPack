@@ -14,6 +14,7 @@ public:
 	architecture(int num_layers = 0);
 	~architecture();
 	void push_back(layer &L);
+	void add_layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
 	layer& at(unsigned int idx);
 	void pop_back();
 	void clear();

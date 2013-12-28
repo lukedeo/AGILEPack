@@ -14,6 +14,13 @@ void architecture::push_back(layer &L)
 	++n_layers;
 }
 
+void architecture::add_layer(int n_inputs, int n_outputs, layer_type type)
+{
+	++n_layers;
+	stack.resize(n_layers);
+	stack.at(n_layers - 1).construct(n_inputs, n_outputs, type);
+}
+
 void architecture::resize(unsigned int size)
 {
 	stack.resize(size);
