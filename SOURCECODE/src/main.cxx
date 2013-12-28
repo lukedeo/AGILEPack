@@ -64,8 +64,7 @@ int main(int argc, char const *argv[])
 	
 	architecture ARCH = config["network"].as<architecture>();
 
-	// layer l = ARCH.at(6);
-
+	// layer l = ARCH.at(6); // make sure this throws an error correctly
 
 	std::cout << "loaded: " << std::endl;
 
