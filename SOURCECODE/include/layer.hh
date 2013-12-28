@@ -5,6 +5,7 @@
 #include "basedefs.hh"
 #include "activation.hh"
 
+class architecture;
 
 class layer
 {
@@ -33,11 +34,15 @@ public:
 
 	~layer();	
 
+// private:
+
 	int m_inputs, m_outputs, m_batch_size, ctr;
 	agile::matrix W, W_old, W_change;
 	agile::vector b, b_old, b_change, m_out, m_in, delta, m_dump_below;
 	numeric learning, momentum, regularizer;
 	layer_type m_layer_type;
+
+
 };
 
 namespace agile

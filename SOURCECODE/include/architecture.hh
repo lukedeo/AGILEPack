@@ -23,6 +23,7 @@ public:
 	agile::vector predict(const agile::vector &v);
 	void correct(const agile::vector &in, const agile::vector &target);
 	// void to_yaml(std::string filename = "file.yaml");
+
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
 
 // private:
