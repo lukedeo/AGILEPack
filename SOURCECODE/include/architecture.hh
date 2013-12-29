@@ -3,27 +3,30 @@
 
 #include "layer.hh"
 
-// namespace agile
-// {
-// 	enum problem_type { regression, classification, softmax_classification };
-// }
+
+
+enum problem_type { regress, classify, multiclass };
+
 
 class architecture
 {
 public:
 	architecture(int num_layers = 0);
+	architecture(std::initializer_list<int> il, problem_type type = regress);
 	~architecture();
-	void push_back(layer &L);
+	void add_layer(const layer &L);
 	void add_layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
-	layer& at(unsigned int idx);
+	void add_layer(layer *L);
+	std::unique_ptr<layer> const& at(const int &idx);
 	void pop_back();
 	void clear();
 	unsigned int size();
+	
 	void resize(unsigned int size);
 	agile::vector predict(const agile::vector &v);
 	void correct(const agile::vector &in, const agile::vector &target);
+	
 	// void to_yaml(std::string filename = "file.yaml");
-
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
 
 // private:
@@ -48,7 +51,7 @@ namespace YAML
 
 			for (auto &entry : arch.stack)
 			{
-				weight_string = agile::stringify(entry.W);
+				weight_string = agile::stringify(entry->W);
 				sha1::calc(weight_string.c_str(),weight_string.size(),hash); // 10 is the length of the string
 				sha1::toHexString(hash, hexstring);
 				node["layer_hash"].push_back(static_cast<std::string>(hexstring));
@@ -56,7 +59,7 @@ namespace YAML
 			}
 			for (auto &entry : arch.stack)
 			{
-				node[hash_vec.at(tmp_ctr)] = entry;
+				node[hash_vec.at(tmp_ctr)] = (*entry);
 			}
 			return node;
 		}
@@ -68,11 +71,9 @@ namespace YAML
 
 			auto hash_names = node["layer_hash"];
 
-			arch.resize(hash_names.size());
-
 			for (unsigned int i = 0; i < hash_names.size(); ++i)
 			{
-				arch.at(i) = node[hash_names[i].as<std::string>()].as<layer>();
+				arch.add_layer(new layer(node[hash_names[i].as<std::string>()].as<layer>()));
 			}
 
 			return true;

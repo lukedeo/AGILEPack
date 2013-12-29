@@ -47,7 +47,7 @@ public:
 
 namespace agile
 {
-	typedef std::vector<layer> layer_stack;
+	typedef std::vector<std::unique_ptr<layer>> layer_stack;
 }
 
 

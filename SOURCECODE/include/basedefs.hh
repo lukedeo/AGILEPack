@@ -8,6 +8,7 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+#include <initializer_list>
 #include <cmath>
 #include <random>
 #include <string>

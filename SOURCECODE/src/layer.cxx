@@ -7,7 +7,6 @@ b(n_outputs), b_old(n_outputs),b_change(n_outputs), m_out(n_outputs), m_in(n_inp
 learning(0.2), momentum(0.5), regularizer(0.00), m_layer_type(type)
 {
 	ctr = 0;
-	// reset_weights(std::min(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)), 0.05));
 	reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
 }
 
@@ -19,8 +18,6 @@ b(L.b), b_old(L.b_old),b_change(L.b_change), m_out(L.m_out), m_in(L.m_in),
 learning(L.learning), momentum(L.momentum), regularizer(L.regularizer), m_layer_type(L.m_layer_type)
 {
 	ctr = 0;
-	// reset_weights(std::min(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)), 0.05));
-	// reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }
 
 void layer::construct(int n_inputs, int n_outputs, layer_type type)
@@ -179,22 +176,6 @@ YAML::Emitter& operator << (YAML::Emitter& out, const layer &L)
     out << YAML::EndMap;
     return out;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 layer::~layer()
 {

@@ -19,13 +19,20 @@ int main(int argc, char const *argv[])
 	     0.0;
 
 
-	architecture arch(2); // start it with two layers (one way to initialize)
+	// architecture arch; // start it with two layers (one way to initialize)
 
-	arch.at(0).construct(2, 4, sigmoid); // can set parms this way
-	arch.at(1).construct(4, 3, sigmoid);
+	// arch.add_layer(2, 4, sigmoid); // can set parms this way
 
-	layer l3(3, 1, sigmoid); // want to add another layer?
-	arch.push_back(l3);// this way!
+	// arch.add_layer(4, 3, sigmoid);
+
+	// // arch.add_layer(3, 1, sigmoid);
+
+	// layer l3(3, 1, sigmoid); // want to add another layer?
+
+	// arch.add_layer(l3);// this way!
+
+
+	architecture arch({2, 4, 3, 1}, classify);
 
 
 	std::ofstream file("network.yaml");
@@ -60,18 +67,18 @@ int main(int argc, char const *argv[])
 
 	// now load it and cross check
 
-	YAML::Node config = YAML::LoadFile("network.yaml");
+	// YAML::Node config = YAML::LoadFile("network.yaml");
 	
-	architecture ARCH = config["network"].as<architecture>();
+	// architecture ARCH = config["network"].as<architecture>();
 
-	// layer l = ARCH.at(6); // make sure this throws an error correctly
+	// // layer l = ARCH.at(6); // make sure this throws an error correctly
 
-	std::cout << "loaded: " << std::endl;
+	// std::cout << "loaded: " << std::endl;
 
-	for (int i = 0; i < 4; ++i)
-	{
-		std::cout << "input: " << X.row(i) << ", output: \n" << ARCH.predict(X.row(i)) << "\n, truth: \n" << T.row(i) << std::endl;
-	}
+	// for (int i = 0; i < 4; ++i)
+	// {
+	// 	std::cout << "input: " << X.row(i) << ", output: \n" << ARCH.predict(X.row(i)) << "\n, truth: \n" << T.row(i) << std::endl;
+	// }
 
 	// std::cout << "encoded: " << encoded << std::endl;
 
