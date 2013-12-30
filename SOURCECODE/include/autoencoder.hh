@@ -20,6 +20,9 @@ public:
 
 	// friend YAML::Emitter& operator << (YAML::Emitter& out, const autoencoder &L);
 
+	void encode(const agile::vector &v, bool noisify = true);
+	agile::vector reconstruct(const agile::vector &v, bool noisify = true);
+
 	~autoencoder();	
 
 	layer decoder;

@@ -1,5 +1,6 @@
 #include "architecture.hh"
 #include "layer.hh"
+#include "autoencoder.hh"
 #include <fstream>
 #include "sha1.hh"
 
@@ -19,20 +20,16 @@ int main(int argc, char const *argv[])
 	     0.0;
 
 
-	// architecture arch; // start it with two layers (one way to initialize)
+	architecture arch; 
 
-	// arch.add_layer(2, 4, sigmoid); // can set parms this way
+	arch.add_layer(new autoencoder(2, 4, sigmoid)); // can set parms this way
 
-	// arch.add_layer(4, 3, sigmoid);
-
-	// // arch.add_layer(3, 1, sigmoid);
-
-	// layer l3(3, 1, sigmoid); // want to add another layer?
-
-	// arch.add_layer(l3);// this way!
+	arch.add_layer(4, 3, sigmoid);
+	arch.add_layer(3, 1, sigmoid);
 
 
-	architecture arch({2, 4, 3, 1}, classify);
+
+	// architecture arch({2, 4, 3, 1}, classify);
 
 
 	std::ofstream file("network.yaml");

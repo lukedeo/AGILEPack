@@ -22,6 +22,27 @@ void autoencoder::reset_weights(numeric bound)
 	decoder.reset_weights(bound);
 }
 
+void autoencoder::encode(const agile::vector &v, bool noisify)
+{
+	agile::vector error = reconstruct(v, noisify) - v;
+	this->backpropagate(error);
+	decoder.backpropagate(this->dump_below());
+}
+
+agile::vector autoencoder::reconstruct(const agile::vector &v, bool noisify)
+{
+	if (noisify)
+	{
+		this->charge(agile::functions::add_noise(v));
+	}
+	else
+	{
+		this->charge(v);
+	}
+	decoder.charge(this->fire());
+	return decoder.fire();
+}
+
 
 autoencoder::~autoencoder()
 {

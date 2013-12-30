@@ -60,6 +60,19 @@ inline agile::vector softmax(const agile::vector &v)
 	return std::move(w);
 }
 
+inline agile::vector add_noise(const agile::vector &v, numeric level = 0.09)
+{
+	std::normal_distribution <numeric> distribution(0.0, level);
+
+	agile::vector w(v);
+	for (int row = 0; row < v.rows(); ++row)
+	{
+		w(row) += distribution(agile::mersenne_engine());;
+	}
+	return std::move(w);
+}
+
+
 }
 }
 
