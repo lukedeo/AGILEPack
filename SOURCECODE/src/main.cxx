@@ -22,7 +22,24 @@ int main(int argc, char const *argv[])
 
 	architecture arch; 
 
-	arch.add_layer(new autoencoder(2, 4, sigmoid)); // can set parms this way
+	auto aut = autoencoder(2, 4, sigmoid); // can set parms this way
+
+	for (int i = 0; i < 1000; ++i)
+	{
+		for (int point = 0; point < 4; ++point)
+		{
+			aut.encode(X.row(point), false);
+		}
+	}
+	for (int point = 0; point < 4; ++point)
+	{
+		aut.encode(X.row(point), false);
+		std::cout << "input:\n" <<  X.row(point) << "\n";
+		std::cout << "reconstructed:\n" << aut.reconstruct(X.row(point)) << "\n";
+		getchar();
+	}
+
+	arch.add_layer(aut);
 
 	arch.add_layer(4, 3, sigmoid);
 	arch.add_layer(3, 1, sigmoid);
