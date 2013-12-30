@@ -1,6 +1,9 @@
 #ifndef AUTOENCODER_HH
 #define AUTOENCODER_HH 
 
+#include "layer.hh"
+#include "basedefs.hh"
+
 
 
 class autoencoder : public layer

@@ -11,7 +11,7 @@ class layer
 public:
 	explicit layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
 
-	virtual layer(const layer &L);
+	layer(const layer &L);
 
 	virtual void construct(int n_inputs, int n_outputs, layer_type type);
 

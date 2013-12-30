@@ -76,13 +76,13 @@ void architecture::clear()
 	stack.clear();
 }
 
-std::unique_ptr<layer> const& architecture::at(const int &idx);
+std::unique_ptr<layer> const& architecture::at(const unsigned int &idx)
 {
 	if (idx >= n_layers)
 	{
 		throw std::out_of_range("Accessing layer in 'Class: architecture' beyond contained range.");
 	}
-	return stack.at(idx)
+	return stack.at(idx);
 }
 
 agile::vector architecture::predict(const agile::vector &v)

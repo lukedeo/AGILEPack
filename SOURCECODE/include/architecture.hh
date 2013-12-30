@@ -17,7 +17,7 @@ public:
 	void add_layer(const layer &L);
 	void add_layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
 	void add_layer(layer *L);
-	std::unique_ptr<layer> const& at(const int &idx);
+	std::unique_ptr<layer> const& at(const unsigned int &idx);
 	void pop_back();
 	void clear();
 	unsigned int size();
