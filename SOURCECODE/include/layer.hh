@@ -5,26 +5,25 @@
 #include "basedefs.hh"
 #include "activation.hh"
 
-class architecture;
 
 class layer
 {
 public:
 	explicit layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
 
-	layer(const layer &L);
+	virtual layer(const layer &L);
 
-	void construct(int n_inputs, int n_outputs, layer_type type);
+	virtual void construct(int n_inputs, int n_outputs, layer_type type);
 
-	void reset_weights(numeric bound);
+	virtual void reset_weights(numeric bound);
 	// pass an input vector, the layer class holds the "charge"
 	void charge(const agile::vector& v); 
-	virtual agile::vector fire(); // Fire the charge.
+	agile::vector fire(); // Fire the charge.
 
 	// void perturb_weights(numeric bound);
 	// void set_batch_size(int size);
 
-	virtual void backpropagate(const agile::vector &v);
+	void backpropagate(const agile::vector &v);
 
 	agile::vector dump_below();
 
