@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
 	}
 	for (int point = 0; point < 4; ++point)
 	{
-		aut.encode(X.row(point), false);
+		aut.encode(X.row(point), true);
 		std::cout << "input:\n" <<  X.row(point) << "\n";
 		std::cout << "reconstructed:\n" << aut.reconstruct(X.row(point)) << "\n";
 		getchar();
