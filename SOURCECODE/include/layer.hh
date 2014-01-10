@@ -6,6 +6,28 @@
 #include "activation.hh"
 
 
+// template <class T, class ...Args>
+// typename std::enable_if
+// <
+//     !std::is_array<T>::value,
+//     std::unique_ptr<T>
+// >::type
+// layer_factory(Args&& ...args)
+// {
+//     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+// }
+
+template <class T, class ...Args>
+typename std::enable_if
+<
+    !std::is_array<T>::value,
+    T*
+>::type
+layer_factory(Args&& ...args)
+{
+    return dynamic_cast<T*>(new T(std::forward<Args>(args)...));
+}
+
 class layer
 {
 public:
@@ -24,6 +46,10 @@ public:
 	// void set_batch_size(int size);
 
 	void backpropagate(const agile::vector &v);
+	virtual std::string get_desc()
+	{
+		return "This is base.";
+	}
 
 	agile::vector dump_below();
 
@@ -31,7 +57,10 @@ public:
 
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const layer &L);
 
-	~layer();	
+	virtual ~layer() = default;
+	virtual agile::vector reconstruct(const agile::vector &v, bool noisify = true) {}
+	virtual void encode(const agile::vector &v, bool noisify = true) {}
+
 
 // private:
 

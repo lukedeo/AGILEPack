@@ -176,7 +176,3 @@ YAML::Emitter& operator << (YAML::Emitter& out, const layer &L)
     out << YAML::EndMap;
     return out;
 }
-
-layer::~layer()
-{
-}

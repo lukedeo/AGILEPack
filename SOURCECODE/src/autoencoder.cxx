@@ -46,5 +46,4 @@ agile::vector autoencoder::reconstruct(const agile::vector &v, bool noisify)
 
 autoencoder::~autoencoder()
 {
-
 }	

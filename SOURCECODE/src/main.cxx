@@ -24,24 +24,35 @@ int main(int argc, char const *argv[])
 
 	auto aut = autoencoder(2, 4, sigmoid); // can set parms this way
 
+	arch.add_layer(layer_factory<autoencoder>(2, 4, sigmoid));
+	std::cout << arch.at(0)->get_desc() << std::endl;
+	// arch.clear();
+
+
+	// arch.add_a_layer<autoencoder>(2, 4, sigmoid);
+	// arch.add_layer(new autoencoder(2, 4, sigmoid));
+
 	for (int i = 0; i < 1000; ++i)
 	{
 		for (int point = 0; point < 4; ++point)
 		{
-			aut.encode(X.row(point), false);
+			arch.stack.at(0)->encode(X.row(point), false);
 		}
 	}
 	for (int point = 0; point < 4; ++point)
 	{
-		aut.encode(X.row(point), true);
+		arch.stack.at(0)->encode(X.row(point), true);
 		std::cout << "input:\n" <<  X.row(point) << "\n";
-		std::cout << "reconstructed:\n" << aut.reconstruct(X.row(point)) << "\n";
+		std::cout << "reconstructed:\n" << arch.stack.at(0)->reconstruct(X.row(point)) << "\n";
 		getchar();
 	}
 
-	arch.add_layer(aut);
+	// arch.add_layer(aut);
+
+	std::cout << arch.at(0)->get_desc() << std::endl;
 
 	arch.add_layer(4, 3, sigmoid);
+	std::cout << arch.at(1)->get_desc() << std::endl;
 	arch.add_layer(3, 1, sigmoid);
 
 

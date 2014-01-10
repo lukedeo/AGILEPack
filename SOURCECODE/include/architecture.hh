@@ -2,6 +2,7 @@
 #define ARCHITECTURE_HH 
 
 #include "layer.hh"
+#include "autoencoder.hh"
 
 
 
@@ -14,10 +15,44 @@ public:
 	architecture(int num_layers = 0);
 	architecture(std::initializer_list<int> il, problem_type type = regress);
 	~architecture();
-	void add_layer(const layer &L);
+	
+	template <class T>
+	void add_layer(const T &L)
+	{
+		stack.emplace_back(new T(L));
+		++n_layers;
+	}
+
 	void add_layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
-	void add_layer(layer *L);
+	
+	template <class T>
+	void add_layer(T *L)
+	{
+		// std::cout << "the original desc is " << L->get_desc() << "\n";
+		++n_layers;
+		stack.emplace_back((T*)L);
+		// std::cout << "the final desc is " << stack.at(0)->get_desc() << "\n";
+	}
+
+	template <class T, class ...Args>
+	void add_a_layer(Args&& ...args)
+	{
+		++n_layers;
+	    stack.emplace_back(new T(std::forward<Args>(args)...));
+	}
+
 	std::unique_ptr<layer> const& at(const unsigned int &idx);
+
+	
+	// template <class T>
+	// std::unique_ptr<T> const& at(const unsigned int &idx)
+	// {
+	// 	if (idx >= n_layers)
+	// 	{
+	// 		throw std::out_of_range("Accessing layer in 'Class: architecture' beyond contained range.");
+	// 	}
+	// 	return stack.at(idx);
+	// }
 	void pop_back();
 	void clear();
 	unsigned int size();

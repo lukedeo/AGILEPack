@@ -14,6 +14,7 @@ DEBUG =  -O0 -g
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
 CXX = g++
+# CXX = clang++
 CXXFLAGS = -std=c++11 -O3 -I$(INC) -fPIC $(DEBUG) -m64 -Wall -Wextra
 # LIBS = -L/usr/local/opt/yaml-cpp/lib
 LIBS = -lyaml-cpp
@@ -32,7 +33,7 @@ CXXFLAGS += $(ROOTCFLAGS)
 LIBS += $(ROOTLIBS)
 LDFLAGS += $(ROOTLDFLAGS)
 
-OBJ = main.o layer.o architecture.o sha1.o autoencoder.o
+OBJ = layer.o architecture.o sha1.o autoencoder.o main.o
 
 # HEADER = JetTagger.h
 

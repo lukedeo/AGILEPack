@@ -36,11 +36,7 @@ architecture::architecture(std::initializer_list<int> il, problem_type type) : n
 architecture::~architecture()
 {
 }
-void architecture::add_layer(const layer &L)
-{
-	stack.emplace_back(new layer(L));
-	++n_layers;
-}
+
 
 void architecture::add_layer(int n_inputs, int n_outputs, layer_type type)
 {
@@ -48,11 +44,6 @@ void architecture::add_layer(int n_inputs, int n_outputs, layer_type type)
 	stack.emplace_back(new layer(n_inputs, n_outputs, type));
 }
 
-void architecture::add_layer(layer *L)
-{
-	++n_layers;
-	stack.emplace_back(L);
-}
 
 void architecture::resize(unsigned int size)
 {
