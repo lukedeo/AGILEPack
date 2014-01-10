@@ -101,6 +101,7 @@ namespace YAML
 			for (auto &entry : arch.stack)
 			{
 				node[hash_vec.at(tmp_ctr)] = (*entry);
+				++tmp_ctr;
 			}
 			return node;
 		}

@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
 	// arch.add_layer(2, 4, sigmoid);
 
 	arch.add_layer(4, 3, sigmoid);
-	arch.add_layer(3, 1, sigmoid);
+	arch.add_layer(3, 1, rectified);
 
 
 
@@ -92,9 +92,9 @@ int main(int argc, char const *argv[])
 
 	// now load it and cross check
 
-	// YAML::Node config = YAML::LoadFile("network.yaml");
+	YAML::Node config = YAML::LoadFile("network.yaml");
 	
-	// architecture ARCH = config["network"].as<architecture>();
+	architecture ARCH = config["network"].as<architecture>();
 
 	// // layer l = ARCH.at(6); // make sure this throws an error correctly
 
