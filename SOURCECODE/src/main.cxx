@@ -14,10 +14,10 @@ int main(int argc, char const *argv[])
 	     1.0, 1.0;
 
 	agile::matrix T(4, 1);
-	T << 0.0,
-	     1.0,
-	     1.0,
-	     0.0;
+	T << 0.9,
+	     0.5,
+	     0.5,
+	     2.17;
 
 
 	architecture arch; 
@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
 		arch.at(0)->encode(X.row(point), true);
 		// aut.encode(X.row(point), true);
 		std::cout << "input:\n" <<  X.row(point) << "\n";
-		std::cout << "reconstructed:\n" << arch.stack.at(0)->reconstruct(X.row(point)) << "\n";
+		std::cout << "reconstructed:\n" << arch.at(0)->reconstruct(X.row(point)) << "\n";
 		// std::cout << "reconstructed:\n" << aut.reconstruct(X.row(point)) << "\n";
 		getchar();
 	}
@@ -94,16 +94,16 @@ int main(int argc, char const *argv[])
 
 	YAML::Node config = YAML::LoadFile("network.yaml");
 	
-	architecture ARCH = config["network"].as<architecture>();
+	architecture ARCH = std::move(config["network"].as<architecture>());
 
 	// // layer l = ARCH.at(6); // make sure this throws an error correctly
 
-	// std::cout << "loaded: " << std::endl;
+	std::cout << "loaded: " << std::endl;
 
-	// for (int i = 0; i < 4; ++i)
-	// {
-	// 	std::cout << "input: " << X.row(i) << ", output: \n" << ARCH.predict(X.row(i)) << "\n, truth: \n" << T.row(i) << std::endl;
-	// }
+	for (int i = 0; i < 4; ++i)
+	{
+		std::cout << "input: " << X.row(i) << ", output: \n" << ARCH.predict(X.row(i)) << "\n, truth: \n" << T.row(i) << std::endl;
+	}
 
 	// std::cout << "encoded: " << encoded << std::endl;
 

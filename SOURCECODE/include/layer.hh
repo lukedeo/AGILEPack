@@ -28,6 +28,22 @@ layer_factory(Args&& ...args)
     return dynamic_cast<T*>(new T(std::forward<Args>(args)...));
 }
 
+class layer;
+class architecture;
+
+namespace YAML
+{
+	template <>
+	struct convert<layer>;
+}
+
+namespace YAML
+{
+	template <>
+	struct convert<architecture>;
+}
+
+
 class layer
 {
 public:
@@ -35,6 +51,14 @@ public:
 
 	layer(const layer &L);
 
+	layer* clone()
+	{
+		return new layer(*this);
+	}
+	virtual std::string get_desc()
+	{
+		return "this is base";
+	}
 	virtual void construct(int n_inputs, int n_outputs, layer_type type);
 
 	virtual void reset_weights(numeric bound);
@@ -46,23 +70,24 @@ public:
 	// void set_batch_size(int size);
 
 	void backpropagate(const agile::vector &v);
-	virtual std::string get_desc()
-	{
-		return "This is base.";
-	}
 
 	agile::vector dump_below();
 
 	void update();
 
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const layer &L);
+	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
 
 	virtual ~layer() = default;
 	virtual agile::vector reconstruct(const agile::vector &v, bool noisify = true) {}
 	virtual void encode(const agile::vector &v, bool noisify = true) {}
 
+	friend struct YAML::convert<layer>;
+	friend struct YAML::convert<architecture>;
 
-// private:
+
+
+protected:
 
 	int m_inputs, m_outputs, m_batch_size, ctr;
 	agile::matrix W, W_old, W_change;

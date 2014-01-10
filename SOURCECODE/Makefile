@@ -16,6 +16,8 @@ PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 CXX = g++
 # CXX = clang++
 CXXFLAGS = -std=c++11 -O3 -I$(INC) -fPIC $(DEBUG) -m64 -Wall -Wextra
+
+# CXXFLAGS += -stdlib=libc++ 
 # LIBS = -L/usr/local/opt/yaml-cpp/lib
 LIBS = -lyaml-cpp
 LDFLAGS = 

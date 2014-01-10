@@ -33,6 +33,15 @@ architecture::architecture(std::initializer_list<int> il, problem_type type) : n
 	}
 }
 
+architecture::architecture(const architecture &arch) : n_layers(0), stack(0)
+{
+	for (auto &entry : arch.stack)
+	{
+		stack.emplace_back(entry->clone());
+		++n_layers;
+	}
+}
+
 architecture::~architecture()
 {
 }

@@ -9,12 +9,22 @@
 enum problem_type { regress, classify, multiclass };
 
 
+class architecture;
+
+namespace YAML
+{
+	template <>
+	struct convert<architecture>;
+}
+
+
 class architecture
 {
 public:
 	architecture(int num_layers = 0);
 	architecture(std::initializer_list<int> il, problem_type type = regress);
 	~architecture();
+	architecture(const architecture &arch);
 
 	template <class T>
 	void convert(const unsigned int &idx)
@@ -34,10 +44,8 @@ public:
 	template <class T>
 	void add_layer(T *L)
 	{
-		std::cout << "the original desc is " << L->get_desc() << "\n";
 		++n_layers;
 		stack.emplace_back((T*)L);
-		std::cout << "the final desc is " << stack.at(0)->get_desc() << "\n";
 	}
 
 	template <class T, class ...Args>
@@ -70,7 +78,15 @@ public:
 	// void to_yaml(std::string filename = "file.yaml");
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
 
-// private:
+	// template <>
+	
+
+	// friend static YAML::Node convert<architecture>::encode(const architecture &arch);
+
+	friend struct YAML::convert<architecture>;
+protected:
+	
+
 	unsigned int n_layers;
 	agile::layer_stack stack;
 };
