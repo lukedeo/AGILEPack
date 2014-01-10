@@ -15,6 +15,12 @@ public:
 	architecture(int num_layers = 0);
 	architecture(std::initializer_list<int> il, problem_type type = regress);
 	~architecture();
+
+	template <class T>
+	void convert(const unsigned int &idx)
+	{
+		stack.at(idx) = dynamic_cast<std::unique_ptr<T>>(stack.at(idx));
+	}
 	
 	template <class T>
 	void add_layer(const T &L)
@@ -28,10 +34,10 @@ public:
 	template <class T>
 	void add_layer(T *L)
 	{
-		// std::cout << "the original desc is " << L->get_desc() << "\n";
+		std::cout << "the original desc is " << L->get_desc() << "\n";
 		++n_layers;
 		stack.emplace_back((T*)L);
-		// std::cout << "the final desc is " << stack.at(0)->get_desc() << "\n";
+		std::cout << "the final desc is " << stack.at(0)->get_desc() << "\n";
 	}
 
 	template <class T, class ...Args>
@@ -43,7 +49,7 @@ public:
 
 	std::unique_ptr<layer> const& at(const unsigned int &idx);
 
-	
+
 	// template <class T>
 	// std::unique_ptr<T> const& at(const unsigned int &idx)
 	// {
