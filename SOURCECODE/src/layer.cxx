@@ -32,7 +32,7 @@ m_layer_type(type)
 
 {
     ctr = 0;
-    reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
+    reset_weights(sqrt((numeric)5 / (numeric)(n_inputs + n_outputs)));
 }
 //----------------------------------------------------------------------------
 layer::layer(const layer &L): 
