@@ -136,7 +136,9 @@ public:
 //	Access for YAML serialization
 //-----------------------------------------------------------------------------
 	
-	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
+	friend YAML::Emitter& operator << (YAML::Emitter& out, 
+		const architecture &arch);
+
 	friend struct YAML::convert<architecture>;
 
 protected:
@@ -169,9 +171,12 @@ namespace YAML
 			for (auto &entry : arch.stack)
 			{
 				weight_string = agile::stringify(entry->W);
-				sha1::calc(weight_string.c_str(),weight_string.size(),hash); // 10 is the length of the string
+				 // 10 is the length of the string
+				sha1::calc(weight_string.c_str(),weight_string.size(),hash);
 				sha1::toHexString(hash, hexstring);
-				node["layer_hash"].push_back(static_cast<std::string>(hexstring));
+				node["layer_hash"].push_back(
+					static_cast<std::string>(hexstring));
+				
 				hash_vec.push_back(static_cast<std::string>(hexstring));
 			}
 			for (auto &entry : arch.stack)
@@ -191,7 +196,8 @@ namespace YAML
 
 			for (unsigned int i = 0; i < hash_names.size(); ++i)
 			{
-				arch.add_layer(new layer(node[hash_names[i].as<std::string>()].as<layer>()));
+				arch.add_layer(new layer(
+					node[hash_names[i].as<std::string>()].as<layer>()));
 			}
 
 			return true;

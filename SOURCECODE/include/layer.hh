@@ -73,7 +73,6 @@ public:
 //-----------------------------------------------------------------------------
 //	Parameter Setting methods
 //-----------------------------------------------------------------------------
-
 	void set_batch_size(int size)
 	{
 		if (ctr > 0)
@@ -118,31 +117,31 @@ public:
 	virtual agile::vector reconstruct(const agile::vector &v, 
 		bool noisify = true) {}
 	virtual void encode(const agile::vector &v, bool noisify = true) {}
-
+    
 protected:
 //-----------------------------------------------------------------------------
 //	Protected Members
 //-----------------------------------------------------------------------------
-	int m_inputs,     // number of inputs to the layer
-		m_outputs,    // number of outputs leaving the layer
-		m_batch_size, // number of examples to consider when updating gradient
-		ctr;          // number of examples we've considered so far
+    int m_inputs,     // number of inputs to the layer
+	    m_outputs,    // number of outputs leaving the layer
+	    m_batch_size, // number of examples to consider when updating gradient
+	    ctr;          // number of examples we've considered so far
 
 	agile::matrix W,       // current weight matrix
-				  W_old,   // previous weight matrix
-				  W_change;// the change to make to W
+	              W_old,   // previous weight matrix
+	              W_change;// the change to make to W
 
 	agile::vector b,            // bias vector
-				  b_old,        // previous bias vector
-				  b_change,     // change to make to b
-				  m_out,        // untransformed layer output
-				  m_in,         // input to the layer
-				  delta,        // intermediate derivative
-				  m_dump_below; // quantity to feed to a lower layer
+	              b_old,        // previous bias vector
+	              b_change,     // change to make to b
+	              m_out,        // untransformed layer output
+	              m_in,         // input to the layer
+	              delta,        // intermediate derivative
+	              m_dump_below; // quantity to feed to a lower layer
 
 	numeric learning,    // learning rate
-			momentum,    // momentum (gradient smoothing) parameter
-			regularizer; // l2 regularization scalar
+	        momentum,    // momentum (gradient smoothing) parameter
+	        regularizer; // l2 regularization scalar
 
 	layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
 };
