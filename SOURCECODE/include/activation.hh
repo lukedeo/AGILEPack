@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//  activation.hh:
+//  Header for neural activation functions
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #ifndef ACTIVATION_HH
 #define ACTIVATION_HH 
 
@@ -7,7 +13,7 @@ namespace agile
 {
 namespace functions
 {
- 
+//----------------------------------------------------------------------------
 inline agile::vector rect_lin_unit(const agile::vector &v)
 {
     agile::vector w(v);
@@ -17,7 +23,7 @@ inline agile::vector rect_lin_unit(const agile::vector &v)
     }
     return std::move(w);
 }
-
+//----------------------------------------------------------------------------
 inline agile::vector rect_lin_unit_deriv(const agile::vector &v)
 {
     agile::vector w(v);
@@ -27,7 +33,7 @@ inline agile::vector rect_lin_unit_deriv(const agile::vector &v)
     }
     return std::move(w);
 }
-
+//----------------------------------------------------------------------------
 inline agile::vector exp_sigmoid(const agile::vector &v)
 {
     agile::vector w(v);
@@ -37,7 +43,7 @@ inline agile::vector exp_sigmoid(const agile::vector &v)
     }
     return std::move(w);
 }
-
+//----------------------------------------------------------------------------
 // this is for s'(x) = s(x) * (1 - s(x))
 inline agile::vector exp_sigmoid_deriv(const agile::vector &v)
 {
@@ -48,7 +54,7 @@ inline agile::vector exp_sigmoid_deriv(const agile::vector &v)
     }
     return std::move(w);
 }
-
+//----------------------------------------------------------------------------
 inline agile::vector softmax(const agile::vector &v)
 {
     agile::vector w(v);
@@ -59,7 +65,7 @@ inline agile::vector softmax(const agile::vector &v)
     w /= w.sum();
     return std::move(w);
 }
-
+//----------------------------------------------------------------------------
 inline agile::vector add_noise(const agile::vector &v, numeric level = 0.09)
 {
     std::normal_distribution <numeric> distribution(0.0, level);
@@ -71,12 +77,7 @@ inline agile::vector add_noise(const agile::vector &v, numeric level = 0.09)
     }
     return std::move(w);
 }
-
-
+//----------------------------------------------------------------------------
 }
 }
-
-
-
-
 #endif

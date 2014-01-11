@@ -1,8 +1,18 @@
+//-----------------------------------------------------------------------------
+//  autoencoder.hh:
+//  Header for autoencoder class, inherits from layer class
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #ifndef AUTOENCODER_HH
 #define AUTOENCODER_HH 
 
 #include "layer.hh"
 #include "basedefs.hh"
+
+//-----------------------------------------------------------------------------
+//  Hacky things for yaml-cpp friendship
+//-----------------------------------------------------------------------------
 
 class autoencoder;
 
@@ -12,36 +22,46 @@ namespace YAML
     struct convert<autoencoder>;
 }
 
-
+//-----------------------------------------------------------------------------
+//  autoencoder class
+//-----------------------------------------------------------------------------
 
 class autoencoder : public layer
 {
 public:
-    autoencoder(int n_inputs = 0, int n_outputs = 0, layer_type encoder_type = linear, layer_type decoder_type = linear);
-
+//-----------------------------------------------------------------------------
+//  Derived constructors
+//-----------------------------------------------------------------------------
+    autoencoder(int n_inputs = 0, int n_outputs = 0, 
+        layer_type encoder_type = linear, layer_type decoder_type = linear);
     autoencoder(const autoencoder &L);
-
-    void construct(int n_inputs, int n_outputs, layer_type encoder_type = linear, layer_type decoder_type = linear);
-
+    void construct(int n_inputs, int n_outputs, 
+        layer_type encoder_type = linear, layer_type decoder_type = linear);
     void reset_weights(numeric bound);
-    // pass an input vector, the autoencoder class holds the "charge"
-
-    // friend YAML::Emitter& operator << (YAML::Emitter& out, const autoencoder &L);
-
-    virtual void encode(const agile::vector &v, bool noisify = true);
-    virtual agile::vector reconstruct(const agile::vector &v, bool noisify = true);
-
     ~autoencoder(); 
 
+//-----------------------------------------------------------------------------
+//  Encode / decode operations
+//-----------------------------------------------------------------------------
+    virtual void encode(const agile::vector &v, bool noisify = true);
+    virtual agile::vector reconstruct(const agile::vector &v, 
+        bool noisify = true);
+
+//-----------------------------------------------------------------------------
+//  Access for YAML serialization
+//-----------------------------------------------------------------------------
     friend struct YAML::convert<autoencoder>;
 protected:
-
-    layer decoder;
+//-----------------------------------------------------------------------------
+//  Protected members
+//-----------------------------------------------------------------------------
+    layer decoder; // decoder layer
 };
 
 
 //-----------------------------------------------------------------------------
-//  PUT COUTS HERE TO DEBUG
+//  YAML Serialization Structure 
+//  (look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
 //-----------------------------------------------------------------------------
 namespace YAML 
 {

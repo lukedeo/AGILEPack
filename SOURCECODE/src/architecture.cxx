@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-//  architecture.hh:
+//  architecture.cxx:
 //  Implementation for architecture class, responsible for joining layers
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
