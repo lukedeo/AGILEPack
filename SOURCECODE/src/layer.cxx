@@ -1,25 +1,33 @@
+//-----------------------------------------------------------------------------
+//	layer.cxx:
+//	Implementation for layer class, responsible for s(Wx+b) calculation
+//	Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #include "layer.hh"
 #include <stdlib.h>
+
+//----------------------------------------------------------------------------
 layer::layer(int n_inputs, int n_outputs, layer_type type) 
-: m_inputs(n_inputs), m_outputs(n_outputs), m_batch_size(3), W(n_outputs, n_inputs), 
-W_old(n_outputs, n_inputs), W_change(n_outputs, n_inputs), 
-b(n_outputs), b_old(n_outputs),b_change(n_outputs), m_out(n_outputs), m_in(n_inputs),
-learning(0.2), momentum(0.5), regularizer(0.00), m_layer_type(type)
+: m_inputs(n_inputs), m_outputs(n_outputs), m_batch_size(3), 
+W(n_outputs, n_inputs), W_old(n_outputs, n_inputs), 
+W_change(n_outputs, n_inputs), b(n_outputs), b_old(n_outputs), 
+b_change(n_outputs), m_out(n_outputs), m_in(n_inputs), learning(0.2), 
+momentum(0.5), regularizer(0.00), m_layer_type(type)
 {
 	ctr = 0;
 	reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
 }
-
-
+//----------------------------------------------------------------------------
 layer::layer(const layer &L)
-: m_inputs(L.m_inputs), m_outputs(L.m_outputs), m_batch_size(L.m_batch_size), W(L.W), 
-W_old(L.W_old), W_change(L.W_change), 
-b(L.b), b_old(L.b_old),b_change(L.b_change), m_out(L.m_out), m_in(L.m_in),
-learning(L.learning), momentum(L.momentum), regularizer(L.regularizer), m_layer_type(L.m_layer_type)
+: m_inputs(L.m_inputs), m_outputs(L.m_outputs), m_batch_size(L.m_batch_size), 
+W(L.W), W_old(L.W_old), W_change(L.W_change), b(L.b), b_old(L.b_old), 
+b_change(L.b_change), m_out(L.m_out), m_in(L.m_in), learning(L.learning), 
+momentum(L.momentum), regularizer(L.regularizer), m_layer_type(L.m_layer_type)
 {
 	ctr = 0;
 }
-
+//----------------------------------------------------------------------------
 void layer::construct(int n_inputs, int n_outputs, layer_type type)
 {
 	ctr = 0;
@@ -41,7 +49,7 @@ void layer::construct(int n_inputs, int n_outputs, layer_type type)
 
 	reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
 }
-
+//----------------------------------------------------------------------------
 void layer::reset_weights(numeric bound)
 {
 	std::uniform_real_distribution <numeric> distribution(-bound, bound);
@@ -62,73 +70,59 @@ void layer::reset_weights(numeric bound)
 	}
 
 }
-// void layer::perturb_weights(numeric bound);
-
-// void layer::set_batch_size(int size);
-
-// pass an input vector, the layer class holds the "charge"
+//----------------------------------------------------------------------------
 void layer::charge(const agile::vector& v)
 {	
-	// std::cout << "input: " << v << std::endl;
 	m_in = v;
-
 	m_out.noalias() = W * v + b;
-	// std::cout << "output: " << m_out << std::endl;
-
 }
-// Fire the charge.
+//----------------------------------------------------------------------------
 agile::vector layer::fire()
 {
-	// std::cout << "output: " << m_out << std::endl;
  	switch(m_layer_type)
  	{
- 		case sigmoid:
- 			return agile::functions::exp_sigmoid(m_out);
- 		case softmax:
- 			return agile::functions::softmax(m_out);
- 		case linear:
- 			return m_out;
- 		case rectified:
- 			return agile::functions::rect_lin_unit(m_out);
- 		default:
-	 		return m_out;
+ 		case sigmoid: return agile::functions::exp_sigmoid(m_out);
+ 		case softmax: return agile::functions::softmax(m_out);
+ 		case linear: return m_out;
+ 		case rectified: return agile::functions::rect_lin_unit(m_out);
+ 		default: throw std::domain_error("layer type not recongized.");
  	}	
 }
-
+//----------------------------------------------------------------------------
 void layer::backpropagate(const agile::vector &v)
 {
 	delta.noalias() = v;
 
 	if (m_layer_type == sigmoid)
 	{
-		delta = delta.array() * (agile::functions::exp_sigmoid_deriv(agile::functions::exp_sigmoid(m_out))).array();
+		delta = delta.array() * (agile::functions::exp_sigmoid_deriv(
+			agile::functions::exp_sigmoid(m_out))).array();
 	}
 	if (m_layer_type == rectified)
 	{
-		delta = delta.array() * (agile::functions::rect_lin_unit_deriv(agile::functions::rect_lin_unit(m_out))).array();
+		delta = delta.array() * (agile::functions::rect_lin_unit_deriv(
+			agile::functions::rect_lin_unit(m_out))).array();
 	}
-	
-
-	m_dump_below.noalias() = W.transpose() * delta; // we need something to make this not happen for base 0layer
+	// we need something to make this not happen for base 0layer
+	m_dump_below.noalias() = W.transpose() * delta; 
 
 	W_change += delta * m_in.transpose(); 
 	b_change += delta;
 
 	++ctr;
-
+	
 	if (ctr >= m_batch_size) // if we need to start a new batch
 	{	
 		ctr = 0;
 		update();
 	}
 }
-
+//----------------------------------------------------------------------------
 agile::vector layer::dump_below()
 {
 	return m_dump_below;
 }
-
-
+//----------------------------------------------------------------------------
 void layer::update()
 {
 	W_change /= m_batch_size;
@@ -141,8 +135,7 @@ void layer::update()
 	b_change.fill(0.00);
 	W_change.fill(0.00);
 }
-
-
+//----------------------------------------------------------------------------
 YAML::Emitter& operator << (YAML::Emitter& out, const layer &L) 
 {
 	out << YAML::BeginMap;
@@ -176,3 +169,4 @@ YAML::Emitter& operator << (YAML::Emitter& out, const layer &L)
     out << YAML::EndMap;
     return out;
 }
+//----------------------------------------------------------------------------

@@ -24,10 +24,6 @@ public:
 	void construct(int n_inputs, int n_outputs, layer_type encoder_type = linear, layer_type decoder_type = linear);
 
 	void reset_weights(numeric bound);
-	virtual std::string get_desc()
-	{
-		return "this is derived";
-	}
 	// pass an input vector, the autoencoder class holds the "charge"
 
 	// friend YAML::Emitter& operator << (YAML::Emitter& out, const autoencoder &L);

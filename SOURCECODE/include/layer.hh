@@ -1,33 +1,30 @@
-#ifndef LAYER_H
-#define LAYER_H 
+//-----------------------------------------------------------------------------
+//	layer.hh:
+//	Header for layer class, responsible for s(Wx+b) calculation
+//	Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
+#ifndef LAYER_HH
+#define LAYER_HH
 
 #include <iostream>
 #include "basedefs.hh"
 #include "activation.hh"
 
-
-// template <class T, class ...Args>
-// typename std::enable_if
-// <
-//     !std::is_array<T>::value,
-//     std::unique_ptr<T>
-// >::type
-// layer_factory(Args&& ...args)
-// {
-//     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-// }
-
+//-----------------------------------------------------------------------------
+//	A simple layer factory for this and all derived versions
+//-----------------------------------------------------------------------------
 template <class T, class ...Args>
 typename std::enable_if
-<
-    !std::is_array<T>::value,
-    T*
->::type
+<!std::is_array<T>::value, T*>::type
 layer_factory(Args&& ...args)
 {
     return dynamic_cast<T*>(new T(std::forward<Args>(args)...));
 }
 
+//-----------------------------------------------------------------------------
+//	Hacky things for yaml-cpp friendship
+//-----------------------------------------------------------------------------
 class layer;
 class architecture;
 
@@ -43,69 +40,123 @@ namespace YAML
 	struct convert<architecture>;
 }
 
-
+//-----------------------------------------------------------------------------
+//	layer class implementation
+//-----------------------------------------------------------------------------
 class layer
 {
 public:
-	explicit layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
+//-----------------------------------------------------------------------------
+//	Construction, destruction, and copying
+//-----------------------------------------------------------------------------
+	explicit layer(int n_inputs = 0, 
+		int n_outputs = 0, layer_type type = linear);
 
 	layer(const layer &L);
+	virtual ~layer() = default;
 
 	layer* clone()
 	{
 		return new layer(*this);
 	}
-	virtual std::string get_desc()
-	{
-		return "this is base";
-	}
-	virtual void construct(int n_inputs, int n_outputs, layer_type type);
 
+	virtual void construct(int n_inputs, int n_outputs, layer_type type);
+//-----------------------------------------------------------------------------
+//	Training methods for inter-layer communication
+//-----------------------------------------------------------------------------
 	virtual void reset_weights(numeric bound);
-	// pass an input vector, the layer class holds the "charge"
 	void charge(const agile::vector& v); 
 	agile::vector fire(); // Fire the charge.
-
-	// void perturb_weights(numeric bound);
-	// void set_batch_size(int size);
-
-	void backpropagate(const agile::vector &v);
-
 	agile::vector dump_below();
-
+	void backpropagate(const agile::vector &v);
 	void update();
+//-----------------------------------------------------------------------------
+//	Parameter Setting methods
+//-----------------------------------------------------------------------------
 
+	void set_batch_size(int size)
+	{
+		if (ctr > 0)
+		{
+			update();
+			m_batch_size = size;
+		}
+		else
+		{
+			m_batch_size = size;
+		}
+	}
+	void set_learning(const numeric &value)
+	{
+		learning = value;
+	}
+	void set_momentum(const numeric &value)
+	{
+		momentum = value;
+	}
+	void set_regularizer(const numeric &value)
+	{
+		regularizer = value;
+	}
+	void set_layer_type(const layer_type &type)
+	{
+		m_layer_type = type;
+	}
+//-----------------------------------------------------------------------------
+//	Access for YAML serialization
+//-----------------------------------------------------------------------------
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const layer &L);
-	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
 
-	virtual ~layer() = default;
-	virtual agile::vector reconstruct(const agile::vector &v, bool noisify = true) {}
-	virtual void encode(const agile::vector &v, bool noisify = true) {}
+	friend YAML::Emitter& operator << (YAML::Emitter& out, 
+		const architecture &arch);
 
 	friend struct YAML::convert<layer>;
 	friend struct YAML::convert<architecture>;
-
-
+//-----------------------------------------------------------------------------
+//	Stupid virtuals for derived classes
+//-----------------------------------------------------------------------------	
+	virtual agile::vector reconstruct(const agile::vector &v, 
+		bool noisify = true) {}
+	virtual void encode(const agile::vector &v, bool noisify = true) {}
 
 protected:
+//-----------------------------------------------------------------------------
+//	Protected Members
+//-----------------------------------------------------------------------------
+	int m_inputs,     // number of inputs to the layer
+		m_outputs,    // number of outputs leaving the layer
+		m_batch_size, // number of examples to consider when updating gradient
+		ctr;          // number of examples we've considered so far
 
-	int m_inputs, m_outputs, m_batch_size, ctr;
-	agile::matrix W, W_old, W_change;
-	agile::vector b, b_old, b_change, m_out, m_in, delta, m_dump_below;
-	numeric learning, momentum, regularizer;
-	layer_type m_layer_type;
+	agile::matrix W,       // current weight matrix
+				  W_old,   // previous weight matrix
+				  W_change;// the change to make to W
 
+	agile::vector b,            // bias vector
+				  b_old,        // previous bias vector
+				  b_change,     // change to make to b
+				  m_out,        // untransformed layer output
+				  m_in,         // input to the layer
+				  delta,        // intermediate derivative
+				  m_dump_below; // quantity to feed to a lower layer
 
+	numeric learning,    // learning rate
+			momentum,    // momentum (gradient smoothing) parameter
+			regularizer; // l2 regularization scalar
+
+	layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
 };
 
+//-----------------------------------------------------------------------------
+//	Typedef the stack of layers for the architecture class
+//-----------------------------------------------------------------------------
 namespace agile
 {
 	typedef std::vector<std::unique_ptr<layer>> layer_stack;
 }
-
-
 //-----------------------------------------------------------------------------
-//	PUT COUTS HERE TO DEBUG
+//	YAML Serialization Structure 
+//	(look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
 //-----------------------------------------------------------------------------
 namespace YAML 
 {

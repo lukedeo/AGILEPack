@@ -1,14 +1,24 @@
+//-----------------------------------------------------------------------------
+//	architecture.hh:
+//	Header for architecture class, responsible for joining layers
+//	Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #ifndef ARCHITECTURE_HH
 #define ARCHITECTURE_HH 
 
 #include "layer.hh"
 #include "autoencoder.hh"
 
-
+//-----------------------------------------------------------------------------
+//	Generic enum for initializer list construction
+//-----------------------------------------------------------------------------
 
 enum problem_type { regress, classify, multiclass };
 
-
+//-----------------------------------------------------------------------------
+//	Hacky things for yaml-cpp friendship
+//-----------------------------------------------------------------------------
 class architecture;
 
 namespace YAML
@@ -17,21 +27,23 @@ namespace YAML
 	struct convert<architecture>;
 }
 
-
+//-----------------------------------------------------------------------------
+//	architecture class implementation
+//-----------------------------------------------------------------------------
 class architecture
 {
 public:
+//-----------------------------------------------------------------------------
+//	Construction, destruction, and copying
+//-----------------------------------------------------------------------------
 	architecture(int num_layers = 0);
 	architecture(std::initializer_list<int> il, problem_type type = regress);
 	~architecture();
 	architecture(const architecture &arch);
 
-	template <class T>
-	void convert(const unsigned int &idx)
-	{
-		stack.at(idx) = dynamic_cast<std::unique_ptr<T>>(stack.at(idx));
-	}
-	
+//-----------------------------------------------------------------------------
+//	Layer Manipulation and access methods
+//-----------------------------------------------------------------------------	
 	template <class T>
 	void add_layer(const T &L)
 	{
@@ -40,7 +52,7 @@ public:
 	}
 
 	void add_layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
-	
+
 	template <class T>
 	void add_layer(T *L)
 	{
@@ -49,48 +61,96 @@ public:
 	}
 
 	template <class T, class ...Args>
-	void add_a_layer(Args&& ...args)
+	void add_layer(Args&& ...args)
 	{
 		++n_layers;
 	    stack.emplace_back(new T(std::forward<Args>(args)...));
 	}
 
 	std::unique_ptr<layer> const& at(const unsigned int &idx);
-
-
-	// template <class T>
-	// std::unique_ptr<T> const& at(const unsigned int &idx)
-	// {
-	// 	if (idx >= n_layers)
-	// 	{
-	// 		throw std::out_of_range("Accessing layer in 'Class: architecture' beyond contained range.");
-	// 	}
-	// 	return stack.at(idx);
-	// }
 	void pop_back();
 	void clear();
 	unsigned int size();
-	
 	void resize(unsigned int size);
+
+//-----------------------------------------------------------------------------
+//	Global parameter setting
+//-----------------------------------------------------------------------------
+
+	void set_batch_size(int size)
+	{
+		if (n_layers < 1)
+		{
+			throw std::logic_error("can't set batch size\
+			 -- network has no layers.");
+		}
+		for (auto &layer : stack)
+		{
+			layer->set_batch_size(size);
+		}
+	}
+	void set_learning(const numeric &value)
+	{
+		if (n_layers < 1)
+		{
+			throw std::logic_error("can't set learning rate\
+			 -- network has no layers.");
+		}
+		for (auto &layer : stack)
+		{
+			layer->set_learning(value);
+		}
+	}
+	void set_momentum(const numeric &value)
+	{
+		if (n_layers < 1)
+		{
+			throw std::logic_error("can't set momentum\
+			 -- network has no layers.");
+		}
+		for (auto &layer : stack)
+		{
+			layer->set_momentum(value);
+		}
+	}
+	void set_regularizer(const numeric &value)
+	{
+		if (n_layers < 1)
+		{
+			throw std::logic_error("can't set regularizer\
+			 -- network has no layers.");
+		}
+		for (auto &layer : stack)
+		{
+			layer->set_regularizer(value);
+		}
+	}
+
+//-----------------------------------------------------------------------------
+//	Prediction and training methods
+//-----------------------------------------------------------------------------
 	agile::vector predict(const agile::vector &v);
 	void correct(const agile::vector &in, const agile::vector &target);
+
+//-----------------------------------------------------------------------------
+//	Access for YAML serialization
+//-----------------------------------------------------------------------------
 	
-	// void to_yaml(std::string filename = "file.yaml");
 	friend YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch);
-
-	// template <>
-	
-
-	// friend static YAML::Node convert<architecture>::encode(const architecture &arch);
-
 	friend struct YAML::convert<architecture>;
-protected:
-	
 
-	unsigned int n_layers;
-	agile::layer_stack stack;
+protected:
+//-----------------------------------------------------------------------------
+//	Protected Members
+//-----------------------------------------------------------------------------
+	unsigned int n_layers;    // number of network layers
+	agile::layer_stack stack; // the stack of layers
 };
 
+//-----------------------------------------------------------------------------
+//	YAML Serialization Structure 
+//	(look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
+//-----------------------------------------------------------------------------
 namespace YAML 
 {
 	template<>
