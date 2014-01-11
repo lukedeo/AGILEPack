@@ -1,88 +1,95 @@
 # Makefile for AGILEPack
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
-BIN = bin
-SRC = src
-INC = include
+# --- set dirs
+BIN          := bin
+SRC          := src
+INC          := include
+# PYTHON       := python
+LIB          := $(CURDIR)/lib
 
-# INSTALLPATH = /usr/local/bin
-# HEADERPATH = /usr/local/include
-
-
+#  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
-vpath %.hh    $(INC) 
+vpath %.hh   $(INC) 
 
+# --- set compiler and flags (roll c options and include paths together)
 DEBUG =  -O0 -g 
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
-CXX = g++
-# CXX = clang++
-CXXFLAGS = -std=c++11 -O3 -I$(INC) -fPIC $(DEBUG) -m64 -Wall -Wextra
+CXX          := g++
+CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG)
+# LDFLAGS      := -Wl,--no-undefined 
 
-# CXXFLAGS += -stdlib=libc++ 
-# LIBS = -L/usr/local/opt/yaml-cpp/lib
-LIBS = -lyaml-cpp
-LDFLAGS = 
-#-L/usr/local/opt/boost/lib
+# fix for ubuntu (that doesn't use bash for /bin/sh)
+SHELL         := bash
 
-ROOTCFLAGS = 
-#$(shell root-config --cflags)
-ROOTLIBS = 
-#$(shell root-config --libs)
-# ROOTLIBS = -L$(shell root-config --libdir) -lTree
-ROOTLDFLAGS = 
-#$(shell root-config --ldflags)
+# --- external dirs 
 
-CXXFLAGS += $(ROOTCFLAGS)
-LIBS += $(ROOTLIBS)
-LDFLAGS += $(ROOTLDFLAGS)
+LIBS += -lyaml-cpp
 
-OBJ = layer.o architecture.o sha1.o autoencoder.o main.o
+# ---- define objects
+# - not-python 
+LAYER_OBJ     := layer.o autoencoder.o architecture.o
 
-# HEADER = JetTagger.h
+UTIL_OBJ      := activation.o basedefs.o sha1.o
 
-TARGET = AGILE
+# - command line interface
+EXE_OBJ      := main.o
 
+EXECUTABLE   := AGILE
 
-$(TARGET): $(OBJ:%=$(BIN)/%)
-	@echo "Linking the target $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
+LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
+ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
+ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libAGILE.so
 
+all: $(ALLOUTPUT)
+
+library: $(LIB)/libAGILE.so
+
+cli: $(EXECUTABLE)
+
+$(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
+	@echo "linking $^ --> $@"
+	@$(CXX) -o $@ $^ $(LIBS) 
+
+$(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
+	@mkdir -p $(LIB)
+	@echo "linking $^ --> $@"
+	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+
+# --------------------------------------------------
+
+# compile rule
 $(BIN)/%.o: %.cxx
 	@echo compiling $<
 	@mkdir -p $(BIN)
 	@$(CXX) -c $(CXXFLAGS) $< -o $@
 
-.PHONY : clean test
+# use auto dependency generation
+DEP = $(BIN)
 
-CLEANLIST = *~ *.o *.o~
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),rmdep)
+include  $(ALLOBJ:%.o=$(DEP)/%.d)
+endif
+endif
 
-# install:
-# 	@echo "Installing $(TARGET) to $(INSTALLPATH)"
-# 	@rm -rf $(INSTALLPATH)/$(TARGET)
-# 	@ln $(TARGET) $(INSTALLPATH)/$(TARGET)
+DEPTARGSTR = -MT $(BIN)/$*.o -MT $(DEP)/$*.d
+$(DEP)/%.d: %.cxx
+	@echo making dependencies for $<
+	@mkdir -p $(DEP)
+	@$(CXX) -MM -MP $(DEPTARGSTR) $(CXXFLAGS) $< -o $@ 
 
-# header:
-# 	@echo "Installing $(HEADER) to $(HEADERPATH)"
-# 	@cp $(INC)/$(HEADER) $(HEADERPATH)
-
+# clean
+.PHONY : clean rmdep
+CLEANLIST     = *~ *.o *.o~ *.d core 
 clean:
-	rm -rf $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%)
-	rm -rf $(BIN)
+	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
+	rm -fr $(BIN) $(ALLOUTPUT)
 
-# purge:
-# 	rm -rf $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%)
-# 	rm -rf $(BIN)
-# 	rm -rf $(TARGET) $(INSTALLPATH)/$(TARGET)
+purge: clean
+	rm -fr $(EXECUTABLE) $(LIB)
 
-# ----- lightweight client example
-
-# APP_EXAMPLE = app-example
-
-# test: $(APP_EXAMPLE)
-
-# $(APP_EXAMPLE): $(APP_EXAMPLE).cxx JetTagger.h
-# 	@echo "making lightweight example"
-# 	@$(CXX) $< -o $@
-# 	@echo "made $(APP_EXAMPLE), run to test!"
+rmdep: 
+	rm -f $(DEP)/*.d
