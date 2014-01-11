@@ -1,3 +1,6 @@
+# Makefile for AGILEPack
+# Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+
 BIN = bin
 SRC = src
 INC = include
