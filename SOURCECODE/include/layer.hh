@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-//	layer.hh:
-//	Header for layer class, responsible for s(Wx+b) calculation
-//	Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//  layer.hh:
+//  Header for layer class, responsible for s(Wx+b) calculation
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
 #ifndef LAYER_HH
@@ -12,7 +12,7 @@
 #include "activation.hh"
 
 //-----------------------------------------------------------------------------
-//	A simple layer factory for this and all derived versions
+//  A simple layer factory for this and all derived versions
 //-----------------------------------------------------------------------------
 template <class T, class ...Args>
 typename std::enable_if
@@ -23,216 +23,216 @@ layer_factory(Args&& ...args)
 }
 
 //-----------------------------------------------------------------------------
-//	Hacky things for yaml-cpp friendship
+//  Hacky things for yaml-cpp friendship
 //-----------------------------------------------------------------------------
 class layer;
 class architecture;
 
 namespace YAML
 {
-	template <>
-	struct convert<layer>;
+    template <>
+    struct convert<layer>;
 }
 
 namespace YAML
 {
-	template <>
-	struct convert<architecture>;
+    template <>
+    struct convert<architecture>;
 }
 
 //-----------------------------------------------------------------------------
-//	layer class implementation
+//  layer class implementation
 //-----------------------------------------------------------------------------
 class layer
 {
 public:
 //-----------------------------------------------------------------------------
-//	Construction, destruction, and copying
+//  Construction, destruction, and copying
 //-----------------------------------------------------------------------------
-	explicit layer(int n_inputs = 0, 
-		int n_outputs = 0, layer_type type = linear);
+    explicit layer(int n_inputs = 0, 
+        int n_outputs = 0, layer_type type = linear);
 
-	layer(const layer &L);
-	virtual ~layer() = default;
+    layer(const layer &L);
+    virtual ~layer() = default;
 
-	layer* clone()
-	{
-		return new layer(*this);
-	}
+    layer* clone()
+    {
+        return new layer(*this);
+    }
 
-	virtual void construct(int n_inputs, int n_outputs, layer_type type);
+    virtual void construct(int n_inputs, int n_outputs, layer_type type);
 //-----------------------------------------------------------------------------
-//	Training methods for inter-layer communication
+//  Training methods for inter-layer communication
 //-----------------------------------------------------------------------------
-	virtual void reset_weights(numeric bound);
-	void charge(const agile::vector& v); 
-	agile::vector fire(); // Fire the charge.
-	agile::vector dump_below();
-	void backpropagate(const agile::vector &v);
-	void update();
+    virtual void reset_weights(numeric bound);
+    void charge(const agile::vector& v); 
+    agile::vector fire(); // Fire the charge.
+    agile::vector dump_below();
+    void backpropagate(const agile::vector &v);
+    void update();
 //-----------------------------------------------------------------------------
-//	Parameter Setting methods
+//  Parameter Setting methods
 //-----------------------------------------------------------------------------
-	void set_batch_size(int size)
-	{
-		if (ctr > 0)
-		{
-			update();
-			m_batch_size = size;
-		}
-		else
-		{
-			m_batch_size = size;
-		}
-	}
-	void set_learning(const numeric &value)
-	{
-		learning = value;
-	}
-	void set_momentum(const numeric &value)
-	{
-		momentum = value;
-	}
-	void set_regularizer(const numeric &value)
-	{
-		regularizer = value;
-	}
-	void set_layer_type(const layer_type &type)
-	{
-		m_layer_type = type;
-	}
+    void set_batch_size(int size)
+    {
+        if (ctr > 0)
+        {
+            update();
+            m_batch_size = size;
+        }
+        else
+        {
+            m_batch_size = size;
+        }
+    }
+    void set_learning(const numeric &value)
+    {
+        learning = value;
+    }
+    void set_momentum(const numeric &value)
+    {
+        momentum = value;
+    }
+    void set_regularizer(const numeric &value)
+    {
+        regularizer = value;
+    }
+    void set_layer_type(const layer_type &type)
+    {
+        m_layer_type = type;
+    }
 //-----------------------------------------------------------------------------
-//	Access for YAML serialization
+//  Access for YAML serialization
 //-----------------------------------------------------------------------------
-	friend YAML::Emitter& operator << (YAML::Emitter& out, const layer &L);
+    friend YAML::Emitter& operator << (YAML::Emitter& out, const layer &L);
 
-	friend YAML::Emitter& operator << (YAML::Emitter& out, 
-		const architecture &arch);
+    friend YAML::Emitter& operator << (YAML::Emitter& out, 
+        const architecture &arch);
 
-	friend struct YAML::convert<layer>;
-	friend struct YAML::convert<architecture>;
+    friend struct YAML::convert<layer>;
+    friend struct YAML::convert<architecture>;
 //-----------------------------------------------------------------------------
-//	Stupid virtuals for derived classes
-//-----------------------------------------------------------------------------	
-	virtual agile::vector reconstruct(const agile::vector &v, 
-		bool noisify = true) {}
-	virtual void encode(const agile::vector &v, bool noisify = true) {}
+//  Stupid virtuals for derived classes
+//----------------------------------------------------------------------------- 
+    virtual agile::vector reconstruct(const agile::vector &v, 
+        bool noisify = true) {}
+    virtual void encode(const agile::vector &v, bool noisify = true) {}
     
 protected:
 //-----------------------------------------------------------------------------
-//	Protected Members
+//  Protected Members
 //-----------------------------------------------------------------------------
     int m_inputs,     // number of inputs to the layer
-	    m_outputs,    // number of outputs leaving the layer
-	    m_batch_size, // number of examples to consider when updating gradient
-	    ctr;          // number of examples we've considered so far
+        m_outputs,    // number of outputs leaving the layer
+        m_batch_size, // number of examples to consider when updating gradient
+        ctr;          // number of examples we've considered so far
 
-	agile::matrix W,       // current weight matrix
-	              W_old,   // previous weight matrix
-	              W_change;// the change to make to W
+    agile::matrix W,       // current weight matrix
+                  W_old,   // previous weight matrix
+                  W_change;// the change to make to W
 
-	agile::vector b,            // bias vector
-	              b_old,        // previous bias vector
-	              b_change,     // change to make to b
-	              m_out,        // untransformed layer output
-	              m_in,         // input to the layer
-	              delta,        // intermediate derivative
-	              m_dump_below; // quantity to feed to a lower layer
+    agile::vector b,            // bias vector
+                  b_old,        // previous bias vector
+                  b_change,     // change to make to b
+                  m_out,        // untransformed layer output
+                  m_in,         // input to the layer
+                  delta,        // intermediate derivative
+                  m_dump_below; // quantity to feed to a lower layer
 
-	numeric learning,    // learning rate
-	        momentum,    // momentum (gradient smoothing) parameter
-	        regularizer; // l2 regularization scalar
+    numeric learning,    // learning rate
+            momentum,    // momentum (gradient smoothing) parameter
+            regularizer; // l2 regularization scalar
 
-	layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
+    layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
 };
 
 //-----------------------------------------------------------------------------
-//	Typedef the stack of layers for the architecture class
+//  Typedef the stack of layers for the architecture class
 //-----------------------------------------------------------------------------
 namespace agile
 {
-	typedef std::vector<std::unique_ptr<layer>> layer_stack;
+    typedef std::vector<std::unique_ptr<layer>> layer_stack;
 }
 //-----------------------------------------------------------------------------
-//	YAML Serialization Structure 
-//	(look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
+//  YAML Serialization Structure 
+//  (look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
 //-----------------------------------------------------------------------------
 namespace YAML 
 {
-	template<>
-	struct convert<layer> 
-	{
-		static Node encode(const layer& L)
-		{
-			Node node;
-			node["inputs"] = L.m_inputs;
-			node["outputs"] = L.m_outputs;
-			node["learning"] = L.learning;
-			node["momentum"] = L.momentum;
-			node["regularizer"] = L.regularizer;
-			node["batchsize"] = L.m_batch_size;
+    template<>
+    struct convert<layer> 
+    {
+        static Node encode(const layer& L)
+        {
+            Node node;
+            node["inputs"] = L.m_inputs;
+            node["outputs"] = L.m_outputs;
+            node["learning"] = L.learning;
+            node["momentum"] = L.momentum;
+            node["regularizer"] = L.regularizer;
+            node["batchsize"] = L.m_batch_size;
 
-			if (L.m_layer_type == linear)
-			{
-				node["activation"] = "linear";
-			}
-			else if (L.m_layer_type == softmax)
-			{
-				node["activation"] = "softmax";
-			}
-			else if (L.m_layer_type == rectified)
-			{
-				node["activation"] = "rectified";
-			}
-			else
-			{
-				node["activation"] = "softmax";
-			}
+            if (L.m_layer_type == linear)
+            {
+                node["activation"] = "linear";
+            }
+            else if (L.m_layer_type == softmax)
+            {
+                node["activation"] = "softmax";
+            }
+            else if (L.m_layer_type == rectified)
+            {
+                node["activation"] = "rectified";
+            }
+            else
+            {
+                node["activation"] = "softmax";
+            }
 
-			node["weights"] = agile::stringify(L.W);
-			node["bias"] = agile::stringify(L.b);
-			return node;
-		}
+            node["weights"] = agile::stringify(L.W);
+            node["bias"] = agile::stringify(L.b);
+            return node;
+        }
 
-		static bool decode(const Node& node, layer& L) 
-		{
+        static bool decode(const Node& node, layer& L) 
+        {
 
-			L.m_inputs = node["inputs"].as<int>();
-			L.m_outputs = node["outputs"].as<int>();
-			L.learning = node["learning"].as<double>();
-			L.momentum = node["momentum"].as<double>();
-			L.regularizer = node["regularizer"].as<double>();
-			L.m_batch_size = node["batchsize"].as<int>();
+            L.m_inputs = node["inputs"].as<int>();
+            L.m_outputs = node["outputs"].as<int>();
+            L.learning = node["learning"].as<double>();
+            L.momentum = node["momentum"].as<double>();
+            L.regularizer = node["regularizer"].as<double>();
+            L.m_batch_size = node["batchsize"].as<int>();
 
-			L.m_in.conservativeResize(L.m_inputs);
-			L.m_out.conservativeResize(L.m_outputs);
+            L.m_in.conservativeResize(L.m_inputs);
+            L.m_out.conservativeResize(L.m_outputs);
 
 
 
-			std::string tmp_str = node["activation"].as<std::string>();
-			if (tmp_str == "linear")
-			{
-				L.m_layer_type = linear;
-			}
-			else if (tmp_str == "sigmoid")
-			{
-				L.m_layer_type = sigmoid;
-			}
-			else if (tmp_str == "rectified")
-			{
-				L.m_layer_type = rectified;
-			}
-			else
-			{
-				L.m_layer_type = softmax;
-			}
+            std::string tmp_str = node["activation"].as<std::string>();
+            if (tmp_str == "linear")
+            {
+                L.m_layer_type = linear;
+            }
+            else if (tmp_str == "sigmoid")
+            {
+                L.m_layer_type = sigmoid;
+            }
+            else if (tmp_str == "rectified")
+            {
+                L.m_layer_type = rectified;
+            }
+            else
+            {
+                L.m_layer_type = softmax;
+            }
 
-			L.W = agile::destringify(node["weights"].as<std::string>());
-			L.b = agile::destringify(node["bias"].as<std::string>());
+            L.W = agile::destringify(node["weights"].as<std::string>());
+            L.b = agile::destringify(node["bias"].as<std::string>());
 
-			return true;
-		}
-	};
+            return true;
+        }
+    };
 }
 
 
