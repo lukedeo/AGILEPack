@@ -44,6 +44,9 @@ ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
 ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libAGILE.so
 
 all: $(ALLOUTPUT)
+	@echo "+++++++++++++++++++++++++++++++++++++++++++"
+	@echo "+++ Complete AGILEPack build sucessful. +++"
+	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 
 library: $(LIB)/libAGILE.so
 
@@ -51,7 +54,7 @@ cli: $(EXECUTABLE)
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) 
+	@$(CXX) -o $@ $^ $(LIBS)
 
 $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)

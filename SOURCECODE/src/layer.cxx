@@ -114,6 +114,58 @@ m_layer_type(L->m_layer_type)
     ctr = 0;
 }
 //----------------------------------------------------------------------------
+layer& layer::operator= (const layer &L)
+{
+    m_inputs = (L.m_inputs);
+    m_outputs = (L.m_outputs);
+    m_batch_size = (L.m_batch_size);
+
+    W = (L.W);
+    W_old = (L.W_old);
+    W_change = (L.W_change);
+
+    b = (L.b);
+    b_old = (L.b_old);
+    b_change = (L.b_change);
+
+    m_out = (L.m_out);
+    m_in = (L.m_in);
+
+    learning = (L.learning);
+    momentum = (L.momentum);
+    regularizer = (L.regularizer);
+
+    m_layer_type = (L.m_layer_type);
+
+    return *this;
+}
+//----------------------------------------------------------------------------
+layer& layer::operator= (layer &&L)
+{
+    m_inputs = std::move(L.m_inputs);
+    m_outputs = std::move(L.m_outputs);
+    m_batch_size = std::move(L.m_batch_size);
+
+    W = std::move(L.W);
+    W_old = std::move(L.W_old);
+    W_change = std::move(L.W_change);
+
+    b = std::move(L.b);
+    b_old = std::move(L.b_old);
+    b_change = std::move(L.b_change);
+
+    m_out = std::move(L.m_out);
+    m_in = std::move(L.m_in);
+
+    learning = std::move(L.learning);
+    momentum = std::move(L.momentum);
+    regularizer = std::move(L.regularizer);
+
+    m_layer_type = std::move(L.m_layer_type);
+
+    return *this;
+}
+//----------------------------------------------------------------------------
 void layer::construct(int n_inputs, int n_outputs, layer_type type)
 {
     ctr = 0;

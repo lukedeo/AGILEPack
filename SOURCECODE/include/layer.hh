@@ -56,6 +56,8 @@ public:
     layer(const layer &L);
     layer(layer &&L);
     layer(layer *L);
+    virtual layer& operator= (const layer &L);
+    virtual layer& operator= (layer &&L);
     virtual ~layer() = default;
 
     layer* clone()

@@ -41,6 +41,28 @@ public:
     ~architecture();
     architecture(const architecture &arch);
 
+    template <class T>
+    architecture& operator =(const T &L)
+    {
+        clear();
+        stack.emplace_back(new T(L));
+        ++n_layers;
+        return *this;
+    }
+
+    template <class T>
+    architecture& operator =(T *L)
+    {
+        clear();
+        stack.emplace_back((T*)L);
+        ++n_layers;
+        return *this;
+    }
+
+    architecture& operator =(const architecture &arch);
+
+
+
 //-----------------------------------------------------------------------------
 //  Layer Manipulation and access methods
 //----------------------------------------------------------------------------- 
@@ -83,6 +105,15 @@ public:
     {
         ++n_layers;
         stack.emplace_back((T*)L);
+        return *this;
+    }
+
+    architecture& operator += (const architecture &arch)
+    {
+        for (auto &L : arch.stack)
+        {
+            add_layer(L.get());
+        }
         return *this;
     }
 

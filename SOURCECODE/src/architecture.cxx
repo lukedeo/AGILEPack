@@ -51,6 +51,17 @@ architecture::architecture(const architecture &arch) : n_layers(0), stack(0)
     }
 }
 //----------------------------------------------------------------------------
+architecture& architecture::operator =(const architecture &arch)
+{
+    clear();
+    for (auto &entry : arch.stack)
+    {
+        stack.emplace_back(entry->clone());
+        ++n_layers;
+    }
+    return *this;
+}
+//----------------------------------------------------------------------------
 architecture::~architecture()
 {
 }

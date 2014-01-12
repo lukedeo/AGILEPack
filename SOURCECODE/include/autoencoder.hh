@@ -36,7 +36,10 @@ public:
         layer_type encoder_type = linear, layer_type decoder_type = linear);
     autoencoder(const autoencoder &L);
     autoencoder(autoencoder *L);
-    void construct(int n_inputs, int n_outputs, 
+    virtual autoencoder& operator= (const autoencoder &L);
+    virtual autoencoder& operator= (autoencoder &&L);
+
+    virtual void construct(int n_inputs, int n_outputs, 
         layer_type encoder_type = linear, layer_type decoder_type = linear);
     void reset_weights(numeric bound);
     ~autoencoder(); 
@@ -58,7 +61,7 @@ public:
     friend struct YAML::convert<autoencoder>;
     friend YAML::Emitter& operator << (YAML::Emitter& out, 
         const autoencoder &L);
-    
+
 protected:
 //-----------------------------------------------------------------------------
 //  Protected members
