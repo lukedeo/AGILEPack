@@ -35,6 +35,8 @@ typedef Eigen::Matrix<numeric, Eigen::Dynamic, Eigen::Dynamic> matrix;
 typedef Eigen::Matrix<numeric, Eigen::Dynamic, 1>  colvec;
 typedef Eigen::Matrix<numeric, 1, Eigen::Dynamic>  rowvec;
 typedef colvec vector;
+
+typedef Eigen::Map<Eigen::VectorXd> std_2_eigen;
 namespace types
 {
 	enum paradigm { Basic, Autoencoder, Boltzmann, Dropout };
@@ -46,6 +48,7 @@ std::string stringify(const agile::matrix &M);
 //----------------------------------------------------------------------------
 agile::matrix destringify(const std::string &s);
 //----------------------------------------------------------------------------
+agile::vector std_to_Eigen(std::vector<numeric> &v);
 }
 
 #endif

@@ -53,3 +53,9 @@ agile::matrix agile::destringify(const std::string &s)
     return std::move(M);
 }
 //----------------------------------------------------------------------------
+agile::vector agile::std_to_Eigen(std::vector<numeric> &v)
+{
+    numeric *ptr = &v[0];
+    std_2_eigen _tmp(ptr, v.size());
+    return std::move(_tmp);
+}

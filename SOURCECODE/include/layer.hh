@@ -54,6 +54,7 @@ public:
         int n_outputs = 0, layer_type type = linear);
 
     layer(const layer &L);
+    layer(layer &&L);
     layer(layer *L);
     virtual ~layer() = default;
 

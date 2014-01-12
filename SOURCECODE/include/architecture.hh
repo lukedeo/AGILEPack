@@ -69,6 +69,25 @@ public:
     }
 
     std::unique_ptr<layer> const& at(const unsigned int &idx);
+
+    template <class T>
+    architecture& operator += (const T &L)
+    {
+        stack.emplace_back(new T(L));
+        ++n_layers;
+        return *this;
+    }
+
+    template <class T>
+    architecture& operator += (T *L)
+    {
+        ++n_layers;
+        stack.emplace_back((T*)L);
+        return *this;
+    }
+
+
+
     void pop_back();
     void clear();
     unsigned int size();
