@@ -48,7 +48,7 @@ autoencoder& autoencoder::operator= (const autoencoder &L)
     learning = (L.learning);
     momentum = (L.momentum);
     regularizer = (L.regularizer);
-
+    m_paradigm = (L.m_paradigm);
     m_layer_type = (L.m_layer_type);
     decoder = (L.decoder);
 
@@ -77,6 +77,7 @@ autoencoder& autoencoder::operator= (autoencoder &&L)
     regularizer = std::move(L.regularizer);
 
     m_layer_type = std::move(L.m_layer_type);
+    m_paradigm = std::move(L.m_paradigm);
     decoder = std::move(L.decoder);
 
     return *this;
@@ -87,6 +88,7 @@ void autoencoder::construct(int n_inputs, int n_outputs,
 {
     layer::construct(n_inputs, n_outputs, encoder_type);
     decoder.construct(n_outputs, n_inputs, decoder_type);
+    m_paradigm = agile::types::Autoencoder;
 }
 //----------------------------------------------------------------------------
 void autoencoder::reset_weights(numeric bound)

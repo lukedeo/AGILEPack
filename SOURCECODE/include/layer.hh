@@ -69,7 +69,7 @@ public:
 
     virtual agile::types::paradigm get_paradigm()
     {
-        return agile::types::Basic;
+        return m_paradigm;
     }
 //-----------------------------------------------------------------------------
 //  Training methods for inter-layer communication
@@ -158,12 +158,6 @@ protected:
     layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
     agile::types::paradigm m_paradigm; //type of pre-training
 
-    layer _reveal(const layer& L)
-    {
-        auto C(L);
-        return C;
-    }
-
 };
 
 //-----------------------------------------------------------------------------
@@ -188,6 +182,7 @@ namespace YAML
         static Node encode(const layer& L)
         {
             Node node;
+            node["class"] = "layer";
             node["inputs"] = L.m_inputs;
             node["outputs"] = L.m_outputs;
             node["learning"] = L.learning;
@@ -221,7 +216,7 @@ namespace YAML
 
         static bool decode(const Node& node, layer& L) 
         {
-
+            L.m_paradigm = agile::types::Basic;
             L.m_inputs = node["inputs"].as<int>();
             L.m_outputs = node["outputs"].as<int>();
             L.learning = node["learning"].as<double>();

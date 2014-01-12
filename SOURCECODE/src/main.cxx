@@ -55,8 +55,12 @@ int main(int argc, char const *argv[])
 
     // arch.add_layer(2, 4, sigmoid);
 
+    architecture arch_2;
+
     arch += new layer(4, 3, sigmoid);
     arch += new layer(3, 1, rectified);
+
+
 
     // arch.add_layer(4, 3, sigmoid);
 

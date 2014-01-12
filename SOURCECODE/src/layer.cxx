@@ -56,7 +56,8 @@ learning(L.learning),
 momentum(L.momentum),
 regularizer(L.regularizer),
 
-m_layer_type(L.m_layer_type)
+m_layer_type(L.m_layer_type),
+m_paradigm(L.m_paradigm)
 
 {
     ctr = 0;
@@ -82,7 +83,8 @@ learning(std::move(L.learning)),
 momentum(std::move(L.momentum)),
 regularizer(std::move(L.regularizer)),
 
-m_layer_type(std::move(L.m_layer_type))
+m_layer_type(std::move(L.m_layer_type)),
+m_paradigm(std::move(L.m_paradigm))
 
 {
     ctr = 0;
@@ -108,7 +110,8 @@ learning(L->learning),
 momentum(L->momentum),
 regularizer(L->regularizer),
 
-m_layer_type(L->m_layer_type)
+m_layer_type(L->m_layer_type),
+m_paradigm(L->m_paradigm)
 
 {
     ctr = 0;
@@ -136,6 +139,7 @@ layer& layer::operator= (const layer &L)
     regularizer = (L.regularizer);
 
     m_layer_type = (L.m_layer_type);
+    m_paradigm = (L.m_paradigm);
 
     return *this;
 }
@@ -162,6 +166,7 @@ layer& layer::operator= (layer &&L)
     regularizer = std::move(L.regularizer);
 
     m_layer_type = std::move(L.m_layer_type);
+    m_paradigm = std::move(L.m_paradigm);
 
     return *this;
 }
@@ -184,6 +189,7 @@ void layer::construct(int n_inputs, int n_outputs, layer_type type)
     m_out.resize(n_outputs, Eigen::NoChange);
     m_in.resize(n_inputs, Eigen::NoChange);
     m_layer_type = type;
+    m_paradigm = agile::types::Basic;
 
     reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
 }

@@ -93,6 +93,12 @@ public:
     std::unique_ptr<layer> const& at(const unsigned int &idx);
 
     template <class T>
+    T* cast_layer(const unsigned int &idx)
+    {
+        return dynamic_cast<T*>(stack.at(idx).get());
+    }
+
+    template <class T>
     architecture& operator += (const T &L)
     {
         stack.emplace_back(new T(L));
@@ -107,17 +113,6 @@ public:
         stack.emplace_back((T*)L);
         return *this;
     }
-
-    architecture& operator += (const architecture &arch)
-    {
-        for (auto &L : arch.stack)
-        {
-            add_layer(L.get());
-        }
-        return *this;
-    }
-
-
 
     void pop_back();
     void clear();
@@ -245,22 +240,15 @@ namespace YAML
             {
                 if (arch.stack.at(i)->get_paradigm() == agile::types::Autoencoder)
                 {
-                    node[hash_vec.at(tmp_ctr)] = *(dynamic_cast<autoencoder*>(arch.stack.at(i).get()));
+                    node[hash_vec.at(tmp_ctr)] = \
+                    *(dynamic_cast<autoencoder*>(arch.stack.at(i).get()));
                 }
                 else
                 {
                     node[hash_vec.at(tmp_ctr)] = *(arch.stack.at(i).get());
                 }
-                // node[hash_vec.at(tmp_ctr)] = *(arch.stack.at(i).get());
-                // node[hash_vec.at(tmp_ctr)] = *((autoencoder*)arch.stack.at(i).get());
-                // node[hash_vec.at(tmp_ctr)] = *(static_cast<autoencoder*>(arch.stack.at(i).get()));
                 ++tmp_ctr;
             }
-            // for (auto &pair : decoder_hash)
-            // {
-            //     node["decoders"][pair.second] = (*arch.stack.at(pair.first));
-            // }
-            
             return node;
         }
 
@@ -273,12 +261,21 @@ namespace YAML
 
             for (unsigned int i = 0; i < hash_names.size(); ++i)
             {
-                // if (node["decoders"][hash_names[i].as<std::string>()])
-                // {
-                    
-                // }
-                arch.add_layer(new layer(node[hash_names[i].as<std::string>()].as<layer>()));
-                
+                std::string hash_seq = hash_names[i].as<std::string>(); 
+                std::string class_type = node[hash_seq]["class"].as<std::string>();
+
+                if (class_type == "autoencoder")
+                {
+                    arch += new autoencoder(node[hash_seq].as<autoencoder>());
+                }
+                else if (class_type == "layer")
+                {
+                    arch += new layer(node[hash_seq].as<layer>());
+                }
+                else
+                {
+                    throw std::logic_error("class " + class_type + " not recognized.");
+                }         
             }
 
             return true;

@@ -45,7 +45,7 @@ public:
     ~autoencoder(); 
     virtual agile::types::paradigm get_paradigm()
     {
-        return agile::types::Autoencoder;
+        return m_paradigm;
     }
 
 //-----------------------------------------------------------------------------
@@ -68,10 +68,6 @@ protected:
 //-----------------------------------------------------------------------------
     layer decoder; // decoder layer
     agile::types::paradigm m_paradigm;
-    layer _reveal(const autoencoder& L)
-    {
-        return L.decoder;
-    }
 
 };
 
@@ -90,6 +86,7 @@ namespace YAML
         static Node encode(const autoencoder& L)
         {
             Node node;
+            node["class"] = "autoencoder";
             node["inputs"] = L.m_inputs;
             node["outputs"] = L.m_outputs;
             node["learning"] = L.learning;
@@ -122,7 +119,7 @@ namespace YAML
 
         static bool decode(const Node& node, autoencoder& L) 
         {
-
+            L.m_paradigm = agile::types::Autoencoder;
             L.m_inputs = node["inputs"].as<int>();
             L.m_outputs = node["outputs"].as<int>();
             L.learning = node["learning"].as<double>();
