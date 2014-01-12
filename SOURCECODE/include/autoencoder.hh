@@ -35,10 +35,15 @@ public:
     autoencoder(int n_inputs = 0, int n_outputs = 0, 
         layer_type encoder_type = linear, layer_type decoder_type = linear);
     autoencoder(const autoencoder &L);
+    autoencoder(autoencoder *L);
     void construct(int n_inputs, int n_outputs, 
         layer_type encoder_type = linear, layer_type decoder_type = linear);
     void reset_weights(numeric bound);
     ~autoencoder(); 
+    virtual agile::types::paradigm get_paradigm()
+    {
+        return agile::types::Autoencoder;
+    }
 
 //-----------------------------------------------------------------------------
 //  Encode / decode operations
@@ -51,12 +56,21 @@ public:
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------
     friend struct YAML::convert<autoencoder>;
+    friend YAML::Emitter& operator << (YAML::Emitter& out, const autoencoder &L);
 protected:
 //-----------------------------------------------------------------------------
 //  Protected members
 //-----------------------------------------------------------------------------
     layer decoder; // decoder layer
+    agile::types::paradigm m_paradigm;
+    layer _reveal(const autoencoder& L)
+    {
+        return L.decoder;
+    }
+
 };
+
+
 
 
 //-----------------------------------------------------------------------------
@@ -92,7 +106,7 @@ namespace YAML
             }
             else
             {
-                node["activation"] = "softmax";
+                node["activation"] = "sigmoid";
             }
 
             node["weights"] = agile::stringify(L.W);

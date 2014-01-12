@@ -10,7 +10,8 @@ autoencoder::autoencoder(int n_inputs, int n_outputs,
     layer_type encoder_type, layer_type decoder_type) :
 
 layer(n_inputs, n_outputs, encoder_type), 
-decoder(n_outputs, n_inputs, decoder_type)
+decoder(n_outputs, n_inputs, decoder_type),
+m_paradigm(agile::types::Autoencoder)
 
 {
 }
@@ -18,6 +19,12 @@ decoder(n_outputs, n_inputs, decoder_type)
 autoencoder::autoencoder(const autoencoder &L) :
 layer(L), 
 decoder(L.decoder)
+{
+}
+//----------------------------------------------------------------------------
+autoencoder::autoencoder(autoencoder *L) :
+layer(*L), 
+decoder(L->decoder)
 {
 }
 //----------------------------------------------------------------------------
@@ -58,3 +65,38 @@ agile::vector autoencoder::reconstruct(const agile::vector &v, bool noisify)
 autoencoder::~autoencoder()
 {
 }   
+//----------------------------------------------------------------------------
+YAML::Emitter& operator << (YAML::Emitter& out, const autoencoder &L) 
+{
+    out << YAML::BeginMap;
+    out << YAML::Key << "inputs"      << YAML::Value << L.m_inputs;
+    out << YAML::Key << "outputs"     << YAML::Value << L.m_outputs;
+    out << YAML::Key << "learning"    << YAML::Value << L.learning;
+    out << YAML::Key << "momentum"    << YAML::Value << L.momentum;
+    out << YAML::Key << "regularizer" << YAML::Value << L.regularizer;
+    out << YAML::Key << "batchsize"   << YAML::Value << L.m_batch_size;
+    out << YAML::Key << "activation";
+
+    if (L.m_layer_type == linear)
+    {
+        out << YAML::Value << "linear";
+    }
+    else if (L.m_layer_type == softmax)
+    {
+        out << YAML::Value << "softmax";
+    }
+    else if (L.m_layer_type == rectified)
+    {
+        out << YAML::Value << "rectified";
+    }
+    else
+    {
+        out << YAML::Value << "sigmoid";
+    }
+
+    out << YAML::Key << "weights" << YAML::Value << agile::stringify(L.W);
+    out << YAML::Key << "bias"    << YAML::Value << agile::stringify(L.b);
+    out << YAML::EndMap;
+    return out;
+}
+//----------------------------------------------------------------------------

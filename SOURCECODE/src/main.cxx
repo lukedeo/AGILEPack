@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
     T << 0.9,
          0.5,
          0.5,
-         2.17;
+         1.123;
 
 
     architecture arch; 
@@ -47,6 +47,9 @@ int main(int argc, char const *argv[])
         // std::cout << "reconstructed:\n" << aut.reconstruct(X.row(point)) << "\n";
         getchar();
     }
+    YAML::Emitter out;
+
+    // out << YAML::Key << "autoencoder" << YAML::Value << *(arch.at(0)); // save it
 
     // arch.add_layer(aut);
 
@@ -71,11 +74,9 @@ int main(int argc, char const *argv[])
         }
     }
 
-    YAML::Emitter out;
-
-    out << YAML::BeginMap;
-    out << YAML::Key << "network" << YAML::Value << arch; // save it
-    out << YAML::EndMap;
+    YAML::Node net;
+    net["network"] = arch;
+    out << net;
     file << out.c_str();
     file.close();
 
@@ -96,7 +97,7 @@ int main(int argc, char const *argv[])
     
     architecture ARCH = std::move(config["network"].as<architecture>());
 
-    // // layer l = ARCH.at(6); // make sure this throws an error correctly
+    // // // layer l = ARCH.at(6); // make sure this throws an error correctly
 
     std::cout << "loaded: " << std::endl;
 

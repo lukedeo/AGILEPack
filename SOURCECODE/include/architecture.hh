@@ -51,7 +51,8 @@ public:
         ++n_layers;
     }
 
-    void add_layer(int n_inputs = 0, int n_outputs = 0, layer_type type = linear);
+    void add_layer(int n_inputs = 0, int n_outputs = 0, 
+        layer_type type = linear);
 
     template <class T>
     void add_layer(T *L)
@@ -161,6 +162,9 @@ namespace YAML
         static Node encode(const architecture &arch)
         {
             Node node;
+
+            std::map<int, std::string> decoder_hash;
+
             unsigned char hash[20];
             char hexstring[41];
             std::string weight_string;
@@ -175,15 +179,38 @@ namespace YAML
                 sha1::calc(weight_string.c_str(),weight_string.size(),hash);
                 sha1::toHexString(hash, hexstring);
                 node["layer_hash"].push_back(
-                static_cast<std::string>(hexstring));
+                    static_cast<std::string>(hexstring));
 
                 hash_vec.push_back(static_cast<std::string>(hexstring));
-            }
-            for (auto &entry : arch.stack)
-            {
-                node[hash_vec.at(tmp_ctr)] = (*entry);
+
+                if ((*entry).get_paradigm() == agile::types::Autoencoder)
+                {
+                    decoder_hash[tmp_ctr] = static_cast<std::string>(hexstring);
+                }
                 ++tmp_ctr;
             }
+
+            tmp_ctr = 0;
+            for (unsigned int i = 0; i < arch.stack.size(); ++i)
+            {
+                if (arch.stack.at(i)->get_paradigm() == agile::types::Autoencoder)
+                {
+                    node[hash_vec.at(tmp_ctr)] = *(dynamic_cast<autoencoder*>(arch.stack.at(i).get()));
+                }
+                else
+                {
+                    node[hash_vec.at(tmp_ctr)] = *(arch.stack.at(i).get());
+                }
+                // node[hash_vec.at(tmp_ctr)] = *(arch.stack.at(i).get());
+                // node[hash_vec.at(tmp_ctr)] = *((autoencoder*)arch.stack.at(i).get());
+                // node[hash_vec.at(tmp_ctr)] = *(static_cast<autoencoder*>(arch.stack.at(i).get()));
+                ++tmp_ctr;
+            }
+            // for (auto &pair : decoder_hash)
+            // {
+            //     node["decoders"][pair.second] = (*arch.stack.at(pair.first));
+            // }
+            
             return node;
         }
 
@@ -196,8 +223,12 @@ namespace YAML
 
             for (unsigned int i = 0; i < hash_names.size(); ++i)
             {
-                arch.add_layer(new layer(
-                node[hash_names[i].as<std::string>()].as<layer>()));
+                // if (node["decoders"][hash_names[i].as<std::string>()])
+                // {
+                    
+                // }
+                arch.add_layer(new layer(node[hash_names[i].as<std::string>()].as<layer>()));
+                
             }
 
             return true;

@@ -35,6 +35,10 @@ typedef Eigen::Matrix<numeric, Eigen::Dynamic, Eigen::Dynamic> matrix;
 typedef Eigen::Matrix<numeric, Eigen::Dynamic, 1>  colvec;
 typedef Eigen::Matrix<numeric, 1, Eigen::Dynamic>  rowvec;
 typedef colvec vector;
+namespace types
+{
+	enum paradigm { Basic, Autoencoder, Boltzmann, Dropout };
+}
 //----------------------------------------------------------------------------
 std::mt19937_64& mersenne_engine();
 //----------------------------------------------------------------------------

@@ -25,6 +25,7 @@ layer_factory(Args&& ...args)
 //-----------------------------------------------------------------------------
 //  Hacky things for yaml-cpp friendship
 //-----------------------------------------------------------------------------
+
 class layer;
 class architecture;
 
@@ -53,6 +54,7 @@ public:
         int n_outputs = 0, layer_type type = linear);
 
     layer(const layer &L);
+    layer(layer *L);
     virtual ~layer() = default;
 
     layer* clone()
@@ -61,6 +63,11 @@ public:
     }
 
     virtual void construct(int n_inputs, int n_outputs, layer_type type);
+
+    virtual agile::types::paradigm get_paradigm()
+    {
+        return agile::types::Basic;
+    }
 //-----------------------------------------------------------------------------
 //  Training methods for inter-layer communication
 //-----------------------------------------------------------------------------
@@ -111,6 +118,8 @@ public:
 
     friend struct YAML::convert<layer>;
     friend struct YAML::convert<architecture>;
+
+
 //-----------------------------------------------------------------------------
 //  Stupid virtuals for derived classes
 //----------------------------------------------------------------------------- 
@@ -144,6 +153,14 @@ protected:
             regularizer; // l2 regularization scalar
 
     layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
+    agile::types::paradigm m_paradigm; //type of pre-training
+
+    layer _reveal(const layer& L)
+    {
+        auto C(L);
+        return C;
+    }
+
 };
 
 //-----------------------------------------------------------------------------
@@ -153,6 +170,9 @@ namespace agile
 {
     typedef std::vector<std::unique_ptr<layer>> layer_stack;
 }
+
+
+
 //-----------------------------------------------------------------------------
 //  YAML Serialization Structure 
 //  (look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
@@ -186,11 +206,13 @@ namespace YAML
             }
             else
             {
-                node["activation"] = "softmax";
+                node["activation"] = "sigmoid";
             }
 
             node["weights"] = agile::stringify(L.W);
             node["bias"] = agile::stringify(L.b);
+            // node["decoder"] = layer::_reveal(L);
+
             return node;
         }
 

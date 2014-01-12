@@ -28,7 +28,8 @@ learning(0.2),
 momentum(0.5), 
 regularizer(0.00), 
 
-m_layer_type(type)
+m_layer_type(type),
+m_paradigm(agile::types::Basic)
 
 {
     ctr = 0;
@@ -56,6 +57,32 @@ momentum(L.momentum),
 regularizer(L.regularizer),
 
 m_layer_type(L.m_layer_type)
+
+{
+    ctr = 0;
+}
+//----------------------------------------------------------------------------
+layer::layer(layer *L): 
+m_inputs(L->m_inputs),
+m_outputs(L->m_outputs),
+m_batch_size(L->m_batch_size),
+
+W(L->W),
+W_old(L->W_old),
+W_change(L->W_change),
+
+b(L->b),
+b_old(L->b_old),
+b_change(L->b_change),
+
+m_out(L->m_out),
+m_in(L->m_in),
+
+learning(L->learning),
+momentum(L->momentum),
+regularizer(L->regularizer),
+
+m_layer_type(L->m_layer_type)
 
 {
     ctr = 0;
