@@ -11,7 +11,7 @@
 #include "yaml-cpp/node/ptr.h"
 #include "yaml-cpp/node/detail/node_ref.h"
 #include <set>
-#include "boost/utility.hpp"
+#include "boost_mod/utility.hpp"
 
 namespace YAML
 {

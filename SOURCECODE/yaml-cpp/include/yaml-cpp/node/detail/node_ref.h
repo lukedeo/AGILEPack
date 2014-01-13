@@ -10,7 +10,7 @@
 #include "yaml-cpp/node/type.h"
 #include "yaml-cpp/node/ptr.h"
 #include "yaml-cpp/node/detail/node_data.h"
-#include "boost/utility.hpp"
+#include "boost_mod/utility.hpp"
 
 namespace YAML
 {

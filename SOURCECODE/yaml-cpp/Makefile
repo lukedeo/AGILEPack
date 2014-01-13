@@ -8,13 +8,13 @@ INC          := include
 # PYTHON       := python
 LIB          := $(CURDIR)/lib
 
-# HACKED_BOOST := boost_subset
+HACKED_BOOST := boost_subset
 
 
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cpp  $(SRC) 
-vpath %.h   $(INC) 
+vpath %.h    $(INC) 
 
 # --- set compiler and flags (roll c options and include paths together)
 

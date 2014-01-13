@@ -9,8 +9,8 @@
 #include "yaml-cpp/dll.h"
 #include "yaml-cpp/node/ptr.h"
 #include "yaml-cpp/node/detail/node_iterator.h"
-#include "boost/iterator/iterator_adaptor.hpp"
-#include "boost/utility.hpp"
+#include "boost_mod/iterator/iterator_adaptor.hpp"
+#include "boost_mod/utility.hpp"
 
 namespace YAML
 {

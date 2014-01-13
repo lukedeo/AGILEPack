@@ -61,8 +61,7 @@ all: $(YAML) $(ALLOUTPUT)
 
 library: $(YAML) $(LIB)/libAGILE.so
 
-cli: $(YAML) 
-	$(EXECUTABLE)
+cli: $(YAML) $(EXECUTABLE)
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"

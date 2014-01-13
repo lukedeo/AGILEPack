@@ -7,7 +7,7 @@
 
 
 #include "yaml-cpp/dll.h"
-#include "boost/shared_ptr.hpp"
+#include "boost_mod/shared_ptr.hpp"
 
 namespace YAML
 {

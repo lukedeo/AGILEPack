@@ -8,8 +8,8 @@
 
 #include "yaml-cpp/dll.h"
 #include "yaml-cpp/node/ptr.h"
-#include "boost/iterator/iterator_facade.hpp"
-#include "boost/utility/enable_if.hpp"
+#include "boost_mod/iterator/iterator_facade.hpp"
+#include "boost_mod/utility/enable_if.hpp"
 #include <map>
 #include <utility>
 #include <vector>

@@ -8,7 +8,7 @@
 
 #include "yaml-cpp/node/detail/node.h"
 #include "yaml-cpp/node/detail/node_data.h"
-#include "boost/type_traits.hpp"
+#include "boost_mod/type_traits.hpp"
 
 namespace YAML
 {
