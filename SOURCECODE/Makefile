@@ -109,11 +109,12 @@ $(DEP)/%.d: %.cxx
 CLEANLIST     = *~ *.o *.o~ *.d core 
 clean:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
-	rm -fr $(BIN) $(ALLOUTPUT)
+	rm -fr $(BIN) 
 	@$(MAKE) -C $(YAML_DIR) clean
 
 purge: clean
 	rm -fr $(EXECUTABLE) $(LIB)
+	@$(MAKE) -C $(YAML_DIR) purge
 
 rmdep: 
 	rm -f $(DEP)/*.d

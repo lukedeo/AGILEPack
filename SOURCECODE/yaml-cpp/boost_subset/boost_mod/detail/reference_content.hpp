@@ -13,17 +13,17 @@
 #ifndef BOOST_DETAIL_REFERENCE_CONTENT_HPP
 #define BOOST_DETAIL_REFERENCE_CONTENT_HPP
 
-#include "boost/config.hpp"
+#include "boost_mod/config.hpp"
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-#   include "boost/mpl/bool.hpp"
-#   include "boost/type_traits/has_nothrow_copy.hpp"
+#   include "boost_mod/mpl/bool.hpp"
+#   include "boost_mod/type_traits/has_nothrow_copy.hpp"
 #else
-#   include "boost/mpl/if.hpp"
-#   include "boost/type_traits/is_reference.hpp"
+#   include "boost_mod/mpl/if.hpp"
+#   include "boost_mod/type_traits/is_reference.hpp"
 #endif
 
-#include "boost/mpl/void.hpp"
+#include "boost_mod/mpl/void.hpp"
 
 namespace boost {
 

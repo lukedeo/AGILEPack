@@ -26,9 +26,9 @@
 #include "boost_mod/mpl/has_xxx.hpp"
 
 #ifdef BOOST_MPL_CFG_NO_HAS_XXX
-# include <boost/shared_ptr.hpp>
-# include <boost/scoped_ptr.hpp>
-# include <boost/mpl/bool.hpp>
+# include "boost_mod/shared_ptr.hpp"
+# include "boost_mod/scoped_ptr.hpp"
+# include "boost_mod/mpl/bool.hpp"
 # include <memory>
 #endif 
 

@@ -19,22 +19,22 @@
 #include "boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if BOOST_WORKAROUND(__EDG_VERSION__, <= 244) && !defined(BOOST_INTEL_CXX_VERSION)
-#   include <boost/mpl/has_xxx.hpp>
+#   include "boost_mod/mpl/has_xxx.hpp"
 #elif BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-#   include <boost/mpl/has_xxx.hpp>
-#   include <boost/mpl/if.hpp>
-#   include <boost/mpl/bool.hpp>
-#   include <boost/mpl/aux_/msvc_is_class.hpp>
+#   include "boost_mod/mpl/has_xxx.hpp"
+#   include "boost_mod/mpl/if.hpp"
+#   include "boost_mod/mpl/bool.hpp"
+#   include "boost_mod/mpl/aux_/msvc_is_class.hpp"
 #elif BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x610))
-#   include <boost/mpl/if.hpp>
-#   include <boost/mpl/bool.hpp>
-#   include <boost/mpl/aux_/yes_no.hpp>
-#   include <boost/mpl/aux_/config/static_constant.hpp>
-#   include <boost/type_traits/is_class.hpp>
+#   include "boost_mod/mpl/if.hpp"
+#   include "boost_mod/mpl/bool.hpp"
+#   include "boost_mod/mpl/aux_/yes_no.hpp"
+#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#   include "boost_mod/type_traits/is_class.hpp"
 #else
-#   include <boost/mpl/aux_/type_wrapper.hpp>
-#   include <boost/mpl/aux_/yes_no.hpp>
-#   include <boost/mpl/aux_/config/static_constant.hpp>
+#   include "boost_mod/mpl/aux_/type_wrapper.hpp"
+#   include "boost_mod/mpl/aux_/yes_no.hpp"
+#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
 #endif
 
 namespace boost { namespace mpl { namespace aux {

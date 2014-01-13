@@ -14,10 +14,10 @@
 // NO INCLUDE GUARDS, THE HEADER IS INTENDED FOR MULTIPLE INCLUSION!
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/bool.hpp>
-#   include <boost/mpl/aux_/nested_type_wknd.hpp>
-#   include <boost/mpl/aux_/na_spec.hpp>
-#   include <boost/mpl/aux_/lambda_support.hpp>
+#   include "boost_mod/mpl/bool.hpp"
+#   include "boost_mod/mpl/aux_/nested_type_wknd.hpp"
+#   include "boost_mod/mpl/aux_/na_spec.hpp"
+#   include "boost_mod/mpl/aux_/lambda_support.hpp"
 #endif
 
 #include "boost_mod/mpl/limits/arity.hpp"

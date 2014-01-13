@@ -20,9 +20,9 @@
 
 #if !defined(BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT)
 
-#   include <boost/mpl/int.hpp>
-#   include <boost/mpl/aux_/lambda_arity_param.hpp>
-#   include <boost/mpl/aux_/template_arity_fwd.hpp>
+#   include "boost_mod/mpl/int.hpp"
+#   include "boost_mod/mpl/aux_/lambda_arity_param.hpp"
+#   include "boost_mod/mpl/aux_/template_arity_fwd.hpp"
 
 namespace boost { namespace mpl {
 
@@ -39,7 +39,7 @@ struct lambda;
 
 #else // BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT
 
-#   include <boost/mpl/bool.hpp>
+#   include "boost_mod/mpl/bool.hpp"
 
 namespace boost { namespace mpl {
 

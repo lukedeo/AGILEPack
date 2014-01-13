@@ -23,7 +23,7 @@ typedef int         _mpl_nttp_int;
 typedef unsigned    _mpl_nttp_unsigned;
 typedef long        _mpl_nttp_long;
 
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/preprocessor/cat.hpp"
 #   define BOOST_MPL_AUX_NTTP_DECL(T, x) BOOST_PP_CAT(_mpl_nttp_,T) x /**/
 
 #else

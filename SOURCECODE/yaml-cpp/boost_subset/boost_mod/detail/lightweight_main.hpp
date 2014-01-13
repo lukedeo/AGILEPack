@@ -1,4 +1,4 @@
-//  boost/detail/lightweight_main.hpp  -------------------------------------------------//
+//  boost_mod/detail/lightweight_main.hpp  -------------------------------------------------//
 
 //  Copyright Beman Dawes 2010
 

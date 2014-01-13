@@ -9,7 +9,7 @@
 #ifndef BOOST_CONFIG_ABI_PREFIX_HPP
 # define BOOST_CONFIG_ABI_PREFIX_HPP
 #else
-# error double inclusion of header boost/config/abi_prefix.hpp is an error
+# error double inclusion of header boost_mod/config/abi_prefix.hpp is an error
 #endif
 
 #include "boost_mod/config.hpp"

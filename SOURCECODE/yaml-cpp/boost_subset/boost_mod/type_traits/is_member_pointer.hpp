@@ -12,7 +12,7 @@
 //    Fixed is_pointer, is_reference, is_const, is_volatile, is_same, 
 //    is_member_pointer based on the Simulated Partial Specialization work 
 //    of Mat Marcus and Jesse Jones. See  http://opensource.adobe.com or 
-//    http://groups.yahoo.com/group/boost/message/5441 
+//    http://groups.yahoo.com/group/boost_mod/message/5441 
 //    Some workarounds in here use ideas suggested from "Generic<Programming>: 
 //    Mappings between Types and Values" 
 //    by Andrei Alexandrescu (see http://www.cuj.com/experts/1810/alexandr.html).
@@ -25,14 +25,14 @@
 #include "boost_mod/detail/workaround.hpp"
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) && !BOOST_WORKAROUND(__BORLANDC__, < 0x600)
-#   include <boost/type_traits/is_member_function_pointer.hpp>
+#   include "boost_mod/type_traits/is_member_function_pointer.hpp"
 #else
-#   include <boost/type_traits/is_reference.hpp>
-#   include <boost/type_traits/is_array.hpp>
-#   include <boost/type_traits/detail/is_mem_fun_pointer_tester.hpp>
-#   include <boost/type_traits/detail/yes_no_type.hpp>
-#   include <boost/type_traits/detail/false_result.hpp>
-#   include <boost/type_traits/detail/ice_or.hpp>
+#   include "boost_mod/type_traits/is_reference.hpp"
+#   include "boost_mod/type_traits/is_array.hpp"
+#   include "boost_mod/type_traits/detail/is_mem_fun_pointer_tester.hpp"
+#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
+#   include "boost_mod/type_traits/detail/false_result.hpp"
+#   include "boost_mod/type_traits/detail/ice_or.hpp"
 #endif
 
 // should be the last #include

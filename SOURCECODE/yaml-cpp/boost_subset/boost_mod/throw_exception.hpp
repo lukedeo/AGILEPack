@@ -14,7 +14,7 @@
 #endif
 
 //
-//  boost/throw_exception.hpp
+//  boost_mod/throw_exception.hpp
 //
 //  Copyright (c) 2002 Peter Dimov and Multi Media Ltd.
 //  Copyright (c) 2008-2009 Emil Dotchevski and Reverge Studios, Inc.
@@ -40,8 +40,8 @@
 #endif
 
 #if !defined( BOOST_EXCEPTION_DISABLE )
-# include <boost/exception/exception.hpp>
-# include <boost/current_function.hpp>
+# include "boost_mod/exception/exception.hpp"
+# include "boost_mod/current_function.hpp"
 # define BOOST_THROW_EXCEPTION(x) ::boost::exception_detail::throw_exception_(x,BOOST_CURRENT_FUNCTION,__FILE__,__LINE__)
 #else
 # define BOOST_THROW_EXCEPTION(x) ::boost::throw_exception(x)

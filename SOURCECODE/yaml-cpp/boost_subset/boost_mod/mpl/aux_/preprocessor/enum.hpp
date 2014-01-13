@@ -23,7 +23,7 @@
 
 #if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
 
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_PP_ENUM(n, param) \
     BOOST_PP_CAT(BOOST_MPL_PP_ENUM_,n)(param) \
@@ -42,8 +42,8 @@
 
 #else
 
-#   include <boost/preprocessor/comma_if.hpp>
-#   include <boost/preprocessor/repeat.hpp>
+#   include "boost_mod/preprocessor/comma_if.hpp"
+#   include "boost_mod/preprocessor/repeat.hpp"
 
 #   define BOOST_MPL_PP_AUX_ENUM_FUNC(unused, i, param) \
     BOOST_PP_COMMA_IF(i) param \

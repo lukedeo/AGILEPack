@@ -6,7 +6,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //
 
-// Preprocessed version of "boost/mpl/modulus.hpp" header
+// Preprocessed version of "boost_mod/mpl/modulus.hpp" header
 // -- DO NOT modify by hand!
 
 namespace boost { namespace mpl {

@@ -15,12 +15,12 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/next_prior.hpp>
-#   include <boost/mpl/apply.hpp>
-#   include <boost/mpl/aux_/config/ctps.hpp>
+#   include "boost_mod/mpl/next_prior.hpp"
+#   include "boost_mod/mpl/apply.hpp"
+#   include "boost_mod/mpl/aux_/config/ctps.hpp"
 #   if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-#       include <boost/mpl/if.hpp>
-#       include <boost/type_traits/is_same.hpp>
+#       include "boost_mod/mpl/if.hpp"
+#       include "boost_mod/type_traits/is_same.hpp"
 #   endif
 #endif
 
@@ -30,13 +30,13 @@
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER iter_fold_impl.hpp
-#   include <boost/mpl/aux_/include_preprocessed.hpp>
+#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
 #   define AUX778076_FOLD_IMPL_OP(iter) iter
 #   define AUX778076_FOLD_IMPL_NAME_PREFIX iter_fold
-#   include <boost/mpl/aux_/fold_impl_body.hpp>
+#   include "boost_mod/mpl/aux_/fold_impl_body.hpp"
 
 #endif // BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
 #endif // BOOST_MPL_AUX_ITER_FOLD_IMPL_HPP_INCLUDED

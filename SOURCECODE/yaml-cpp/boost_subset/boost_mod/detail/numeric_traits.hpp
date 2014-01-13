@@ -47,7 +47,7 @@
 //               (David Abrahams)
 // 10 Feb 2001 - Rolled in supposed Borland fixes from John Maddock, but
 //               not seeing any improvement yet (David Abrahams)
-// 06 Feb 2001 - Factored if_true out into boost/detail/select_type.hpp
+// 06 Feb 2001 - Factored if_true out into boost_mod/detail/select_type.hpp
 //               (David Abrahams)
 // 23 Jan 2001 - Fixed logic of difference_type selection, which was
 //               completely wack. In the process, added digit_traits<>
@@ -58,12 +58,12 @@
 #ifndef BOOST_NUMERIC_TRAITS_HPP_DWA20001901
 # define BOOST_NUMERIC_TRAITS_HPP_DWA20001901
 
-# include <boost/config.hpp>
-# include <boost/cstdint.hpp>
-# include <boost/static_assert.hpp>
-# include <boost/type_traits.hpp>
-# include <boost/detail/select_type.hpp>
-# include <boost/limits.hpp>
+# include "boost_mod/config.hpp"
+# include "boost_mod/cstdint.hpp"
+# include "boost_mod/static_assert.hpp"
+# include "boost_mod/type_traits.hpp"
+# include "boost_mod/detail/select_type.hpp"
+# include "boost_mod/limits.hpp"
 
 namespace boost { namespace detail {
 

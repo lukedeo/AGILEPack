@@ -14,10 +14,10 @@
 # ifndef BOOST_PREPROCESSOR_LIST_ADT_HPP
 # define BOOST_PREPROCESSOR_LIST_ADT_HPP
 #
-# include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/detail/is_binary.hpp>
-# include <boost/preprocessor/logical/compl.hpp>
-# include <boost/preprocessor/tuple/eat.hpp>
+# include "boost_mod/preprocessor/config/config.hpp"
+# include "boost_mod/preprocessor/detail/is_binary.hpp"
+# include "boost_mod/preprocessor/logical/compl.hpp"
+# include "boost_mod/preprocessor/tuple/eat.hpp"
 #
 # /* BOOST_PP_LIST_CONS */
 #

@@ -26,41 +26,41 @@
 // Older Visual Age C++ version do not handle the file iteration well
 #if BOOST_WORKAROUND(__IBMCPP__, >= 500) && BOOST_WORKAROUND(__IBMCPP__, < 800)
 #  if BOOST_FUNCTION_MAX_ARGS >= 0
-#    include <boost/function/function0.hpp>
+#    include "boost_mod/function/function0.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 1
-#    include <boost/function/function1.hpp>
+#    include "boost_mod/function/function1.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 2
-#    include <boost/function/function2.hpp>
+#    include "boost_mod/function/function2.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 3
-#    include <boost/function/function3.hpp>
+#    include "boost_mod/function/function3.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 4
-#    include <boost/function/function4.hpp>
+#    include "boost_mod/function/function4.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 5
-#    include <boost/function/function5.hpp>
+#    include "boost_mod/function/function5.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 6
-#    include <boost/function/function6.hpp>
+#    include "boost_mod/function/function6.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 7
-#    include <boost/function/function7.hpp>
+#    include "boost_mod/function/function7.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 8
-#    include <boost/function/function8.hpp>
+#    include "boost_mod/function/function8.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 9
-#    include <boost/function/function9.hpp>
+#    include "boost_mod/function/function9.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 10
-#    include <boost/function/function10.hpp>
+#    include "boost_mod/function/function10.hpp"
 #  endif
 #else
 // What is the '3' for?
-#  define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_FUNCTION_MAX_ARGS,<boost/function/detail/function_iterate.hpp>))
+#  define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_FUNCTION_MAX_ARGS,"boost_mod/function/detail/function_iterate.hpp"))
 #  include BOOST_PP_ITERATE()
 #  undef BOOST_PP_ITERATION_PARAMS_1
 #endif

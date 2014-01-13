@@ -19,11 +19,11 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/apply.hpp>
-#   include <boost/mpl/at.hpp>
-#   include <boost/mpl/size.hpp>
-#   include <boost/mpl/aux_/nttp_decl.hpp>
-#   include <boost/mpl/aux_/lambda_spec.hpp>
+#   include "boost_mod/mpl/apply.hpp"
+#   include "boost_mod/mpl/at.hpp"
+#   include "boost_mod/mpl/size.hpp"
+#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "boost_mod/mpl/aux_/lambda_spec.hpp"
 #endif
 
 #include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
@@ -32,16 +32,16 @@
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER unpack_args.hpp
-#   include <boost/mpl/aux_/include_preprocessed.hpp>
+#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include <boost/mpl/limits/arity.hpp>
-#   include <boost/mpl/aux_/preprocessor/repeat.hpp>
-#   include <boost/mpl/aux_/config/ctps.hpp>
-#   include <boost/mpl/aux_/config/forwarding.hpp>
-#   include <boost/preprocessor/iterate.hpp>
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/mpl/limits/arity.hpp"
+#   include "boost_mod/mpl/aux_/preprocessor/repeat.hpp"
+#   include "boost_mod/mpl/aux_/config/ctps.hpp"
+#   include "boost_mod/mpl/aux_/config/forwarding.hpp"
+#   include "boost_mod/preprocessor/iterate.hpp"
+#   include "boost_mod/preprocessor/cat.hpp"
 
 
 namespace boost { namespace mpl {
@@ -69,7 +69,7 @@ template< BOOST_MPL_AUX_NTTP_DECL(int, size) > struct unpack_args_impl
 #endif
 
 #define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, BOOST_MPL_LIMIT_METAFUNCTION_ARITY, <boost/mpl/unpack_args.hpp>))
+    (3,(0, BOOST_MPL_LIMIT_METAFUNCTION_ARITY, "boost_mod/mpl/unpack_args.hpp"))
 #include BOOST_PP_ITERATE()
 
 }

@@ -34,7 +34,7 @@
 #include "boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
 
 #if BOOST_WORKAROUND( __BORLANDC__, BOOST_TESTED_AT(0x590) )
-# include <boost/type_traits/is_class.hpp>
+# include "boost_mod/type_traits/is_class.hpp"
 #endif
 
 #if !defined(BOOST_MPL_CFG_NO_HAS_XXX)
@@ -48,8 +48,8 @@
 
 // Modified dwa 8/Oct/02 to handle reference types.
 
-#   include <boost/mpl/if.hpp>
-#   include <boost/mpl/bool.hpp>
+#   include "boost_mod/mpl/if.hpp"
+#   include "boost_mod/mpl/bool.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 

@@ -30,9 +30,9 @@
 #include "boost_mod/mpl/aux_/config/msvc.hpp"
 #include "boost_mod/mpl/aux_/config/workaround.hpp"
 #if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-#   include <boost/mpl/aux_/msvc_is_class.hpp>
+#   include "boost_mod/mpl/aux_/msvc_is_class.hpp"
 #elif BOOST_WORKAROUND(BOOST_MSVC, == 1300)
-#   include <boost/type_traits/is_class.hpp>
+#   include "boost_mod/type_traits/is_class.hpp"
 #endif
 
 #include "boost_mod/type_traits/is_same.hpp"

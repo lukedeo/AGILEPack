@@ -8,7 +8,7 @@
 #endif
 
 //
-//  boost/detail/interlocked.hpp
+//  boost_mod/detail/interlocked.hpp
 //
 //  Copyright 2005 Peter Dimov
 //

@@ -25,6 +25,6 @@
 
 #endif
 
-// BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION is defined in <boost/config.hpp>
+// BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION is defined in "boost_mod/config.hpp"
 
 #endif // BOOST_MPL_AUX_CONFIG_CTPS_HPP_INCLUDED

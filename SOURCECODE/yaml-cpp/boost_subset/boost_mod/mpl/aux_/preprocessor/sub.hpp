@@ -18,10 +18,10 @@
 
 #if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
 
-#   include <boost/mpl/aux_/preprocessor/tuple.hpp>
+#   include "boost_mod/mpl/aux_/preprocessor/tuple.hpp"
 
 #if defined(BOOST_MPL_CFG_BROKEN_PP_MACRO_EXPANSION)
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_PP_SUB(i,j) \
     BOOST_MPL_PP_SUB_DELAY(i,j) \
@@ -54,7 +54,7 @@
 
 #else
 
-#   include <boost/preprocessor/arithmetic/sub.hpp>
+#   include "boost_mod/preprocessor/arithmetic/sub.hpp"
 
 #   define BOOST_MPL_PP_SUB(i,j) \
     BOOST_PP_SUB(i,j) \

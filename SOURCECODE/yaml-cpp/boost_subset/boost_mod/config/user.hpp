@@ -1,4 +1,4 @@
-//  boost/config/user.hpp  ---------------------------------------------------//
+//  boost_mod/config/user.hpp  ---------------------------------------------------//
 
 //  (C) Copyright John Maddock 2001. 
 //  Use, modification and distribution are subject to the 

@@ -25,9 +25,9 @@
 #include "boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
-#   include <boost/mpl/eval_if.hpp>
-#   include <boost/mpl/next.hpp>
-#   include <boost/type_traits/is_same.hpp>
+#   include "boost_mod/mpl/eval_if.hpp"
+#   include "boost_mod/mpl/next.hpp"
+#   include "boost_mod/type_traits/is_same.hpp"
 #endif
 
 

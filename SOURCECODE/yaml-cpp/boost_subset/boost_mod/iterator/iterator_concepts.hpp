@@ -22,7 +22,7 @@
 
 #include "boost_mod/static_assert.hpp"
 
-// Use boost/limits to work around missing limits headers on some compilers
+// Use boost_mod/limits to work around missing limits headers on some compilers
 #include "boost_mod/limits.hpp"
 #include "boost_mod/config.hpp"
 

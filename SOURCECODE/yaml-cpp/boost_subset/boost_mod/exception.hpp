@@ -6,6 +6,6 @@
 #ifndef UUID_1D94A7C6054E11DB9804B622A1EF5492
 #define UUID_1D94A7C6054E11DB9804B622A1EF5492
 
-#error The header <boost/exception.hpp> has been deprecated. Please #include "boost_mod/exception/all.hpp" instead.
+#error The header "boost_mod/exception.hpp" has been deprecated. Please #include "boost_mod/exception/all.hpp" instead.
 
 #endif

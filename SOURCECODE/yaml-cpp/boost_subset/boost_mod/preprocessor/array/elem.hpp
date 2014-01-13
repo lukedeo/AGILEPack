@@ -12,10 +12,10 @@
 # ifndef BOOST_PREPROCESSOR_ARRAY_ELEM_HPP
 # define BOOST_PREPROCESSOR_ARRAY_ELEM_HPP
 #
-# include <boost/preprocessor/array/data.hpp>
-# include <boost/preprocessor/array/size.hpp>
-# include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/tuple/elem.hpp>
+# include "boost_mod/preprocessor/array/data.hpp"
+# include "boost_mod/preprocessor/array/size.hpp"
+# include "boost_mod/preprocessor/config/config.hpp"
+# include "boost_mod/preprocessor/tuple/elem.hpp"
 #
 # /* BOOST_PP_ARRAY_ELEM */
 #

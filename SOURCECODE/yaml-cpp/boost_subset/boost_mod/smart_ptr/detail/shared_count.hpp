@@ -41,7 +41,7 @@
 #endif
 
 #if !defined( BOOST_NO_CXX11_SMART_PTR )
-# include <boost/utility/addressof.hpp>
+# include "boost_mod/utility/addressof.hpp"
 #endif
 
 namespace boost

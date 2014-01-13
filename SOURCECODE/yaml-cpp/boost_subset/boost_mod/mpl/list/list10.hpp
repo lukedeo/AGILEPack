@@ -15,7 +15,7 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/list/list0.hpp>
+#   include "boost_mod/mpl/list/list0.hpp"
 #endif
 
 #include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
@@ -24,16 +24,16 @@
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER list10.hpp
-#   include <boost/mpl/list/aux_/include_preprocessed.hpp>
+#   include "boost_mod/mpl/list/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include <boost/preprocessor/iterate.hpp>
+#   include "boost_mod/preprocessor/iterate.hpp"
 
 namespace boost { namespace mpl {
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(1, 10, <boost/mpl/list/aux_/numbered.hpp>))
+    (3,(1, 10, "boost_mod/mpl/list/aux_/numbered.hpp"))
 #   include BOOST_PP_ITERATE()
 
 }}

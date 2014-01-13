@@ -24,20 +24,20 @@
 #endif
 
 #if !defined(BOOST_MPL_CFG_STRIPPED_DOWN_UPPER_BOUND_IMPL)
-#   include <boost/mpl/minus.hpp>
-#   include <boost/mpl/divides.hpp>
-#   include <boost/mpl/size.hpp>
-#   include <boost/mpl/advance.hpp>
-#   include <boost/mpl/begin_end.hpp>
-#   include <boost/mpl/long.hpp>
-#   include <boost/mpl/eval_if.hpp>
-#   include <boost/mpl/prior.hpp>
-#   include <boost/mpl/deref.hpp>
-#   include <boost/mpl/apply.hpp>
-#   include <boost/mpl/aux_/value_wknd.hpp>
+#   include "boost_mod/mpl/minus.hpp"
+#   include "boost_mod/mpl/divides.hpp"
+#   include "boost_mod/mpl/size.hpp"
+#   include "boost_mod/mpl/advance.hpp"
+#   include "boost_mod/mpl/begin_end.hpp"
+#   include "boost_mod/mpl/long.hpp"
+#   include "boost_mod/mpl/eval_if.hpp"
+#   include "boost_mod/mpl/prior.hpp"
+#   include "boost_mod/mpl/deref.hpp"
+#   include "boost_mod/mpl/apply.hpp"
+#   include "boost_mod/mpl/aux_/value_wknd.hpp"
 #else
-#   include <boost/mpl/find.hpp>
-#   include <boost/mpl/bind.hpp>
+#   include "boost_mod/mpl/find.hpp"
+#   include "boost_mod/mpl/bind.hpp"
 #endif
 
 #include "boost_mod/config.hpp"

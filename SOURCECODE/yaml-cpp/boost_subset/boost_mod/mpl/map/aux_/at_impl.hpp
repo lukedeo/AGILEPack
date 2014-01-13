@@ -27,10 +27,10 @@
 #include "boost_mod/mpl/aux_/config/ctps.hpp"
 
 #if !defined(BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES)
-#   include <boost/mpl/eval_if.hpp>
-#   include <boost/mpl/pair.hpp>
-#   include <boost/mpl/void.hpp>
-#   include <boost/mpl/aux_/config/static_constant.hpp>
+#   include "boost_mod/mpl/eval_if.hpp"
+#   include "boost_mod/mpl/pair.hpp"
+#   include "boost_mod/mpl/void.hpp"
+#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
 #endif
 
 namespace boost { namespace mpl {

@@ -8,7 +8,7 @@
 #endif
 
 //
-//  boost/detail/lightweight_test.hpp - lightweight test library
+//  boost_mod/detail/lightweight_test.hpp - lightweight test library
 //
 //  Copyright (c) 2002, 2009 Peter Dimov
 //  Copyright (2) Beman Dawes 2010, 2011

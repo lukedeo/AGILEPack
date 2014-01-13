@@ -8,7 +8,7 @@
 #endif
 
 //
-//  boost/detail/atomic_count.hpp - thread/SMP safe reference counter
+//  boost_mod/detail/atomic_count.hpp - thread/SMP safe reference counter
 //
 //  Copyright (c) 2001, 2002 Peter Dimov and Multi Media Ltd.
 //
@@ -90,24 +90,24 @@ typedef long atomic_count;
 }
 
 #elif defined(BOOST_AC_USE_PTHREADS)
-#  include <boost/smart_ptr/detail/atomic_count_pthreads.hpp>
+#  include "boost_mod/smart_ptr/detail/atomic_count_pthreads.hpp"
 
 #elif defined( __GNUC__ ) && ( defined( __i386__ ) || defined( __x86_64__ ) )
-#  include <boost/smart_ptr/detail/atomic_count_gcc_x86.hpp>
+#  include "boost_mod/smart_ptr/detail/atomic_count_gcc_x86.hpp"
 
 #elif defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#  include <boost/smart_ptr/detail/atomic_count_win32.hpp>
+#  include "boost_mod/smart_ptr/detail/atomic_count_win32.hpp"
 
 #elif defined( BOOST_SP_HAS_SYNC )
-#  include <boost/smart_ptr/detail/atomic_count_sync.hpp>
+#  include "boost_mod/smart_ptr/detail/atomic_count_sync.hpp"
 
 #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
-#  include <boost/smart_ptr/detail/atomic_count_gcc.hpp>
+#  include "boost_mod/smart_ptr/detail/atomic_count_gcc.hpp"
 
 #elif defined(BOOST_HAS_PTHREADS)
 
 #  define BOOST_AC_USE_PTHREADS
-#  include <boost/smart_ptr/detail/atomic_count_pthreads.hpp>
+#  include "boost_mod/smart_ptr/detail/atomic_count_pthreads.hpp"
 
 #else
 

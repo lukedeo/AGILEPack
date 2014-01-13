@@ -15,12 +15,12 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/lambda_fwd.hpp>
-#   include <boost/mpl/int.hpp>
-#   include <boost/mpl/bool.hpp>
-#   include <boost/mpl/aux_/na.hpp>
-#   include <boost/mpl/aux_/arity.hpp>
-#   include <boost/mpl/aux_/template_arity_fwd.hpp>
+#   include "boost_mod/mpl/lambda_fwd.hpp"
+#   include "boost_mod/mpl/int.hpp"
+#   include "boost_mod/mpl/bool.hpp"
+#   include "boost_mod/mpl/aux_/na.hpp"
+#   include "boost_mod/mpl/aux_/arity.hpp"
+#   include "boost_mod/mpl/aux_/template_arity_fwd.hpp"
 #endif
 
 #include "boost_mod/mpl/aux_/preprocessor/params.hpp"

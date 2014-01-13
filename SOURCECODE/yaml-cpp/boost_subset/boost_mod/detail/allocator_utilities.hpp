@@ -119,7 +119,7 @@ struct partial_std_allocator_rebind_to
 #if BOOST_WORKAROUND(BOOST_MSVC,<1300)
 /* Workaround for a problem in MSVC with dependent template typedefs
  * when doing rebinding of allocators.
- * Modeled after <boost/mpl/aux_/msvc_dtw.hpp> (thanks, Aleksey!)
+ * Modeled after "boost_mod/mpl/aux_/msvc_dtw.hpp" (thanks, Aleksey!)
  */
 
 template<typename Allocator>

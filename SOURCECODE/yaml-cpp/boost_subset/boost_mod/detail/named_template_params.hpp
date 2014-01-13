@@ -131,7 +131,7 @@ namespace boost {
     // the iterator_adaptor type when creating iterator adaptors) and
     // a traits class. The select class should have a single typedef
     // named "type" that produces the default for TYPE.  See
-    // boost/iterator_adaptors.hpp for an example usage.  Also,
+    // boost_mod/iterator_adaptors.hpp for an example usage.  Also,
     // applications of this macro must be placed in namespace
     // boost::detail.
 

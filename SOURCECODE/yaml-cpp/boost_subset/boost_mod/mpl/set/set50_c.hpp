@@ -16,8 +16,8 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/set/set40_c.hpp>
-#   include <boost/mpl/set/set50.hpp>
+#   include "boost_mod/mpl/set/set40_c.hpp"
+#   include "boost_mod/mpl/set/set50.hpp"
 #endif
 
 #include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
@@ -26,16 +26,16 @@
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER set50_c.hpp
-#   include <boost/mpl/set/aux_/include_preprocessed.hpp>
+#   include "boost_mod/mpl/set/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include <boost/preprocessor/iterate.hpp>
+#   include "boost_mod/preprocessor/iterate.hpp"
 
 namespace boost { namespace mpl {
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(41, 50, <boost/mpl/set/aux_/numbered_c.hpp>))
+    (3,(41, 50, "boost_mod/mpl/set/aux_/numbered_c.hpp"))
 #   include BOOST_PP_ITERATE()
 
 }}

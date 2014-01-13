@@ -16,10 +16,10 @@
 #include "boost_mod/config.hpp"
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
-#   include <boost/type_traits/detail/is_function_ptr_helper.hpp>
+#   include "boost_mod/type_traits/detail/is_function_ptr_helper.hpp"
 #else
-#   include <boost/type_traits/detail/is_function_ptr_tester.hpp>
-#   include <boost/type_traits/detail/yes_no_type.hpp>
+#   include "boost_mod/type_traits/detail/is_function_ptr_tester.hpp"
+#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
 #endif
 
 // should be the last #include

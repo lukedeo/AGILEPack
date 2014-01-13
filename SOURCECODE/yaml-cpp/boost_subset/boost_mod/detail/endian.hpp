@@ -18,7 +18,7 @@
  */
 
 /*
- * Copyright notice reproduced from <boost/detail/limits.hpp>, from
+ * Copyright notice reproduced from "boost_mod/detail/limits.hpp", from
  * which this code was originally taken.
  *
  * Modified by Caleb Epstein to use <endian.h> with GNU libc and to
@@ -49,7 +49,7 @@
 #elif defined(__NetBSD__) || defined(__FreeBSD__) || \
     defined(__OpenBSD__) || (__DragonFly__)
 //
-// BSD has endian.h, see https://svn.boost.org/trac/boost/ticket/6013
+// BSD has endian.h, see https://svn.boost.org/trac/boost_mod/ticket/6013
 #  if defined(__OpenBSD__)
 #  include <machine/endian.h>
 #  else
@@ -67,7 +67,7 @@
 # define BOOST_BYTE_ORDER _BYTE_ORDER
 
 #elif defined( __ANDROID__ )
-// Adroid specific code, see: https://svn.boost.org/trac/boost/ticket/7528
+// Adroid specific code, see: https://svn.boost.org/trac/boost_mod/ticket/7528
 // Here we can use machine/_types.h, see:
 // http://stackoverflow.com/questions/6212951/endianness-of-android-ndk
 # include "machine/_types.h"
@@ -118,7 +118,7 @@
 # define BOOST_LITTLE_ENDIAN
 # define BOOST_BYTE_ORDER 1234
 #else
-# error The file boost/detail/endian.hpp needs to be set up for your CPU type.
+# error The file boost_mod/detail/endian.hpp needs to be set up for your CPU type.
 #endif
 
 

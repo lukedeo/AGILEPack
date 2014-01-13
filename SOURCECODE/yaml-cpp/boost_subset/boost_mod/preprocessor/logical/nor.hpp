@@ -14,9 +14,9 @@
 # ifndef BOOST_PREPROCESSOR_LOGICAL_NOR_HPP
 # define BOOST_PREPROCESSOR_LOGICAL_NOR_HPP
 #
-# include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/logical/bool.hpp>
-# include <boost/preprocessor/logical/bitnor.hpp>
+# include "boost_mod/preprocessor/config/config.hpp"
+# include "boost_mod/preprocessor/logical/bool.hpp"
+# include "boost_mod/preprocessor/logical/bitnor.hpp"
 #
 # /* BOOST_PP_NOR */
 #

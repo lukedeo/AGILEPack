@@ -24,7 +24,7 @@
 
 
 #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1310))
-# include <boost/type_traits/is_base_and_derived.hpp>
+# include "boost_mod/type_traits/is_base_and_derived.hpp"
 
 #endif 
 #include "boost_mod/iterator/detail/config_def.hpp"

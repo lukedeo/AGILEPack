@@ -8,7 +8,7 @@
 #endif
 
 //
-//  boost/detail/lwm_pthreads.hpp
+//  boost_mod/detail/lwm_pthreads.hpp
 //
 //  Copyright (c) 2002 Peter Dimov and Multi Media Ltd.
 //

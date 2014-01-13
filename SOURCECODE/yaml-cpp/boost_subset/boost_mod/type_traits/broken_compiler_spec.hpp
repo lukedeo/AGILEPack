@@ -88,7 +88,7 @@ template<> struct trait##_impl<spec> \
     }}                                                                              \
     /**/
 
-#   include <boost/type_traits/detail/type_trait_undef.hpp>
+#   include "boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 

@@ -23,7 +23,7 @@
 #include "boost_mod/type_traits/is_convertible.hpp"
 
 #ifdef BOOST_ITERATOR_REF_CONSTNESS_KILLS_WRITABILITY
-# include <boost/type_traits/remove_reference.hpp>
+# include "boost_mod/type_traits/remove_reference.hpp"
 #endif
 
 #include "boost_mod/type_traits/add_reference.hpp"

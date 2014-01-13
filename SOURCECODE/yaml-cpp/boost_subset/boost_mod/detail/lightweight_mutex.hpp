@@ -8,7 +8,7 @@
 #endif
 
 //
-//  boost/detail/lightweight_mutex.hpp - lightweight mutex
+//  boost_mod/detail/lightweight_mutex.hpp - lightweight mutex
 //
 //  Copyright (c) 2002, 2003 Peter Dimov and Multi Media Ltd.
 //

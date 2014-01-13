@@ -7,7 +7,7 @@
 // License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-// Please see the comments in <boost/detail/utf8_codecvt_facet.hpp> to
+// Please see the comments in "boost_mod/detail/utf8_codecvt_facet.hpp" to
 // learn how this file should be used.
 
 #include "boost_mod/detail/utf8_codecvt_facet.hpp"
@@ -244,7 +244,7 @@ int get_cont_octet_out_count_impl<4>(wchar_t word){
     // where wchar_t is defined as UCS2.  The warnings are superfluous as the
     // specialization is never instantitiated with such compilers, but this
     // can cause problems if warnings are being treated as errors, so we guard
-    // against that.  Including <boost/detail/utf8_codecvt_facet.hpp> as we do
+    // against that.  Including "boost_mod/detail/utf8_codecvt_facet.hpp" as we do
     // should be enough to get WCHAR_MAX defined.
 #if !defined(WCHAR_MAX)
 #   error WCHAR_MAX not defined!

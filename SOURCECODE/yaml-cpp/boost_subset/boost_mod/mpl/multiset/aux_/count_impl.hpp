@@ -24,8 +24,8 @@
 #include "boost_mod/mpl/aux_/config/msvc.hpp"
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
-#   include <boost/mpl/if.hpp>
-#   include <boost/type_traits/is_reference.hpp>
+#   include "boost_mod/mpl/if.hpp"
+#   include "boost_mod/type_traits/is_reference.hpp"
 #endif
 
 namespace boost { namespace mpl {

@@ -182,7 +182,7 @@ struct tr1_result_of_impl<F, FArgs, false>
 
 } // end namespace detail
 
-#define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_RESULT_OF_NUM_ARGS,<boost/utility/detail/result_of_iterate.hpp>))
+#define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_RESULT_OF_NUM_ARGS,"boost_mod/utility/detail/result_of_iterate.hpp"))
 #include BOOST_PP_ITERATE()
 
 #else

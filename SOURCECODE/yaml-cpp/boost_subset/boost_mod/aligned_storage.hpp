@@ -15,16 +15,16 @@
 
 #include <cstddef> // for std::size_t
 
-#include "boost/config.hpp"
-#include "boost/detail/workaround.hpp"
-#include "boost/type_traits/alignment_of.hpp"
-#include "boost/type_traits/type_with_alignment.hpp"
-#include "boost/type_traits/is_pod.hpp"
+#include "boost_mod/config.hpp"
+#include "boost_mod/detail/workaround.hpp"
+#include "boost_mod/type_traits/alignment_of.hpp"
+#include "boost_mod/type_traits/type_with_alignment.hpp"
+#include "boost_mod/type_traits/is_pod.hpp"
 
-#include "boost/mpl/eval_if.hpp"
-#include "boost/mpl/identity.hpp"
+#include "boost_mod/mpl/eval_if.hpp"
+#include "boost_mod/mpl/identity.hpp"
 
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -176,6 +176,6 @@ struct is_pod<boost::detail::aligned_storage::aligned_storage_imp<size_,alignmen
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_ALIGNED_STORAGE_HPP

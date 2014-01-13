@@ -13,8 +13,8 @@
 # ifndef BOOST_PREPROCESSOR_VARIADIC_SIZE_HPP
 # define BOOST_PREPROCESSOR_VARIADIC_SIZE_HPP
 #
-# include <boost/preprocessor/cat.hpp>
-# include <boost/preprocessor/config/config.hpp>
+# include "boost_mod/preprocessor/cat.hpp"
+# include "boost_mod/preprocessor/config/config.hpp"
 #
 # /* BOOST_PP_VARIADIC_SIZE */
 #

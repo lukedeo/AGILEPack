@@ -21,7 +21,7 @@
 #include "boost_mod/mpl/aux_/config/ctps.hpp"
 
 #if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-#   include <boost/type_traits/is_same.hpp>
+#   include "boost_mod/type_traits/is_same.hpp"
 #endif
 
 namespace boost { namespace mpl {

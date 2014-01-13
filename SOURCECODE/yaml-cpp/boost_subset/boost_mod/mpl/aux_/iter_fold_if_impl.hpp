@@ -16,11 +16,11 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/identity.hpp>
-#   include <boost/mpl/next.hpp>
-#   include <boost/mpl/if.hpp>
-#   include <boost/mpl/apply.hpp>
-#   include <boost/mpl/aux_/value_wknd.hpp>
+#   include "boost_mod/mpl/identity.hpp"
+#   include "boost_mod/mpl/next.hpp"
+#   include "boost_mod/mpl/if.hpp"
+#   include "boost_mod/mpl/apply.hpp"
+#   include "boost_mod/mpl/aux_/value_wknd.hpp"
 #endif
 
 #include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
@@ -29,16 +29,16 @@
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER iter_fold_if_impl.hpp
-#   include <boost/mpl/aux_/include_preprocessed.hpp>
+#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include <boost/mpl/limits/unrolling.hpp>
-#   include <boost/preprocessor/arithmetic/sub.hpp>
-#   include <boost/preprocessor/repeat.hpp>
-#   include <boost/preprocessor/inc.hpp>
-#   include <boost/preprocessor/dec.hpp>
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/mpl/limits/unrolling.hpp"
+#   include "boost_mod/preprocessor/arithmetic/sub.hpp"
+#   include "boost_mod/preprocessor/repeat.hpp"
+#   include "boost_mod/preprocessor/inc.hpp"
+#   include "boost_mod/preprocessor/dec.hpp"
+#   include "boost_mod/preprocessor/cat.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 

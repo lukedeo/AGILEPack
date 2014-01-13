@@ -15,17 +15,17 @@
 #include "boost_mod/type_traits/intrinsics.hpp"
 
 #ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include <boost/type_traits/remove_cv.hpp>
-#   include <boost/type_traits/is_class.hpp>
-#   include <boost/type_traits/add_reference.hpp>
+#   include "boost_mod/type_traits/remove_cv.hpp"
+#   include "boost_mod/type_traits/is_class.hpp"
+#   include "boost_mod/type_traits/add_reference.hpp"
 #else
-#   include <boost/type_traits/is_reference.hpp>
-#   include <boost/type_traits/is_pointer.hpp>
-#   include <boost/type_traits/is_member_pointer.hpp>
-#   include <boost/type_traits/is_array.hpp>
-#   include <boost/type_traits/is_void.hpp>
-#   include <boost/type_traits/detail/ice_and.hpp>
-#   include <boost/type_traits/detail/ice_not.hpp>
+#   include "boost_mod/type_traits/is_reference.hpp"
+#   include "boost_mod/type_traits/is_pointer.hpp"
+#   include "boost_mod/type_traits/is_member_pointer.hpp"
+#   include "boost_mod/type_traits/is_array.hpp"
+#   include "boost_mod/type_traits/is_void.hpp"
+#   include "boost_mod/type_traits/detail/ice_and.hpp"
+#   include "boost_mod/type_traits/detail/ice_not.hpp"
 #endif
 
 // should be always the last #include directive

@@ -12,8 +12,8 @@
 # ifndef BOOST_PREPROCESSOR_SEQ_TO_TUPLE_HPP
 # define BOOST_PREPROCESSOR_SEQ_TO_TUPLE_HPP
 #
-# include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/seq/enum.hpp>
+# include "boost_mod/preprocessor/config/config.hpp"
+# include "boost_mod/preprocessor/seq/enum.hpp"
 #
 # /* BOOST_PP_SEQ_TO_TUPLE */
 #

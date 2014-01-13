@@ -12,14 +12,14 @@
 # ifndef BOOST_PREPROCESSOR_REPETITION_ENUM_SHIFTED_BINARY_PARAMS_HPP
 # define BOOST_PREPROCESSOR_REPETITION_ENUM_SHIFTED_BINARY_PARAMS_HPP
 #
-# include <boost/preprocessor/arithmetic/dec.hpp>
-# include <boost/preprocessor/arithmetic/inc.hpp>
-# include <boost/preprocessor/cat.hpp>
-# include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/punctuation/comma_if.hpp>
-# include <boost/preprocessor/repetition/repeat.hpp>
-# include <boost/preprocessor/tuple/elem.hpp>
-# include <boost/preprocessor/tuple/rem.hpp>
+# include "boost_mod/preprocessor/arithmetic/dec.hpp"
+# include "boost_mod/preprocessor/arithmetic/inc.hpp"
+# include "boost_mod/preprocessor/cat.hpp"
+# include "boost_mod/preprocessor/config/config.hpp"
+# include "boost_mod/preprocessor/punctuation/comma_if.hpp"
+# include "boost_mod/preprocessor/repetition/repeat.hpp"
+# include "boost_mod/preprocessor/tuple/elem.hpp"
+# include "boost_mod/preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_ENUM_SHIFTED_BINARY_PARAMS */
 #

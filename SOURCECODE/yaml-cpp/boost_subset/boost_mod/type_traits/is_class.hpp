@@ -13,24 +13,24 @@
 #include "boost_mod/type_traits/config.hpp"
 #include "boost_mod/type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_CLASS
-#   include <boost/type_traits/is_union.hpp>
-#   include <boost/type_traits/detail/ice_and.hpp>
-#   include <boost/type_traits/detail/ice_not.hpp>
+#   include "boost_mod/type_traits/is_union.hpp"
+#   include "boost_mod/type_traits/detail/ice_and.hpp"
+#   include "boost_mod/type_traits/detail/ice_not.hpp"
 
 #ifdef BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
-#   include <boost/type_traits/detail/yes_no_type.hpp>
+#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
 #else
-#   include <boost/type_traits/is_scalar.hpp>
-#   include <boost/type_traits/is_array.hpp>
-#   include <boost/type_traits/is_reference.hpp>
-#   include <boost/type_traits/is_void.hpp>
-#   include <boost/type_traits/is_function.hpp>
+#   include "boost_mod/type_traits/is_scalar.hpp"
+#   include "boost_mod/type_traits/is_array.hpp"
+#   include "boost_mod/type_traits/is_reference.hpp"
+#   include "boost_mod/type_traits/is_void.hpp"
+#   include "boost_mod/type_traits/is_function.hpp"
 #endif
 
 #endif // BOOST_IS_CLASS
 
 #ifdef __EDG_VERSION__
-#   include <boost/type_traits/remove_cv.hpp>
+#   include "boost_mod/type_traits/remove_cv.hpp"
 #endif
 
 // should be the last #include
@@ -46,7 +46,7 @@ namespace detail {
 // This is actually the conforming implementation which works with
 // abstract classes.  However, enough compilers have trouble with
 // it that most will use the one in
-// boost/type_traits/object_traits.hpp. This implementation
+// boost_mod/type_traits/object_traits.hpp. This implementation
 // actually works with VC7.0, but other interactions seem to fail
 // when we use it.
 

@@ -7,7 +7,7 @@
 # pragma once
 #endif
 
-//  boost/memory_order.hpp
+//  boost_mod/memory_order.hpp
 //
 //  Defines enum boost::memory_order per the C++0x working draft
 //

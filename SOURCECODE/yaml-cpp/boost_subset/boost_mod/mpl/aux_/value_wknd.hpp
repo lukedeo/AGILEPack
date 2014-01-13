@@ -22,7 +22,7 @@
 #if defined(BOOST_MPL_CFG_BCC_INTEGRAL_CONSTANTS) \
     || defined(BOOST_MPL_CFG_MSVC_60_ETI_BUG)
 
-#   include <boost/mpl/int.hpp>
+#   include "boost_mod/mpl/int.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 template< typename C_ > struct value_wknd

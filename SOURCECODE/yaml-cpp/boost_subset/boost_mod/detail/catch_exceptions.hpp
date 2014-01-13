@@ -1,4 +1,4 @@
-//  boost/catch_exceptions.hpp -----------------------------------------------//
+//  boost_mod/catch_exceptions.hpp -----------------------------------------------//
 
 //  Copyright Beman Dawes 1995-2001.  Distributed under the Boost
 //  Software License, Version 1.0. (See accompanying file

@@ -5,12 +5,12 @@
 #ifndef COUNTING_ITERATOR_DWA200348_HPP
 # define COUNTING_ITERATOR_DWA200348_HPP
 
-# include <boost/iterator/iterator_adaptor.hpp>
-# include <boost/detail/numeric_traits.hpp>
-# include <boost/mpl/bool.hpp>
-# include <boost/mpl/if.hpp>
-# include <boost/mpl/identity.hpp>
-# include <boost/mpl/eval_if.hpp>
+# include "boost_mod/iterator/iterator_adaptor.hpp"
+# include "boost_mod/detail/numeric_traits.hpp"
+# include "boost_mod/mpl/bool.hpp"
+# include "boost_mod/mpl/if.hpp"
+# include "boost_mod/mpl/identity.hpp"
+# include "boost_mod/mpl/eval_if.hpp"
 
 namespace boost {
 
@@ -105,7 +105,7 @@ namespace detail
         , Incrementable                                           // Value
 # ifndef BOOST_ITERATOR_REF_CONSTNESS_KILLS_WRITABILITY
           const  // MSVC won't strip this.  Instead we enable Thomas'
-                 // criterion (see boost/iterator/detail/facade_iterator_category.hpp)
+                 // criterion (see boost_mod/iterator/detail/facade_iterator_category.hpp)
 # endif 
         , traversal
         , Incrementable const&                                    // reference

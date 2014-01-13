@@ -23,18 +23,18 @@
 
 #else
 
-#   include <boost/mpl/int_fwd.hpp>
-#   include <boost/mpl/aux_/yes_no.hpp>
-#   include <boost/mpl/aux_/na_fwd.hpp>
-#   include <boost/mpl/aux_/preprocessor/params.hpp>
-#   include <boost/mpl/aux_/preprocessor/enum.hpp>
-#   include <boost/mpl/aux_/config/msvc.hpp>
-#   include <boost/mpl/aux_/config/workaround.hpp>
+#   include "boost_mod/mpl/int_fwd.hpp"
+#   include "boost_mod/mpl/aux_/yes_no.hpp"
+#   include "boost_mod/mpl/aux_/na_fwd.hpp"
+#   include "boost_mod/mpl/aux_/preprocessor/params.hpp"
+#   include "boost_mod/mpl/aux_/preprocessor/enum.hpp"
+#   include "boost_mod/mpl/aux_/config/msvc.hpp"
+#   include "boost_mod/mpl/aux_/config/workaround.hpp"
 
-#   include <boost/preprocessor/tuple/to_list.hpp>
-#   include <boost/preprocessor/list/for_each_i.hpp>
-#   include <boost/preprocessor/inc.hpp>
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/preprocessor/tuple/to_list.hpp"
+#   include "boost_mod/preprocessor/list/for_each_i.hpp"
+#   include "boost_mod/preprocessor/inc.hpp"
+#   include "boost_mod/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_AUX_LAMBDA_SUPPORT_ARG_TYPEDEF_FUNC(R,typedef_,i,param) \
     typedef_ param BOOST_PP_CAT(arg,BOOST_PP_INC(i)); \

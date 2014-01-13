@@ -19,8 +19,8 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include <boost/mpl/prior.hpp>
-#   include <boost/mpl/apply_wrap.hpp>
+#   include "boost_mod/mpl/prior.hpp"
+#   include "boost_mod/mpl/apply_wrap.hpp"
 #endif
 
 #include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
@@ -29,17 +29,17 @@
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER advance_backward.hpp
-#   include <boost/mpl/aux_/include_preprocessed.hpp>
+#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include <boost/mpl/limits/unrolling.hpp>
-#   include <boost/mpl/aux_/nttp_decl.hpp>
-#   include <boost/mpl/aux_/config/eti.hpp>
+#   include "boost_mod/mpl/limits/unrolling.hpp"
+#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "boost_mod/mpl/aux_/config/eti.hpp"
 
-#   include <boost/preprocessor/iterate.hpp>
-#   include <boost/preprocessor/cat.hpp>
-#   include <boost/preprocessor/inc.hpp>
+#   include "boost_mod/preprocessor/iterate.hpp"
+#   include "boost_mod/preprocessor/cat.hpp"
+#   include "boost_mod/preprocessor/inc.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 
@@ -47,7 +47,7 @@ namespace boost { namespace mpl { namespace aux {
 template< BOOST_MPL_AUX_NTTP_DECL(long, N) > struct advance_backward;
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, BOOST_MPL_LIMIT_UNROLLING, <boost/mpl/aux_/advance_backward.hpp>))
+    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "boost_mod/mpl/aux_/advance_backward.hpp"))
 #   include BOOST_PP_ITERATE()
 
 // implementation for N that exceeds BOOST_MPL_LIMIT_UNROLLING
@@ -94,7 +94,7 @@ struct advance_backward< BOOST_PP_FRAME_ITERATION(1) >
 
 #if i_ > 0
 #   define BOOST_PP_ITERATION_PARAMS_2 \
-    (3,(1, BOOST_PP_FRAME_ITERATION(1), <boost/mpl/aux_/advance_backward.hpp>))
+    (3,(1, BOOST_PP_FRAME_ITERATION(1), "boost_mod/mpl/aux_/advance_backward.hpp"))
 #   include BOOST_PP_ITERATE()
 #endif
 

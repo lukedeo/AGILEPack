@@ -19,8 +19,8 @@
 
 #if defined(BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES)
 
-#   include <boost/mpl/vector/aux_/item.hpp>
-#   include <boost/mpl/vector/aux_/tag.hpp>
+#   include "boost_mod/mpl/vector/aux_/item.hpp"
+#   include "boost_mod/mpl/vector/aux_/tag.hpp"
 
 namespace boost { namespace mpl {
 

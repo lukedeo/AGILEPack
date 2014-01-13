@@ -31,9 +31,9 @@
 #include "boost_mod/detail/workaround.hpp"
 #include "boost_mod/type_traits/alignment_of.hpp"
 #ifndef BOOST_NO_SFINAE
-#  include "boost/utility/enable_if.hpp"
+#  include "boost_mod/utility/enable_if.hpp"
 #else
-#  include "boost/mpl/bool.hpp"
+#  include "boost_mod/mpl/bool.hpp"
 #endif
 #include "boost_mod/function_equal.hpp"
 #include "boost_mod/function/function_fwd.hpp"

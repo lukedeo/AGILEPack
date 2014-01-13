@@ -70,10 +70,10 @@ $(DEP)/%.d: %.cpp
 CLEANLIST     = *~ *.o *.o~ *.d core 
 clean:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
-	rm -fr $(BIN) $(ALLOUTPUT)
+	rm -fr $(BIN)
 
 purge: clean
-	rm -fr $(EXECUTABLE) $(LIB)
+	rm -fr $(LIB)
 
 rmdep: 
 	rm -f $(DEP)/*.d

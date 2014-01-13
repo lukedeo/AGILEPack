@@ -14,9 +14,9 @@
 # ifndef BOOST_PREPROCESSOR_LOGICAL_NOT_HPP
 # define BOOST_PREPROCESSOR_LOGICAL_NOT_HPP
 #
-# include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/logical/bool.hpp>
-# include <boost/preprocessor/logical/compl.hpp>
+# include "boost_mod/preprocessor/config/config.hpp"
+# include "boost_mod/preprocessor/logical/bool.hpp"
+# include "boost_mod/preprocessor/logical/compl.hpp"
 #
 # /* BOOST_PP_NOT */
 #

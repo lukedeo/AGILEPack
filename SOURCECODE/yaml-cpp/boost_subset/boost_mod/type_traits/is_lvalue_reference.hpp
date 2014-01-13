@@ -12,7 +12,7 @@
 //    Fixed is_pointer, is_lvalue_reference, is_const, is_volatile, is_same, 
 //    is_member_pointer based on the Simulated Partial Specialization work 
 //    of Mat Marcus and Jesse Jones. See  http://opensource.adobe.com or 
-//    http://groups.yahoo.com/group/boost/message/5441 
+//    http://groups.yahoo.com/group/boost_mod/message/5441 
 //    Some workarounds in here use ideas suggested from "Generic<Programming>: 
 //    Mappings between Types and Values" 
 //    by Andrei Alexandrescu (see http://www.cuj.com/experts/1810/alexandr.html).
@@ -24,8 +24,8 @@
 #include "boost_mod/type_traits/config.hpp"
 
 #ifdef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include <boost/type_traits/detail/yes_no_type.hpp>
-#   include <boost/type_traits/detail/wrap.hpp>
+#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
+#   include "boost_mod/type_traits/detail/wrap.hpp"
 #endif
 
 // should be the last #include

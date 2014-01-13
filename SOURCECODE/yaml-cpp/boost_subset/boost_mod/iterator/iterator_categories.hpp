@@ -6,20 +6,20 @@
 #ifndef BOOST_ITERATOR_CATEGORIES_HPP
 # define BOOST_ITERATOR_CATEGORIES_HPP
 
-# include <boost/config.hpp>
-# include <boost/detail/iterator.hpp>
-# include <boost/iterator/detail/config_def.hpp>
+# include "boost_mod/config.hpp"
+# include "boost_mod/detail/iterator.hpp"
+# include "boost_mod/iterator/detail/config_def.hpp"
 
-# include <boost/detail/workaround.hpp>
+# include "boost_mod/detail/workaround.hpp"
 
-# include <boost/mpl/eval_if.hpp>
-# include <boost/mpl/identity.hpp>
-# include <boost/mpl/placeholders.hpp>
-# include <boost/mpl/aux_/lambda_support.hpp>
+# include "boost_mod/mpl/eval_if.hpp"
+# include "boost_mod/mpl/identity.hpp"
+# include "boost_mod/mpl/placeholders.hpp"
+# include "boost_mod/mpl/aux_/lambda_support.hpp"
 
-# include <boost/type_traits/is_convertible.hpp>
+# include "boost_mod/type_traits/is_convertible.hpp"
 
-# include <boost/static_assert.hpp>
+# include "boost_mod/static_assert.hpp"
 
 namespace boost {
 

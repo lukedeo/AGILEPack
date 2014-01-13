@@ -29,8 +29,8 @@
 
 #if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
 
-#   include <boost/mpl/aux_/preprocessor/filter_params.hpp>
-#   include <boost/mpl/aux_/preprocessor/sub.hpp>
+#   include "boost_mod/mpl/aux_/preprocessor/filter_params.hpp"
+#   include "boost_mod/mpl/aux_/preprocessor/sub.hpp"
 
 #   define BOOST_MPL_PP_DEF_PARAMS_TAIL_IMPL(i, param, value_func) \
     BOOST_MPL_PP_DEF_PARAMS_TAIL_DELAY_1( \
@@ -63,12 +63,12 @@
 
 #else
 
-#   include <boost/preprocessor/arithmetic/add.hpp>
-#   include <boost/preprocessor/arithmetic/sub.hpp>
-#   include <boost/preprocessor/inc.hpp>
-#   include <boost/preprocessor/tuple/elem.hpp>
-#   include <boost/preprocessor/repeat.hpp>
-#   include <boost/preprocessor/cat.hpp>
+#   include "boost_mod/preprocessor/arithmetic/add.hpp"
+#   include "boost_mod/preprocessor/arithmetic/sub.hpp"
+#   include "boost_mod/preprocessor/inc.hpp"
+#   include "boost_mod/preprocessor/tuple/elem.hpp"
+#   include "boost_mod/preprocessor/repeat.hpp"
+#   include "boost_mod/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_PP_AUX_TAIL_PARAM_FUNC(unused, i, op) \
     , BOOST_PP_CAT( \
