@@ -8,11 +8,55 @@ INC          := include
 # PYTHON       := python
 LIB          := $(CURDIR)/lib
 
+CXX          := g++
+
 YAML_DIR     := $(CURDIR)/yaml-cpp
+YAML_MISSING  := $(@$(CXX) -lyaml-cpp > _tmp 2>&1 || shell grep "not found" _tmp; shell rm _tmp)
+
+
+ifdef YAML_MISSING
+
+
 YAML_INC     := $(YAML_DIR)/include
 YAML_LIB     := $(YAML_DIR)/lib
 
 HACKED_BOOST := $(YAML_DIR)/boost_subset
+
+LIBS += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+LIBS += -lYAMLCPP_INTERNAL
+
+YAML = yaml_proxy
+
+
+INFOMSG = yaml_not_found_msg
+
+else
+ifeq ($(MAKECMDGOALS),complete)
+YAML_INC     := $(YAML_DIR)/include
+YAML_LIB     := $(YAML_DIR)/lib
+
+HACKED_BOOST := $(YAML_DIR)/boost_subset
+
+LIBS += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+LIBS += -lYAMLCPP_INTERNAL
+
+YAML = yaml_proxy
+
+INFOMSG = yaml_found_ovrride_msg
+else
+
+YAML_INC := $(YAML_DIR)/include
+HACKED_BOOST := $(YAML_DIR)/boost_subset
+LIBS += -lyaml-cpp
+
+INFOMSG = yaml_found_msg
+
+endif
+endif
+
+
+# YAML_INC     := $(YAML_DIR)/include
+
 
 
 #  set search path
@@ -24,7 +68,7 @@ vpath %.hh   $(INC)
 DEBUG =  -O0 -g 
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
-CXX          := g++
+
 CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG) -I$(YAML_INC) -I$(HACKED_BOOST)
 # LDFLAGS      := -Wl,--no-undefined 
 
@@ -34,8 +78,7 @@ SHELL         := bash
 # --- external dirs 
 
 # LIBS += -lyaml-cpp
-LIBS += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
-LIBS += -lYAMLCPP_INTERNAL
+
 
 # ---- define objects
 # - not-python 
@@ -54,20 +97,20 @@ ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
 ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libAGILE.so
 
 
-YAML = yaml_proxy
-
-all: $(YAML) $(ALLOUTPUT)
+all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 	@echo "+++ Complete AGILEPack build sucessful. +++"
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 
-library: $(YAML) $(LIB)/libAGILE.so
+complete: all
 
-cli: $(YAML) $(EXECUTABLE)
+library: $(INFOMSG) $(YAML) $(LIB)/libAGILE.so
+
+cli: $(INFOMSG) $(YAML) $(EXECUTABLE)
 
 yaml: $(YAML)
 
-agile: $(ALLOUTPUT)
+agile: $(INFOMSG) $(ALLOUTPUT)
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
@@ -80,6 +123,26 @@ $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
 
 $(YAML):
 	@$(MAKE) -C $(YAML_DIR)
+
+yaml_found_msg: 
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "+ YAML C++ found, proceeding with pre-installed library... +"
+	@echo "+   If you wish to override default library usage, type    +"
+	@echo "+                   'make complete'                        +"
+	@echo "+          which will install a local library              +"
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
+yaml_not_found_msg:
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "! YAML C++ not found, proceeding with installation of a    !"
+	@echo "!                 local version of YAML C++                !"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+yaml_found_ovrride_msg: 
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "+            YAML C++ found, but overridden.               +"
+	@echo "+        Installing a local version of library             +"
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 # --------------------------------------------------
 
@@ -107,6 +170,7 @@ $(DEP)/%.d: %.cxx
 # clean
 .PHONY : clean rmdep
 CLEANLIST     = *~ *.o *.o~ *.d core 
+
 clean:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
 	rm -fr $(BIN) 
