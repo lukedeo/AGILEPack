@@ -13,6 +13,12 @@ CXX          := g++
 YAML_DIR     := $(CURDIR)/yaml-cpp
 YAML_MISSING  := $(@$(CXX) -lyaml-cpp > _tmp 2>&1 || shell grep "not found" _tmp; shell rm _tmp)
 
+ifndef YAML_MISSING
+
+YAML_MISSING  = $(@$(CXX) -lyaml-cpp > _tmp 2>&1 || shell grep "cannot find" _tmp; shell rm _tmp)
+
+endif
+
 
 ifdef YAML_MISSING
 
