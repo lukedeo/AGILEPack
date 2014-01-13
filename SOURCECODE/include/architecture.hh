@@ -275,7 +275,9 @@ namespace YAML
                 else
                 {
                     throw std::logic_error("class " + class_type + " not recognized.");
-                }         
+                }
+
+                         
             }
 
             return true;

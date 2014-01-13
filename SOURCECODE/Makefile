@@ -8,6 +8,11 @@ INC          := include
 # PYTHON       := python
 LIB          := $(CURDIR)/lib
 
+YAML_DIR     := $(CURDIR)/yaml-cpp
+YAML_INC     := $(YAML_DIR)/include
+YAML_LIB     := $(YAML_DIR)/lib
+
+
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
@@ -18,7 +23,7 @@ DEBUG =  -O0 -g
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
 CXX          := g++
-CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG)
+CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG) -I$(YAML_INC)
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
@@ -26,7 +31,9 @@ SHELL         := bash
 
 # --- external dirs 
 
-LIBS += -lyaml-cpp
+# LIBS += -lyaml-cpp
+LIBS += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+LIBS += -lYAMLCPP_INTERNAL
 
 # ---- define objects
 # - not-python 
@@ -37,20 +44,25 @@ UTIL_OBJ      := activation.o basedefs.o sha1.o
 # - command line interface
 EXE_OBJ      := main.o
 
+
 EXECUTABLE   := AGILE
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
 ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libAGILE.so
 
-all: $(ALLOUTPUT)
+
+YAML = yaml_proxy
+
+all: $(YAML) $(ALLOUTPUT)
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 	@echo "+++ Complete AGILEPack build sucessful. +++"
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 
-library: $(LIB)/libAGILE.so
+library: $(YAML) $(LIB)/libAGILE.so
 
-cli: $(EXECUTABLE)
+cli: $(YAML) 
+	$(EXECUTABLE)
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
@@ -60,6 +72,9 @@ $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+
+$(YAML):
+	@$(MAKE) -C $(YAML_DIR)
 
 # --------------------------------------------------
 
@@ -90,6 +105,7 @@ CLEANLIST     = *~ *.o *.o~ *.d core
 clean:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
 	rm -fr $(BIN) $(ALLOUTPUT)
+	@$(MAKE) -C $(YAML_DIR) clean
 
 purge: clean
 	rm -fr $(EXECUTABLE) $(LIB)
