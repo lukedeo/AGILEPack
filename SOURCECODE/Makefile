@@ -12,6 +12,8 @@ YAML_DIR     := $(CURDIR)/yaml-cpp
 YAML_INC     := $(YAML_DIR)/include
 YAML_LIB     := $(YAML_DIR)/lib
 
+HACKED_BOOST := $(YAML_DIR)/boost_subset
+
 
 #  set search path
 vpath %.o    $(BIN)
@@ -23,7 +25,7 @@ DEBUG =  -O0 -g
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
 CXX          := g++
-CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG) -I$(YAML_INC)
+CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG) -I$(YAML_INC) -I$(HACKED_BOOST)
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
