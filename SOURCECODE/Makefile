@@ -63,6 +63,10 @@ library: $(YAML) $(LIB)/libAGILE.so
 
 cli: $(YAML) $(EXECUTABLE)
 
+yaml: $(YAML)
+
+agile: $(ALLOUTPUT)
+
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)
