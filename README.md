@@ -19,7 +19,7 @@ The package can be downloaded using
 ```
 git clone https://github.com/lukedeo/AGILEPack.git
 ```
-and is relatively basic to install. I *highly* recommend building my slight hack of the `yaml-cpp` library, since I use `std::unique_ptr<T>` and `std::move` functionality, which definitely ain't a bad thang. There's also a stripped `boost` mod shipped with this, since `yaml-cpp` uses it. A standard installation *including* `yaml-cpp` can built with 
+and is relatively basic to install. I *highly* recommend letting `make` do it's thing and build my slight hack of the `yaml-cpp` library, since I use `std::unique_ptr<T>` and `std::move` functionality, which definitely ain't a bad thang. There's also a stripped `boost` mod shipped with this, since `yaml-cpp` uses it. A standard installation *including* `yaml-cpp` can built with 
 
 ```
 make
