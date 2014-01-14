@@ -5,60 +5,38 @@
 BIN          := bin
 SRC          := src
 INC          := include
-# PYTHON       := python
 LIB          := $(CURDIR)/lib
 
 CXX          := g++
 
 YAML_DIR     := $(CURDIR)/yaml-cpp
-YAML_MISSING  := $(@$(CXX) -lyaml-cpp > _tmp 2>&1 || shell grep "not found" _tmp; shell rm _tmp)
-
-ifndef YAML_MISSING
-
-YAML_MISSING  = $(@$(CXX) -lyaml-cpp > _tmp 2>&1 || shell grep "cannot find" _tmp; shell rm _tmp)
-
-endif
 
 
-ifdef YAML_MISSING
 
+
+ifneq ($(MAKECMDGOALS),basic)
 
 YAML_INC     := $(YAML_DIR)/include
 YAML_LIB     := $(YAML_DIR)/lib
 
 HACKED_BOOST := $(YAML_DIR)/boost_subset
 
-LIBS += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
-LIBS += -lYAMLCPP_INTERNAL
+LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+LIBS         += -lYAMLCPP_INTERNAL
 
-YAML = yaml_proxy
+YAML         = yaml_proxy
 
-
-INFOMSG = yaml_not_found_msg
-
+INFOMSG      := build_yaml
 else
-ifeq ($(MAKECMDGOALS),complete)
+
 YAML_INC     := $(YAML_DIR)/include
-YAML_LIB     := $(YAML_DIR)/lib
-
 HACKED_BOOST := $(YAML_DIR)/boost_subset
+LIBS         += -lyaml-cpp
 
-LIBS += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
-LIBS += -lYAMLCPP_INTERNAL
-
-YAML = yaml_proxy
-
-INFOMSG = yaml_found_ovrride_msg
-else
-
-YAML_INC := $(YAML_DIR)/include
-HACKED_BOOST := $(YAML_DIR)/boost_subset
-LIBS += -lyaml-cpp
-
-INFOMSG = yaml_found_msg
+INFOMSG      := dont_build_yaml
 
 endif
-endif
+
 
 
 # YAML_INC     := $(YAML_DIR)/include
@@ -79,18 +57,17 @@ CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG) -I$(YAML_INC) -I
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
-SHELL         := bash
+SHELL        := bash
 
 # --- external dirs 
 
 # LIBS += -lyaml-cpp
 
-
 # ---- define objects
 # - not-python 
-LAYER_OBJ     := layer.o autoencoder.o architecture.o
+LAYER_OBJ    := layer.o autoencoder.o architecture.o
 
-UTIL_OBJ      := activation.o basedefs.o sha1.o
+UTIL_OBJ     := activation.o basedefs.o sha1.o
 
 # - command line interface
 EXE_OBJ      := main.o
@@ -130,25 +107,18 @@ $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
 $(YAML):
 	@$(MAKE) -C $(YAML_DIR)
 
-yaml_found_msg: 
+dont_build_yaml: 
 	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+ YAML C++ found, proceeding with pre-installed library... +"
-	@echo "+   If you wish to override default library usage, type    +"
-	@echo "+                   'make complete'                        +"
-	@echo "+          which will install a local library              +"
+	@echo "+ Assuming YAML C++ exists in a standard search directory. +"
+	@echo "+             If this fails, invoke just 'make'.           +"
 	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-yaml_not_found_msg:
-	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	@echo "! YAML C++ not found, proceeding with installation of a    !"
-	@echo "!                 local version of YAML C++                !"
-	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+build_yaml: 
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "+   Installing a local version of the YAML C++ library     +"
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-yaml_found_ovrride_msg: 
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+            YAML C++ found, but overridden.               +"
-	@echo "+        Installing a local version of library             +"
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+basic: all
 
 # --------------------------------------------------
 
@@ -163,7 +133,9 @@ DEP = $(BIN)
 
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(MAKECMDGOALS),rmdep)
+ifneq ($(MAKECMDGOALS),purge)
 include  $(ALLOBJ:%.o=$(DEP)/%.d)
+endif
 endif
 endif
 
@@ -182,7 +154,9 @@ clean:
 	rm -fr $(BIN) 
 	@$(MAKE) -C $(YAML_DIR) clean
 
-purge: clean
+purge:
+	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
+	rm -fr $(BIN) 
 	rm -fr $(EXECUTABLE) $(LIB)
 	@$(MAKE) -C $(YAML_DIR) purge
 

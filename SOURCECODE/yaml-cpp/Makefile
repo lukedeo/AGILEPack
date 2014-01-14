@@ -55,7 +55,9 @@ DEP = $(BIN)
 
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(MAKECMDGOALS),rmdep)
+ifneq ($(MAKECMDGOALS),purge)
 include  $(OBJ:%.o=$(DEP)/%.d)
+endif
 endif
 endif
 
@@ -66,13 +68,16 @@ $(DEP)/%.d: %.cpp
 	@$(CXX) -MM -MP $(DEPTARGSTR) $(CXXFLAGS) $< -o $@ 
 
 # clean
-.PHONY : clean rmdep
+.PHONY : clean rmdep purge
+
 CLEANLIST     = *~ *.o *.o~ *.d core 
 clean:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
 	rm -fr $(BIN)
 
-purge: clean
+purge:
+	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
+	rm -fr $(BIN)
 	rm -fr $(LIB)
 
 rmdep: 
