@@ -10,9 +10,10 @@ LIB          := $(CURDIR)/lib
 YAML_DIR     := $(CURDIR)/yaml-cpp
 
 
-
-
+# Check and see if we're just installing AGILE...
 ifneq ($(MAKECMDGOALS),basic)
+
+# ...if not, build us some YAML
 
 YAML_INC     := $(YAML_DIR)/include
 YAML_LIB     := $(YAML_DIR)/lib
@@ -27,17 +28,15 @@ YAML         = yaml_proxy
 INFOMSG      := build_yaml
 else
 
+# or you've got your shit together and you have yaml-cpp already
+
 YAML_INC     := $(YAML_DIR)/include
 HACKED_BOOST := $(YAML_DIR)/boost_subset
-LIBS         += -lyaml-cpp
+LIBS         += -lyaml-cpp # link with the one you've already got
 
 INFOMSG      := dont_build_yaml
 
 endif
-
-
-
-# YAML_INC     := $(YAML_DIR)/include
 
 
 
@@ -47,6 +46,9 @@ vpath %.cxx  $(SRC)
 vpath %.hh   $(INC) 
 
 # --- set compiler and flags (roll c options and include paths together)
+
+
+# --  shit for eigen to be blazingly fast
 DEBUG =  -O0 -g 
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
@@ -55,8 +57,6 @@ ADDTL_FLG = $(PRODUCTION)
 else
 ADDTL_FLG = $(DEBUG)
 endif
-
-
 
 
 CXX          := g++

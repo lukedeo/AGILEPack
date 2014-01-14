@@ -19,12 +19,12 @@ The package can be downloaded using
 ```
 git clone https://github.com/lukedeo/AGILEPack.git
 ```
-and is relatively basic to install. A standard installation can run with 
+and is relatively basic to install. I *highly* recommend building my slight hack of the `yaml-cpp` library, since I use `std::unique_ptr<T>` and `std::move` functionality, which definitely ain't a bad thang. There's also a stripped `boost` mod shipped with this, since `yaml-cpp` uses it. A standard installation *including* `yaml-cpp` can built with 
 
 ```
 make
 ```
-whick builds a local `yaml-cpp` library called `libYAMLCPP_INTERNAL.so`, which is then linked to the AGILEPack excecutable. 
+which builds a local `yaml-cpp` library called `libYAMLCPP_INTERNAL.so`, which is then linked to the AGILEPack excecutable. 
 
 If you know **for sure** that `yaml-cpp` has been installed in a standard linker search path such as `/usr/lib` or `/usr/local/lib` (or you've hacked it into the linker search), then you can install just the AGILEPack software linking to your pre-existing library using
 
@@ -49,6 +49,9 @@ make production
 ```
 
 which will compile with `-O2` optimization, and the `Eigen` flag `-DEIGEN_NO_DEBUG`, which turns off some expensive dimension checks. 
+
+
+
 
 
 
