@@ -5,8 +5,8 @@ Algorithms for Generalized Inference, Learning, and Extraction Package, By Luke 
 
 ####Dependencies
 - `Eigen` matrix library (header only) for fast matrix operations.
-- compiler support for C++11.
-- `yaml-cpp` for `YAML` parsing, but a version is made locally by default.
+- Compiler support for C++11.
+- `yaml-cpp` for [`YAML`](http://www.yaml.org/ "YAML Homepage") parsing, but a version is made locally by default.
 
 ####Summary
 
@@ -34,13 +34,21 @@ make basic
 
 If this gives you something on the order of 
 
-```ld: linker something_error exit status 1```, 
+```ld: linker some_cryptic_error exit status 1```, 
 
-then simply build the local `yaml-cpp` shared library using the simply 
+then simply build the local `yaml-cpp` shared library using simply
 
 ```
 make
 ```
+
+If you are using this in a performance sensitive application, compile with
+
+```
+make production
+```
+
+which will compile with `-O2` optimization, and the `Eigen` flag `-DEIGEN_NO_DEBUG`, which turns off some expensive dimension checks. 
 
 
 

@@ -1,13 +1,11 @@
 # Makefile for AGILEPack
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
-# --- set dirs
+# --- set directories
 BIN          := bin
 SRC          := src
 INC          := include
 LIB          := $(CURDIR)/lib
-
-CXX          := g++
 
 YAML_DIR     := $(CURDIR)/yaml-cpp
 
@@ -52,8 +50,17 @@ vpath %.hh   $(INC)
 DEBUG =  -O0 -g 
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
+ifneq ($(MAKECMDGOALS),production)
+ADDTL_FLG = $(PRODUCTION)
+else
+ADDTL_FLG = $(DEBUG)
+endif
 
-CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -g -std=c++11 $(DEBUG) -I$(YAML_INC) -I$(HACKED_BOOST)
+
+
+
+CXX          := g++
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_INC) -I$(HACKED_BOOST)
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
@@ -95,6 +102,8 @@ yaml: $(YAML)
 
 agile: $(INFOMSG) $(ALLOUTPUT)
 
+production: production_code all
+
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)
@@ -118,7 +127,15 @@ build_yaml:
 	@echo "+   Installing a local version of the YAML C++ library     +"
 	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
+production_code: 
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "+       Installing a production version of AGILEPack       +"
+	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
+
 basic: all
+
+
 
 # --------------------------------------------------
 

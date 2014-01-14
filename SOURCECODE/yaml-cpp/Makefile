@@ -29,9 +29,6 @@ SOURCES = $(shell ls src/*.cpp | xargs -n 1 basename)
 
 OBJ = $(SOURCES:%.cpp=%.o)
 
-
-# OBJECTS = $(@ls $(SRC)/*.cpp | xargs -n 1 basename)
-
 all: $(LIB)/libYAMLCPP_INTERNAL.so
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 	@echo "+++ Complete YAML C++ build sucessful.  +++"
