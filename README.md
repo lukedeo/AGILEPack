@@ -4,11 +4,31 @@ AGILEPack
 Algorithms for Generalized Inference, Learning, and Extraction Package, By Luke de Oliveira.
 
 ####Dependencies
-`Eigen` matrix library for fast network operations, `yaml-cpp` for `YAML` parsing, compiler support for C++11.
+- `Eigen` matrix library (header only) for fast matrix operations.
+- compiler support for C++11.
+- `yaml-cpp` for `YAML` parsing, but a version is made locally by default.
 
 ####Summary
 
 This is a work in progress, with the ultimate goal of a versatile Deep Learning library in C++. Support will be provided for interfacing with `*.root` files and providing complete training and testing specifications within the `YAML` specification and serialization file.
+
+
+####Installation
+
+The package can be downloaded using
+```
+git clone https://github.com/lukedeo/AGILEPack.git
+```
+and is relatively basic to install. A standard installation can run with 
+
+```
+make
+```
+
+
+If you know **FOR SURE** that `yaml-cpp` has been insta
+
+
 
 
 ####Algorithms and General Features
