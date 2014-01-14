@@ -24,7 +24,7 @@ and is relatively basic to install. A standard installation can run with
 ```
 make
 ```
-whick builds a local `yaml-cpp` library called libYAMLCPP_INTERNAL.so, which is then linked to the AGILEPack excecutable. 
+whick builds a local `yaml-cpp` library called `libYAMLCPP_INTERNAL.so`, which is then linked to the AGILEPack excecutable. 
 
 If you know **for sure** that `yaml-cpp` has been installed in a standard linker search path such as `/usr/lib` or `\usr\local\lib` (or you've hacked it into the linker search), then you can install just the AGILEPack software linking to your pre-existing library using
 
@@ -32,7 +32,11 @@ If you know **for sure** that `yaml-cpp` has been installed in a standard linker
 make basic
 ```
 
-If this gives you something on the order of ```ld: linker something_error exit status 1```, then simply build the local `yaml-cpp` shared library using the simply 
+If this gives you something on the order of 
+
+```ld: linker something_error exit status 1```, 
+
+then simply build the local `yaml-cpp` shared library using the simply 
 
 ```
 make
