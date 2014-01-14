@@ -77,6 +77,10 @@ which will compile with `-O2` optimization, and the `Eigen` flag `-DEIGEN_NO_DEB
 - [x] Complete serialization of network structure with `YAML` file.
 - [ ] More to come...
 
+####Where should I redirect qualms with AGILEPack
+
+If there's something wrong with *anything* here, please bother me at `luke.deoliveira@yale.edu`.
+
 
 
 
