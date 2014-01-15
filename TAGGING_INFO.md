@@ -6,7 +6,7 @@ This serves as a tutorial for new members/contributors to flavor tagging in the 
 - GAIA is the current framework for tagging, and was also designed and written by Luke de Oliveira `<luke.deoliveira@yale.edu>`. This is being phased out in the next few weeks in favor of AGILEPack, but produced a extremely high-performance *b*/*c* tagger which is included in `rel19`. 
 - tagging-performance is the current performance plotting framework designed and written by Dan Guest `<dguest@cern.ch>`.
 
-####AGILEPack
+##AGILEPack
 
 ###Dependencies
 
