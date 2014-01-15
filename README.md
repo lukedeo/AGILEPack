@@ -4,9 +4,9 @@ AGILEPack
 Algorithms for Generalized Inference, Learning, and Extraction Package, By Luke de Oliveira.
 
 ####Dependencies
-- `Eigen` matrix library (header only) for fast matrix operations.
-- Compiler support for C++11.
-- `yaml-cpp` for [`YAML`](http://www.yaml.org/ "YAML Homepage") parsing, but a version is made locally by default.
+- [`Eigen`](http://eigen.tuxfamily.org/) matrix library (header only) for fast matrix operations.
+- Compiler support for C++11. If you're not sure and want to cross check your compiler version to see if it's ok, here's some support info about [GCC](http://gcc.gnu.org/projects/cxx0x.html) and [Clang](http://clang.llvm.org/cxx_status.html). Other compilers haven't been tested yet.
+- [`yaml-cpp`](https://code.google.com/p/yaml-cpp/ "yaml-cpp Homepage") for [`YAML`](http://www.yaml.org/ "YAML Homepage") parsing, but a version is made locally by default.
 
 ####Summary
 
@@ -19,7 +19,7 @@ The package can be downloaded using
 ```
 git clone https://github.com/lukedeo/AGILEPack.git
 ```
-and is relatively basic to install. I *highly* recommend letting `make` do it's thing and build my slight hack of the `yaml-cpp` library, since I use `std::unique_ptr<T>` and `std::move` functionality, which definitely ain't a bad thang. There's also a stripped `boost` mod shipped with this, since `yaml-cpp` uses it. A standard installation *including* `yaml-cpp` can built with 
+and is relatively basic to install. I *highly* recommend letting `make` do it's thing with the default `make` invocation and build my slight hack of the `yaml-cpp` library, since I use `std::unique_ptr<T>` and `std::move()` functionality, which definitely ain't a bad thing. There's also a stripped `boost` mod shipped with this, since `yaml-cpp` uses it. A standard installation *including* `yaml-cpp` can built with 
 
 ```
 make
