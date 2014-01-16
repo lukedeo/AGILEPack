@@ -1,5 +1,10 @@
 #include "basedefs.hh"
 
+
+
+namespace __INTERNAL
+{
+
 class numeric_handler //union (one can be set at a time)
 {
 public:
@@ -62,3 +67,5 @@ T numeric_handler::get_value()
 
 
 
+
+}

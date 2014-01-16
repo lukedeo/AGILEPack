@@ -8,9 +8,9 @@
 int main(int argc, char const *argv[])
 {
 
-    numeric_handler::container_contents a;
+    __INTERNAL::numeric_handler::container_contents a;
 
-    numeric_handler num;
+    __INTERNAL::numeric_handler num;
 
     num.set_address<double>() = 2.20102;
 
