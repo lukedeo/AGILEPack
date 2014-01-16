@@ -1,4 +1,4 @@
-Working on Jet Flavor Tagging with AGILEPack, GAIA, and tagging-performance
+Working on Jet Flavor Tagging with Yale ATLAS
 =========
 
 This serves as a tutorial for new members/contributors to flavor tagging in the Yale ATLAS Group, and as a reference for existing contributors. The entire tagging package is split into two parts--the algorithm and AI framework, and the plotting and verification framework. 
