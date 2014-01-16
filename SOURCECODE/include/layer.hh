@@ -127,8 +127,14 @@ public:
 //  Stupid virtuals for derived classes
 //----------------------------------------------------------------------------- 
     virtual agile::vector reconstruct(const agile::vector &v, 
-        bool noisify = true) {}
-    virtual void encode(const agile::vector &v, bool noisify = true) {}
+        bool noisify = true) 
+    {
+        throw std::logic_error("layer::reconstruct() called on class layer -- only valid for class autoencoder");
+    }
+    virtual void encode(const agile::vector &v, bool noisify = true) 
+    {
+        throw std::logic_error("layer::reconstruct() called on class layer -- only valid for class autoencoder");
+    }
     
 protected:
 //-----------------------------------------------------------------------------

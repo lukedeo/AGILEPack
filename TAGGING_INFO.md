@@ -10,7 +10,7 @@ This serves as a tutorial for new members/contributors to flavor tagging in the 
 
 ###Dependencies
 
-The only dependencies are a `C++11` compliant compiler, and the [`Eigen`](http://eigen.tuxfamily.org/) matrix library. If you're a Mac person, and you use [Homebrew](http://brew.sh) (which if you don't, you *need* to), then you can install `GCC 4.8` using:
+The only dependencies are a `C++11` compliant compiler, and the [`Eigen`](http://eigen.tuxfamily.org/) matrix library. If you're a Mac person, and you use [Homebrew](http://brew.sh) (which if you don't, you *ought* to), then you can install `GCC 4.8` using:
 
 ```
 user@computer$ brew tap homebrew/versions
@@ -48,6 +48,10 @@ user@computer$ make
 ```
 
 This by default installs a local version of `yaml-cpp`. If you think you have it, or want other options for building this, please see the AGILEPack repository [`README.md`](https://github.com/lukedeo/AGILEPack/blob/master/README.md).
+
+###Usage
+
+Usage is changing rapidly.
 
 
 

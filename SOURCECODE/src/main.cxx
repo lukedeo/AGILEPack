@@ -3,9 +3,20 @@
 #include "autoencoder.hh"
 #include <fstream>
 #include "sha1.hh"
+#include "numeric_handler.hh"
 
 int main(int argc, char const *argv[])
 {
+
+    numeric_handler::container_contents a;
+
+    numeric_handler num;
+
+    num.set_address<double>() = 2.20102;
+
+
+    std::cout << num.get_value<double>() << std::endl;
+
     agile::matrix X(4, 2);
 
     X << 0.0, 0.0,
