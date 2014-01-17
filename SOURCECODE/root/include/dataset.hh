@@ -42,8 +42,9 @@ public:
 //	Element Access
 //-----------------------------------------------------------------------------
 	std::vector<double> at(const unsigned int &idx);
-	// std::vector<double> operator[](const unsigned int &idx);
-	// std::vector<double> operator[](const unsigned int &idx, std::string col_name = "");
+	std::vector<double> operator[](const unsigned int &idx);
+	std::vector<double> operator()(const unsigned int &idx);
+	double operator()(const unsigned int &idx, std::string col_name);
 	// std::vector<double> operator[](std::string col_name);
 
 //-----------------------------------------------------------------------------

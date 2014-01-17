@@ -104,8 +104,24 @@ std::vector<double> dataset::at(const unsigned int &idx)
 	}
 	return std::move(v);
 }
-// std::vector<double> dataset::operator[](const unsigned int &idx);
-// std::vector<double> dataset::operator[](const unsigned int &idx, std::string col_name = "");
+
+std::vector<double> dataset::operator[](const unsigned int &idx)
+{
+	m_smart_chain->GetEntry(idx);
+	return std::move(at(idx));
+}
+
+std::vector<double> dataset::operator()(const unsigned int &idx)
+{
+	m_smart_chain->GetEntry(idx);
+	return std::move(at(idx));
+}
+
+double dataset::operator()(const unsigned int &idx, std::string col_name)
+{
+	m_smart_chain->GetEntry(idx);
+	return storage.at(traits[col_name].pos)->get_value<double>();
+}
 // std::vector<double> dataset::operator[](std::string col_name);
 
 //-----------------------------------------------------------------------------

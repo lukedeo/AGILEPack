@@ -20,10 +20,14 @@ int main(int argc, char const *argv[])
 	D.set_branch("ip3d_pu", root::double_precision);
 	D.set_branch("ip3d_pc", root::double_precision);
 	D.set_branch("eta", root::double_precision);
+	D.set_branch("subMaxSecondaryVertexRho", root::double_precision);
+	D.set_branch("MV1", root::double_precision);
+	D.set_branch("jfit_nvtx", root::integer);
+	
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 100; ++i)
 	{
-		std::vector<double> v = D.at(i);
+		std::vector<double> v = D[i];
 
 		for (auto &entry : v)
 		{
