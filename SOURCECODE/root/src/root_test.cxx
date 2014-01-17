@@ -1,4 +1,5 @@
 #include "dataset.hh"
+#include <iomanip>
 
 int main(int argc, char const *argv[])
 {
@@ -18,6 +19,7 @@ int main(int argc, char const *argv[])
 	D.set_branch("ip3d_pb", root::double_precision);
 	D.set_branch("ip3d_pu", root::double_precision);
 	D.set_branch("ip3d_pc", root::double_precision);
+	D.set_branch("eta", root::double_precision);
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -25,7 +27,7 @@ int main(int argc, char const *argv[])
 
 		for (auto &entry : v)
 		{
-			std::cout << entry << "   ";
+			std::cout << entry << std::setw(20);
 		}
 		std::cout << "\n";
 	}

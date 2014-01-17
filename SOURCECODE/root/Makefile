@@ -1,4 +1,4 @@
-# Makefile for ROOT shit
+# Makefile for ROOT stuff
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
 # --- set directories
