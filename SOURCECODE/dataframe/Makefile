@@ -1,4 +1,4 @@
-# Makefile for ROOT stuff
+# Makefile for Dataframe
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
 # --- set directories
@@ -8,7 +8,6 @@ INC          := include
 LIB          := $(CURDIR)/lib
 
 
-
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
@@ -16,42 +15,35 @@ vpath %.hh   $(INC)
 
 # --- set compiler and flags (roll c options and include paths together)
 
+
 CXX          := g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG)
-
-
-ROOTCFLAGS    := $(shell root-config --cflags)
-ROOTLIBS      := -L$(shell root-config --libdir)
-ROOTLIBS      += -lCore -lTree -lRIO 
-ROOTLIBS      += -lCint		# don't know why we need this...
-ROOTLDFLAGS   := $(shell root-config --ldflags)
-
-
-CXXFLAGS     += $(ROOTCFLAGS)
-LDFLAGS      += $(ROOTLDFLAGS)
-LIBS         += $(ROOTLIBS)
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11
 # LDFLAGS      := -Wl,--no-undefined 
 
-# ---- define objects
+# --- external dirs 
 
-UTIL_OBJ     := smart_chain.o dataset.o
+# LIBS += -lyaml-cpp
+
+# ---- define objects
+# - not-python 
+
+FRAME_OBJ     := csv_reader.o dataframe.o
 
 # - command line interface
-EXE_OBJ      := root_test.o
+EXE_OBJ      := dataframe_test.o
 
+EXECUTABLE   := test
 
-TEST_EXEC   := root_test
-
-LIB_OBJ      := $(UTIL_OBJ)
-ALLOBJ       := $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(TEST_EXEC)
+LIB_OBJ      := $(FRAME_OBJ)
+ALLOBJ       := $(EXE_OBJ) $(FRAME_OBJ)
+ALLOUTPUT    := $(EXECUTABLE)
 
 
 all: $(ALLOUTPUT)
 
-$(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
+$(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
+	@$(CXX) -o $@ $^ $(LIBS)
 
 
 
@@ -78,6 +70,7 @@ DEPTARGSTR = -MT $(BIN)/$*.o -MT $(DEP)/$*.d
 $(DEP)/%.d: %.cxx
 	@echo making dependencies for $<
 	@mkdir -p $(DEP)
+	@$(CXX) -MM -MP $(DEPTARGSTR) $(CXXFLAGS) $< -o $@ 
 
 # clean
 .PHONY : clean rmdep
@@ -90,7 +83,7 @@ clean:
 purge:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
 	rm -fr $(BIN) 
-	rm -fr $(TEST_EXEC) $(LIB)
+	rm -fr $(EXECUTABLE) $(LIB)
 
 rmdep: 
 	rm -f $(DEP)/*.d
