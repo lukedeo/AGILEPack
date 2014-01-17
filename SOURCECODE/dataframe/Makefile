@@ -8,6 +8,7 @@ INC          := include
 LIB          := $(CURDIR)/lib
 
 
+
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
@@ -17,8 +18,8 @@ vpath %.hh   $(INC)
 
 
 CXX          := g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11
-LIBRARY = $(LIB)/libDataframe.so
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
+LIBRARY      := $(LIB)/libDataframe.so
 # LDFLAGS      := -Wl,--no-undefined 
 
 # --- external dirs 

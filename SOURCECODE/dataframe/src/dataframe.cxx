@@ -36,6 +36,10 @@ dataframe::dataframe(std::string filename, bool colnames)
         m_cols = data[0].size();
         input.close();
     }
+    else
+    {
+        m_columns_set = false;
+    }
 }
 dataframe::dataframe(const dataframe &D)
 : column_names(D.column_names), data(D.data), m_columns_set(D.m_columns_set), m_cols(D.m_cols), m_rows(D.m_rows)
@@ -174,6 +178,7 @@ std::vector<std::string> dataframe::get_column_names()
 }
 void dataframe::set_column_names(std::vector<std::string> v)
 {
+    // std::cout << "callingit \n";
     if (m_columns_set)
     {
         throw std::runtime_error("column names already set.");
@@ -184,6 +189,8 @@ void dataframe::set_column_names(std::vector<std::string> v)
         column_names[agile::trim(e)] = ctr;
         ++ctr;
     }
+    m_columns_set = true;
+    m_cols = v.size();
 }
 
 //-----------------------------------------------------------------------------

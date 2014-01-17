@@ -7,17 +7,18 @@ SRC          := src
 INC          := include
 LIB          := $(CURDIR)/lib
 
+DFRAME_INC   := $(CURDIR)/../dataframe/include
 
 
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
-vpath %.hh   $(INC) 
+vpath %.hh   $(INC)
 
 # --- set compiler and flags (roll c options and include paths together)
 
 CXX          := g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG)
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
 
 
 ROOTCFLAGS    := $(shell root-config --cflags)
@@ -31,6 +32,8 @@ CXXFLAGS     += $(ROOTCFLAGS)
 LDFLAGS      += $(ROOTLDFLAGS)
 LIBS         += $(ROOTLIBS)
 # LDFLAGS      := -Wl,--no-undefined 
+
+LIBS         += -L$(CURDIR)/../dataframe/lib -lDataframe
 
 LIBRARY = $(LIB)/libROOTInterface.so
 
