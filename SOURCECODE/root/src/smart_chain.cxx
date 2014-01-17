@@ -3,6 +3,7 @@
 #include "TFile.h"
 #include "TError.h"
 #include <sstream>
+#include <iostream>
 
 
 smart_chain::smart_chain(std::string tree_name)

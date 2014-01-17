@@ -31,6 +31,7 @@ dataset::dataset(const std::vector<std::string>& files, std::string tree_name)
 	{
 		throw std::runtime_error("you must provide a tree name to load files.");
 	}
+	m_smart_chain = new smart_chain(tree_name);
 	for (auto &file : files)
 	{
 		m_smart_chain->add(file);
@@ -45,6 +46,10 @@ dataset::~dataset()
 
 void dataset::add_file(std::string filename, std::string tree_name)
 {
+	if (!m_smart_chain)
+	{
+		m_smart_chain = new smart_chain(tree_name);
+	}
 	m_smart_chain->add(filename);
 	m_size = m_smart_chain->GetEntries();
 }
@@ -55,6 +60,10 @@ void dataset::set_branch(std::string branch_name, numeric_type type)
 	{
 		throw std::runtime_error("cant have a NULL-named branch.");
 	}
+	if (!m_smart_chain)
+	{
+		throw std::runtime_error("no files added to smart_chain.");
+	}
 	storage.emplace_back(new number_container);
 
 	var_traits new_trait(storage.size() - 1, type);
@@ -64,12 +73,21 @@ void dataset::set_branch(std::string branch_name, numeric_type type)
 
 	switch(type)
 	{
-		case single_precision: m_smart_chain->set_branch(branch_name, 
-			&storage.back()->set_address<float>());
-		case double_precision: m_smart_chain->set_branch(branch_name, 
-			&storage.back()->set_address<double>());
-		case integer: m_smart_chain->set_branch(branch_name, 
-			&storage.back()->set_address<int>());
+		case single_precision:
+		{
+			m_smart_chain->set_branch(branch_name, &storage.back()->set_address<float>());
+			break;
+		}
+		case double_precision:
+		{
+			m_smart_chain->set_branch(branch_name, &storage.back()->set_address<double>());
+			break;
+		}
+		case integer:
+		{
+			m_smart_chain->set_branch(branch_name, &storage.back()->set_address<int>());
+			break;
+		}
 	}
 }
 
@@ -78,6 +96,7 @@ void dataset::set_branch(std::string branch_name, numeric_type type)
 //-----------------------------------------------------------------------------
 std::vector<double> dataset::at(const unsigned int &idx)
 {
+	m_smart_chain->GetEntry(idx);
 	std::vector<double> v;
 	for (auto &name : feature_names)
 	{

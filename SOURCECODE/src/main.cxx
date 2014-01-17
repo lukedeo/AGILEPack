@@ -8,15 +8,6 @@
 int main(int argc, char const *argv[])
 {
 
-    __INTERNAL::numeric_handler::container_contents a;
-
-    __INTERNAL::numeric_handler num;
-
-    num.set_address<double>() = 2.20102;
-
-
-    std::cout << num.get_value<double>() << std::endl;
-
     agile::matrix X(4, 2);
 
     X << 0.0, 0.0,
