@@ -9,18 +9,24 @@
 #include <stdexcept>
 #include <initializer_list>
 
+// namespace root
+// {
+//     class tree_reader;
+// }
+
 namespace agile
 {
-
 class dataframe
 {
 public:
     dataframe(std::string filename = "", bool colnames = false);
     dataframe(const dataframe &D);
-    // dataframe(dataframe &&D);
+    dataframe(dataframe &&D);
 
-    // dataframe& operator=(const dataframe &D);
-    // dataframe& operator=(dataframe &&D);
+    dataframe& operator=(const dataframe &D);
+    dataframe& operator=(dataframe &&D);
+
+    // dataframe& operator=(const root::tree_reader &TR);
 
     ~dataframe();
 

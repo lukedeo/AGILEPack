@@ -53,6 +53,7 @@ dataframe& dataframe::operator=(const dataframe &D)
     m_columns_set = (D.m_columns_set);
     m_cols = (D.m_cols);
     m_rows = (D.m_rows);
+    return *this;
 }
 dataframe& dataframe::operator=(dataframe &&D)
 {
@@ -61,16 +62,23 @@ dataframe& dataframe::operator=(dataframe &&D)
     m_columns_set = std::move(D.m_columns_set);
     m_cols = std::move(D.m_cols);
     m_rows = std::move(D.m_rows);
+    return *this;
 
 }
+
+// dataframe& dataframe::operator=(const root::tree_reader &TR)
+// {
+//     set_column_names(TR.get_ordered_branch_names());
+//     for (unsigned int i = 0; i < TR.size(); ++i)
+//     {
+//         push_back(TR[i]);
+//     }
+//     m_cols = data[0].size();
+// }
 
 dataframe::~dataframe()
 {
 }
-
-
-
-
 
 
 //-----------------------------------------------------------------------------

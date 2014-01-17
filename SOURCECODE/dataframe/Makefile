@@ -18,6 +18,7 @@ vpath %.hh   $(INC)
 
 CXX          := g++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11
+LIBRARY = $(LIB)/libDataframe.so
 # LDFLAGS      := -Wl,--no-undefined 
 
 # --- external dirs 
@@ -39,13 +40,17 @@ ALLOBJ       := $(EXE_OBJ) $(FRAME_OBJ)
 ALLOUTPUT    := $(EXECUTABLE)
 
 
-all: $(ALLOUTPUT)
+all: $(LIBRARY) $(ALLOUTPUT)
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)
 
 
+$(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
+	@mkdir -p $(LIB)
+	@echo "linking objects to --> $@"
+	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
 
 # --------------------------------------------------
 
