@@ -32,9 +32,11 @@ LDFLAGS      += $(ROOTLDFLAGS)
 LIBS         += $(ROOTLIBS)
 # LDFLAGS      := -Wl,--no-undefined 
 
+LIBRARY = $(LIB)/libROOTInterface.so
+
 # ---- define objects
 
-UTIL_OBJ     := smart_chain.o dataset.o
+UTIL_OBJ     := smart_chain.o tree_reader.o
 
 # - command line interface
 EXE_OBJ      := root_test.o
@@ -52,6 +54,11 @@ all: $(ALLOUTPUT)
 $(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
+
+$(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
+	@mkdir -p $(LIB)
+	@echo "linking objects to --> $@"
+	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
 
 
 
