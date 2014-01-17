@@ -1,5 +1,5 @@
-#ifndef ROOT__DATASET_HH
-#define ROOT__DATASET_HH 
+#ifndef ROOT__tree_reader_HH
+#define ROOT__tree_reader_HH 
 
 #include "smart_chain.hh"
 #include "numeric_handler.hh"
@@ -27,16 +27,18 @@ struct var_traits
 };
 
 
-class dataset
+class tree_reader
 {
 public:
-	dataset(std::string filename = "", std::string tree_name = "");
+	tree_reader(std::string filename = "", std::string tree_name = "");
 
-	dataset(const std::vector<std::string>& files, std::string tree_name = "");
+	tree_reader(const std::vector<std::string>& files, std::string tree_name = "");
 
 	void add_file(std::string filename, std::string tree_name = "");
 
 	void set_branch(std::string branch_name, numeric_type type);
+
+	std::vector<std::string> get_ordered_branch_names();
 
 //-----------------------------------------------------------------------------
 //	Element Access
@@ -54,7 +56,7 @@ public:
 	std::size_t size();
 
 
-	~dataset();
+	~tree_reader();
 
 private:
 

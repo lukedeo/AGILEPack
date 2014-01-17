@@ -1,10 +1,10 @@
-#include "dataset.hh"
+#include "tree_reader.hh"
 
 
 namespace root
 {
 
-dataset::dataset(std::string filename, std::string tree_name)
+tree_reader::tree_reader(std::string filename, std::string tree_name)
 : m_smart_chain(0), m_size(0), m_tree_name(tree_name), data(0) 
 {
 	if(tree_name != "")
@@ -24,7 +24,7 @@ dataset::dataset(std::string filename, std::string tree_name)
 }
 
 
-dataset::dataset(const std::vector<std::string>& files, std::string tree_name)
+tree_reader::tree_reader(const std::vector<std::string>& files, std::string tree_name)
 : m_smart_chain(0), m_size(0), m_tree_name(tree_name), data(0) 
 {
 	if (tree_name == "")
@@ -39,12 +39,12 @@ dataset::dataset(const std::vector<std::string>& files, std::string tree_name)
 	m_size = m_smart_chain->GetEntries();
 }
 
-dataset::~dataset()
+tree_reader::~tree_reader()
 {
 	delete m_smart_chain;
 }
 
-void dataset::add_file(std::string filename, std::string tree_name)
+void tree_reader::add_file(std::string filename, std::string tree_name)
 {
 	if (!m_smart_chain)
 	{
@@ -54,7 +54,7 @@ void dataset::add_file(std::string filename, std::string tree_name)
 	m_size = m_smart_chain->GetEntries();
 }
 
-void dataset::set_branch(std::string branch_name, numeric_type type)
+void tree_reader::set_branch(std::string branch_name, numeric_type type)
 {
 	if (branch_name == "")
 	{
@@ -94,7 +94,7 @@ void dataset::set_branch(std::string branch_name, numeric_type type)
 //-----------------------------------------------------------------------------
 //	Element Access
 //-----------------------------------------------------------------------------
-std::vector<double> dataset::at(const unsigned int &idx)
+std::vector<double> tree_reader::at(const unsigned int &idx)
 {
 	m_smart_chain->GetEntry(idx);
 	std::vector<double> v;
@@ -105,32 +105,37 @@ std::vector<double> dataset::at(const unsigned int &idx)
 	return std::move(v);
 }
 
-std::vector<double> dataset::operator[](const unsigned int &idx)
+std::vector<double> tree_reader::operator[](const unsigned int &idx)
 {
 	m_smart_chain->GetEntry(idx);
 	return std::move(at(idx));
 }
 
-std::vector<double> dataset::operator()(const unsigned int &idx)
+std::vector<double> tree_reader::operator()(const unsigned int &idx)
 {
 	m_smart_chain->GetEntry(idx);
 	return std::move(at(idx));
 }
 
-double dataset::operator()(const unsigned int &idx, std::string col_name)
+double tree_reader::operator()(const unsigned int &idx, std::string col_name)
 {
 	m_smart_chain->GetEntry(idx);
 	return storage.at(traits[col_name].pos)->get_value<double>();
 }
-// std::vector<double> dataset::operator[](std::string col_name);
+// std::vector<double> tree_reader::operator[](std::string col_name);
 
 //-----------------------------------------------------------------------------
 //	Information
 //-----------------------------------------------------------------------------
 
-std::size_t dataset::size()
+std::size_t tree_reader::size()
 {
 	return m_size;
+}
+
+std::vector<std::string> tree_reader::get_ordered_branch_names()
+{
+	return feature_names;
 }
 
 

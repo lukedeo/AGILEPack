@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
 	std::cout << "file: " << file << std::endl;
 	std::cout << "tree: " << tree_name << std::endl;
 
-	root::dataset D;
+	root::tree_reader D;
 
 	D.add_file(file, tree_name);
 
