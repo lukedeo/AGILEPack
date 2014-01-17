@@ -21,6 +21,23 @@ int main(int argc, char const *argv[])
 		std::cout << entry << "   ";
 	}
 	std::cout << "\nD.at(1, col2) = " << D.at(1, "col2") << std::endl;
-	std::cout << "\nD.at(1, mycol) = " << D.at(1, "mycol") << std::endl;
+
+	D.push_back({1.1, 3.54, 0.9999});
+
+	D.to_csv("outcsv.csv");
+
+	std::cout << "new set:\n" << D << "\n" << std::endl;
+
+
+
+
+	agile::dataframe F("outcsv.csv", true);
+
+	D.append(std::move(F));
+
+
+	std::cout << "appended set:\n" << D << "\n" << std::endl;
+
+	// std::cout << "\nD.at(1, mycol) = " << D.at(1, "mycol") << std::endl;
 	return 0;
 }

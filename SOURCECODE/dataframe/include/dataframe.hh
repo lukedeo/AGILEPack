@@ -7,6 +7,7 @@
 #include <utility>
 #include <memory>
 #include <stdexcept>
+#include <initializer_list>
 
 namespace agile
 {
@@ -28,11 +29,10 @@ public:
 //-----------------------------------------------------------------------------
 
 	void from_csv(std::string filename, bool colnames = false);
-	// void to_csv(std::string filename);
-	// friend std::istream& operator >> ( std::istream& ins, dataframe &data );
-	// friend std::istream& operator << ( std::ostream& ins, dataframe &data );
+	void to_csv(std::string filename, bool write_colnames = true);
+	friend std::ostream& operator << ( std::ostream& os, dataframe &data );
 
-	// data_t& raw();
+	data_t& raw();
 // 
 //-----------------------------------------------------------------------------
 //	Size / other Information
@@ -59,10 +59,11 @@ public:
 
 	void push_back(const record_t &r);
 	void push_back(record_t &&r);
+	void push_back(std::initializer_list<double> il);
 	// void pop_back();
 
-	// dataframe& append(const dataframe &D);
-	// dataframe& append(dataframe &&D);
+	void append(const dataframe &D);
+	void append(dataframe &&D);
 
 //-----------------------------------------------------------------------------
 //	iterators

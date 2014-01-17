@@ -26,6 +26,18 @@ std::istream& operator >> ( std::istream& ins, data_t& data );
 
 std::string trim(const std::string& str, const std::string& whitespace = " ");
 
+template <class T>
+std::string knit(std::vector<T> v, std::string knitter = ", ")
+{
+	std::stringstream ss;
+	for (auto &item : v)
+	{
+		ss << item;
+		if(item != v.back()) ss << knitter;
+	}
+	return std::move(ss.str());
+}
+
 
 }
 

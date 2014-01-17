@@ -100,11 +100,36 @@ void dataframe::from_csv(std::string filename, bool colnames)
 	m_cols = data[0].size();
 	input.close();
 }
-	// void to_csv(std::string filename);
-	// friend std::istream& operator >> ( std::istream& ins, dataframe &data );
-	// friend std::istream& operator << ( std::ostream& ins, dataframe &data );
+void dataframe::to_csv(std::string filename, bool write_colnames)
+{
+	std::ofstream output(filename);
+	if (write_colnames && m_columns_set)
+	{
+		output << knit(get_column_names()) << "\n";
+	}
+	for (auto &row : data)
+	{
+		output << knit(row) << "\n";
+	}
+}
 
-	// data_t& raw();
+std::ostream& operator << ( std::ostream& os, dataframe &data )
+{
+	if (data.m_columns_set)
+	{
+		os << knit(data.get_column_names()) << "\n";
+	}
+	for (auto &row : data.data)
+	{
+		os << knit(row) << "\n";
+	}
+	return os;
+}
+
+data_t& dataframe::raw()
+{
+	return data;
+}
 
 //-----------------------------------------------------------------------------
 //	Size / other Information
@@ -126,7 +151,6 @@ std::vector<std::string> dataframe::get_column_names()
 	std::vector<std::string> v(m_cols);
 	for (auto &var : column_names)
 	{
-		std::cout << "position: " << var.second << std::endl;
 		v.at(var.second) = agile::trim(var.first);
 	}
 	return std::move(v);
@@ -198,10 +222,49 @@ void dataframe::push_back(record_t &&r)
 	data.push_back(std::move(r));
 	++m_rows;
 }
+
+void dataframe::push_back(std::initializer_list<double> il)
+{
+	data.emplace_back(il);
+}
 	// void pop_back();
 
-	// dataframe& append(const dataframe &D);
-	// dataframe& append(dataframe &&D);
+void dataframe::append(const dataframe &D)
+{
+	if (D.m_cols != m_cols)
+	{
+		throw dimension_error("cannot append dataframes with \
+			differing numbers of columns.");
+	}
+	m_rows += D.m_rows;
+	for (auto &row : D.data)
+	{
+		push_back(row);
+	}
+	if ((!m_columns_set) && D.m_columns_set)
+	{
+		m_columns_set = true;
+		column_names = D.column_names;
+	}
+}
+void dataframe::append(dataframe &&D)
+{
+	if (D.m_cols != m_cols)
+	{
+		throw dimension_error("cannot append dataframes with \
+			differing numbers of columns.");
+	}
+	m_rows += std::move(D.m_rows);
+	for (auto &row : D.data)
+	{
+		push_back(std::move(row));
+	}
+	if ((!m_columns_set) && D.m_columns_set)
+	{
+		m_columns_set = std::move(D.m_columns_set);
+		column_names = std::move(D.column_names);
+	}
+}
 
 //-----------------------------------------------------------------------------
 //	iterators
