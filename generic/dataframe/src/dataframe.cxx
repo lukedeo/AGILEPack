@@ -7,7 +7,7 @@ namespace agile
 //  Constructors, assignment, etc.
 //-----------------------------------------------------------------------------
 dataframe::dataframe(std::string filename, bool colnames)
-: m_cols(0), m_rows(0)
+: m_scaled(false), m_cols(0), m_rows(0)
 {
     if (filename != "")
     {
@@ -42,14 +42,14 @@ dataframe::dataframe(std::string filename, bool colnames)
 }
 dataframe::dataframe(const dataframe &D) 
 : column_names(D.column_names), data(D.data), m_columns_set(D.m_columns_set), 
-m_cols(D.m_cols), m_rows(D.m_rows)
+m_scaled(false), m_cols(D.m_cols), m_rows(D.m_rows)
 {
 }
 //----------------------------------------------------------------------------
 dataframe::dataframe(dataframe &&D)
 : column_names(std::move(D.column_names)), data(std::move(D.data)),
- m_columns_set(std::move(D.m_columns_set)), m_cols(std::move(D.m_cols)),
-  m_rows(std::move(D.m_rows))
+ m_columns_set(std::move(D.m_columns_set)), m_scaled(false), 
+ m_cols(std::move(D.m_cols)), m_rows(std::move(D.m_rows))
 {
 }
 //----------------------------------------------------------------------------
@@ -60,6 +60,7 @@ dataframe& dataframe::operator=(const dataframe &D)
     m_columns_set = (D.m_columns_set);
     m_cols = (D.m_cols);
     m_rows = (D.m_rows);
+    m_scaled = (D.m_scaled);
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -70,6 +71,7 @@ dataframe& dataframe::operator=(dataframe &&D)
     m_columns_set = std::move(D.m_columns_set);
     m_cols = std::move(D.m_cols);
     m_rows = std::move(D.m_rows);
+    m_scaled = std::move(D.m_scaled);
     return *this;
 
 }
@@ -142,6 +144,23 @@ data_t& dataframe::raw()
 {
     return data;
 }
+
+dataframe dataframe::subset(std::vector<std::string> names)
+{
+    for (auto &row : raw())
+    {
+        record_t tmp(names.size());
+        int ctr = names.size() - 1;
+        for (auto &name : names)
+        {
+            tmp.at(ctr).at(column_names.at(name));
+        }
+    }
+    return 
+}
+
+
+
 //-----------------------------------------------------------------------------
 //  Size / other Information
 //-----------------------------------------------------------------------------

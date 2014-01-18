@@ -17,6 +17,7 @@ namespace root
 enum loading_phase { naming, access };
 enum numeric_type { single_precision, double_precision, integer };
 
+
 struct var_traits
 {
     var_traits() {}
@@ -45,6 +46,13 @@ public:
     std::vector<std::string> get_ordered_branch_names();
 
     agile::dataframe get_dataframe(int entries = -1, int start = -1);
+
+    std::pair<agile::dataframe, agile::dataframe> get_data_pair(
+        const std::vector<std::string> &inputs, 
+        const std::vector<std::string> &targets, int entries = -1, 
+        int start = -1);
+
+
 
 
 
