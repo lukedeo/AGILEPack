@@ -3,8 +3,9 @@
 
 namespace agile
 {
-
-std::map<std::string, std::size_t> column_names;
+//-----------------------------------------------------------------------------
+//  Constructors, assignment, etc.
+//-----------------------------------------------------------------------------
 dataframe::dataframe(std::string filename, bool colnames)
 : m_cols(0), m_rows(0)
 {
@@ -23,8 +24,6 @@ dataframe::dataframe(std::string filename, bool colnames)
             std::size_t ctr = 0;
             while (getline( ss, field, ',' ))
             {
-                // for each field we wish to convert it to a double
-                // (since we require that the CSV contains nothing but floating-point values)
                 std::stringstream fs( field );
 
                 column_names[agile::trim(fs.str())] = ctr;
@@ -41,15 +40,19 @@ dataframe::dataframe(std::string filename, bool colnames)
         m_columns_set = false;
     }
 }
-dataframe::dataframe(const dataframe &D)
-: column_names(D.column_names), data(D.data), m_columns_set(D.m_columns_set), m_cols(D.m_cols), m_rows(D.m_rows)
+dataframe::dataframe(const dataframe &D) 
+: column_names(D.column_names), data(D.data), m_columns_set(D.m_columns_set), 
+m_cols(D.m_cols), m_rows(D.m_rows)
 {
 }
+//----------------------------------------------------------------------------
 dataframe::dataframe(dataframe &&D)
-: column_names(std::move(D.column_names)), data(std::move(D.data)), m_columns_set(std::move(D.m_columns_set)), m_cols(std::move(D.m_cols)), m_rows(std::move(D.m_rows))
+: column_names(std::move(D.column_names)), data(std::move(D.data)),
+ m_columns_set(std::move(D.m_columns_set)), m_cols(std::move(D.m_cols)),
+  m_rows(std::move(D.m_rows))
 {
 }
-
+//----------------------------------------------------------------------------
 dataframe& dataframe::operator=(const dataframe &D)
 {
     column_names = (D.column_names);
@@ -59,6 +62,7 @@ dataframe& dataframe::operator=(const dataframe &D)
     m_rows = (D.m_rows);
     return *this;
 }
+//----------------------------------------------------------------------------
 dataframe& dataframe::operator=(dataframe &&D)
 {
     column_names = std::move(D.column_names);
@@ -69,26 +73,14 @@ dataframe& dataframe::operator=(dataframe &&D)
     return *this;
 
 }
-
-// dataframe& dataframe::operator=(const root::tree_reader &TR)
-// {
-//     set_column_names(TR.get_ordered_branch_names());
-//     for (unsigned int i = 0; i < TR.size(); ++i)
-//     {
-//         push_back(TR[i]);
-//     }
-//     m_cols = data[0].size();
-// }
-
+//----------------------------------------------------------------------------
 dataframe::~dataframe()
 {
 }
 
-
 //-----------------------------------------------------------------------------
 //  Loading and writing
 //-----------------------------------------------------------------------------
-
 void dataframe::from_csv(std::string filename, bool colnames)
 {
     std::ifstream input(filename);
@@ -104,8 +96,6 @@ void dataframe::from_csv(std::string filename, bool colnames)
         std::size_t ctr = 0;
         while (getline( ss, field, ',' ))
         {
-            // for each field we wish to convert it to a double
-            // (since we require that the CSV contains nothing but floating-point values)
             std::stringstream fs( field );
 
             column_names[agile::trim(fs.str())] = ctr;
@@ -121,6 +111,7 @@ void dataframe::from_csv(std::string filename, bool colnames)
     m_cols = data[0].size();
     input.close();
 }
+//----------------------------------------------------------------------------
 void dataframe::to_csv(std::string filename, bool write_colnames)
 {
     std::ofstream output(filename);
@@ -133,7 +124,7 @@ void dataframe::to_csv(std::string filename, bool write_colnames)
         output << knit(row) << "\n";
     }
 }
-
+//----------------------------------------------------------------------------
 std::ostream& operator << ( std::ostream& os, dataframe &data )
 {
     if (data.m_columns_set)
@@ -146,12 +137,11 @@ std::ostream& operator << ( std::ostream& os, dataframe &data )
     }
     return os;
 }
-
+//----------------------------------------------------------------------------
 data_t& dataframe::raw()
 {
     return data;
 }
-
 //-----------------------------------------------------------------------------
 //  Size / other Information
 //-----------------------------------------------------------------------------
@@ -159,10 +149,12 @@ std::size_t dataframe::rows()
 {
     return m_rows;
 }
+//----------------------------------------------------------------------------
 std::size_t dataframe::columns()
 {
     return m_cols;
 }
+//----------------------------------------------------------------------------
 std::vector<std::string> dataframe::get_column_names()
 {
     if (!m_columns_set)
@@ -176,6 +168,7 @@ std::vector<std::string> dataframe::get_column_names()
     }
     return std::move(v);
 }
+//----------------------------------------------------------------------------
 void dataframe::set_column_names(std::vector<std::string> v)
 {
     // std::cout << "callingit \n";
@@ -201,9 +194,7 @@ record_t& dataframe::at(const std::size_t &idx)
 {
     return data.at(idx);
 }
-// record_t& at(const std::size_t &idx, 
-//  const std::vector<std::string> &colnames);
-
+//----------------------------------------------------------------------------
 double& dataframe::at(const std::size_t &idx, const std::string &colname)
 {
     try
@@ -212,11 +203,12 @@ double& dataframe::at(const std::size_t &idx, const std::string &colname)
     }
     catch(std::out_of_range &e)
     {
-        throw std::out_of_range("tried to access non-existent column \'" + colname + "\'.");
+        throw std::out_of_range("tried to access non-existent column \'" 
+            + colname + "\'.");
     }
     
 }
-
+//----------------------------------------------------------------------------
 record_t& dataframe::operator[](const std::size_t &idx)
 {
     return data[idx];
@@ -236,6 +228,7 @@ void dataframe::push_back(const record_t &r)
     data.push_back(r);
     ++m_rows;
 }
+//----------------------------------------------------------------------------
 void dataframe::push_back(record_t &&r)
 {
     if (r.size() != m_cols)
@@ -246,13 +239,13 @@ void dataframe::push_back(record_t &&r)
     data.push_back(std::move(r));
     ++m_rows;
 }
-
+//----------------------------------------------------------------------------
 void dataframe::push_back(std::initializer_list<double> il)
 {
     data.emplace_back(il);
 }
     // void pop_back();
-
+//----------------------------------------------------------------------------
 void dataframe::append(const dataframe &D)
 {
     if (D.m_cols != m_cols)
@@ -271,6 +264,7 @@ void dataframe::append(const dataframe &D)
         column_names = D.column_names;
     }
 }
+//----------------------------------------------------------------------------
 void dataframe::append(dataframe &&D)
 {
     if (D.m_cols != m_cols)

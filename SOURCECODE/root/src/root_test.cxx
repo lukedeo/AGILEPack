@@ -27,6 +27,11 @@ int main(int argc, char const *argv[])
 
     out.close();
 
+    for (auto &row : DF.raw())
+    {
+        row is a vector, and you can do shit with it.
+    }
+
 
 
 

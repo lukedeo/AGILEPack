@@ -19,6 +19,10 @@ namespace agile
 class dataframe
 {
 public:
+
+//-----------------------------------------------------------------------------
+//  Constructors, assignment, etc.
+//-----------------------------------------------------------------------------
     dataframe(std::string filename = "", bool colnames = false);
     dataframe(const dataframe &D);
     dataframe(dataframe &&D);
