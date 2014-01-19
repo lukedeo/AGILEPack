@@ -36,10 +36,10 @@ public:
 //-----------------------------------------------------------------------------
 //  Construction, destruction, and copying
 //-----------------------------------------------------------------------------
-    explicit architecture(int num_layers = 0);
-    explicit architecture(std::initializer_list<int> il, problem_type type = regress);
+    architecture(int num_layers = 0);
+    architecture(std::initializer_list<int> il, problem_type type = regress);
     ~architecture();
-    explicit architecture(const architecture &arch);
+    architecture(const architecture &arch);
 
     template <class T>
     architecture& operator =(const T &L)

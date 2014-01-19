@@ -3,7 +3,7 @@
 #include "autoencoder.hh"
 #include <fstream>
 #include "sha1.hh"
-#include "numeric_handler.hh"
+// #include "numeric_handler.hh"
 
 int main(int argc, char const *argv[])
 {

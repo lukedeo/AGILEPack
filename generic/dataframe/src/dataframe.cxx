@@ -145,19 +145,19 @@ data_t& dataframe::raw()
     return data;
 }
 
-dataframe dataframe::subset(std::vector<std::string> names)
-{
-    for (auto &row : raw())
-    {
-        record_t tmp(names.size());
-        int ctr = names.size() - 1;
-        for (auto &name : names)
-        {
-            tmp.at(ctr).at(column_names.at(name));
-        }
-    }
-    return 
-}
+// dataframe dataframe::subset(std::vector<std::string> names)
+// {
+//     for (auto &row : raw())
+//     {
+//         record_t tmp(names.size());
+//         int ctr = names.size() - 1;
+//         for (auto &name : names)
+//         {
+//             tmp.at(ctr).at(column_names.at(name));
+//         }
+//     }
+//     return 
+// }
 
 
 

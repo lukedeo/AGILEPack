@@ -47,10 +47,10 @@ public:
 
     agile::dataframe get_dataframe(int entries = -1, int start = -1);
 
-    std::pair<agile::dataframe, agile::dataframe> get_data_pair(
-        const std::vector<std::string> &inputs, 
-        const std::vector<std::string> &targets, int entries = -1, 
-        int start = -1);
+    // std::pair<agile::dataframe, agile::dataframe> get_data_pair(
+    //     const std::vector<std::string> &inputs, 
+    //     const std::vector<std::string> &targets, int entries = -1, 
+    //     int start = -1);
 
 
 

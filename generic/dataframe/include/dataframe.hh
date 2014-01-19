@@ -57,7 +57,7 @@ public:
 
     data_t& raw();
 
-    dataframe subset(std::vector<std::string> names);
+    // dataframe subset(std::vector<std::string> names);
 // 
 //-----------------------------------------------------------------------------
 //  Size / other Information

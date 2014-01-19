@@ -7,7 +7,7 @@ SRC          := src
 INC          := include
 LIB          := $(CURDIR)/lib
 
-YAML_DIR     := $(CURDIR)/yaml-cpp
+YAML_DIR     := $(CURDIR)/../yaml-cpp
 
 
 # Check and see if we're just installing AGILE...
