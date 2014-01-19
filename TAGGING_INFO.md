@@ -24,7 +24,7 @@ user@computer$ brew install eigen
 
 If you use Linux, you can use your package manager (or build from source for you ambitious folks) to get and build `Eigen` and a `C++11` compliant compiler of your choice. 
 
-If you use Windows, I have no idea what you do, but I'm sure others do (I'm sorry).
+If you use Windows, I have no idea what you do, but I'm pretty sure others do (I'm sorry bout that, chaps).
 
 ###Installation
 
@@ -51,7 +51,7 @@ This by default installs a local version of `yaml-cpp`. If you think you have it
 
 ###Usage
 
-Usage is changing rapidly.
+Usage is changing rapidly. I try and keep up, and I can't. And I'm developing it.
 
 
 
