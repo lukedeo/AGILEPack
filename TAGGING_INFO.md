@@ -51,7 +51,7 @@ This by default installs a local version of `yaml-cpp`. If you think you have it
 
 ###Usage
 
-Usage is changing rapidly. I try and keep up, and I can't. And I'm developing it.
+Usage is changing rapidly. I try and keep up, and I can't. And I'm developing most of it.
 
 
 
