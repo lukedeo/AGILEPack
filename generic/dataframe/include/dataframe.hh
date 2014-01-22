@@ -106,6 +106,7 @@ public:
 private:
     std::map<std::string, std::size_t> column_names;
     data_t data;
+    
     bool m_columns_set, m_scaled;
     std::size_t m_cols, m_rows;
     scaling m_scaling;

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 namespace agile
 {
@@ -36,6 +37,12 @@ std::string knit(std::vector<T> v, std::string knitter = ", ")
         if(item != v.back()) ss << knitter;
     }
     return std::move(ss.str());
+}
+inline std::string no_spaces(std::string str)
+{
+	std::string::iterator end_pos = std::remove(str.begin(), str.end(), ' ');
+	str.erase(end_pos, str.end());
+	return str;
 }
 
 

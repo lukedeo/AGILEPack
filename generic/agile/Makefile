@@ -1,6 +1,5 @@
 # Makefile for AGILEPack
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
-
 # --- set directories
 BIN          := bin
 SRC          := src

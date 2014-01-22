@@ -1,8 +1,47 @@
 #include "dataframe.hh"
 #include <iostream>
 
+
+void parse_formula(std::string formula)
+{
+    formula = agile::no_spaces(formula);
+    bool parsing = true;
+    auto tilde = formula.find_first_of("~");
+    if (tilde != formula.find_last_of("~"))
+    {
+        throw std::runtime_error("can't specify multiple \'is a func\
+            tion of\' operators (uses of \'~\'') in one formula.");
+    }
+
+    auto lhs = formula.substr(0, tilde);
+    auto rhs = formula.substr(tilde + 1);
+
+    std::cout << lhs << std::endl;
+    std::cout << rhs << std::endl;
+
+    auto end = lhs.find_first_of("+");
+    unsigned long int start = 0;
+    
+    while(parsing == true)
+    {
+        auto new_var = lhs.substr(start, end);
+        std::cout << new_var << std::endl;
+        
+        if (end == std::string::npos) parsing = false;
+        
+        start = end + 1;
+        end = lhs.find_first_of("+", start);
+    }
+
+
+}
+
 int main(int argc, char const *argv[])
 {
+    std::string formula = "y1 + y2~ x1+  x_2 + x3";
+
+    parse_formula(formula);
+
     std::cout << "hi" << std::endl;
     auto csv_file = std::string(argv[1]);
     agile::dataframe D(csv_file, true);
