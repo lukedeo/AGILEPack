@@ -1,6 +1,7 @@
 #ifndef MODEL__FRAME__HH
 #define MODEL__FRAME__HH 
 #include "dataframe.hh"
+#include "basedefs.hh"
 #include <unordered_set>
 namespace agile
 {
@@ -16,7 +17,7 @@ public:
 	~model_frame();
 
 	void add_dataset(const agile::dataframe &D);
-	// void add_dataset(agile::dataframe &&D);
+	void add_dataset(agile::dataframe &&D);
 
 	void model_formula(const std::string &formula);
 
@@ -34,10 +35,10 @@ private:
 	void parse_formula(std::string formula);
 	// void parse_constraint(std::string formula);
 
-	std::vector<agile::dataframe> datasets;
+	agile::dataframe DF;
 
-	agile::matrix X, Y;
-	std::string m_formula
+	agile::matrix m_X, m_Y;
+	std::string m_formula;
 
 	// std::map<std::string, std::pair<double, double>> constraints;
 

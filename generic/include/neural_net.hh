@@ -22,14 +22,15 @@ public:
 	void add_data(agile::dataframe &&D);
 
 	// void set_formula(const std::string &formula);
-	void add_predictor(const std::string &name);
-	void add_target(const std::string &name);
-	void model_formula(std::string)
+	// void add_predictor(const std::string &name);
+	// void add_target(const std::string &name);
+	void model_formula(std::string);
 	agile::dataframe& data();
 
 private:
 	std::vector<std::string> predictor_order, target_order;
 	agile::matrix X, Y;
+	agile::dataframe DF;
 
 };
 

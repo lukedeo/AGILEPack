@@ -1,0 +1,135 @@
+# Makefile for Generic
+# Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+
+# --- set directories
+BIN          := bin
+SRC          := src
+INC          := include
+# LIB          := $(CURDIR)/lib
+
+AGILE_DIR    := $(CURDIR)/agile
+AGILE_LIB    := $(AGILE_DIR)/lib
+AGILE_INC    := $(AGILE_DIR)/include
+
+
+DATAFRAME_DIR := $(CURDIR)/dataframe
+DATAFRAME_LIB := $(DATAFRAME_DIR)/lib
+DATAFRAME_INC := $(DATAFRAME_DIR)/include
+
+YAML_DIR := $(CURDIR)/yaml-cpp
+YAML_LIB := $(YAML_DIR)/lib
+YAML_INC := $(YAML_DIR)/include
+
+
+
+
+
+
+#  set search path
+vpath %.o    $(BIN)
+vpath %.cxx  $(SRC) 
+vpath %.hh   $(INC) 
+
+# --- set compiler and flags (roll c options and include paths together)
+
+
+# --  shit for eigen to be blazingly fast
+
+CXX          := g++
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 -I$(DATAFRAME_INC) -I$(AGILE_INC)
+
+LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
+LIBS         += -lDataframe
+
+LIBS         += -L$(AGILE_LIB) -Wl,-rpath,$(AGILE_LIB)
+LIBS         += -lAGILE
+
+LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+LIBS         += -lYAMLCPP_INTERNAL
+# LDFLAGS      := -Wl,--no-undefined 
+
+# fix for ubuntu (that doesn't use bash for /bin/sh)
+SHELL        := bash
+
+# --- external dirs 
+
+# LIBS += -lyaml-cpp
+
+# ---- define objects
+# - not-python 
+
+# - command line interface
+BINARIES     := model_frame.o
+EXE_OBJ      := test.o
+
+
+
+EXECUTABLE   := test
+
+ALLOBJ       := $(BINARIES) $(EXE_OBJ)
+
+
+LIBRARIES    := agile_proxy dataframe_proxy
+ALLOUTPUT    := $(LIBRARIES) $(EXECUTABLE)
+
+
+all: $(ALLOUTPUT)
+
+
+$(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
+	@echo "linking $^ --> $@"
+	@$(CXX) -o $@ $^ $(LIBS)
+
+# $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
+# 	@mkdir -p $(LIB)
+# 	@echo "linking $^ --> $@"
+# 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+
+
+agile_proxy:
+	@$(MAKE) -C $(AGILE_DIR) lib
+
+dataframe_proxy:
+	@$(MAKE) -C $(DATAFRAME_DIR) lib
+
+
+
+# --------------------------------------------------
+
+# compile rule
+$(BIN)/%.o: %.cxx
+	@echo compiling $<
+	@mkdir -p $(BIN)
+	@$(CXX) -c $(CXXFLAGS) $< -o $@
+
+# use auto dependency generation
+DEP = $(BIN)
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),rmdep)
+ifneq ($(MAKECMDGOALS),purge)
+include  $(ALLOBJ:%.o=$(DEP)/%.d)
+endif
+endif
+endif
+
+DEPTARGSTR = -MT $(BIN)/$*.o -MT $(DEP)/$*.d
+$(DEP)/%.d: %.cxx
+	@echo making dependencies for $<
+	@mkdir -p $(DEP)
+	@$(CXX) -MM -MP $(DEPTARGSTR) $(CXXFLAGS) $< -o $@ 
+
+# clean
+.PHONY : clean rmdep
+CLEANLIST     = *~ *.o *.o~ *.d core 
+
+clean:
+	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
+	rm -fr $(BIN) 
+
+purge:
+	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
+	rm -fr $(BIN) 
+
+rmdep: 
+	rm -f $(DEP)/*.d

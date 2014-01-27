@@ -44,6 +44,12 @@ inline std::string no_spaces(std::string str)
 	str.erase(end_pos, str.end());
 	return str;
 }
+inline std::string no_quotes(std::string str)
+{
+    std::string::iterator end_pos = std::remove(str.begin(), str.end(), '"');
+    str.erase(end_pos, str.end());
+    return str;
+}
 
 
 }

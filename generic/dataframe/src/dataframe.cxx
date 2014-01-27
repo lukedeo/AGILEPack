@@ -41,7 +41,7 @@ dataframe::dataframe(std::string filename, bool colnames)
             {
                 std::stringstream fs( field );
 
-                column_names[agile::trim(fs.str())] = ctr;
+                column_names[agile::no_quotes(agile::trim(fs.str()))] = ctr;
                 ++ctr;
             }
         }
@@ -114,8 +114,7 @@ void dataframe::from_csv(std::string filename, bool colnames)
         while (getline( ss, field, ',' ))
         {
             std::stringstream fs( field );
-
-            column_names[agile::trim(fs.str())] = ctr;
+            column_names[agile::no_quotes(agile::trim(fs.str()))] = ctr;
             ++ctr;
         }
     }
@@ -202,6 +201,11 @@ std::vector<std::string> dataframe::get_column_names()
     }
     return std::move(v);
 }
+
+std::size_t dataframe::get_column_idx(const std::string &name)
+{
+    return column_names.at(name);
+}
 //----------------------------------------------------------------------------
 void dataframe::set_column_names(std::vector<std::string> v)
 {
@@ -282,12 +286,15 @@ void dataframe::push_back(std::initializer_list<double> il)
 //----------------------------------------------------------------------------
 void dataframe::append(const dataframe &D)
 {
-    if (D.m_cols != m_cols)
+    if ((D.m_cols != m_cols) && (m_cols != 0))
     {
         throw dimension_error("cannot append dataframes with \
             differing numbers of columns.");
     }
-    m_rows += D.m_rows;
+    if (m_cols == 0)
+    {
+        m_cols = D.m_cols;
+    }
     for (auto &row : D.data)
     {
         push_back(row);
@@ -301,12 +308,15 @@ void dataframe::append(const dataframe &D)
 //----------------------------------------------------------------------------
 void dataframe::append(dataframe &&D)
 {
-    if (D.m_cols != m_cols)
+    if ((D.m_cols != m_cols) && (m_cols != 0))
     {
         throw dimension_error("cannot append dataframes with \
             differing numbers of columns.");
     }
-    m_rows += std::move(D.m_rows);
+    if (m_cols == 0)
+    {
+        m_cols = std::move(D.m_cols);
+    }
     for (auto &row : D.data)
     {
         push_back(std::move(row));

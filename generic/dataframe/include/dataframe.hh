@@ -74,6 +74,7 @@ public:
     std::size_t rows();
     std::size_t columns();
     std::vector<std::string> get_column_names();
+    std::size_t get_column_idx(const std::string &name);
     void set_column_names(std::vector<std::string> v);
 
 
