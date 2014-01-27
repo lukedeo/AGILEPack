@@ -16,10 +16,10 @@ int main(int argc, char const *argv[])
 	// agile::matrix X = eigen_spew(X_);
 	// agile::matrix Y = eigen_spew(Y_);
 
-    auto in_file = std::string(argv[1]);
+    auto in_file = (argv[1]) ? std::string(argv[1]) : std::string("D.csv");
     agile::dataframe D(in_file, true);
 
-    auto formula = std::string(argv[2]);
+    auto formula = (argv[2]) ? std::string(argv[2]) : std::string("Y ~ X");
 
     agile::model_frame Model;
 
