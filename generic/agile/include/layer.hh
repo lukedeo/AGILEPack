@@ -135,6 +135,11 @@ public:
     {
         throw std::logic_error("layer::reconstruct() called on class layer -- only valid for class autoencoder");
     }
+
+    virtual agile::vector get_encoding(const agile::vector &v)
+    {
+        throw std::logic_error("layer::get_encoding() called on class layer -- only valid for class autoencoder");
+    }
     
 protected:
 //-----------------------------------------------------------------------------

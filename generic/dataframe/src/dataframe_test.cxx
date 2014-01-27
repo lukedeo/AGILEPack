@@ -57,11 +57,14 @@ void parse_formula(std::string formula)
     }
 }
 
+
 int main(int argc, char const *argv[])
 {
-    std::string formula = "y1 + y2+y_3+ y4~ * -x1+ xblah - *z2 + x_2 + x3";
+    std::string formula = "y1 + y2+y_3+ y4~ * -x1+ xblah - z2 + x_2 + x3";
 
     parse_formula(formula);
+
+
 
     // std::cout << "hi" << std::endl;
     // auto csv_file = std::string(argv[1]);

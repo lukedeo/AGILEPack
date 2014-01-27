@@ -43,6 +43,8 @@ ALLOUTPUT    := $(EXECUTABLE)
 
 all: $(LIBRARY) $(ALLOUTPUT)
 
+lib: $(LIBRARY)
+
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)

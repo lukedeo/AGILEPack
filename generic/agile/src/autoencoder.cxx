@@ -118,6 +118,12 @@ agile::vector autoencoder::reconstruct(const agile::vector &v, bool noisify)
     return decoder.fire();
 }
 //----------------------------------------------------------------------------
+agile::vector autoencoder::get_encoding(const agile::vector &v)
+{
+    this->charge(v);
+    return std::move(this->fire());
+}
+//----------------------------------------------------------------------------
 autoencoder::~autoencoder()
 {
 }   

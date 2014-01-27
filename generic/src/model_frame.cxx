@@ -27,11 +27,14 @@ model_frame::add_dataset(const agile::dataframe &D)
 }
 // model_frame::add_dataset(agile::dataframe &&D);
 //----------------------------------------------------------------------------
-model_frame::model_formula(const std::string &formula);
+model_frame::model_formula(const std::string &formula)
+{
+	parse_formula(formula);
+}
 
-model_frame::add_constraint(const std::string &name, const std::string constraint);
+// model_frame::add_constraint(const std::string &name, const std::string constraint);
 
-model_frame::make_binned(const std::string &name, const std::vector<double> bins);
+// model_frame::make_binned(const std::string &name, const std::vector<double> bins);
 
 model_frame::generate();
 
@@ -46,13 +49,13 @@ void model_frame::parse_formula(std::string formula)
     auto tilde = formula.find_first_of("~");
     if (tilde != formula.find_last_of("~"))
     {
-        throw std::runtime_error("can't specify multiple \'is a function of\' operators (uses of \'~\') in one formula.");
+        throw std::parsing_error("can't specify multiple \'is a function of\' operators (uses of \'~\') in one formula.");
     }
 
     auto wildcard_find = formula.find_first_of("*");
     if (wildcard_find != formula.find_last_of("*"))
     {
-        throw std::runtime_error("can't specify multiple \'include all defined variables\' operators (uses of \'*\') in one formula.");
+        throw std::parsing_error("can't specify multiple \'include all defined variables\' operators (uses of \'*\') in one formula.");
     }
     
     if (wildcard_find != std::string::npos)
@@ -107,15 +110,14 @@ void model_frame::parse_formula(std::string formula)
     		{
     			inputs.push_back(name)
     		}
-    	}
-        
+    	}    
     }
 }
 
 
 
 
-void model_frame::parse_constraint(const std::string &formula);
+// void model_frame::parse_constraint(const std::string &formula);
 
 	std::vector<agile::dataframe> datasets;
 

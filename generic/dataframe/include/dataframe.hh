@@ -2,6 +2,7 @@
 #define DATAFRAME__HH 
 
 #include "csv_reader.hh"
+// #include "blitz/array.h"
 #include <cstddef>
 #include <map>
 #include <utility>
@@ -26,6 +27,14 @@ struct scaling
     std::vector<double> sd;
 };
 
+// typedef blitz::Array<double, 2> array;
+// typedef blitz::Array<double, 1> slice;
+
+
+// agile::matrix eigenize(const agile::array &A);
+
+// agile::vector eigenize(const agile::slice &A);
+
 
 
 
@@ -42,7 +51,6 @@ public:
 
     dataframe& operator=(const dataframe &D);
     dataframe& operator=(dataframe &&D);
-
     // dataframe& operator=(const root::tree_reader &TR);
 
     ~dataframe();
@@ -56,6 +64,7 @@ public:
     friend std::ostream& operator << ( std::ostream& os, dataframe &data );
 
     data_t& raw();
+    // agile::matrix eigen_spew();
 
     // dataframe subset(std::vector<std::string> names);
 // 
@@ -110,6 +119,9 @@ private:
     bool m_columns_set, m_scaled;
     std::size_t m_cols, m_rows;
     scaling m_scaling;
+
+
+
 
 };
 

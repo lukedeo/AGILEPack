@@ -25,7 +25,7 @@ agile::vector exp_sigmoid_deriv(const agile::vector &v);
 //----------------------------------------------------------------------------
 agile::vector softmax(const agile::vector &v);
 //----------------------------------------------------------------------------
-agile::vector add_noise(const agile::vector &v, numeric level = 0.09);
+agile::vector add_noise(const agile::vector &v, numeric level = 0.02);
 //----------------------------------------------------------------------------
 }
 }

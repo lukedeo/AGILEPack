@@ -93,7 +93,7 @@ all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
 
 complete: all
 
-library: $(INFOMSG) $(YAML) $(LIB)/libAGILE.so
+lib: $(INFOMSG) $(YAML) $(LIB)/libAGILE.so
 
 cli: $(INFOMSG) $(YAML) $(EXECUTABLE)
 

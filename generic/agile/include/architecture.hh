@@ -103,6 +103,7 @@ public:
     {
         stack.emplace_back(new T(L));
         ++n_layers;
+        // std::cout << "there are " << n_layers << " layers." << std::endl;
         return *this;
     }
 
@@ -111,6 +112,7 @@ public:
     {
         ++n_layers;
         stack.emplace_back((T*)L);
+        // std::cout << "there are " << n_layers << " layers." << std::endl;
         return *this;
     }
 

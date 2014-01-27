@@ -49,6 +49,20 @@ std::string stringify(const agile::matrix &M);
 agile::matrix destringify(const std::string &s);
 //----------------------------------------------------------------------------
 agile::vector std_to_Eigen(std::vector<numeric> &v);
+//----------------------------------------------------------------------------
+template<class D>
+inline agile::matrix eigen_spew(D &d)
+{
+    agile::matrix M(d.rows(), d.columns());
+    int ctr = 0;
+    for (auto &row : d.raw())
+    {
+        M.row(ctr) = agile::std_to_Eigen(row);
+        ++ctr;
+    }
+    return std::move(M);
+}
+
 }
 
 #endif

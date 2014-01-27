@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
     // arch.add_layer(layer_factory<autoencoder>(2, 4, sigmoid));
 
     // arch.add_a_layer<autoencoder>(2, 4, sigmoid);
-    arch.add_layer(new autoencoder(2, 4, sigmoid));
+    arch += new autoencoder(2, 4, sigmoid);
 
     for (int i = 0; i < 1000; ++i)
     {
