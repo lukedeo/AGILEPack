@@ -18,7 +18,8 @@ vpath %.h    $(INC)
 
 # --- set compiler and flags (roll c options and include paths together)
 
-CXX          := g++
+CXX          ?= g++
+# CXX          := clang++
 CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I$(HACKED_BOOST) -g -std=c++11 
 # LDFLAGS      := -Wl,--no-undefined 
 

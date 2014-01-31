@@ -17,9 +17,9 @@ vpath %.hh   $(INC)
 
 # --- set compiler and flags (roll c options and include paths together)
 
-CXX          := g++
+CXX          ?= g++
+# CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
-
 
 ROOTCFLAGS    := $(shell root-config --cflags)
 ROOTLIBS      := -L$(shell root-config --libdir)

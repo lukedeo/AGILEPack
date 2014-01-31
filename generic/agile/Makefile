@@ -58,7 +58,8 @@ ADDTL_FLG = $(DEBUG)
 endif
 
 
-CXX          := g++
+CXX          ?= g++
+# CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_INC) -I$(HACKED_BOOST) -I./root/include
 # LDFLAGS      := -Wl,--no-undefined 
 

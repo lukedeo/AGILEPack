@@ -24,6 +24,8 @@ YAML_DIR      := $(CURDIR)/yaml-cpp
 YAML_LIB      := $(YAML_DIR)/lib
 YAML_INC      := $(YAML_DIR)/include
 
+BOOST_INC      := $(YAML_DIR)/boost_subset
+
 
 
 
@@ -37,11 +39,13 @@ vpath %.hh   $(INC)
 
 # --  shit for eigen to be blazingly fast
 
-CXX          := g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
+CXX          ?= g++
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11
 CXXFLAGS     += -I$(DATAFRAME_INC) 
 CXXFLAGS     += -I$(AGILE_INC)
 CXXFLAGS     += -I$(ROOT_INC)
+CXXFLAGS     += -I$(YAML_INC)
+CXXFLAGS     += -I$(BOOST_INC)
 
 LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
 LIBS         += -lDataframe

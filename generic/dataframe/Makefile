@@ -1,3 +1,4 @@
+
 # Makefile for Dataframe
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
@@ -17,7 +18,8 @@ vpath %.hh   $(INC)
 # --- set compiler and flags (roll c options and include paths together)
 
 
-CXX          := g++
+CXX          ?= g++
+# CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
 LIBRARY      := $(LIB)/libDataframe.so
 # LDFLAGS      := -Wl,--no-undefined 
