@@ -101,8 +101,8 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start)
 {
     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
     {
-        throw dimension_error("tried to access \
-            element in TTree beyond range.");
+        throw dimension_error(
+            "tried to access element in TTree beyond range.");
     }
     entries = (entries < 0) ? m_size : entries;
     start = (start < 0) ? 0 : start;
@@ -125,8 +125,7 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start)
 // {
 //     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
 //     {
-//         throw dimension_error("tried to access \
-//             element in TTree beyond range.");
+//         throw dimension_error("tried to access element in TTree beyond range.");
 //     }
 //     entries = (entries < 0) ? m_size : entries;
 //     start = (start < 0) ? 0 : start;

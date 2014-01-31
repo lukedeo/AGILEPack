@@ -7,6 +7,10 @@ SRC          := src
 INC          := include
 # LIB          := $(CURDIR)/lib
 
+ROOT_DIR     := $(CURDIR)/../CERN/root
+ROOT_LIB     := $(ROOT_DIR)/lib
+ROOT_INC     := $(ROOT_DIR)/include
+
 AGILE_DIR    := $(CURDIR)/agile
 AGILE_LIB    := $(AGILE_DIR)/lib
 AGILE_INC    := $(AGILE_DIR)/include
@@ -16,11 +20,9 @@ DATAFRAME_DIR := $(CURDIR)/dataframe
 DATAFRAME_LIB := $(DATAFRAME_DIR)/lib
 DATAFRAME_INC := $(DATAFRAME_DIR)/include
 
-YAML_DIR := $(CURDIR)/yaml-cpp
-YAML_LIB := $(YAML_DIR)/lib
-YAML_INC := $(YAML_DIR)/include
-
-
+YAML_DIR      := $(CURDIR)/yaml-cpp
+YAML_LIB      := $(YAML_DIR)/lib
+YAML_INC      := $(YAML_DIR)/include
 
 
 
@@ -36,7 +38,10 @@ vpath %.hh   $(INC)
 # --  shit for eigen to be blazingly fast
 
 CXX          := g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 -I$(DATAFRAME_INC) -I$(AGILE_INC)
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
+CXXFLAGS     += -I$(DATAFRAME_INC) 
+CXXFLAGS     += -I$(AGILE_INC)
+CXXFLAGS     += -I$(ROOT_INC)
 
 LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
 LIBS         += -lDataframe
@@ -46,10 +51,25 @@ LIBS         += -lAGILE
 
 LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
 LIBS         += -lYAMLCPP_INTERNAL
+
+
+LIBS         += -L$(ROOT_LIB) -Wl,-rpath,$(ROOT_LIB)
+LIBS         += -lROOTInterface
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
 SHELL        := bash
+
+ROOTCFLAGS    := $(shell root-config --cflags)
+ROOTLIBS      := -L$(shell root-config --libdir)
+ROOTLIBS      += -lCore -lTree -lRIO 
+ROOTLIBS      += -lCint		# don't know why we need this...
+ROOTLDFLAGS   := $(shell root-config --ldflags)
+
+
+CXXFLAGS     += $(ROOTCFLAGS)
+LDFLAGS      += $(ROOTLDFLAGS)
+LIBS         += $(ROOTLIBS)
 
 # --- external dirs 
 
@@ -66,10 +86,10 @@ EXE_OBJ      := test.o
 
 EXECUTABLE   := test
 
-ALLOBJ       := $(BINARIES) $(EXE_OBJ)
+ALLOBJ       := $(EXE_OBJ) $(BINARIES) 
 
 
-LIBRARIES    := agile_proxy dataframe_proxy
+LIBRARIES    := agile_proxy dataframe_proxy root_proxy
 ALLOUTPUT    := $(LIBRARIES) $(EXECUTABLE)
 
 
@@ -78,7 +98,7 @@ all: $(ALLOUTPUT)
 
 $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
-	@$(CXX) -o $@ $^ $(LIBS)
+	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
 
 # $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
 # 	@mkdir -p $(LIB)
@@ -87,10 +107,13 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
 
 
 agile_proxy:
-	@$(MAKE) -C $(AGILE_DIR) lib
+	@$(MAKE) -C $(AGILE_DIR)
 
 dataframe_proxy:
-	@$(MAKE) -C $(DATAFRAME_DIR) lib
+	@$(MAKE) -C $(DATAFRAME_DIR) 
+
+root_proxy:
+	@$(MAKE) -C $(ROOT_DIR)
 
 
 

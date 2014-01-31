@@ -49,7 +49,7 @@ TEST_EXEC   := root_test
 
 LIB_OBJ      := $(UTIL_OBJ)
 ALLOBJ       := $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(TEST_EXEC)
+ALLOUTPUT    := $(TEST_EXEC) $(LIBRARY)
 
 
 all: $(ALLOUTPUT)

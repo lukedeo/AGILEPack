@@ -20,7 +20,6 @@ public:
 	void add_dataset(agile::dataframe &&D);
 
 	void model_formula(const std::string &formula);
-
 	// void add_constraint(const std::string &name, const std::string constraint);
 
 	// void make_binned(const std::string &name, const std::vector<double> bins);

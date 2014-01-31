@@ -19,7 +19,9 @@ int smart_chain::add(std::string file_name, long long nentries)
     { 
         throw std::runtime_error("bad file: " + file_name); 
     }
-    TTree* tree = dynamic_cast<TTree*>(file.Get(m_tree_name.c_str())); 
+    // std::cout << "ok..." << std::endl;
+    TTree* tree = static_cast<TTree*>(file.Get(m_tree_name.c_str())); 
+    // std::cout << "...fail" << std::endl;
     if (!tree || (tree->GetEntries() == 0)) 
     { 
         return 0; 
