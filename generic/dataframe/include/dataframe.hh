@@ -20,13 +20,6 @@
 
 namespace agile
 {
-
-struct scaling
-{
-    std::vector<double> mean;
-    std::vector<double> sd;
-};
-
 // typedef blitz::Array<double, 2> array;
 // typedef blitz::Array<double, 1> slice;
 
@@ -119,7 +112,7 @@ private:
     
     bool m_columns_set, m_scaled;
     std::size_t m_cols, m_rows;
-    scaling m_scaling;
+    // scaling m_scaling;
 
 
 

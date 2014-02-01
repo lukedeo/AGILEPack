@@ -7,6 +7,35 @@ namespace agile
 {
 
 
+struct scaling
+{
+	std::map<std::string, numeric> mean;
+	std::map<std::string, numeric> sd;
+};
+
+inline void calc_normalization(const agile::vector &input, const std::string col_name,
+	agile::scaling &scale)
+{
+	unsigned int count = input.rows();
+    double M = input(0);
+    double Q = 0.0;
+    for (unsigned int k = 1 ; k < count ; k++) 
+    {
+        double del = input(k) - M;
+        unsigned int j = k + 1;
+        Q += k * (del * del) / j;
+        M += del / j;
+    }
+    double sd = std::sqrt(Q / (count - 1));
+
+    // input.array() -= M;
+    // input /= sd;
+
+    scale.sd[col_name] = sd;
+    scale.mean[col_name] = M;
+}
+
+
 
 class model_frame
 {
@@ -25,6 +54,10 @@ public:
 	// void make_binned(const std::string &name, const std::vector<double> bins);
 
 	void generate();
+	void scale();
+	// void load_scaling(const agile::scaling &scale);
+
+	// agile::scaling get_scaling();
 
 	agile::matrix& Y();
 	agile::matrix& X();
@@ -48,6 +81,8 @@ private:
 	std::unordered_set<std::string> exclusions;
 
 	bool x_set, y_set;
+
+	agile::scaling m_scaling;
 
 };
 

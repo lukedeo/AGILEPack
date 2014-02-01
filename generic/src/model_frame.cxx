@@ -11,12 +11,10 @@ model_frame::model_frame(const agile::dataframe &D)
 model_frame::model_frame()
 : x_set(false), y_set(false)
 {
-
 }
 //----------------------------------------------------------------------------
 model_frame::~model_frame()
 {
-
 }
 //----------------------------------------------------------------------------
 void model_frame::add_dataset(const agile::dataframe &D)
@@ -65,6 +63,36 @@ void model_frame::generate()
         }
     }
 }
+
+//----------------------------------------------------------------------------
+void model_frame::scale()
+{
+    int idx = 0;
+    for (auto &name : inputs)
+    {
+        agile::calc_normalization(m_X.col(idx), name, m_scaling);
+        m_X.col(idx).array() -= m_scaling.sd[name];
+        m_X.col(idx) /= m_scaling.mean[name];
+        ++idx;
+    }
+    idx = 0;
+    for (auto &name : outputs)
+    {
+        agile::calc_normalization(m_Y.col(idx), name, m_scaling);
+        ++idx;
+    }
+}
+//----------------------------------------------------------------------------
+// void model_frame::load_scaling(const agile::scaling &scale)
+// {
+
+// }
+
+// //----------------------------------------------------------------------------
+// agile::scaling model_frame::get_scaling()
+// {
+
+// }
 //----------------------------------------------------------------------------
 
 agile::matrix& model_frame::Y()

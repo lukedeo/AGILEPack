@@ -15,22 +15,25 @@ int main(int argc, char const *argv[])
          1.0, 0.0, 
          1.0, 1.0;
 
-    agile::matrix T(4, 1);
-    T << 0.9,
-         0.5,
-         0.5,
-         1.123;
+    agile::matrix T(4, 2);
+    T << 0.0, 0.0,
+         1.0, 1.0,
+         1.0, 1.0,
+         0.0, 1.0;
 
 
     architecture arch; 
 
-    auto aut1 = autoencoder(2, 4, sigmoid); // can set parms this way
-    auto aut = autoencoder(2, 4, sigmoid); // can set parms this way
+
+    // auto aut1 = autoencoder(2, 4, sigmoid); // can set parms this way
+    // auto aut = autoencoder(2, 4, sigmoid); // can set parms this way
 
     // arch.add_layer(layer_factory<autoencoder>(2, 4, sigmoid));
 
     // arch.add_a_layer<autoencoder>(2, 4, sigmoid);
     arch += new autoencoder(2, 4, sigmoid);
+    arch += new layer(4, 3, sigmoid);
+    arch += new layer(3, 2, sigmoid);
 
     for (int i = 0; i < 1000; ++i)
     {
@@ -57,10 +60,8 @@ int main(int argc, char const *argv[])
 
     // arch.add_layer(2, 4, sigmoid);
 
-    architecture arch_2;
-
-    arch += new layer(4, 3, sigmoid);
-    arch += new layer(3, 1, rectified);
+    
+    
 
 
 
