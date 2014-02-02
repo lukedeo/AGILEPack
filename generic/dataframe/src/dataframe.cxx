@@ -245,7 +245,7 @@ double& dataframe::at(const std::size_t &idx, const std::string &colname)
     catch(std::out_of_range &e)
     {
         std::string wha(
-            "tried to access non-existent column \'" + colname + "\'.")
+            "tried to access non-existent column \'" + colname + "\'.");
         throw std::out_of_range(wha);
     }
     
