@@ -1,7 +1,7 @@
 Using the AGILEPack API
 ===========
 
-The API for AGILEPack was designed to be as versatile as possible, while still allowing a power user to tweak the package to their own desires. This tutorial will show a very simple example using a fake CSV dataset. We'll use a dataset (`D.csv`) that looks like:
+The API for AGILEPack was designed to be as versatile as possible, while still allowing a power user to tweak the package to their own desires. This tutorial will show a very simple example using a fake CSV dataset. We'll use a dataset ([`D.csv`](https://github.com/lukedeo/AGILEPack/blob/master/generic/D.csv)) that looks like this.
 
 ```
 "X", "X2", "Y"
@@ -15,6 +15,7 @@ The API for AGILEPack was designed to be as versatile as possible, while still a
 0.479913257986828, 7.12227772526112, -0.373281316632109
 -0.995153891771525, -14.4183489363014, 0.562680542929479
 1.24130698522112, 18.2410244368913, -1.61076745845561
+...
 ```
 
-Note that the quotation marks aroub
+The variable names are `X`, `X2`, and `Y`. Note that the quotation marks around the variable names are optional, as the parser will remove extraneous quotations out of column names. 
