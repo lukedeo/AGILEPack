@@ -39,7 +39,7 @@ public:
     virtual autoencoder& operator= (const autoencoder &L);
     virtual autoencoder& operator= (autoencoder &&L);
 
-    virtual void construct(int n_inputs, int n_outputs, 
+    void construct(int n_inputs, int n_outputs, 
         layer_type encoder_type = linear, layer_type decoder_type = linear);
     void reset_weights(numeric bound);
     ~autoencoder(); 
