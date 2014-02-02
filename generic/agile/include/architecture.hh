@@ -10,6 +10,7 @@
 #include "layer.hh"
 #include "autoencoder.hh"
 
+
 //-----------------------------------------------------------------------------
 //  Generic enum for initializer list construction
 //-----------------------------------------------------------------------------
@@ -118,8 +119,8 @@ public:
     {
         if (n_layers < 1)
         {
-            throw std::logic_error("can't set batch size\
-                -- network has no layers.");
+            throw std::logic_error(
+                "can't set batch size-- network has no layers.");
         }
         for (auto &layer : stack)
         {
@@ -130,8 +131,8 @@ public:
     {
         if (n_layers < 1)
         {
-            throw std::logic_error("can't set learning rate\
-                -- network has no layers.");
+            throw std::logic_error(
+                "can't set learning rate-- network has no layers.");
         }
         for (auto &layer : stack)
         {
@@ -142,8 +143,8 @@ public:
     {
         if (n_layers < 1)
         {
-            throw std::logic_error("can't set momentum\
-                -- network has no layers.");
+            throw std::logic_error(
+                "can't set momentum-- network has no layers.");
         }
         for (auto &layer : stack)
         {
@@ -154,8 +155,8 @@ public:
     {
         if (n_layers < 1)
         {
-            throw std::logic_error("can't set regularizer\
-                -- network has no layers.");
+            throw std::logic_error(
+                "can't set regularizer-- network has no layers.");
         }
         for (auto &layer : stack)
         {
@@ -194,91 +195,65 @@ protected:
 //-----------------------------------------------------------------------------
 namespace YAML 
 {
-    template<>
-    struct convert<architecture> 
+
+template<>
+struct convert<architecture> 
+{
+    static Node encode(const architecture &arch)
     {
-        static Node encode(const architecture &arch)
+        Node node;
+        for (unsigned int i = 0; i < arch.stack.size(); ++i)
         {
-            Node node;
-
-            std::map<int, std::string> decoder_hash;
-
-            unsigned char hash[20];
-            char hexstring[41];
-            std::string weight_string;
-            std::vector<std::string> hash_vec;
-
-            unsigned int tmp_ctr = 0;
-
-            for (auto &entry : arch.stack)
+            std::string layer_index = "layer_" + std::to_string(i);
+            node["layer_access"].push_back(layer_index);
+            if (arch.stack.at(i)->get_paradigm() == agile::types::Autoencoder)
             {
-                weight_string = agile::stringify(entry->W);
-                // 10 is the length of the string
-                sha1::calc(weight_string.c_str(),weight_string.size(),hash);
-                sha1::toHexString(hash, hexstring);
-                node["layer_hash"].push_back(
-                    static_cast<std::string>(hexstring));
+                node[layer_index] = *(dynamic_cast<autoencoder*>(
+                    arch.stack.at(i).get()));
+            }
+            else
+            {
+                node[layer_index] = *(arch.stack.at(i).get());
+            }
+        }
+        return node;
+    }
 
-                hash_vec.push_back(static_cast<std::string>(hexstring));
+    static bool decode(const Node& node, architecture &arch) 
+    {
 
-                if ((*entry).get_paradigm() == agile::types::Autoencoder)
-                {
-                    decoder_hash[tmp_ctr] = static_cast<std::string>(hexstring);
-                }
-                ++tmp_ctr;
+        arch.clear();
+
+        auto layer_names = node["layer_access"];
+
+        for (unsigned int i = 0; i < layer_names.size(); ++i)
+        {
+            std::string layer_id = layer_names[i].as<std::string>(); 
+            std::string class_type = node[layer_id]["class"].as<std::string>();
+
+            if (class_type == "autoencoder")
+            {
+                arch.emplace_back(
+                    new autoencoder(node[layer_id].as<autoencoder>()));
+            }
+            else if (class_type == "layer")
+            {
+                arch.emplace_back(new layer(node[layer_id].as<layer>()));
+            }
+            else
+            {
+                throw std::logic_error(
+                    "class " + class_type + " not recognized.");
             }
 
-            tmp_ctr = 0;
-            for (unsigned int i = 0; i < arch.stack.size(); ++i)
-            {
-                if (arch.stack.at(i)->get_paradigm() == agile::types::Autoencoder)
-                {
-                    node[hash_vec.at(tmp_ctr)] = \
-                    *(dynamic_cast<autoencoder*>(arch.stack.at(i).get()));
-                }
-                else
-                {
-                    node[hash_vec.at(tmp_ctr)] = *(arch.stack.at(i).get());
-                }
-                ++tmp_ctr;
-            }
-            return node;
+                     
         }
 
-        static bool decode(const Node& node, architecture &arch) 
-        {
+        return true;
+    }
+};
 
-            arch.clear();
-
-            auto hash_names = node["layer_hash"];
-
-            for (unsigned int i = 0; i < hash_names.size(); ++i)
-            {
-                std::string hash_seq = hash_names[i].as<std::string>(); 
-                std::string class_type = node[hash_seq]["class"].as<std::string>();
-
-                if (class_type == "autoencoder")
-                {
-                    arch.emplace_back(new autoencoder(node[hash_seq].as<autoencoder>()));
-                }
-                else if (class_type == "layer")
-                {
-                    arch.emplace_back(new layer(node[hash_seq].as<layer>()));
-                }
-                else
-                {
-                    throw std::logic_error("class " + class_type + " not recognized.");
-                }
-
-                         
-            }
-
-            return true;
-        }
-    };
 }
-
-
 
 
 #endif

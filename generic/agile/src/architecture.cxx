@@ -165,14 +165,6 @@ YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch)
     out << YAML::EndSeq;
     for (auto &entry : arch.stack)
     {
-        if (entry->get_paradigm() == agile::types::Basic)
-        {
-            std::cout << "base!" << std::endl;
-        }
-        if (entry->get_paradigm() == agile::types::Autoencoder)
-        {
-            std::cout << "derived!" << std::endl;
-        }
         weight_string = agile::stringify(entry->W);
         // 10 is the length of the string
         sha1::calc(weight_string.c_str(),weight_string.size(),hash); 
