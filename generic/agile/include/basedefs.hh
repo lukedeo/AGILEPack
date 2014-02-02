@@ -23,7 +23,6 @@
 #include <cstddef>
 #include <stdlib.h>
 #include "yaml-cpp/yaml.h"
-#include "sha1.hh"
 
 typedef double numeric;
 enum layer_type { linear, rectified, sigmoid, softmax };

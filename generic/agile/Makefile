@@ -74,7 +74,7 @@ SHELL        := bash
 # - not-python 
 LAYER_OBJ    := layer.o autoencoder.o architecture.o
 
-UTIL_OBJ     := activation.o basedefs.o sha1.o
+UTIL_OBJ     := activation.o basedefs.o
 
 # - command line interface
 EXE_OBJ      := main.o
