@@ -2,3 +2,7 @@
 *.d
 *DS_*
 *.csv
+*.so
+AGILE
+test
+root_test
