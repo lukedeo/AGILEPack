@@ -8,14 +8,14 @@
 
 int main(int argc, char const *argv[])
 {
-	// auto in_file = std::string(argv[1]);
-	// agile::dataframe X_(in_file, true);
+    // auto in_file = std::string(argv[1]);
+    // agile::dataframe X_(in_file, true);
 
-	// auto out_file = std::string(argv[2]);
-	// agile::dataframe Y_(out_file, true);
+    // auto out_file = std::string(argv[2]);
+    // agile::dataframe Y_(out_file, true);
 
-	// agile::matrix X = eigen_spew(X_);
-	// agile::matrix Y = eigen_spew(Y_);
+    // agile::matrix X = eigen_spew(X_);
+    // agile::matrix Y = eigen_spew(Y_);
 
     auto in_file = std::string(argv[1]);
     auto tree_name = std::string(argv[2]);
@@ -26,8 +26,8 @@ int main(int argc, char const *argv[])
     // TR.set_branch("pt", root::double_precision);
 
     TR.set_branch("bottom", root::integer);
-	TR.set_branch("charm", root::integer);
-	TR.set_branch("light", root::integer);
+    TR.set_branch("charm", root::integer);
+    TR.set_branch("light", root::integer);
     // TR.set_branch("eta", root::double_precision);
     TR.set_branch("cat_pT", root::integer);
     TR.set_branch("cat_eta", root::integer);
@@ -71,7 +71,7 @@ int main(int argc, char const *argv[])
     auto X = Model.X();
     auto Y = Model.Y();
 
-	architecture arch;
+    architecture arch;
 
     arch.add_layer<autoencoder>(X.cols(), 40, sigmoid); // method 1
 
@@ -87,8 +87,8 @@ int main(int argc, char const *argv[])
     arch.add_layer(B); // method 5
 
     arch.set_learning(0.01);
-	arch.set_regularizer(0.001);
-	arch.set_batch_size(1);
+    arch.set_regularizer(0.001);
+    arch.set_batch_size(1);
 
     for (int l = 0; l < 4; ++l)
     {
@@ -107,23 +107,23 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < epochs; ++i)
     {
-    	for (int point = 0; point < X.rows(); ++point)
-    	{
+        for (int point = 0; point < X.rows(); ++point)
+        {
             if(Y.row(point).sum() > 0)
             {
                 arch.correct(X.row(point), Y.row(point));
             }
-    	}
+        }
     }
 
     std::ofstream file("network.yaml");
     YAML::Emitter out;
 
-	YAML::Node net;
-	net["network"] = arch;
-	out << net;
-	file << out.c_str();
-	file.close();
+    YAML::Node net;
+    net["network"] = arch;
+    out << net;
+    file << out.c_str();
+    file.close();
     for (int point = 0; point < 100; ++point)
     {
         // arch.at(0)->encode(M.row(point), true);
@@ -138,5 +138,5 @@ int main(int argc, char const *argv[])
         std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
         // getchar();
     }
-	return 0;
+    return 0;
 }
