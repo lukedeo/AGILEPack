@@ -146,6 +146,55 @@ void architecture::encode(const agile::vector &in, const unsigned int &which, bo
     agile::vector v = stack.at(which - 1)->fire();
     stack.at(which)->encode(v, noisify);
 }
+
+void architecture::set_batch_size(int size)
+{
+    if (n_layers < 1)
+    {
+        throw std::logic_error(
+            "can't set batch size-- network has no layers.");
+    }
+    for (auto &layer : stack)
+    {
+        layer->set_batch_size(size);
+    }
+}
+void architecture::set_learning(const numeric &value)
+{
+    if (n_layers < 1)
+    {
+        throw std::logic_error(
+            "can't set learning rate-- network has no layers.");
+    }
+    for (auto &layer : stack)
+    {
+        layer->set_learning(value);
+    }
+}
+void architecture::set_momentum(const numeric &value)
+{
+    if (n_layers < 1)
+    {
+        throw std::logic_error(
+            "can't set momentum-- network has no layers.");
+    }
+    for (auto &layer : stack)
+    {
+        layer->set_momentum(value);
+    }
+}
+void architecture::set_regularizer(const numeric &value)
+{
+    if (n_layers < 1)
+    {
+        throw std::logic_error(
+            "can't set regularizer-- network has no layers.");
+    }
+    for (auto &layer : stack)
+    {
+        layer->set_regularizer(value);
+    }
+}
 //----------------------------------------------------------------------------
 // YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch)
 // {

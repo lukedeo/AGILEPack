@@ -43,68 +43,35 @@ public:
     architecture(const architecture &arch);
 
     template <class T>
-    architecture& operator =(const T &L)
-    {
-        clear();
-        stack.emplace_back(new T(L));
-        ++n_layers;
-        return *this;
-    }
+    architecture& operator =(const T &L);
 
     template <class T>
-    architecture& operator =(T *L)
-    {
-        clear();
-        stack.emplace_back((T*)L);
-        ++n_layers;
-        return *this;
-    }
+    architecture& operator =(T *L);
 
     architecture& operator =(const architecture &arch);
-
-
 
 //-----------------------------------------------------------------------------
 //  Layer Manipulation and access methods
 //----------------------------------------------------------------------------- 
     template <class T>
-    void add_layer(const T &L)
-    {
-        stack.emplace_back(new T(L));
-        ++n_layers;
-    }
+    void add_layer(const T &L);
 
     void add_layer(int n_inputs = 0, int n_outputs = 0, 
         layer_type type = linear);
 
     template <class T>
-    void add_layer(T *L)
-    {
-        ++n_layers;
-        stack.emplace_back(new T(L));
-    }
+    void add_layer(T *L);
 
     template <class T>
-    void emplace_back(T *L)
-    {
-        ++n_layers;
-        stack.emplace_back((T*)(L));
-    }
+    void emplace_back(T *L);
 
     template <class T, class ...Args>
-    void add_layer(Args&& ...args)
-    {
-        ++n_layers;
-        stack.emplace_back(new T(std::forward<Args>(args)...));
-    }
+    void add_layer(Args&& ...args);
 
     std::unique_ptr<layer>& at(const unsigned int &idx);
 
     template <class T>
-    T* cast_layer(const unsigned int &idx)
-    {
-        return dynamic_cast<T*>(stack.at(idx).get());
-    }
+    T* cast_layer(const unsigned int &idx);
 
     void pop_back();
     void clear();
@@ -115,59 +82,16 @@ public:
 //  Global parameter setting
 //-----------------------------------------------------------------------------
 
-    void set_batch_size(int size)
-    {
-        if (n_layers < 1)
-        {
-            throw std::logic_error(
-                "can't set batch size-- network has no layers.");
-        }
-        for (auto &layer : stack)
-        {
-            layer->set_batch_size(size);
-        }
-    }
-    void set_learning(const numeric &value)
-    {
-        if (n_layers < 1)
-        {
-            throw std::logic_error(
-                "can't set learning rate-- network has no layers.");
-        }
-        for (auto &layer : stack)
-        {
-            layer->set_learning(value);
-        }
-    }
-    void set_momentum(const numeric &value)
-    {
-        if (n_layers < 1)
-        {
-            throw std::logic_error(
-                "can't set momentum-- network has no layers.");
-        }
-        for (auto &layer : stack)
-        {
-            layer->set_momentum(value);
-        }
-    }
-    void set_regularizer(const numeric &value)
-    {
-        if (n_layers < 1)
-        {
-            throw std::logic_error(
-                "can't set regularizer-- network has no layers.");
-        }
-        for (auto &layer : stack)
-        {
-            layer->set_regularizer(value);
-        }
-    }
+    void set_batch_size(int size);
+    void set_learning(const numeric &value);
+    void set_momentum(const numeric &value);
+    void set_regularizer(const numeric &value);
 
 //-----------------------------------------------------------------------------
 //  Prediction and training methods
 //-----------------------------------------------------------------------------
     agile::vector predict(const agile::vector &v);
+    
     void correct(const agile::vector &in, const agile::vector &target);
 
     void encode(const agile::vector &in, const unsigned int &which, bool noisify = true);
@@ -188,6 +112,59 @@ protected:
     unsigned int n_layers;    // number of network layers
     agile::layer_stack stack; // the stack of layers
 };
+
+template <class T>
+architecture& architecture::operator =(const T &L)
+{
+    clear();
+    stack.emplace_back(new T(L));
+    ++n_layers;
+    return *this;
+}
+
+template <class T>
+architecture& architecture::operator =(T *L)
+{
+    clear();
+    stack.emplace_back((T*)L);
+    ++n_layers;
+    return *this;
+}
+
+template <class T>
+void architecture::add_layer(const T &L)
+{
+    stack.emplace_back(new T(L));
+    ++n_layers;
+}
+
+template <class T>
+void architecture::add_layer(T *L)
+{
+    ++n_layers;
+    stack.emplace_back(new T(L));
+}
+
+template <class T>
+void architecture::emplace_back(T *L)
+{
+    ++n_layers;
+    stack.emplace_back((T*)(L));
+}
+
+template <class T, class ...Args>
+void architecture::add_layer(Args&& ...args)
+{
+    ++n_layers;
+    stack.emplace_back(new T(std::forward<Args>(args)...));
+}
+
+template <class T>
+T* architecture::cast_layer(const unsigned int &idx)
+{
+    return dynamic_cast<T*>(stack.at(idx).get());
+}
+
 
 //-----------------------------------------------------------------------------
 //  YAML Serialization Structure 

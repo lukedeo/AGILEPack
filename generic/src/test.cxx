@@ -73,18 +73,11 @@ int main(int argc, char const *argv[])
 
     architecture arch;
 
-    arch.add_layer<autoencoder>(X.cols(), 40, sigmoid); // method 1
-
-    arch.add_layer(layer_factory<autoencoder>(40, 30, sigmoid)); // method 2
-
-    arch.emplace_back(new autoencoder(30, 20, sigmoid)); // method 3
-
-    autoencoder *A = new autoencoder(20, 10, sigmoid);
-    arch.add_layer(A); // method 4
-    delete A; // !! always delete!
-
-    autoencoder B = autoencoder(10, 3, softmax);
-    arch.add_layer(B); // method 5
+    arch.emplace_back(new autoencoder(X.cols(), 40, sigmoid)); 
+    arch.emplace_back(new autoencoder(40, 30, sigmoid)); 
+    arch.emplace_back(new autoencoder(30, 20, sigmoid)); 
+    arch.emplace_back(new autoencoder(20, 10, sigmoid)); 
+    arch.emplace_back(new autoencoder(10, 3, softmax)); 
 
     arch.set_learning(0.01);
     arch.set_regularizer(0.001);
