@@ -254,11 +254,12 @@ void layer::backpropagate(const agile::vector &v)
     b_change += delta;
 
     ++ctr;
-
+    // std::cout << "outside...";
     if (ctr >= m_batch_size) // if we need to start a new batch
     {   
         ctr = 0;
         update();
+        // std::cout << "inside." << std::endl;
     }
 }
 //----------------------------------------------------------------------------
@@ -271,6 +272,8 @@ void layer::update()
 {
     W_change /= m_batch_size;
     W_old = momentum * W_old - learning * (W_change + regularizer * W);
+
+    // std::cout << "W:\n" << W <<  "\n------------------------" << std::endl;
     W += W_old;
     b_change /= m_batch_size;
     b_old = momentum * b_old - learning * b_change;

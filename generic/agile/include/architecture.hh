@@ -90,7 +90,7 @@ public:
         stack.emplace_back(new T(std::forward<Args>(args)...));
     }
 
-    std::unique_ptr<layer> const& at(const unsigned int &idx);
+    std::unique_ptr<layer>& at(const unsigned int &idx);
 
     template <class T>
     T* cast_layer(const unsigned int &idx)
@@ -179,6 +179,8 @@ public:
 //-----------------------------------------------------------------------------
     agile::vector predict(const agile::vector &v);
     void correct(const agile::vector &in, const agile::vector &target);
+
+    void encode(const agile::vector &in, const unsigned int &which, bool noisify = true);
 
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization

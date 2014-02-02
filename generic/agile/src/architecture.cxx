@@ -95,12 +95,12 @@ void architecture::clear()
     stack.clear();
 }
 //----------------------------------------------------------------------------
-std::unique_ptr<layer> const& architecture::at(const unsigned int &idx)
+std::unique_ptr<layer>& architecture::at(const unsigned int &idx)
 {
     if (idx >= n_layers)
     {
-        throw std::out_of_range("Accessing layer in \
-            'Class: architecture' beyond contained range.");
+        throw std::out_of_range(
+            "Accessing layer in 'Class: architecture' beyond contained range.");
     }
     return stack.at(idx);
 }
@@ -119,6 +119,7 @@ void architecture::correct(const agile::vector &in,
     const agile::vector &target)
 {
     agile::vector error = predict(in) - target;
+    // std::cout << predict(in) << std::endl;
     // std::cout << "error: " << error << std::endl;
     int l = n_layers - 1;
     stack.at(l)->backpropagate(error);
@@ -127,6 +128,23 @@ void architecture::correct(const agile::vector &in,
     {
         stack.at(l)->backpropagate( stack.at(l + 1)->dump_below() );
     }
+}
+//----------------------------------------------------------------------------
+void architecture::encode(const agile::vector &in, const unsigned int &which, bool noisify)
+{
+    if (which == 0)
+    {
+        stack.at(0)->encode(in, noisify);
+        return;
+    }
+    stack.at(0)->charge(in);
+
+    for (unsigned int l = 1; l < which; ++l)
+    {
+        stack.at(l)->charge(stack.at(l - 1)->fire());
+    }
+    agile::vector v = stack.at(which - 1)->fire();
+    stack.at(which)->encode(v, noisify);
 }
 //----------------------------------------------------------------------------
 YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch)

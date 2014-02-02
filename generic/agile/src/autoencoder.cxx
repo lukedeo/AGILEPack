@@ -99,13 +99,16 @@ void autoencoder::reset_weights(numeric bound)
 //----------------------------------------------------------------------------
 void autoencoder::encode(const agile::vector &v, bool noisify)
 {
-    agile::vector error = reconstruct(v, noisify) - v;
+    agile::vector error = reconstruct(v, noisify) - v;  
     decoder.backpropagate(error);
-    this->backpropagate(decoder.dump_below());
+    backpropagate(decoder.dump_below());
+    // getchar();
 }
 //----------------------------------------------------------------------------
 agile::vector autoencoder::reconstruct(const agile::vector &v, bool noisify)
 {
+    // std::cout << "input = \n" << v << std::endl;
+
     if (noisify)
     {
         this->charge(agile::functions::add_noise(v));
@@ -115,6 +118,8 @@ agile::vector autoencoder::reconstruct(const agile::vector &v, bool noisify)
         this->charge(v);
     }
     decoder.charge(this->fire());
+    // std::cout << "decoder.fire() = \n" << decoder.fire() << std::endl;
+    // getchar();
     return decoder.fire();
 }
 //----------------------------------------------------------------------------

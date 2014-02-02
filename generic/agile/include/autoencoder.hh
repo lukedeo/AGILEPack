@@ -57,6 +57,42 @@ public:
         bool noisify = true);
 
 //-----------------------------------------------------------------------------
+//  Parameter setting
+//-----------------------------------------------------------------------------   
+
+    virtual void set_learning(const numeric &value)
+    {
+        learning = value;
+        decoder.set_learning(value);
+    }
+    virtual void set_momentum(const numeric &value)
+    {
+        momentum = value;
+        decoder.set_momentum(value);
+    }
+    virtual void set_batch_size(int size)
+    {
+        if (ctr > 0)
+        {
+            update();
+            decoder.update();
+            m_batch_size = size;
+            decoder.set_batch_size(size);
+        }
+        else
+        {
+            m_batch_size = size;
+            decoder.set_batch_size(size);
+        }
+    }
+    virtual void set_regularizer(const numeric &value)
+    {
+        regularizer = value;
+        decoder.set_regularizer(value);
+    }
+
+
+//-----------------------------------------------------------------------------
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------
     friend struct YAML::convert<autoencoder>;

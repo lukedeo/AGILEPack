@@ -31,6 +31,7 @@ private:
 	std::vector<std::string> predictor_order, target_order;
 	agile::matrix X, Y;
 	agile::dataframe DF;
+	agile::model_frame m_model;
 
 };
 

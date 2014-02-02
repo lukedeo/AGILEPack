@@ -83,7 +83,7 @@ public:
 //-----------------------------------------------------------------------------
 //  Parameter Setting methods
 //-----------------------------------------------------------------------------
-    void set_batch_size(int size)
+    virtual void set_batch_size(int size)
     {
         if (ctr > 0)
         {
@@ -95,15 +95,15 @@ public:
             m_batch_size = size;
         }
     }
-    void set_learning(const numeric &value)
+    virtual void set_learning(const numeric &value)
     {
         learning = value;
     }
-    void set_momentum(const numeric &value)
+    virtual void set_momentum(const numeric &value)
     {
         momentum = value;
     }
-    void set_regularizer(const numeric &value)
+    virtual void set_regularizer(const numeric &value)
     {
         regularizer = value;
     }

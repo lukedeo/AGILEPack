@@ -32,20 +32,28 @@ int main(int argc, char const *argv[])
 
     // arch.add_a_layer<autoencoder>(2, 4, sigmoid);
     arch += new autoencoder(2, 4, sigmoid);
-    arch += new layer(4, 3, sigmoid);
+    arch += new autoencoder(4, 3, sigmoid);
     arch += new layer(3, 2, sigmoid);
 
-    for (int i = 0; i < 1000; ++i)
+    for (int i = 0; i < 100000; ++i)
     {
         for (int point = 0; point < 4; ++point)
         {
-            arch.at(0)->encode(X.row(point), false);
+            arch.encode(X.row(point), 0, false);
             // aut.encode(X.row(point), false);
         }
     }
+    // for (int i = 0; i < 1000; ++i)
+    // {
+    //     for (int point = 0; point < 4; ++point)
+    //     {
+    //         arch.encode(X.row(point), 1, false);
+    //         // aut.encode(X.row(point), false);
+    //     }
+    // }
     for (int point = 0; point < 4; ++point)
     {
-        arch.at(0)->encode(X.row(point), true);
+        // arch.at(0)->encode(X.row(point), true);
         // aut.encode(X.row(point), true);
         std::cout << "input:\n" <<  X.row(point) << "\n";
         std::cout << "reconstructed:\n" << arch.at(0)->reconstruct(X.row(point)) << "\n";
