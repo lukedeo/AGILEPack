@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
     TR.set_branch("bottom", root::integer);
     TR.set_branch("charm", root::integer);
     TR.set_branch("light", root::integer);
-    // TR.set_branch("eta", root::double_precision);
+    TR.set_branch("eta", root::double_precision);
     TR.set_branch("cat_pT", root::integer);
     TR.set_branch("cat_eta", root::integer);
     TR.set_branch("nSingleTracks", root::integer);
@@ -59,7 +59,7 @@ int main(int argc, char const *argv[])
 
     agile::dataframe D = TR.get_dataframe(2000);
 
-    std::string formula = (argc <= 3) ? "bottom + light + charm ~ *": std::string(argv[3]);
+    std::string formula = (argc <= 3) ? "bottom + light + charm ~ * -eta": std::string(argv[3]);
 
     agile::model_frame Model;
 
