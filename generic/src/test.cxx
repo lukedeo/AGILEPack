@@ -58,15 +58,6 @@ int main(int argc, char const *argv[])
     TR.set_branch("jfit_ntrkAtVx", root::integer);
 
     agile::dataframe D = TR.get_dataframe(2000);
-    // agile::dataframe V = TR.get_dataframe(100, 200);
-
-
-
-    // std::ofstream out("example_root.csv");
-
-    // out << D;
-
-    // out.close();
 
     auto formula = std::string(argv[3]);
 
@@ -77,28 +68,27 @@ int main(int argc, char const *argv[])
     Model.generate();
     Model.scale();
 
-
-
     auto X = Model.X();
     auto Y = Model.Y();
 
-    // std::cout << X << std::endl;
-
 	architecture arch;
-    arch.add_layer<autoencoder>(X.cols(), 40, sigmoid);
 
-    arch.add_layer(layer_factory<autoencoder>(40, 30, sigmoid));
+    arch.add_layer<autoencoder>(X.cols(), 40, sigmoid); // method 1
 
-    arch.emplace_back(new autoencoder(30, 20, linear));
-    arch.emplace_back(new autoencoder(20, 10, sigmoid));
-    arch.emplace_back(new autoencoder(10, 3, softmax));
-    // std::cout << "here" << std::endl;
+    arch.add_layer(layer_factory<autoencoder>(40, 30, sigmoid)); // method 2
+
+    arch.emplace_back(new autoencoder(30, 20, sigmoid)); // method 3
+
+    autoencoder *A = new autoencoder(20, 10, sigmoid);
+    arch.add_layer(A); // method 4
+    delete A; // !! always delete!
+
+    autoencoder B = autoencoder(10, 3, softmax);
+    arch.add_layer(B); // method 5
 
     arch.set_learning(0.01);
 	arch.set_regularizer(0.001);
-	// arch.set_momentum(0.8);
 	arch.set_batch_size(1);
-	// std::cout << "here" << std::endl;
 
     for (int l = 0; l < 4; ++l)
     {
@@ -107,8 +97,6 @@ int main(int argc, char const *argv[])
             for (int point = 0; point < X.rows(); ++point)
             {
                 arch.encode(X.row(point), l, false);
-                // arch.encode(X.row(point), 0, false);
-                // aut.encode(X.row(point), false);
             }
         }
     }
