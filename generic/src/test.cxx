@@ -85,11 +85,11 @@ int main(int argc, char const *argv[])
     // std::cout << X << std::endl;
 
 	architecture arch;
-    arch += new autoencoder(X.cols(), 40, sigmoid);
-    arch += new autoencoder(40, 30, sigmoid);
-    arch += new autoencoder(30, 20, linear);
-    arch += new autoencoder(20, 10, sigmoid);
-    arch += new autoencoder(10, 3, softmax);
+    arch.emplace_back(new autoencoder(X.cols(), 40, sigmoid));
+    arch.emplace_back(new autoencoder(40, 30, sigmoid));
+    arch.emplace_back(new autoencoder(30, 20, linear));
+    arch.emplace_back(new autoencoder(20, 10, sigmoid));
+    arch.emplace_back(new autoencoder(10, 3, softmax));
     // std::cout << "here" << std::endl;
 
     arch.set_learning(0.01);

@@ -31,9 +31,9 @@ int main(int argc, char const *argv[])
     // arch.add_layer(layer_factory<autoencoder>(2, 4, sigmoid));
 
     // arch.add_a_layer<autoencoder>(2, 4, sigmoid);
-    arch += new autoencoder(2, 4, sigmoid);
-    arch += new autoencoder(4, 3, sigmoid);
-    arch += new layer(3, 2, sigmoid);
+    arch.emplace_back(new autoencoder(2, 4, sigmoid));
+    arch.emplace_back(new autoencoder(4, 3, sigmoid));
+    arch.emplace_back(new layer(3, 2, sigmoid));
 
     for (int i = 0; i < 100000; ++i)
     {

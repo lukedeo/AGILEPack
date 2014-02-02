@@ -80,7 +80,14 @@ public:
     void add_layer(T *L)
     {
         ++n_layers;
-        stack.emplace_back((T*)L);
+        stack.emplace_back(new T(L));
+    }
+
+    template <class T>
+    void emplace_back(T *L)
+    {
+        ++n_layers;
+        stack.emplace_back((T*)(L));
     }
 
     template <class T, class ...Args>
@@ -96,24 +103,6 @@ public:
     T* cast_layer(const unsigned int &idx)
     {
         return dynamic_cast<T*>(stack.at(idx).get());
-    }
-
-    template <class T>
-    architecture& operator += (const T &L)
-    {
-        stack.emplace_back(new T(L));
-        ++n_layers;
-        // std::cout << "there are " << n_layers << " layers." << std::endl;
-        return *this;
-    }
-
-    template <class T>
-    architecture& operator += (T *L)
-    {
-        ++n_layers;
-        stack.emplace_back((T*)L);
-        // std::cout << "there are " << n_layers << " layers." << std::endl;
-        return *this;
     }
 
     void pop_back();
@@ -270,11 +259,11 @@ namespace YAML
 
                 if (class_type == "autoencoder")
                 {
-                    arch += new autoencoder(node[hash_seq].as<autoencoder>());
+                    arch.emplace_back(new autoencoder(node[hash_seq].as<autoencoder>()));
                 }
                 else if (class_type == "layer")
                 {
-                    arch += new layer(node[hash_seq].as<layer>());
+                    arch.emplace_back(new layer(node[hash_seq].as<layer>()));
                 }
                 else
                 {
