@@ -59,7 +59,7 @@ int main(int argc, char const *argv[])
 
     agile::dataframe D = TR.get_dataframe(2000);
 
-    auto formula = std::string(argv[3]);
+    std::string formula = (argc < 3) ? "bottom + light + charm ~ *", std::string(argv[3]);
 
     agile::model_frame Model;
 
