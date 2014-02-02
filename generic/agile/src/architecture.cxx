@@ -42,7 +42,8 @@ architecture::architecture(std::initializer_list<int> il, problem_type type)
     }
 }
 //----------------------------------------------------------------------------
-architecture::architecture(const architecture &arch) : n_layers(0), stack(0)
+architecture::architecture(const architecture &arch) 
+: n_layers(0), stack(0)
 {
     for (auto &entry : arch.stack)
     {

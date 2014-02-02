@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//  dataframe.cxx:
+//  Implementation for dataset handling, almost in the vain of the R language
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #include "dataframe.hh"
 #include <iostream>
 
@@ -15,9 +21,6 @@ namespace agile
 // {
 
 // }
-
-
-
 //-----------------------------------------------------------------------------
 //  Constructors, assignment, etc.
 //-----------------------------------------------------------------------------
@@ -241,8 +244,9 @@ double& dataframe::at(const std::size_t &idx, const std::string &colname)
     }
     catch(std::out_of_range &e)
     {
-        throw std::out_of_range("tried to access non-existent column \'" 
-            + colname + "\'.");
+        std::string wha(
+            "tried to access non-existent column \'" + colname + "\'.")
+        throw std::out_of_range(wha);
     }
     
 }
@@ -260,8 +264,8 @@ void dataframe::push_back(const record_t &r)
 {
     if (r.size() != m_cols)
     {
-        throw dimension_error("vectors to be \
-            push_back()'d must be the same size");
+        std::string wha("vectors to be push_back()'d must be the same size");
+        throw dimension_error(wha);
     }
     data.push_back(r);
     ++m_rows;
@@ -271,8 +275,8 @@ void dataframe::push_back(record_t &&r)
 {
     if (r.size() != m_cols)
     {
-        throw dimension_error("vectors to be \
-            push_back()'d must be the same size");
+        std::string wha("vectors to be push_back()'d must be the same size");
+        throw dimension_error(wha);
     }
     data.push_back(std::move(r));
     ++m_rows;
@@ -288,8 +292,10 @@ void dataframe::append(const dataframe &D)
 {
     if ((D.m_cols != m_cols) && (m_cols != 0))
     {
-        throw dimension_error("cannot append dataframes with \
-            differing numbers of columns.");
+        std::string wha(
+            "cannot append dataframes with differing numbers of columns.");
+        
+        throw dimension_error(wha);
     }
     if (m_cols == 0)
     {
@@ -310,8 +316,10 @@ void dataframe::append(dataframe &&D)
 {
     if ((D.m_cols != m_cols) && (m_cols != 0))
     {
-        throw dimension_error("cannot append dataframes with \
-            differing numbers of columns.");
+        std::string wha(
+            "cannot append dataframes with differing numbers of columns.");
+        
+        throw dimension_error(wha);
     }
     if (m_cols == 0)
     {

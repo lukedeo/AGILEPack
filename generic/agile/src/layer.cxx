@@ -254,12 +254,10 @@ void layer::backpropagate(const agile::vector &v)
     b_change += delta;
 
     ++ctr;
-    // std::cout << "outside...";
     if (ctr >= m_batch_size) // if we need to start a new batch
     {   
         ctr = 0;
         update();
-        // std::cout << "inside." << std::endl;
     }
 }
 //----------------------------------------------------------------------------

@@ -129,16 +129,19 @@ public:
     virtual agile::vector reconstruct(const agile::vector &v, 
         bool noisify = true) 
     {
-        throw std::logic_error("layer::reconstruct() called on class layer -- only valid for class autoencoder");
+        throw std::logic_error("layer::reconstruct() called on class\
+         layer -- only valid for class autoencoder");
     }
     virtual void encode(const agile::vector &v, bool noisify = true) 
     {
-        throw std::logic_error("layer::reconstruct() called on class layer -- only valid for class autoencoder");
+        throw std::logic_error("layer::reconstruct() called on class\
+         layer -- only valid for class autoencoder");
     }
 
     virtual agile::vector get_encoding(const agile::vector &v)
     {
-        throw std::logic_error("layer::get_encoding() called on class layer -- only valid for class autoencoder");
+        throw std::logic_error("layer::get_encoding() called on class\
+         layer -- only valid for class autoencoder");
     }
     
 protected:
@@ -178,8 +181,6 @@ namespace agile
 {
     typedef std::vector<std::unique_ptr<layer>> layer_stack;
 }
-
-
 
 //-----------------------------------------------------------------------------
 //  YAML Serialization Structure 

@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//  csv_reader.hh:
+//  Header for CSV manip, and some string utilities
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #ifndef CSV__READER__HH
 #define CSV__READER__HH 
 
@@ -11,20 +17,17 @@
 namespace agile
 {
 
+//----------------------------------------------------------------------------
 typedef std::vector <double> record_t;
 typedef std::vector <record_t> data_t;
 
-//-----------------------------------------------------------------------------
-// Let's overload the stream input operator to read a list of CSV fields (which a CSV record).
-// Remember, a record is a list of doubles separated by commas ','.
+// stream operators for csv
+//----------------------------------------------------------------------------
 std::istream& operator >> ( std::istream& ins, record_t& record );
-
-//-----------------------------------------------------------------------------
-// Let's likewise overload the stream input operator to read a list of CSV records.
-// This time it is a little easier, just because we only need to worry about reading
-// records, and not fields.
 std::istream& operator >> ( std::istream& ins, data_t& data );
 
+// Some string manip utility functions
+//----------------------------------------------------------------------------
 std::string trim(const std::string& str, const std::string& whitespace = " ");
 
 template <class T>
@@ -50,7 +53,7 @@ inline std::string no_quotes(std::string str)
     str.erase(end_pos, str.end());
     return str;
 }
-
+//----------------------------------------------------------------------------
 
 }
 

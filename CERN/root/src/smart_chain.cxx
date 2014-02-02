@@ -1,3 +1,10 @@
+//-----------------------------------------------------------------------------
+//  smart_chain.cxx:
+//  Implementation for TChain wrapper
+//  Authors: Dan Guest (dguest@cern.ch) (primary)
+//           Luke de Oliveira (luke.deoliveira@yale.edu) (basically nothing)
+//-----------------------------------------------------------------------------
+
 #include "smart_chain.hh"
 #include "TChain.h"
 #include "TFile.h"
@@ -5,12 +12,12 @@
 #include <sstream>
 #include <iostream>
 
-
+//----------------------------------------------------------------------------
 smart_chain::smart_chain(std::string tree_name)
 : TChain(tree_name.c_str()), m_tree_name(tree_name)
 { 
 }
-
+//----------------------------------------------------------------------------
 int smart_chain::add(std::string file_name, long long nentries) 
 { 
     m_files.push_back(file_name); 
@@ -19,22 +26,19 @@ int smart_chain::add(std::string file_name, long long nentries)
     { 
         throw std::runtime_error("bad file: " + file_name); 
     }
-    // std::cout << "ok..." << std::endl;
     TTree* tree = static_cast<TTree*>(file.Get(m_tree_name.c_str())); 
-    // std::cout << "...fail" << std::endl;
     if (!tree || (tree->GetEntries() == 0)) 
     { 
         return 0; 
     }
     return TChain::Add(file_name.c_str(), nentries); 
 }
-
+//----------------------------------------------------------------------------
 std::vector<std::string> smart_chain::get_all_branch_names() 
-
 const { 
     return m_set_branches; 
 }
-
+//----------------------------------------------------------------------------
 void smart_chain::SetBranchAddressPrivate(std::string name, void* branch) 
 { 
     check_for_dup(name); 
@@ -62,7 +66,7 @@ void smart_chain::SetBranchAddressPrivate(std::string name, void* branch)
     }
 
 }
-
+//----------------------------------------------------------------------------
 
 // ================ private functions ====================
 
@@ -74,7 +78,7 @@ const {
     throw MissingBranchError(issue); 
 
 }
-
+//----------------------------------------------------------------------------
 std::string smart_chain::get_files_string() 
 const { 
     std::string issue = " files: "; 
@@ -85,7 +89,7 @@ const {
     }
     return issue; 
 }
-
+//----------------------------------------------------------------------------
 void smart_chain::check_for_dup(const std::string& name) 
 const { 
     if (m_set_branch_set.count(name)) 
@@ -95,8 +99,7 @@ const {
         throw std::runtime_error(err); 
     }
 }
-
-
+//----------------------------------------------------------------------------
 MissingBranchError::MissingBranchError(const std::string& what_arg)
 : std::runtime_error(what_arg)
 {

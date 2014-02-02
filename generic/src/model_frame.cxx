@@ -1,7 +1,15 @@
+//-----------------------------------------------------------------------------
+//  model_frame.cxx:
+//  Implementation for managing variable names, scaling, and formula parsing
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #include "model_frame.hh"
 
 namespace agile
 {
+
+//----------------------------------------------------------------------------
 model_frame::model_frame(const agile::dataframe &D)
 : DF(D), x_set(false), y_set(false)
 {
@@ -94,7 +102,6 @@ void model_frame::scale()
 
 // }
 //----------------------------------------------------------------------------
-
 agile::matrix& model_frame::Y()
 {
     return m_Y;
@@ -105,7 +112,6 @@ agile::matrix& model_frame::X()
     return m_X;
 }
 //----------------------------------------------------------------------------
-
 void model_frame::parse_formula(std::string formula)
 {
     formula = agile::no_spaces(formula);
@@ -113,19 +119,25 @@ void model_frame::parse_formula(std::string formula)
     auto tilde = formula.find_first_of("~");
     if (tilde != formula.find_last_of("~"))
     {
-        throw agile::parsing_error("can't specify multiple \'is a function of\' operators (uses of \'~\') in one formula.");
+        std::string e("can't specify multiple \'is a function of\'");
+        e.append(" operators (uses of \'~\') in one formula.");
+        throw agile::parsing_error(e);
     }
 
     auto wildcard_find = formula.find_first_of("*");
     if (wildcard_find != formula.find_last_of("*"))
     {
-        throw agile::parsing_error("can't specify multiple \'include all defined variables\' operators (uses of \'*\') in one formula.");
+        std::string e("can't specify multiple \'include all defined");
+        e.append(" variables\' operators (uses of \'*\') in one formula.");
+        throw agile::parsing_error(e);
     }
     
     if (wildcard_find != std::string::npos)
     {
         wildcard = true;
-        std::string::iterator end_pos = std::remove(formula.begin(), formula.end(), '*');
+        std::string::iterator end_pos = std::remove(
+            formula.begin(), formula.end(), '*');
+
         formula.erase(end_pos, formula.end());
     }
     auto lhs = formula.substr(0, tilde);
@@ -179,6 +191,7 @@ void model_frame::parse_formula(std::string formula)
     x_set = (inputs.size() == 0) ? false : true;
     y_set = (outputs.size() == 0) ? false : true;
 }
+//----------------------------------------------------------------------------
 
 
 
@@ -197,7 +210,7 @@ void model_frame::parse_formula(std::string formula)
 // 	std::vector<std::string> inputs, outputs;
 
 
-
+//----------------------------------------------------------------------------
 parsing_error::parsing_error(const std::string &what)
 : std::runtime_error(what)
 {}

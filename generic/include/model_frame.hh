@@ -1,20 +1,27 @@
+//-----------------------------------------------------------------------------
+//  model_frame.hh:
+//  Header for managing variable names, scaling, and formula parsing
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #ifndef MODEL__FRAME__HH
 #define MODEL__FRAME__HH 
 #include "dataframe.hh"
 #include "basedefs.hh"
 #include <unordered_set>
+
+//----------------------------------------------------------------------------
 namespace agile
 {
-
-
+//----------------------------------------------------------------------------
 struct scaling
 {
 	std::map<std::string, numeric> mean;
 	std::map<std::string, numeric> sd;
 };
-
-inline void calc_normalization(const agile::vector &input, const std::string col_name,
-	agile::scaling &scale)
+//----------------------------------------------------------------------------
+inline void calc_normalization(const agile::vector &input, 
+	const std::string col_name, agile::scaling &scale)
 {
 	unsigned int count = input.rows();
     double M = input(0);
@@ -27,42 +34,55 @@ inline void calc_normalization(const agile::vector &input, const std::string col
         M += del / j;
     }
     double sd = std::sqrt(Q / (count - 1));
-
-    // input.array() -= M;
-    // input /= sd;
-
     scale.sd[col_name] = sd;
     scale.mean[col_name] = M;
 }
 
-
-
+//-----------------------------------------------------------------------------
+//  model_frame class declaration
+//-----------------------------------------------------------------------------
 class model_frame
 {
 public:
+//-----------------------------------------------------------------------------
+//  Constructors, destructors, etc.
+//-----------------------------------------------------------------------------
+
 	model_frame(const agile::dataframe &D);
 	// model_frame(agile::dataframe &&D);
 	model_frame();
 	~model_frame();
+//-----------------------------------------------------------------------------
+//  Adding dataframes
+//-----------------------------------------------------------------------------
 
 	void add_dataset(const agile::dataframe &D);
 	void add_dataset(agile::dataframe &&D);
+
+//-----------------------------------------------------------------------------
+//  Parsing!
+//-----------------------------------------------------------------------------
 
 	void model_formula(const std::string &formula);
 	// void add_constraint(const std::string &name, const std::string constraint);
 
 	// void make_binned(const std::string &name, const std::vector<double> bins);
 
+//-----------------------------------------------------------------------------
+//  generation and final model frames.
+//-----------------------------------------------------------------------------
 	void generate();
 	void scale();
 	// void load_scaling(const agile::scaling &scale);
-
 	// agile::scaling get_scaling();
-
 	agile::matrix& Y();
 	agile::matrix& X();
 
 private:
+
+//-----------------------------------------------------------------------------
+//  Internal implementations and private data members.
+//-----------------------------------------------------------------------------
 
 	void parse_formula(std::string formula);
 	// void parse_constraint(std::string formula);
@@ -86,7 +106,9 @@ private:
 
 };
 
-
+//-----------------------------------------------------------------------------
+//  Error for bd formula parsing
+//-----------------------------------------------------------------------------
 class parsing_error : public std::runtime_error
 {
 public:

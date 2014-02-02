@@ -8,7 +8,6 @@
 
 autoencoder::autoencoder(int n_inputs, int n_outputs, 
     layer_type encoder_type, layer_type decoder_type) :
-
 layer(n_inputs, n_outputs, encoder_type), 
 decoder(n_outputs, n_inputs, decoder_type),
 m_paradigm(agile::types::Autoencoder)

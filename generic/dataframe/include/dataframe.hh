@@ -1,3 +1,10 @@
+//-----------------------------------------------------------------------------
+//  dataframe.hh:
+//  Header for dataset handling, almost in the vain of the R language
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
+
 #ifndef DATAFRAME__HH
 #define DATAFRAME__HH 
 
@@ -20,6 +27,7 @@
 
 namespace agile
 {
+
 // typedef blitz::Array<double, 2> array;
 // typedef blitz::Array<double, 1> slice;
 
@@ -27,7 +35,6 @@ namespace agile
 // agile::matrix eigenize(const agile::array &A);
 
 // agile::vector eigenize(const agile::slice &A);
-
 
 
 
@@ -107,6 +114,9 @@ public:
     // TO DO
 
 private:
+//-----------------------------------------------------------------------------
+//  Private data fields
+//-----------------------------------------------------------------------------
     std::map<std::string, std::size_t> column_names;
     data_t data;
     
@@ -121,6 +131,9 @@ private:
 
 }
 
+//-----------------------------------------------------------------------------
+//  For invalid appending
+//-----------------------------------------------------------------------------
 class dimension_error: public std::runtime_error 
 {
 public: 

@@ -1,3 +1,10 @@
+//-----------------------------------------------------------------------------
+//  smart_chain.hh:
+//  Header for TChain wrapper
+//  Authors: Dan Guest (dguest@cern.ch) (primary)
+//           Luke de Oliveira (luke.deoliveira@yale.edu) (basically nothing)
+//-----------------------------------------------------------------------------
+
 #ifndef SMART_CHAIN_H
 #define SMART_CHAIN_H
 
@@ -8,7 +15,9 @@
 #include <stdexcept>
 
 
-
+//-----------------------------------------------------------------------------
+//  smart_chain: a TChain that actually works and handles nasty setting.
+//-----------------------------------------------------------------------------
 class smart_chain: public TChain 
 { 
 public: 
@@ -30,6 +39,7 @@ private:
     Strings m_files; 
 }; 
 
+//----------------------------------------------------------------------------
 class MissingBranchError: public std::runtime_error 
 {
 public: 
@@ -37,7 +47,6 @@ public:
 }; 
 
 // -------- implementation -----
-
 
 template<typename T, typename Z>
 void smart_chain::set_branch(T name, Z branch)

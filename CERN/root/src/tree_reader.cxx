@@ -1,5 +1,10 @@
-#include "tree_reader.hh"
+//-----------------------------------------------------------------------------
+//  tree_reader.cxx:
+//  Header for dumping ROOT data into a dataframe or some std::vectors
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
 
+#include "tree_reader.hh"
 
 namespace root
 {

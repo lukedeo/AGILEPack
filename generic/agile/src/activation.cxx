@@ -59,7 +59,7 @@ agile::vector agile::functions::softmax(const agile::vector &v)
     return std::move(w);
 }
 //----------------------------------------------------------------------------
-agile::vector agile::functions::add_noise(const agile::vector &v, numeric level)
+agile::vector agile::functions::add_noise(const agile::vector &v, double level)
 {
     std::normal_distribution <numeric> distribution(0.0, level);
 

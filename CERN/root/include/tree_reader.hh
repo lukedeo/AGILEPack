@@ -1,10 +1,16 @@
+//-----------------------------------------------------------------------------
+//  tree_reader.hh:
+//  Header for dumping ROOT data into a dataframe or some std::vectors
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
+
 #ifndef ROOT__tree_reader_HH
 #define ROOT__tree_reader_HH 
 
+#include <cstddef> //std::size_t
 #include "smart_chain.hh"
 #include "numeric_handler.hh"
 #include "dataframe.hh"
-#include <cstddef> //std::size_t
 
 
 
@@ -51,11 +57,6 @@ public:
     //     const std::vector<std::string> &inputs, 
     //     const std::vector<std::string> &targets, int entries = -1, 
     //     int start = -1);
-
-
-
-
-
 //-----------------------------------------------------------------------------
 //  Element Access
 //-----------------------------------------------------------------------------
