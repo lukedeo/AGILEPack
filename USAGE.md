@@ -19,3 +19,5 @@ The API for AGILEPack was designed to be as versatile as possible, while still a
 ```
 
 The variable names are `X`, `X2`, and `Y`. Note that the quotation marks around the variable names are optional, as the parser will remove extraneous quotations out of column names. 
+
+
