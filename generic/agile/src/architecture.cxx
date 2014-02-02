@@ -147,32 +147,32 @@ void architecture::encode(const agile::vector &in, const unsigned int &which, bo
     stack.at(which)->encode(v, noisify);
 }
 //----------------------------------------------------------------------------
-YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch)
-{
-    out << YAML::BeginMap << YAML::Key << "layer_hash";
-    out << YAML::Key << YAML::BeginSeq;
-    unsigned char hash[20];
-    char hexstring[41];
-    std::string weight_string;
-    for (auto &entry : arch.stack)
-    {
-        weight_string = agile::stringify(entry->W);
-        // 10 is the length of the string
-        sha1::calc(weight_string.c_str(),weight_string.size(),hash); 
-        sha1::toHexString(hash, hexstring);
-        out << hexstring;
-    }
-    out << YAML::EndSeq;
-    for (auto &entry : arch.stack)
-    {
-        weight_string = agile::stringify(entry->W);
-        // 10 is the length of the string
-        sha1::calc(weight_string.c_str(),weight_string.size(),hash); 
-        sha1::toHexString(hash, hexstring);
-        out << YAML::Key << hexstring;
-        out << YAML::Value << *(entry);
-    }
-    out << YAML::EndMap;
-    return out;
+// YAML::Emitter& operator << (YAML::Emitter& out, const architecture &arch)
+// {
+//     out << YAML::BeginMap << YAML::Key << "layer_hash";
+//     out << YAML::Key << YAML::BeginSeq;
+//     unsigned char hash[20];
+//     char hexstring[41];
+//     std::string weight_string;
+//     for (auto &entry : arch.stack)
+//     {
+//         weight_string = agile::stringify(entry->W);
+//         // 10 is the length of the string
+//         sha1::calc(weight_string.c_str(),weight_string.size(),hash); 
+//         sha1::toHexString(hash, hexstring);
+//         out << hexstring;
+//     }
+//     out << YAML::EndSeq;
+//     for (auto &entry : arch.stack)
+//     {
+//         weight_string = agile::stringify(entry->W);
+//         // 10 is the length of the string
+//         sha1::calc(weight_string.c_str(),weight_string.size(),hash); 
+//         sha1::toHexString(hash, hexstring);
+//         out << YAML::Key << hexstring;
+//         out << YAML::Value << *(entry);
+//     }
+//     out << YAML::EndMap;
+//     return out;
     
-}
+// }

@@ -176,8 +176,8 @@ public:
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------
     
-    friend YAML::Emitter& operator << (YAML::Emitter& out, 
-        const architecture &arch);
+    // friend YAML::Emitter& operator << (YAML::Emitter& out, 
+    //     const architecture &arch);
 
     friend struct YAML::convert<architecture>;
 
