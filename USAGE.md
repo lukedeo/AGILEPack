@@ -113,9 +113,29 @@ Is simply "predict `bottom` and `pt` as functions of everything on the right han
 ##Training a neural network.
 
 ```
+// let's reuse the agile::dataframe named D from before
 agile::neural_net my_net;
 
+agile::dataframe D = btag_reader.get_dataframe(1000);
+my_net.add_data(D);
 
+my_net.model_formula("bottom ~ * -eta");
+
+my_net.emplace_back(new autoencoder(8, 17, sigmoid));
+my_net.emplace_back(new autoencoder(17, 12, sigmoid)); 
+my_net.emplace_back(new autoencoder(12, 5, sigmoid)); 
+my_net.emplace_back(new autoencoder(5, 3, sigmoid)); 
+my_net.emplace_back(new autoencoder(3, 1, sigmoid)); 
+
+arch.set_learning(0.05);
+arch.set_regularizer(0.001);
+arch.set_batch_size(1);
+arch.check();
+
+arch.train_unsupervised(10); // 10 unsupervised epochs
+
+arch.set_learning(0.05);     // new learning rate
+arch.train_supervised(100);  // 100 supervised epochs
 ```
 
 
