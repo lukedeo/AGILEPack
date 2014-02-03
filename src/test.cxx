@@ -96,19 +96,16 @@ int main(int argc, char const *argv[])
     }
 
     arch.set_learning(0.05);
+
+
+    arch.add_data(D);
+
+
+    arch.model_formula(formula);
     
     int epochs = 300;
 
-    for (int i = 0; i < epochs; ++i)
-    {
-        for (int point = 0; point < X.rows(); ++point)
-        {
-            if(Y.row(point).sum() > 0)
-            {
-                arch.correct(X.row(point), Y.row(point));
-            }
-        }
-    }
+    arch.train_supervised(epochs);
 
     std::ofstream file("neural_network.yaml");
     YAML::Emitter out;

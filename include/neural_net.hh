@@ -35,14 +35,15 @@ public:
 	// void finalize(bool scale = true);
 	// void load_network(const std::string &formula);
 	// void save_network(const std::string &formula);
-	// void train_unsupervised(const unsigned int &iters);
-	// void train_supervised(const unsigned int &iters);
+	// void train_unsupervised(const unsigned int &epochs);
+	void train_supervised(const unsigned int &epochs);
 
 private:
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;
 	agile::matrix X, Y;
 	agile::model_frame m_model;
+	unsigned int n_training;
 };
 
 
@@ -76,7 +77,7 @@ struct convert<neural_net>
             }
         }
         node["input_order"] = arch.predictor_order;
-        node["target_order"] = arch.predictor_order;
+        node["target_order"] = arch.target_order;
         return node;
     }
 
