@@ -35,7 +35,7 @@ public:
 	// void finalize(bool scale = true);
 	// void load_network(const std::string &formula);
 	// void save_network(const std::string &formula);
-	// void train_unsupervised(const unsigned int &epochs);
+	void train_unsupervised(const unsigned int &epochs, bool denoising = false);
 	void train_supervised(const unsigned int &epochs);
 
 	void check();

@@ -9,23 +9,14 @@
 
 int main(int argc, char const *argv[])
 {
-    // auto in_file = std::string(argv[1]);
-    // agile::dataframe X_(in_file, true);
-
-    // auto out_file = std::string(argv[2]);
-    // agile::dataframe Y_(out_file, true);
-
-    // agile::matrix X = eigen_spew(X_);
-    // agile::matrix Y = eigen_spew(Y_);
-
     auto in_file = std::string(argv[1]);
     auto tree_name = std::string(argv[2]);
 
     root::tree_reader TR;
 
     TR.add_file(in_file, tree_name);
-    // TR.set_branch("pt", root::double_precision);
 
+    TR.set_branch("pt", root::double_precision);
     TR.set_branch("bottom", root::integer);
     TR.set_branch("charm", root::integer);
     TR.set_branch("light", root::integer);
@@ -58,24 +49,24 @@ int main(int argc, char const *argv[])
     TR.set_branch("jfit_nvtx1t", root::integer);
     TR.set_branch("jfit_ntrkAtVx", root::integer);
 
+    std::cout << "Pulling dataset from ROOT file...";
     agile::dataframe D = TR.get_dataframe(1000);
 
-    std::string formula = (argc <= 3) ? "bottom + light + charm ~ * -eta": std::string(argv[3]);
+    std::cout << "Done." << std::endl;
 
-    agile::model_frame Model;
+    std::string formula = (argc <= 3) ? "bottom + light + charm ~ * -eta -pt": std::string(argv[3]);
 
-    Model.add_dataset(D);
-    Model.model_formula(formula);
-    Model.generate();
-    Model.scale();
-
-    auto X = Model.X();
-    auto Y = Model.Y();
+    std::cout << "Formula: " << formula << std::endl;
 
     neural_net arch;
-
+    std::cout << "Adding dataset to the neural net...";
     arch.add_data(D);
+    std::cout << "Done." << std::endl;
+    std::cout << "Parsing and extracting formula...";
     arch.model_formula(formula);
+    std::cout << "Done." << std::endl;
+
+    std::cout << "Forming Network Structure...";
 
     arch.emplace_back(new autoencoder(20, 40, sigmoid)); 
     arch.emplace_back(new autoencoder(40, 30, sigmoid)); 
@@ -87,26 +78,25 @@ int main(int argc, char const *argv[])
     arch.set_regularizer(0.001);
     arch.set_batch_size(1);
 
-    // for (int l = 0; l < 4; ++l)
-    // {
-    //     for (int i = 0; i < 100; ++i)
-    //     {
-    //         for (int point = 0; point < X.rows(); ++point)
-    //         {
-    //             arch.encode(X.row(point), l, false);
-    //         }
-    //     }
-    // }
-
-    arch.set_learning(0.05);
-
-
-    
-    int epochs = 300;
+    std::cout << "Done." << std::endl;
 
     arch.check();
 
+    std::cout << "Unsupervised Learning...";
+
+    arch.train_unsupervised(10);
+
+    arch.set_learning(0.05);
+    
+    int epochs = 300;
+
+    std::cout << "Done." << std::endl;
+
+    std::cout << "Supervised Learning...";
+
     arch.train_supervised(epochs);
+
+    std::cout << "Done." << std::endl;
 
     std::ofstream file("neural_network.yaml");
     YAML::Emitter out;
@@ -117,6 +107,21 @@ int main(int argc, char const *argv[])
     file << out.c_str();
     file.close();
     std::cout << "original:\n";
+
+    //----------------------------------------------------------------------------
+    // This is cross check stuff
+
+    agile::model_frame Model;
+
+    Model.add_dataset(D);
+    Model.model_formula(formula);
+    Model.generate();
+    Model.scale();
+
+    auto X = Model.X();
+    auto Y = Model.Y();
+    //----------------------------------------------------------------------------
+
     for (int point = 0; point < 3; ++point)
     {
         agile::rowvec r = arch.predict(X.row(point));

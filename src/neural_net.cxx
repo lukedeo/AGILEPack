@@ -97,11 +97,24 @@ void neural_net::model_formula(const std::string &formula, bool scale)
 //         file.close();
 //     }
 // }
-
-// void neural_net::train_unsupervised(const unsigned int &epochs)
-// {
-
-// }
+//----------------------------------------------------------------------------
+void neural_net::train_unsupervised(const unsigned int &epochs, bool denoising)
+{
+    int idx = 0;
+    while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
+    {
+        for (int e = 0; e < epochs; ++e)
+        {
+            for (int i = 0; i < n_training; ++i)
+            {
+                encode(X.row(i), idx, denoising);
+            }
+        }
+        ++idx;
+        if (idx >= stack.size()) break;
+    }
+}
+//----------------------------------------------------------------------------
 void neural_net::train_supervised(const unsigned int &epochs)
 {
     if (!m_checked)
@@ -116,7 +129,7 @@ void neural_net::train_supervised(const unsigned int &epochs)
         }
     }
 }
-
+//----------------------------------------------------------------------------
 void neural_net::check()
 {
     if (stack.size() > 0)
