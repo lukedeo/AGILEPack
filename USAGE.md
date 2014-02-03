@@ -86,7 +86,7 @@ So, we can call `append()` to squash dataframes together (some checking of bound
 
 ##Syntax for formulas
 
-We don't know how to use the neural network training portion of the API yet, but it's important to document the formula syntax. Input and output variables and discriminants are specified using a *model formula*. This is a fancy way of saying that variable inclusion and exclusion can run by a formula parser that constructs what the neural network sees. The following characters are used to specify a formula:
+We don't know how to use the neural network training portion of the API yet, but it's important to document the formula syntax. Input and output variables and discriminants are specified using a *model formula*. This is a fancy way of saying that variable inclusion and exclusion can be run by a formula parser that constructs what the neural network sees. The following characters are used to specify a formula:
 
 | Character | Meaning |
 |-----------|---------|
@@ -134,7 +134,7 @@ arch.check();
 
 arch.train_unsupervised(10); // 10 unsupervised epochs
 
-arch.set_learning(0.05);     // new learning rate
+arch.set_learning(0.01);     // new learning rate
 arch.train_supervised(100);  // 100 supervised epochs
 ```
 
