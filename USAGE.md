@@ -49,4 +49,49 @@ What happens now? Well, suppose we want to get the value of `pt` at the 4th entr
 btag_reader(4, "pt")
 ```
 
-This is great, but doesn't help us train a neural network. 
+This is great, but doesn't help us train a neural network. Enter, the `agile::dataframe`. Unfortunately, it's necessary for neural network training to have access to data stored in a structure that provides random pattern access. Thus, we can use the the `agile::dataframe` as a sort of temporary storage. Let's dump some entries from our `TTree` stored in `btag_reader` into a `dataframe`.
+
+```
+agile::dataframe D = btag_reader.get_dataframe(1000);
+//                                ~~~~~~~~~~~~~~^
+//                            Dumps 1000 entries
+
+agile::dataframe D = btag_reader.get_dataframe(500, 12);
+//                                ~~~~~~~~~~~~~~^    ^~~~~~~~
+//                            Dumps 500 entries...   ...after skipping the first 12 entries
+
+agile::dataframe D = btag_reader.get_dataframe();
+//                                ~~~~~~~~~~~~^
+//                            Dump ALL the things
+```
+
+Ah shoot, there's another ROOT file called `training_2.root` with a `TTree` called `more_physics` that I *also* want in this `dataframe`. Fear not!
+
+```
+agile::root::tree_reader another_reader;                   // declare a tree_reader instance
+another_reader.add_file("training_2.root", "more_physics") // Load the file and TTree
+
+// ...set all the branches for this one. (not included for brevity)
+
+// we already have our `agile::dataframe` named `D` from before.
+D.append(std::move(another_reader.get_dataframe(1000)));
+//       ^~~~~~~~~^
+//     Optional, but avoids copy
+
+```
+
+So, we can call `append()` to squash dataframes together (some checking of bounds and such happens in the background). Now, let's train a deep learner!
+
+```
+agile::neural_net my_net;
+
+```
+
+
+
+
+
+
+
+
+
