@@ -38,12 +38,15 @@ public:
 	// void train_unsupervised(const unsigned int &epochs);
 	void train_supervised(const unsigned int &epochs);
 
+	void check();
+
 private:
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;
 	agile::matrix X, Y;
 	agile::model_frame m_model;
 	unsigned int n_training;
+	bool m_checked;
 };
 
 
@@ -110,6 +113,9 @@ struct convert<neural_net>
 
                      
         }
+
+        arch.predictor_order = node["input_order"].as<std::vector<std::string>>();
+		arch.target_order = node["target_order"].as<std::vector<std::string>>();
 
         return true;
     }

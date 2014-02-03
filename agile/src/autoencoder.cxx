@@ -90,6 +90,29 @@ void autoencoder::construct(int n_inputs, int n_outputs,
     m_paradigm = agile::types::Autoencoder;
 }
 //----------------------------------------------------------------------------
+void autoencoder::resize_input(int n_inputs)
+{
+    decoder.resize_input(n_inputs);
+    m_inputs = n_inputs;
+    W.resize(m_outputs, n_inputs);
+    W_change.resize(m_outputs, n_inputs);
+    W_old.resize(m_outputs, n_inputs);
+    m_in.resize(n_inputs, Eigen::NoChange);
+}
+//----------------------------------------------------------------------------
+void autoencoder::resize_output(int n_outputs)
+{
+    decoder.resize_output(n_outputs);
+    m_outputs = n_outputs;
+    W.resize(n_outputs, m_inputs);
+    W_change.resize(n_outputs, m_inputs);
+    W_old.resize(n_outputs, m_inputs);
+    b.resize(n_outputs, Eigen::NoChange);
+    b_change.resize(n_outputs, Eigen::NoChange);
+    b_old.resize(n_outputs, Eigen::NoChange);
+    m_out.resize(n_outputs, Eigen::NoChange);
+}
+//----------------------------------------------------------------------------
 void autoencoder::reset_weights(numeric bound)
 {
     layer::reset_weights(bound);

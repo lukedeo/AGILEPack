@@ -215,6 +215,27 @@ void layer::reset_weights(numeric bound)
 
 }
 //----------------------------------------------------------------------------
+void layer::resize_input(int n_inputs)
+{
+    m_inputs = n_inputs;
+    W.resize(m_outputs, n_inputs);
+    W_change.resize(m_outputs, n_inputs);
+    W_old.resize(m_outputs, n_inputs);
+    m_in.resize(n_inputs, Eigen::NoChange);
+}
+//----------------------------------------------------------------------------
+void layer::resize_output(int n_outputs)
+{
+    m_outputs = n_outputs;
+    W.resize(n_outputs, m_inputs);
+    W_change.resize(n_outputs, m_inputs);
+    W_old.resize(n_outputs, m_inputs);
+    b.resize(n_outputs, Eigen::NoChange);
+    b_change.resize(n_outputs, Eigen::NoChange);
+    b_old.resize(n_outputs, Eigen::NoChange);
+    m_out.resize(n_outputs, Eigen::NoChange);
+}
+//----------------------------------------------------------------------------
 void layer::charge(const agile::vector& v)
 {   
     m_in = v;

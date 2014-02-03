@@ -71,6 +71,18 @@ public:
     {
         return m_paradigm;
     }
+
+    virtual void resize_input(int n_inputs);
+    virtual void resize_output(int n_outputs);
+
+    int num_inputs()
+    {
+        return m_inputs;
+    }
+    int num_outputs()
+    {
+        return m_outputs;
+    }
 //-----------------------------------------------------------------------------
 //  Training methods for inter-layer communication
 //-----------------------------------------------------------------------------

@@ -74,7 +74,10 @@ int main(int argc, char const *argv[])
 
     neural_net arch;
 
-    arch.emplace_back(new autoencoder(X.cols(), 40, sigmoid)); 
+    arch.add_data(D);
+    arch.model_formula(formula);
+
+    arch.emplace_back(new autoencoder(20, 40, sigmoid)); 
     arch.emplace_back(new autoencoder(40, 30, sigmoid)); 
     arch.emplace_back(new autoencoder(30, 20, sigmoid)); 
     arch.emplace_back(new autoencoder(20, 10, sigmoid)); 
@@ -84,26 +87,24 @@ int main(int argc, char const *argv[])
     arch.set_regularizer(0.001);
     arch.set_batch_size(1);
 
-    for (int l = 0; l < 4; ++l)
-    {
-        for (int i = 0; i < 100; ++i)
-        {
-            for (int point = 0; point < X.rows(); ++point)
-            {
-                arch.encode(X.row(point), l, false);
-            }
-        }
-    }
+    // for (int l = 0; l < 4; ++l)
+    // {
+    //     for (int i = 0; i < 100; ++i)
+    //     {
+    //         for (int point = 0; point < X.rows(); ++point)
+    //         {
+    //             arch.encode(X.row(point), l, false);
+    //         }
+    //     }
+    // }
 
     arch.set_learning(0.05);
 
 
-    arch.add_data(D);
-
-
-    arch.model_formula(formula);
     
     int epochs = 300;
+
+    arch.check();
 
     arch.train_supervised(epochs);
 
@@ -115,19 +116,25 @@ int main(int argc, char const *argv[])
     out << net;
     file << out.c_str();
     file.close();
-    for (int point = 0; point < 100; ++point)
+    std::cout << "original:\n";
+    for (int point = 0; point < 3; ++point)
     {
-        // arch.at(0)->encode(M.row(point), true);
-        // aut.encode(M.row(point), true);
-        // std::cout << "input:\n" <<  M.row(point) << "\n";
-        // agile::rowvec rv(arch.at(1)->get_encoding(arch.at(0)->get_encoding(M.row(point))));
-        // std::cout <</* "encoding:\n" << */ rv<< "\n";
-        // std::cout << "reconstructed:\n" << arch.at(0)->reconstruct(M.row(point), false) << "\n";
-        // std::cout << "reconstructed:\n" << aut.reconstruct(M.row(point)) << "\n";
-        // std::cout << "original:\n" << Y.row(point) << ", predicted: \n";
         agile::rowvec r = arch.predict(X.row(point));
         std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
-        // getchar();
     }
+
+    std::cout << "loaded:\n";
+
+    YAML::Node config = YAML::LoadFile("neural_network.yaml");
+    architecture ARCH = std::move(config["network"].as<neural_net>());
+
+
+    for (int point = 0; point < 3; ++point)
+    {
+        agile::rowvec r = arch.predict(X.row(point));
+        std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
+    }
+
+
     return 0;
 }

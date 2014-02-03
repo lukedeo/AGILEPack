@@ -41,6 +41,10 @@ public:
 
     void construct(int n_inputs, int n_outputs, 
         layer_type encoder_type = linear, layer_type decoder_type = linear);
+
+    virtual void resize_input(int n_inputs);
+    virtual void resize_output(int n_outputs);
+    
     void reset_weights(numeric bound);
     ~autoencoder(); 
     virtual agile::types::paradigm get_paradigm()

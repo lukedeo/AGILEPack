@@ -8,19 +8,19 @@
 
 
 neural_net::neural_net(int num_layers) 
-: architecture(num_layers)
+: architecture(num_layers), m_checked(false)
 {
 }
 //----------------------------------------------------------------------------
 neural_net::neural_net(std::initializer_list<int> il, problem_type type) 
-: architecture(il, type)
+: architecture(il, type),  m_checked(false)
 {
 }
 //----------------------------------------------------------------------------
 neural_net::neural_net(const neural_net &arch) 
 : architecture(arch), predictor_order(arch.predictor_order), 
 target_order(arch.target_order), X(arch.X), Y(arch.Y), //DF(arch.DF), 
-m_model(arch.m_model)
+m_model(arch.m_model),  m_checked(false)
 {
     for (auto &entry : arch.stack)
     {
@@ -45,6 +45,7 @@ neural_net& neural_net::operator =(const neural_net &arch)
     // DF = arch.DF;
     m_model = arch.m_model;
     n_training = X.rows();
+    m_checked = false;
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -103,6 +104,10 @@ void neural_net::model_formula(const std::string &formula, bool scale)
 // }
 void neural_net::train_supervised(const unsigned int &epochs)
 {
+    if (!m_checked)
+    {
+        std::cout << "Network dimensions unchecked! Proceeding at your own risk..." << std::endl;
+    }
     for (int e = 0; e < epochs; ++e)
     {
         for (int i = 0; i < n_training; ++i)
@@ -110,6 +115,28 @@ void neural_net::train_supervised(const unsigned int &epochs)
             correct(X.row(i), Y.row(i));
         }
     }
+}
+
+void neural_net::check()
+{
+    if (stack.size() > 0)
+    {
+        if (X.cols() != stack.front()->num_inputs())
+        {
+            std::cout << "Formula passed specifies " << X.cols() << " inputs." << std::endl;
+            std::cout << "Changing base layer from " << stack.front()->num_inputs() << " to " << X.cols() << " inputs." << std::endl;
+            stack.front()->resize_input(X.cols());
+
+        }
+        if (Y.cols() != stack.back()->num_outputs())
+        {
+            std::cout << "Formula passed specifies " << Y.cols() << " outputs." << std::endl;
+            std::cout << "Changing base layer from " << stack.back()->num_outputs() << " to " << Y.cols() << " outputs." << std::endl;
+            stack.back()->resize_output(Y.cols());
+        }
+    }
+    m_checked = true;
+
 }
 
 
