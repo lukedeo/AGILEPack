@@ -13,7 +13,6 @@ class neural_net : public architecture
 public:
 	neural_net(int num_layers = 0);
 	neural_net(std::initializer_list<int> il, problem_type type = regress);
-	~neural_net();
 	neural_net(const neural_net &arch);
 	~neural_net();
 
@@ -24,15 +23,17 @@ public:
 	// void set_formula(const std::string &formula);
 	// void add_predictor(const std::string &name);
 	// void add_target(const std::string &name);
-	void model_formula(std::string);
+	void model_formula(const std::string &formula);
 	agile::dataframe& data();
+	void load_network(const std::string &formula);
+	void save_network(const std::string &formula);
+	
 
 private:
 	std::vector<std::string> predictor_order, target_order;
 	agile::matrix X, Y;
 	agile::dataframe DF;
 	agile::model_frame m_model;
-
 };
 
 

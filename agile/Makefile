@@ -20,7 +20,7 @@ YAML_LIB     := $(YAML_DIR)/lib
 HACKED_BOOST := $(YAML_DIR)/boost_subset
 
 LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
-LIBS         += -lYAMLCPP_INTERNAL
+LIBS         += -lyamlc++
 
 YAML         = yaml_proxy
 
@@ -84,7 +84,7 @@ EXECUTABLE   := AGILE
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libAGILE.so
+ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.so
 
 
 all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
@@ -94,7 +94,7 @@ all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
 
 complete: all
 
-lib: $(INFOMSG) $(YAML) $(LIB)/libAGILE.so
+lib: $(INFOMSG) $(YAML) $(LIB)/libagile.so
 
 cli: $(INFOMSG) $(YAML) $(EXECUTABLE)
 
@@ -108,7 +108,7 @@ $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)
 
-$(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
+$(LIB)/libagile.so: $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared

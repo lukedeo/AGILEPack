@@ -21,7 +21,7 @@ vpath %.hh   $(INC)
 CXX          ?= g++
 # CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
-LIBRARY      := $(LIB)/libDataframe.so
+LIBRARY      := $(LIB)/libdataframe.so
 # LDFLAGS      := -Wl,--no-undefined 
 
 # --- external dirs 
@@ -31,7 +31,7 @@ LIBRARY      := $(LIB)/libDataframe.so
 # ---- define objects
 # - not-python 
 
-FRAME_OBJ     := csv_reader.o dataframe.o
+FRAME_OBJ     := csv_reader.o dataframe.o 
 
 # - command line interface
 EXE_OBJ      := dataframe_test.o

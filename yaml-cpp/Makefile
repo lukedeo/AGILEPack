@@ -24,18 +24,18 @@ CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I$(HACKED_BOOST) -g -std=c++11
 # LDFLAGS      := -Wl,--no-undefined 
 
 # ---- define objects
-LIBRARY = $(LIB)/libYAMLCPP_INTERNAL.so
+LIBRARY = $(LIB)/libyamlc++.so
 
 SOURCES = $(shell ls src/*.cpp | xargs -n 1 basename)
 
 OBJ = $(SOURCES:%.cpp=%.o)
 
-all: $(LIB)/libYAMLCPP_INTERNAL.so
+all: $(LIB)/libyamlc++.so
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 	@echo "+++ Complete YAML C++ build sucessful.  +++"
 	@echo "+++++++++++++++++++++++++++++++++++++++++++"
 
-$(LIB)/libYAMLCPP_INTERNAL.so: $(OBJ:%=$(BIN)/%)
+$(LIB)/libyamlc++.so: $(OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared

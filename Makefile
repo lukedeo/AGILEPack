@@ -7,7 +7,7 @@ SRC          := src
 INC          := include
 # LIB          := $(CURDIR)/lib
 
-ROOT_DIR     := $(CURDIR)/../CERN/root
+ROOT_DIR     := $(CURDIR)/root
 ROOT_LIB     := $(ROOT_DIR)/lib
 ROOT_INC     := $(ROOT_DIR)/include
 
@@ -48,17 +48,17 @@ CXXFLAGS     += -I$(YAML_INC)
 CXXFLAGS     += -I$(BOOST_INC)
 
 LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
-LIBS         += -lDataframe
+LIBS         += -ldataframe
 
 LIBS         += -L$(AGILE_LIB) -Wl,-rpath,$(AGILE_LIB)
-LIBS         += -lAGILE
+LIBS         += -lagile
 
 LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
-LIBS         += -lYAMLCPP_INTERNAL
+LIBS         += -lyamlc++
 
 
 LIBS         += -L$(ROOT_LIB) -Wl,-rpath,$(ROOT_LIB)
-LIBS         += -lROOTInterface
+LIBS         += -lROOTinterface
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
