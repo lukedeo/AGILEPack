@@ -193,6 +193,17 @@ void model_frame::parse_formula(std::string formula)
 }
 //----------------------------------------------------------------------------
 
+std::vector<std::string> model_frame::get_inputs()
+{
+    return inputs;
+}
+//----------------------------------------------------------------------------
+std::vector<std::string> model_frame::get_outputs()
+{
+    return outputs;
+}
+//----------------------------------------------------------------------------
+
 
 
 

@@ -83,7 +83,7 @@ LIBS         += $(ROOTLIBS)
 # - not-python 
 
 # - command line interface
-BINARIES     := model_frame.o
+BINARIES     := model_frame.o neural_net.o
 EXE_OBJ      := test.o
 
 

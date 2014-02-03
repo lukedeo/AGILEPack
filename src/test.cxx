@@ -4,6 +4,7 @@
 #include "architecture.hh"
 #include "layer.hh"
 #include "autoencoder.hh"
+#include "neural_net.hh"
 #include <fstream>
 
 int main(int argc, char const *argv[])
@@ -57,7 +58,7 @@ int main(int argc, char const *argv[])
     TR.set_branch("jfit_nvtx1t", root::integer);
     TR.set_branch("jfit_ntrkAtVx", root::integer);
 
-    agile::dataframe D = TR.get_dataframe(2000);
+    agile::dataframe D = TR.get_dataframe(1000);
 
     std::string formula = (argc <= 3) ? "bottom + light + charm ~ * -eta": std::string(argv[3]);
 
@@ -71,7 +72,7 @@ int main(int argc, char const *argv[])
     auto X = Model.X();
     auto Y = Model.Y();
 
-    architecture arch;
+    neural_net arch;
 
     arch.emplace_back(new autoencoder(X.cols(), 40, sigmoid)); 
     arch.emplace_back(new autoencoder(40, 30, sigmoid)); 
@@ -109,7 +110,7 @@ int main(int argc, char const *argv[])
         }
     }
 
-    std::ofstream file("network.yaml");
+    std::ofstream file("neural_network.yaml");
     YAML::Emitter out;
 
     YAML::Node net;

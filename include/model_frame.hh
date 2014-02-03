@@ -78,6 +78,9 @@ public:
 	agile::matrix& Y();
 	agile::matrix& X();
 
+	std::vector<std::string> get_inputs();
+	std::vector<std::string> get_outputs();
+
 private:
 
 //-----------------------------------------------------------------------------

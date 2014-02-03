@@ -48,7 +48,7 @@ public:
     template <class T>
     architecture& operator =(T *L);
 
-    architecture& operator =(const architecture &arch);
+    virtual architecture& operator =(const architecture &arch);
 
 //-----------------------------------------------------------------------------
 //  Layer Manipulation and access methods
