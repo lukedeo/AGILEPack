@@ -1,23 +1,52 @@
-Using the AGILEPack API
+Using the AGILEPack API (For HEP)
 ===========
 
-The API for AGILEPack was designed to be as versatile as possible, while still allowing a power user to tweak the package to their own desires. This tutorial will show a very simple example using a fake CSV dataset. We'll use a dataset ([`D.csv`](https://github.com/lukedeo/AGILEPack/blob/master/generic/D.csv)) that looks like this.
+The API for AGILEPack was designed to be as versatile as possible, while still allowing a power user to tweak the package to their own desires. This tutorial will show a very simple example using a fake ROOT file (which doesnt actually exist).
+
+Suppose we want to make a *b*-tagger. Say we have an `TFile` called `training.root` over which we'd like to train a neural network. Let's also say that a *flat, numeric* `ntuple` lives inside a `TTree` called `Physics`. (**NOTE:** the `ntuple(s)` must be flat).
+
+For the sake of this tutorial, suppose that the `ntuple` has the following branches:
+
+| Branch Name | (C/C++) Numeric Type |
+|-------------|--------------------------|
+| `bottom`| `int` |
+| `nTracks`| `int` |
+| `nVTX`| `int` |
+| `ip3d_pb`| `double` |
+| `ip3d_pu`| `double` |
+| `ip3d_pc`| `double` |
+| `mass`| `float` |
+| `significance3d`| `float` |
+| `pt`| `float` |
+| `eta`| `float` |
+
+For the estimation of the posterior probability that a given jet is a bottom jet, we need that that the `bottom` branch is a `1` if a jet is a bottom, and a `0` otherwise.
+
+Now, let's see how the AGILEPack API helps us load this into a usable format.
 
 ```
-"X", "X2", "Y"
-0.105702184275515, 1.65761733148966, -0.012620126269064
--0.934567215255002, -13.5335926187866, 0.651449144466462
-1.42106748564207, 20.8660939658939, -1.17105149032125
-1.41813910052268, 20.8233303191078, -1.13185968976074
--1.09174298879155, -15.8288539962416, -0.141019422812328
--0.896676941136426, -12.9802752670808, 0.847703755485907
--1.64363750784683, -23.8882523724308, 2.28458046863387
-0.479913257986828, 7.12227772526112, -0.373281316632109
--0.995153891771525, -14.4183489363014, 0.562680542929479
-1.24130698522112, 18.2410244368913, -1.61076745845561
-...
+agile::root::tree_reader btag_reader;            // declare a tree_reader instance
+btag_reader.add_file("training.root", "Physics") // Load the file and TTree
+
+// Set all the branches. Notice the passing of types.
+btag_reader.set_branch("bottom", agile::root::integer);
+btag_reader.set_branch("nTracks", agile::root::integer);
+btag_reader.set_branch("nVTX", agile::root::integer);
+btag_reader.set_branch("ip3d_pb", agile::root::double_precision);
+btag_reader.set_branch("ip3d_pu", agile::root::double_precision);
+btag_reader.set_branch("ip3d_pc", agile::root::double_precision);
+btag_reader.set_branch("mass", agile::root::single_precision);
+btag_reader.set_branch("significance3d", agile::root::single_precision);
+btag_reader.set_branch("pt", agile::root::single_precision);
+btag_reader.set_branch("eta", agile::root::single_precision);
+//                     ^~~~^  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~^  
+//                  branch name       the numeric type
 ```
 
-The variable names are `X`, `X2`, and `Y`. Note that the quotation marks around the variable names are optional, as the parser will remove extraneous quotations out of column names. 
+What happens now? Well, suppose we want to get the value of `pt` at the 4th entry. We can call:
 
+```
+btag_reader(4, "pt")
+```
 
+This is great, but doesn't help us train a neural network. 

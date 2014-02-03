@@ -6,6 +6,8 @@
 
 #include "neural_net.hh"
 
+namespace agile
+{
 
 neural_net::neural_net(int num_layers) 
 : architecture(num_layers), m_checked(false)
@@ -149,6 +151,8 @@ void neural_net::check()
         }
     }
     m_checked = true;
+
+}
 
 }
 

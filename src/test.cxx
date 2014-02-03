@@ -12,42 +12,42 @@ int main(int argc, char const *argv[])
     auto in_file = std::string(argv[1]);
     auto tree_name = std::string(argv[2]);
 
-    root::tree_reader TR;
+    agile::root::tree_reader TR;
 
     TR.add_file(in_file, tree_name);
 
-    TR.set_branch("pt", root::double_precision);
-    TR.set_branch("bottom", root::integer);
-    TR.set_branch("charm", root::integer);
-    TR.set_branch("light", root::integer);
-    TR.set_branch("eta", root::double_precision);
-    TR.set_branch("cat_pT", root::integer);
-    TR.set_branch("cat_eta", root::integer);
-    TR.set_branch("nSingleTracks", root::integer);
-    TR.set_branch("nTracks", root::integer);
-    TR.set_branch("nTracksAtVtx", root::integer);
-    TR.set_branch("nVTX", root::integer);
-    TR.set_branch("SV1", root::double_precision);
-    TR.set_branch("SV0", root::double_precision);
-    TR.set_branch("ip3d_pb", root::double_precision);
-    TR.set_branch("ip3d_pu", root::double_precision);
-    TR.set_branch("ip3d_pc", root::double_precision);
-    TR.set_branch("jfit_efrc", root::double_precision);
-    TR.set_branch("jfit_mass", root::double_precision);
-    TR.set_branch("jfit_sig3d", root::double_precision);
-    TR.set_branch("svp_mass", root::double_precision);
-    TR.set_branch("svp_efrc", root::double_precision);
-    TR.set_branch("energyFraction", root::double_precision);
-    TR.set_branch("mass", root::double_precision);
-    TR.set_branch("maxSecondaryVertexRho", root::double_precision);
-    TR.set_branch("maxTrackRapidity", root::double_precision);
-    TR.set_branch("meanTrackRapidity", root::double_precision);
-    TR.set_branch("minTrackRapidity", root::double_precision);
-    TR.set_branch("significance3d", root::double_precision);
-    TR.set_branch("subMaxSecondaryVertexRho", root::double_precision);
-    TR.set_branch("jfit_nvtx", root::integer);
-    TR.set_branch("jfit_nvtx1t", root::integer);
-    TR.set_branch("jfit_ntrkAtVx", root::integer);
+    TR.set_branch("pt", agile::root::double_precision);
+    TR.set_branch("bottom", agile::root::integer);
+    TR.set_branch("charm", agile::root::integer);
+    TR.set_branch("light", agile::root::integer);
+    TR.set_branch("eta", agile::root::double_precision);
+    TR.set_branch("cat_pT", agile::root::integer);
+    TR.set_branch("cat_eta", agile::root::integer);
+    TR.set_branch("nSingleTracks", agile::root::integer);
+    TR.set_branch("nTracks", agile::root::integer);
+    TR.set_branch("nTracksAtVtx", agile::root::integer);
+    TR.set_branch("nVTX", agile::root::integer);
+    TR.set_branch("SV1", agile::root::double_precision);
+    TR.set_branch("SV0", agile::root::double_precision);
+    TR.set_branch("ip3d_pb", agile::root::double_precision);
+    TR.set_branch("ip3d_pu", agile::root::double_precision);
+    TR.set_branch("ip3d_pc", agile::root::double_precision);
+    TR.set_branch("jfit_efrc", agile::root::double_precision);
+    TR.set_branch("jfit_mass", agile::root::double_precision);
+    TR.set_branch("jfit_sig3d", agile::root::double_precision);
+    TR.set_branch("svp_mass", agile::root::double_precision);
+    TR.set_branch("svp_efrc", agile::root::double_precision);
+    TR.set_branch("energyFraction", agile::root::double_precision);
+    TR.set_branch("mass", agile::root::double_precision);
+    TR.set_branch("maxSecondaryVertexRho", agile::root::double_precision);
+    TR.set_branch("maxTrackRapidity", agile::root::double_precision);
+    TR.set_branch("meanTrackRapidity", agile::root::double_precision);
+    TR.set_branch("minTrackRapidity", agile::root::double_precision);
+    TR.set_branch("significance3d", agile::root::double_precision);
+    TR.set_branch("subMaxSecondaryVertexRho", agile::root::double_precision);
+    TR.set_branch("jfit_nvtx", agile::root::integer);
+    TR.set_branch("jfit_nvtx1t", agile::root::integer);
+    TR.set_branch("jfit_ntrkAtVx", agile::root::integer);
 
     std::cout << "Pulling dataset from ROOT file...";
     agile::dataframe D = TR.get_dataframe(1000);
@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
 
     std::cout << "Formula: " << formula << std::endl;
 
-    neural_net arch;
+    agile::neural_net arch;
     std::cout << "Adding dataset to the neural net...";
     arch.add_data(D);
     std::cout << "Done." << std::endl;
@@ -131,7 +131,7 @@ int main(int argc, char const *argv[])
     std::cout << "loaded:\n";
 
     YAML::Node config = YAML::LoadFile("neural_network.yaml");
-    architecture ARCH = std::move(config["network"].as<neural_net>());
+    architecture ARCH = std::move(config["network"].as<agile::neural_net>());
 
 
     for (int point = 0; point < 3; ++point)

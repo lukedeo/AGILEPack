@@ -6,6 +6,8 @@
 
 #include "tree_reader.hh"
 
+namespace agile
+{
 namespace root
 {
 
@@ -198,4 +200,5 @@ std::vector<std::string> tree_reader::get_ordered_branch_names()
 //----------------------------------------------------------------------------
 
 
+}
 }

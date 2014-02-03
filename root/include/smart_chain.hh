@@ -15,6 +15,12 @@
 #include <stdexcept>
 
 
+namespace agile
+{
+namespace root
+{
+
+
 //-----------------------------------------------------------------------------
 //  smart_chain: a TChain that actually works and handles nasty setting.
 //-----------------------------------------------------------------------------
@@ -53,6 +59,9 @@ void smart_chain::set_branch(T name, Z branch)
 {
     *branch = 0; 
     SetBranchAddressPrivate(name, branch); 
+}
+
+}
 }
 
 

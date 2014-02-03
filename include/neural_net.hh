@@ -5,14 +5,18 @@
 #include "dataframe.hh"
 #include "model_frame.hh"
 
+namespace agile
+{
 class neural_net;
-
+}
 namespace YAML
 {
     template <>
-    struct convert<neural_net>;
+    struct convert<agile::neural_net>;
 }
-	
+namespace agile
+{
+
 class neural_net : public architecture
 {
 public:
@@ -49,6 +53,8 @@ private:
 	bool m_checked;
 };
 
+}
+
 
 
 
@@ -60,9 +66,9 @@ namespace YAML
 {
 
 template<>
-struct convert<neural_net> 
+struct convert<agile::neural_net> 
 {
-    static Node encode(const neural_net &arch)
+    static Node encode(const agile::neural_net &arch)
     {
         Node node;
         for (unsigned int i = 0; i < arch.stack.size(); ++i)
@@ -84,7 +90,7 @@ struct convert<neural_net>
         return node;
     }
 
-    static bool decode(const Node& node, neural_net &arch) 
+    static bool decode(const Node& node, agile::neural_net &arch) 
     {
 
         arch.clear();

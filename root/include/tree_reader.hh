@@ -13,7 +13,8 @@
 #include "dataframe.hh"
 
 
-
+namespace agile
+{
 namespace root
 {
 
@@ -92,6 +93,8 @@ private:
 
     std::vector<std::string> feature_names;
 };
+
+}
 
 }
 

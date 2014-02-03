@@ -12,6 +12,10 @@
 #include <sstream>
 #include <iostream>
 
+namespace agile
+{
+namespace root
+{
 //----------------------------------------------------------------------------
 smart_chain::smart_chain(std::string tree_name)
 : TChain(tree_name.c_str()), m_tree_name(tree_name)
@@ -103,4 +107,7 @@ const {
 MissingBranchError::MissingBranchError(const std::string& what_arg)
 : std::runtime_error(what_arg)
 {
+}
+
+}
 }
