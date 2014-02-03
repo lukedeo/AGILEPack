@@ -5,6 +5,8 @@ The API for AGILEPack was designed to be as versatile as possible, while still a
 
 Suppose we want to make a *b*-tagger. Say we have an `TFile` called `training.root` over which we'd like to train a neural network. Let's also say that a *flat, numeric* `ntuple` lives inside a `TTree` called `Physics`. (**NOTE:** the `ntuple(s)` must be flat).
 
+##Dealing with the data
+
 For the sake of this tutorial, suppose that the `ntuple` has the following branches:
 
 | Branch Name | (C/C++) Numeric Type |
@@ -80,10 +82,39 @@ D.append(std::move(another_reader.get_dataframe(1000)));
 
 ```
 
-So, we can call `append()` to squash dataframes together (some checking of bounds and such happens in the background). Now, let's train a deep learner!
+So, we can call `append()` to squash dataframes together (some checking of bounds and such happens in the background).
+
+##Syntax for formulas
+
+We don't know how to use the neural network training portion of the API yet, but it's important to document the formula syntax. Input and output variables and discriminants are specified using a *model formula*. This is a fancy way of saying that variable inclusion and exclusion can run by a formula parser that constructs what the neural network sees. The following characters are used to specify a formula:
+
+| Character | Meaning |
+|-----------|---------|
+| `~` | Means "is a function of". This splits the left and right hand sides of what the neural network is estimating.|
+| `+` | Means "Include the next variable in the neural network".|
+| `-` | Means "Don't include the next variable in the neural network".|
+| `*` | Standard glob. Means "Include everything not on the left hand side of the formula".|
+
+In our case (with the branches mentioned in the previous section), the formula 
+```
+"bottom ~ *"
+``` 
+would mean "predict `bottom` using all other variables as inputs". The formula 
+```
+"bottom ~ * - eta"
+``` 
+would mean "predict `bottom` using all other variables *except* `eta` as inputs". The formula 
+```
+"bottom + pt ~ ip3d_pb + ip3d_pu + ip3d_pc + mass"
+``` 
+Is simply "predict `bottom` and `pt` as functions of everything on the right hand side". Note that formulas aren't space sensitive -- the formulas `bott om    ~ pt+eta +     ip3d_pb` and `bottom ~ pt + eta + ip3d_pb` are the exact same thing.
+
+
+##Training a neural network.
 
 ```
 agile::neural_net my_net;
+
 
 ```
 
