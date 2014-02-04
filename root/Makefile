@@ -49,10 +49,11 @@ TEST_EXEC   := root_test
 
 LIB_OBJ      := $(UTIL_OBJ)
 ALLOBJ       := $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(TEST_EXEC) $(LIBRARY)
+ALLOUTPUT    := $(LIBRARY)
 
 
 all: $(ALLOUTPUT)
+	@echo "libROOTinterface.so build successful."
 
 $(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"

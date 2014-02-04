@@ -43,7 +43,8 @@ ALLOBJ       := $(EXE_OBJ) $(FRAME_OBJ)
 ALLOUTPUT    := $(EXECUTABLE)
 
 
-all: $(LIBRARY) $(ALLOUTPUT)
+all: $(LIBRARY)
+	@echo "libdataframe.so build sucessful."
 
 lib: $(LIBRARY)
 

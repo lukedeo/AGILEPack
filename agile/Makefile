@@ -84,13 +84,11 @@ EXECUTABLE   := AGILE
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.so
+ALLOUTPUT    := $(LIB)/libagile.so
 
 
 all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
-	@echo "+++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+++ Complete AGILEPack build sucessful. +++"
-	@echo "+++++++++++++++++++++++++++++++++++++++++++"
+	@echo "AGILE base (libagile.so) build successful."
 
 complete: all
 
@@ -117,20 +115,13 @@ $(YAML):
 	@$(MAKE) -C $(YAML_DIR)
 
 dont_build_yaml: 
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+ Assuming YAML C++ exists in a standard search directory. +"
-	@echo "+             If this fails, invoke just 'make'.           +"
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "Assuming YAML C++ exists somewhere."
 
 build_yaml: 
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+   Installing a local version of the YAML C++ library     +"
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "Installing a local version of the libyamlc++.so"
 
 production_code: 
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+       Installing a production version of AGILEPack       +"
-	@echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "production version of libagile.so"
 
 
 basic: all

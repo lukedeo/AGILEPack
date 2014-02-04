@@ -31,9 +31,7 @@ SOURCES = $(shell ls src/*.cpp | xargs -n 1 basename)
 OBJ = $(SOURCES:%.cpp=%.o)
 
 all: $(LIB)/libyamlc++.so
-	@echo "+++++++++++++++++++++++++++++++++++++++++++"
-	@echo "+++ Complete YAML C++ build sucessful.  +++"
-	@echo "+++++++++++++++++++++++++++++++++++++++++++"
+	@echo "libyamlc++.so build successful."
 
 $(LIB)/libyamlc++.so: $(OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
