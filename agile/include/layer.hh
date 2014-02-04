@@ -65,7 +65,7 @@ public:
         return new layer(*this);
     }
 
-    virtual void construct(int n_inputs, int n_outputs, layer_type type);
+    void construct(int n_inputs, int n_outputs, layer_type type);
 
     virtual agile::types::paradigm get_paradigm()
     {
