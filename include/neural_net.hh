@@ -26,6 +26,7 @@ public:
 	~neural_net();
 
 	neural_net& operator =(const neural_net &arch);
+    neural_net& operator =(neural_net &&arch);
 
 	// void add_data(const std::string &filename);
 	void add_data(const agile::dataframe &D);
@@ -37,12 +38,12 @@ public:
 	void model_formula(const std::string &formula, bool scale = true);
 	// agile::dataframe& data();
 	// void finalize(bool scale = true);
-	// void load_network(const std::string &formula);
-	// void save_network(const std::string &formula);
-	void train_unsupervised(const unsigned int &epochs, bool denoising = false);
-	void train_supervised(const unsigned int &epochs);
+	void from_yaml(const std::string &filename);
+	void to_yaml(const std::string &filename);
+	void train_unsupervised(const unsigned int &epochs, bool denoising = false, bool tantrum = false);
+	void train_supervised(const unsigned int &epochs, bool tantrum = false);
 
-	void check(bool tantrum = false);
+	void check(bool tantrum = true);
 
 private:
 	friend struct YAML::convert<neural_net>;

@@ -68,25 +68,33 @@ int main(int argc, char const *argv[])
 
     std::cout << "Forming Network Structure...";
 
-    arch.emplace_back(new autoencoder(20, 40, sigmoid)); 
+    arch.emplace_back(new autoencoder(25, 40, sigmoid)); 
     arch.emplace_back(new autoencoder(40, 30, sigmoid)); 
     arch.emplace_back(new autoencoder(30, 20, sigmoid)); 
-    arch.emplace_back(new autoencoder(20, 10, sigmoid)); 
-    arch.emplace_back(new autoencoder(10, 3, softmax)); 
+    arch.emplace_back(new autoencoder(23, 10, sigmoid)); 
+    arch.emplace_back(new autoencoder(10, 5, softmax)); 
+
+    arch.check(0);
+
+
 
     arch.set_learning(0.01);
     arch.set_regularizer(0.001);
     arch.set_batch_size(1);
 
+
+
     std::cout << "Done." << std::endl;
 
-    arch.check();
+    
 
     std::cout << "Unsupervised Learning...";
 
     arch.train_unsupervised(10);
 
-    arch.set_learning(0.05);
+    arch.to_yaml("neural_network_pretrain.yaml");
+
+    arch.set_learning(0.001);
     
     int epochs = 300;
 
@@ -98,17 +106,11 @@ int main(int argc, char const *argv[])
 
     std::cout << "Done." << std::endl;
 
-    std::ofstream file("neural_network.yaml");
-    YAML::Emitter out;
+    arch.to_yaml("neural_network_refined.yaml");
 
-    YAML::Node net;
-    net["network"] = arch;
-    out << net;
-    file << out.c_str();
-    file.close();
-    std::cout << "original:\n";
 
-    //----------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------
     // This is cross check stuff
 
     agile::model_frame Model;
@@ -130,13 +132,14 @@ int main(int argc, char const *argv[])
 
     std::cout << "loaded:\n";
 
-    YAML::Node config = YAML::LoadFile("neural_network.yaml");
-    architecture ARCH = std::move(config["network"].as<agile::neural_net>());
+    
+    agile::neural_net ARCH;
+    ARCH.from_yaml("neural_network_refined.yaml");
 
 
     for (int point = 0; point < 3; ++point)
     {
-        agile::rowvec r = arch.predict(X.row(point));
+        agile::rowvec r = ARCH.predict(X.row(point));
         std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
     }
 

@@ -222,6 +222,8 @@ void layer::resize_input(int n_inputs)
     W_change.resize(m_outputs, n_inputs);
     W_old.resize(m_outputs, n_inputs);
     m_in.resize(n_inputs, Eigen::NoChange);
+    reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
+
 }
 //----------------------------------------------------------------------------
 void layer::resize_output(int n_outputs)
@@ -234,6 +236,7 @@ void layer::resize_output(int n_outputs)
     b_change.resize(n_outputs, Eigen::NoChange);
     b_old.resize(n_outputs, Eigen::NoChange);
     m_out.resize(n_outputs, Eigen::NoChange);
+    reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }
 //----------------------------------------------------------------------------
 void layer::charge(const agile::vector& v)
@@ -292,7 +295,6 @@ void layer::update()
     W_change /= m_batch_size;
     W_old = momentum * W_old - learning * (W_change + regularizer * W);
 
-    // std::cout << "W:\n" << W <<  "\n------------------------" << std::endl;
     W += W_old;
     b_change /= m_batch_size;
     b_old = momentum * b_old - learning * b_change;

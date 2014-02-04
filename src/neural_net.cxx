@@ -47,7 +47,24 @@ neural_net& neural_net::operator =(const neural_net &arch)
     // DF = arch.DF;
     m_model = arch.m_model;
     n_training = X.rows();
-    m_checked = false;
+    m_checked = arch.m_checked;
+    return *this;
+}
+//----------------------------------------------------------------------------
+neural_net& neural_net::operator =(neural_net &&arch)
+{
+    clear();
+    stack = std::move(arch.stack);
+    n_layers = std::move(n_layers);
+
+    predictor_order = std::move(arch.predictor_order);
+    target_order = std::move(arch.target_order);
+    X = std::move(arch.X);
+    Y = std::move(arch.Y);
+    // DF = arch.DF;
+    m_model = std::move(arch.m_model);
+    n_training = std::move(n_training);
+    m_checked = std::move(arch.m_checked);
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -82,26 +99,34 @@ void neural_net::model_formula(const std::string &formula, bool scale)
     Y = std::move(m_model.Y());
     n_training = X.rows();
 }
-// void neural_net::load_network(const std::string &formula)
-// {
-
-// }
-// void neural_net::save_network(const std::string &formula)
-// {
-//     std::ofstream file(formula);
-//     if (file.good())
-//     {
-//         YAML::Emitter out;
-//         YAML::Node net;
-//         net["network"] = *this;
-//         out << net;
-//         file << out.c_str();
-//         file.close();
-//     }
-// }
 //----------------------------------------------------------------------------
-void neural_net::train_unsupervised(const unsigned int &epochs, bool denoising)
+void neural_net::from_yaml(const std::string &filename)
 {
+    YAML::Node config = YAML::LoadFile(filename);
+    *this = std::move(config["network"].as<agile::neural_net>());
+}
+//----------------------------------------------------------------------------
+void neural_net::to_yaml(const std::string &filename)
+{
+    std::ofstream file(filename);
+    if (file.good())
+    {
+        YAML::Emitter out;
+        YAML::Node net;
+        net["network"] = *this;
+        out << net;
+        file << out.c_str();
+        file.close();
+    }
+}
+//----------------------------------------------------------------------------
+void neural_net::train_unsupervised(const unsigned int &epochs, 
+    bool denoising, bool tantrum)
+{
+    if (!m_checked)
+    {
+        check(tantrum);
+    }
     int idx = 0;
     while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
     {
@@ -117,11 +142,11 @@ void neural_net::train_unsupervised(const unsigned int &epochs, bool denoising)
     }
 }
 //----------------------------------------------------------------------------
-void neural_net::train_supervised(const unsigned int &epochs)
+void neural_net::train_supervised(const unsigned int &epochs, bool tantrum)
 {
     if (!m_checked)
     {
-        std::cout << "Network dimensions unchecked! Proceeding at your own risk..." << std::endl;
+        check(tantrum);
     }
     for (int e = 0; e < epochs; ++e)
     {
@@ -134,7 +159,7 @@ void neural_net::train_supervised(const unsigned int &epochs)
 //----------------------------------------------------------------------------
 void neural_net::check(bool tantrum)
 {
-    if (stack.size() > 0)
+    if ((stack.size() > 0) && (!m_checked))
     {
         if (X.cols() != stack.front()->num_inputs())
         {
@@ -142,8 +167,11 @@ void neural_net::check(bool tantrum)
             {
                 throw std::runtime_error("dimension mismatch in base layer");
             }
-            std::cout << "Formula passed specifies " << X.cols() << " inputs." << std::endl;
-            std::cout << "Changing base layer (layer 1) from " << stack.front()->num_inputs() << " to " << X.cols() << " inputs." << std::endl;
+            std::cout << "Formula passed specifies ";
+            std::cout << X.cols() << " inputs." << std::endl;
+            std::cout << "Changing base layer (layer 1) from ";
+            std::cout << stack.front()->num_inputs() << " to ";
+            std::cout << X.cols() << " inputs." << std::endl;
             stack.front()->resize_input(X.cols());
 
         }
@@ -169,13 +197,31 @@ void neural_net::check(bool tantrum)
             {
                 throw std::runtime_error("dimension mismatch in output layer");
             }
-            std::cout << "Formula passed specifies " << Y.cols() << " outputs." << std::endl;
-            std::cout << "Changing base layer from " << stack.back()->num_outputs() << " to " << Y.cols() << " outputs." << std::endl;
+            std::cout << "Changing output layer from ";
+            std::cout << stack.back()->num_outputs() << " to " << Y.cols();
+            std::cout << " outputs." << std::endl;
             stack.back()->resize_output(Y.cols());
         }
+        m_checked = true;
+
+        if ((stack.back()->num_outputs() == 1) 
+            && (stack.back()->get_layer_type() == softmax))
+        {
+            if (tantrum)
+            {
+                throw std::runtime_error("can't use softmax for a 1D output.");
+            }
+            std::cout << "WARNING: softmax output type set";
+            std::cout << " for a 1 dimensional output. ";
+            std::cout << "Assuming you meant regression, ";
+            std::cout << "so continuing with that..." << std::endl;
+            stack.back()->set_layer_type(linear);
+        }
+
     }
-    m_checked = true;
+   
 }
+//----------------------------------------------------------------------------
 
 }
 

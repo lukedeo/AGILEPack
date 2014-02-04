@@ -92,17 +92,18 @@ void autoencoder::construct(int n_inputs, int n_outputs,
 //----------------------------------------------------------------------------
 void autoencoder::resize_input(int n_inputs)
 {
-    decoder.resize_input(n_inputs);
+    decoder.resize_output(n_inputs);
     m_inputs = n_inputs;
     W.resize(m_outputs, n_inputs);
     W_change.resize(m_outputs, n_inputs);
     W_old.resize(m_outputs, n_inputs);
     m_in.resize(n_inputs, Eigen::NoChange);
+    reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }
 //----------------------------------------------------------------------------
 void autoencoder::resize_output(int n_outputs)
 {
-    decoder.resize_output(n_outputs);
+    decoder.resize_input(n_outputs);
     m_outputs = n_outputs;
     W.resize(n_outputs, m_inputs);
     W_change.resize(n_outputs, m_inputs);
@@ -111,6 +112,7 @@ void autoencoder::resize_output(int n_outputs)
     b_change.resize(n_outputs, Eigen::NoChange);
     b_old.resize(n_outputs, Eigen::NoChange);
     m_out.resize(n_outputs, Eigen::NoChange);
+    reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }
 //----------------------------------------------------------------------------
 void autoencoder::reset_weights(numeric bound)
