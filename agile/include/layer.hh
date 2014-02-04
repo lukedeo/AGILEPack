@@ -41,6 +41,11 @@ namespace YAML
     struct convert<architecture>;
 }
 
+namespace agile
+{
+    class neural_net;
+}
+
 //-----------------------------------------------------------------------------
 //  layer class implementation
 //-----------------------------------------------------------------------------
@@ -59,11 +64,6 @@ public:
     virtual layer& operator= (const layer &L);
     virtual layer& operator= (layer &&L);
     virtual ~layer() = default;
-
-    layer* clone()
-    {
-        return new layer(*this);
-    }
 
     void construct(int n_inputs, int n_outputs, layer_type type);
 
@@ -134,6 +134,9 @@ public:
     friend struct YAML::convert<layer>;
     friend struct YAML::convert<architecture>;
 
+    friend class architecture;
+    friend class agile::neural_net;
+
 
 //-----------------------------------------------------------------------------
 //  Stupid virtuals for derived classes
@@ -183,6 +186,12 @@ protected:
 
     layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
     agile::types::paradigm m_paradigm; //type of pre-training
+
+private:
+    layer* clone()
+    {
+        return new layer(*this);
+    }
 
 };
 
