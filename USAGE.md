@@ -84,7 +84,7 @@ D.append(std::move(another_reader.get_dataframe(1000)));
 
 So, we can call `append()` to squash dataframes together (some checking of bounds and such happens in the background).
 
-##Syntax for formulas
+##Syntax for formulae
 
 We don't know how to use the neural network training portion of the API yet, but it's important to document the formula syntax. Input and output variables and discriminants are specified using a *model formula*. This is a fancy way of saying that variable inclusion and exclusion can be 
 run by a formula parser that constructs what the neural network sees. The following characters are used to specify a formula:

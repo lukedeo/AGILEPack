@@ -7,7 +7,7 @@
 
 namespace agile
 {
-class neural_net;
+    class neural_net;
 }
 namespace YAML
 {
@@ -127,6 +127,8 @@ struct convert<agile::neural_net>
         return true;
     }
 };
-}
+
+} // end namespace agile
+
 
 #endif
