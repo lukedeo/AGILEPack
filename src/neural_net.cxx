@@ -132,26 +132,49 @@ void neural_net::train_supervised(const unsigned int &epochs)
     }
 }
 //----------------------------------------------------------------------------
-void neural_net::check()
+void neural_net::check(bool tantrum)
 {
     if (stack.size() > 0)
     {
         if (X.cols() != stack.front()->num_inputs())
         {
+            if (tantrum)
+            {
+                throw std::runtime_error("dimension mismatch in base layer");
+            }
             std::cout << "Formula passed specifies " << X.cols() << " inputs." << std::endl;
-            std::cout << "Changing base layer from " << stack.front()->num_inputs() << " to " << X.cols() << " inputs." << std::endl;
+            std::cout << "Changing base layer (layer 1) from " << stack.front()->num_inputs() << " to " << X.cols() << " inputs." << std::endl;
             stack.front()->resize_input(X.cols());
 
         }
+        for (int l = 1; l < (stack.size() - 1); ++l)
+        {
+            if (stack.at(l - 1)->num_outputs() != stack.at(l)->num_inputs())
+            {
+                if (tantrum)
+                {
+                    throw std::runtime_error("dimension mismatch in layer" 
+                        + std::to_string(l + 1));
+                }
+                std::cout << "Changing layer " << l + 1 << " from ";
+                std::cout << stack.at(l)->num_inputs() << " inputs to ";
+                std::cout << stack.at(l - 1)->num_outputs();
+                std::cout << " inputs." << std::endl;
+                stack.at(l)->resize_input(stack.at(l - 1)->num_outputs());
+            }
+        }
         if (Y.cols() != stack.back()->num_outputs())
         {
+            if (tantrum)
+            {
+                throw std::runtime_error("dimension mismatch in output layer");
+            }
             std::cout << "Formula passed specifies " << Y.cols() << " outputs." << std::endl;
             std::cout << "Changing base layer from " << stack.back()->num_outputs() << " to " << Y.cols() << " outputs." << std::endl;
             stack.back()->resize_output(Y.cols());
         }
     }
     m_checked = true;
-
 }
 
 }

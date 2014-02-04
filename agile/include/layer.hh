@@ -15,8 +15,7 @@
 //  A simple layer factory for this and all derived versions
 //-----------------------------------------------------------------------------
 template <class T, class ...Args>
-typename std::enable_if
-<!std::is_array<T>::value, T*>::type
+typename std::enable_if<!std::is_array<T>::value, T*>::type
 layer_factory(Args&& ...args)
 {
     return dynamic_cast<T*>(new T(std::forward<Args>(args)...));

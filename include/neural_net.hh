@@ -42,7 +42,7 @@ public:
 	void train_unsupervised(const unsigned int &epochs, bool denoising = false);
 	void train_supervised(const unsigned int &epochs);
 
-	void check();
+	void check(bool tantrum = false);
 
 private:
 	friend struct YAML::convert<neural_net>;
