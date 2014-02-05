@@ -182,6 +182,18 @@ double tree_reader::operator()(const unsigned int &idx, std::string col_name)
     m_smart_chain->GetEntry(idx);
     return storage.at(traits[col_name].pos)->get_value<double>();
 }
+
+std::map<std::string, double> tree_reader::operator()(const unsigned int &idx, const std::vector<std::string> &names)
+{
+    m_smart_chain->GetEntry(idx);
+    std::map<std::string, double> map;
+    for (auto &name : names)
+    {
+        map[name] = storage.at(traits[name].pos)->get_value<double>();
+    }
+    return std::move(map);
+
+}
 // std::vector<double> tree_reader::operator[](std::string col_name);
 
 //-----------------------------------------------------------------------------

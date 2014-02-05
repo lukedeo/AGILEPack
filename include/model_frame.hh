@@ -73,8 +73,20 @@ public:
 //-----------------------------------------------------------------------------
 	void generate();
 	void scale();
-	// void load_scaling(const agile::scaling &scale);
-	// agile::scaling get_scaling();
+
+
+	void load_scaling(const agile::scaling &scale)
+	{
+		m_scaling = scale;
+	}
+	void load_scaling(agile::scaling &&scale)
+	{
+		m_scaling = std::move(scale);
+	}
+	agile::scaling get_scaling()
+	{
+		return m_scaling;
+	}
 	agile::matrix& Y();
 	agile::matrix& X();
 

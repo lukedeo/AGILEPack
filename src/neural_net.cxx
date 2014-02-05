@@ -98,6 +98,12 @@ void neural_net::model_formula(const std::string &formula, bool scale)
     X = std::move(m_model.X());
     Y = std::move(m_model.Y());
     n_training = X.rows();
+    m_tmp_input.resize(X.cols(), Eigen::NoChange);
+    // std::cout << "m_tmp_input.size() = " << m_tmp_input.size() << std::endl;
+    m_tmp_output.resize(Y.cols(), Eigen::NoChange);
+    // std::cout << "m_tmp_output.size() = " << m_tmp_output.size() << std::endl;
+
+    m_scaling = m_model.get_scaling();
 }
 //----------------------------------------------------------------------------
 void neural_net::from_yaml(const std::string &filename)
@@ -204,8 +210,8 @@ void neural_net::check(bool tantrum)
         }
         m_checked = true;
 
-        if ((stack.back()->num_outputs() == 1) 
-            && (stack.back()->get_layer_type() == softmax))
+        if ((stack.back()->num_outputs() == 1) && 
+            (stack.back()->get_layer_type() == softmax))
         {
             if (tantrum)
             {
@@ -221,7 +227,35 @@ void neural_net::check(bool tantrum)
     }
    
 }
+
 //----------------------------------------------------------------------------
+std::map<std::string, double> neural_net::predict_map(const std::map<std::string, double> &v, bool scale)
+{
+    int idx = 0;
+    m_tmp_input.resize(stack.front()->num_inputs(), Eigen::NoChange);
+    m_tmp_output.resize(stack.front()->num_outputs(), Eigen::NoChange);
+
+    for (auto &name : predictor_order)
+    {
+        m_tmp_input(idx) = v.at(name);
+        ++idx;
+    }
+
+    m_tmp_output = predict(m_tmp_input);
+    idx = 0;
+    std::map<std::string, double> prediction;
+    for (auto &name : target_order)
+    {
+        prediction[name] = m_tmp_output(idx);
+        ++idx;
+    }
+    for (auto &entry : prediction)
+    {
+        entry.second -= m_scaling.mean[entry.first];
+        entry.second /= m_scaling.sd[entry.first];
+    }
+    return std::move(prediction);
+}
 
 }
 

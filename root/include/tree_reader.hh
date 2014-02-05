@@ -65,6 +65,7 @@ public:
     std::vector<double> operator[](const unsigned int &idx);
     std::vector<double> operator()(const unsigned int &idx);
     double operator()(const unsigned int &idx, std::string col_name);
+    std::map<std::string, double> operator()(const unsigned int &idx, const std::vector<std::string> &names);
     // std::vector<double> operator[](std::string col_name);
 
 //-----------------------------------------------------------------------------

@@ -45,6 +45,34 @@ public:
 
 	void check(bool tantrum = true);
 
+    std::map<std::string, double> predict_map(const std::map<std::string, double> &v, bool scale = true);
+
+    std::vector<std::string> get_inputs()
+    {
+        return predictor_order;
+    }
+    std::vector<std::string> get_outputs()
+    {
+        return target_order;
+    }
+
+    void load_scaling(const agile::scaling &scale)
+    {
+        m_scaling = scale;
+        m_model.load_scaling(m_scaling);
+    }
+
+    void load_scaling(agile::scaling &&scale)
+    {
+        m_scaling = (scale);
+        m_model.load_scaling(std::move(scale));
+    }
+
+    agile::scaling get_scaling()
+    {
+        return m_scaling;
+    }
+
 private:
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;
@@ -52,12 +80,12 @@ private:
 	agile::model_frame m_model;
 	unsigned int n_training;
 	bool m_checked;
+    agile::vector m_tmp_input, m_tmp_output;
+
+    agile::scaling m_scaling;
 };
 
 }
-
-
-
 
 //-----------------------------------------------------------------------------
 //  YAML Serialization Structure 
@@ -88,6 +116,10 @@ struct convert<agile::neural_net>
         }
         node["input_order"] = arch.predictor_order;
         node["target_order"] = arch.target_order;
+
+        node["scaling"]["means"] = arch.m_scaling.mean;
+        node["scaling"]["stdevs"] = arch.m_scaling.sd;
+
         return node;
     }
 
@@ -123,6 +155,9 @@ struct convert<agile::neural_net>
 
         arch.predictor_order = node["input_order"].as<std::vector<std::string>>();
 		arch.target_order = node["target_order"].as<std::vector<std::string>>();
+
+        arch.m_scaling.mean = node["scaling"]["means"].as<std::map<std::string, double>>();
+        arch.m_scaling.sd = node["scaling"]["stdevs"].as<std::map<std::string, double>>();
 
         return true;
     }

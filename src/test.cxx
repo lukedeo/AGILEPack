@@ -90,13 +90,13 @@ int main(int argc, char const *argv[])
 
     std::cout << "Unsupervised Learning...";
 
-    arch.train_unsupervised(10);
+    arch.train_unsupervised(2);
 
     arch.to_yaml("neural_network_pretrain.yaml");
 
     arch.set_learning(0.001);
     
-    int epochs = 300;
+    int epochs = 3;
 
     std::cout << "Done." << std::endl;
 
@@ -142,6 +142,26 @@ int main(int argc, char const *argv[])
         agile::rowvec r = ARCH.predict(X.row(point));
         std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
     }
+
+    ARCH.to_yaml("neural_network_refined_2.yaml");
+
+    // auto mymap = TR(2, ARCH.get_inputs());
+
+    // std::cout << "X = " << X.row(2) << std::endl;
+
+    // for (auto &entry : mymap)
+    // {
+    //     std::cout << entry.second << "   ";
+    // }
+    // std::cout << "" << std::endl;
+
+    // auto pred = ARCH.predict_map(mymap);
+
+
+    // for (auto &entry : pred)
+    // {
+    //     std::cout << entry.first << ":  " << entry.second << std::endl;
+    // }
 
 
     return 0;
