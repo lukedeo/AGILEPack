@@ -1,6 +1,6 @@
-#include "architecture.hh"
-#include "layer.hh"
-#include "autoencoder.hh"
+#include "include/architecture.hh"
+#include "include/layer.hh"
+#include "include/autoencoder.hh"
 #include <fstream>
 // #include "numeric_handler.hh"
 

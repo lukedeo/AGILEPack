@@ -3,7 +3,7 @@
 # --- set directories
 BIN          := bin
 SRC          := src
-INC          := include
+INC          := $(CURDIR)
 LIB          := $(CURDIR)/lib
 
 YAML_DIR     := $(CURDIR)/../yaml-cpp
@@ -19,7 +19,8 @@ YAML_LIB     := $(YAML_DIR)/lib
 
 HACKED_BOOST := $(YAML_DIR)/boost_subset
 
-LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+LIBS         += -L$(YAML_LIB) 
+#-Wl,-rpath,$(YAML_LIB)
 LIBS         += -lyamlc++
 
 YAML         = yaml_proxy
@@ -84,7 +85,7 @@ EXECUTABLE   := AGILE
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(LIB)/libagile.so
+ALLOUTPUT    := $(LIB)/libagile.so $(EXECUTABLE)
 
 
 all: $(INFOMSG) $(YAML) $(ALLOUTPUT)

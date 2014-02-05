@@ -7,8 +7,8 @@
 #ifndef AUTOENCODER_HH
 #define AUTOENCODER_HH 
 
-#include "layer.hh"
-#include "basedefs.hh"
+#include "include/layer.hh"
+#include "include/basedefs.hh"
 
 //-----------------------------------------------------------------------------
 //  Hacky things for yaml-cpp friendship

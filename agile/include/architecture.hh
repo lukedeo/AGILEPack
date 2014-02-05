@@ -7,8 +7,8 @@
 #ifndef ARCHITECTURE_HH
 #define ARCHITECTURE_HH 
 
-#include "layer.hh"
-#include "autoencoder.hh"
+#include "include/layer.hh"
+#include "include/autoencoder.hh"
 
 
 //-----------------------------------------------------------------------------

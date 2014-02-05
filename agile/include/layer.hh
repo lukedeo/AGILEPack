@@ -8,8 +8,8 @@
 #define LAYER_HH
 
 #include <iostream>
-#include "basedefs.hh"
-#include "activation.hh"
+#include "include/basedefs.hh"
+#include "include/activation.hh"
 
 //-----------------------------------------------------------------------------
 //  A simple layer factory for this and all derived versions

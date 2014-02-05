@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "autoencoder.hh"
+#include "include/autoencoder.hh"
 
 autoencoder::autoencoder(int n_inputs, int n_outputs, 
     layer_type encoder_type, layer_type decoder_type) :

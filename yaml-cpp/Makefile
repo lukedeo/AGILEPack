@@ -24,19 +24,20 @@ CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I$(HACKED_BOOST) -g -std=c++11
 # LDFLAGS      := -Wl,--no-undefined 
 
 # ---- define objects
-LIBRARY = $(LIB)/libyamlc++.so
+LIBRARY = $(LIB)/libyamlc++.a
 
 SOURCES = $(shell ls src/*.cpp | xargs -n 1 basename)
 
 OBJ = $(SOURCES:%.cpp=%.o)
 
-all: $(LIB)/libyamlc++.so
+all: $(LIB)/libyamlc++.a
 	@echo "libyamlc++.so build successful."
 
-$(LIB)/libyamlc++.so: $(OBJ:%=$(BIN)/%)
+$(LIB)/libyamlc++.a: $(OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	#@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	ar rc $@ $^ && ranlib $@
 
 # --------------------------------------------------
 

@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "architecture.hh"
+#include "include/architecture.hh"
 
 architecture::architecture(int num_layers) 
 : n_layers(num_layers), stack(num_layers)

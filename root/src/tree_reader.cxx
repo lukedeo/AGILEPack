@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "tree_reader.hh"
+#include "dataframe/include/tree_reader.hh"
 
 namespace agile
 {
