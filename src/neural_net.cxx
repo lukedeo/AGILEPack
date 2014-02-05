@@ -109,7 +109,9 @@ void neural_net::model_formula(const std::string &formula, bool scale)
 void neural_net::from_yaml(const std::string &filename)
 {
     YAML::Node config = YAML::LoadFile(filename);
-    *this = std::move(config["network"].as<agile::neural_net>());
+    // auto net = std::move(config["network"].as<agile::neural_net>());
+
+    YAML::convert<agile::neural_net>::decode(config["network"], *this);
 }
 //----------------------------------------------------------------------------
 void neural_net::to_yaml(const std::string &filename)
@@ -229,16 +231,27 @@ void neural_net::check(bool tantrum)
 }
 
 //----------------------------------------------------------------------------
-std::map<std::string, double> neural_net::predict_map(const std::map<std::string, double> &v, bool scale)
+std::map<std::string, double> neural_net::predict_map(std::map<std::string, double> v, bool scale)
 {
     int idx = 0;
-    m_tmp_input.resize(stack.front()->num_inputs(), Eigen::NoChange);
-    m_tmp_output.resize(stack.front()->num_outputs(), Eigen::NoChange);
 
-    for (auto &name : predictor_order)
+    m_tmp_input.resize(predictor_order.size(), Eigen::NoChange);
+    m_tmp_output.resize(target_order.size(), Eigen::NoChange);
+    if (scale)
     {
-        m_tmp_input(idx) = v.at(name);
-        ++idx;
+        for (auto &name : predictor_order)
+        {
+            m_tmp_input(idx) = (v.at(name) - m_scaling.mean.at(name)) /  m_scaling.sd.at(name);
+            ++idx;
+        }
+    }
+    else
+    {
+        for (auto &name : predictor_order)
+        {
+            m_tmp_input(idx) = v.at(name);
+            ++idx;
+        }
     }
 
     m_tmp_output = predict(m_tmp_input);
@@ -249,11 +262,7 @@ std::map<std::string, double> neural_net::predict_map(const std::map<std::string
         prediction[name] = m_tmp_output(idx);
         ++idx;
     }
-    for (auto &entry : prediction)
-    {
-        entry.second -= m_scaling.mean[entry.first];
-        entry.second /= m_scaling.sd[entry.first];
-    }
+
     return std::move(prediction);
 }
 

@@ -136,7 +136,6 @@ int main(int argc, char const *argv[])
     agile::neural_net ARCH;
     ARCH.from_yaml("neural_network_refined.yaml");
 
-
     for (int point = 0; point < 3; ++point)
     {
         agile::rowvec r = ARCH.predict(X.row(point));
@@ -145,9 +144,9 @@ int main(int argc, char const *argv[])
 
     ARCH.to_yaml("neural_network_refined_2.yaml");
 
-    auto mymap = TR(2, ARCH.get_inputs());
+    auto mymap = TR(0, ARCH.get_inputs());
 
-    std::cout << "X = " << X.row(2) << std::endl;
+    std::cout << "X = " << X.row(0) << std::endl;
 
     for (auto &entry : mymap)
     {

@@ -16,8 +16,8 @@ namespace agile
 //----------------------------------------------------------------------------
 struct scaling
 {
-	std::map<std::string, numeric> mean;
-	std::map<std::string, numeric> sd;
+	std::map<std::string, double> mean;
+	std::map<std::string, double> sd;
 };
 //----------------------------------------------------------------------------
 inline void calc_normalization(const agile::vector &input, 
@@ -77,7 +77,16 @@ public:
 
 	void load_scaling(const agile::scaling &scale)
 	{
+        // for (auto &entry : scale.mean)
+        // {
+        //     std::cout << "variable name: " << entry.first << ", mean: " << entry.second << std::endl;
+        // }
 		m_scaling = scale;
+		
+		// for (auto &entry : m_scaling.mean)
+  //       {
+  //           std::cout << "variable name: " << entry.first << ", mean: " << entry.second << std::endl;
+  //       }
 	}
 	void load_scaling(agile::scaling &&scale)
 	{
@@ -129,12 +138,38 @@ class parsing_error : public std::runtime_error
 public:
 	parsing_error(const std::string &what);
 };
-
-
-
-
-
-
 }
+
+
+namespace YAML 
+{
+
+template<>
+struct convert<agile::scaling> 
+{
+    static Node encode(const agile::scaling &scale)
+    {
+        Node node;
+
+        node["mean"] = scale.mean;
+        node["sd"] = scale.sd;
+
+        return node;
+    }
+
+    static bool decode(const Node& node, agile::scaling &scale) 
+    {
+    	scale.mean = node["mean"].as<std::map<std::string, double>>();
+    	scale.sd = node["sd"].as<std::map<std::string, double>>();
+        return true;
+    }
+};
+
+} // end namespace yaml
+
+
+
+
+
 
 #endif

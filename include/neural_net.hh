@@ -45,7 +45,7 @@ public:
 
 	void check(bool tantrum = true);
 
-    std::map<std::string, double> predict_map(const std::map<std::string, double> &v, bool scale = true);
+    std::map<std::string, double> predict_map(std::map<std::string, double> v, bool scale = true);
 
     std::vector<std::string> get_inputs()
     {
@@ -58,8 +58,13 @@ public:
 
     void load_scaling(const agile::scaling &scale)
     {
+        // for (auto &entry : scale.mean)
+        // {
+        //     std::cout << "variable name: " << entry.first << ", mean: " << entry.second << std::endl;
+        // }
         m_scaling = scale;
-        m_model.load_scaling(m_scaling);
+        m_model.load_scaling(scale);
+
     }
 
     void load_scaling(agile::scaling &&scale)
@@ -117,8 +122,7 @@ struct convert<agile::neural_net>
         node["input_order"] = arch.predictor_order;
         node["target_order"] = arch.target_order;
 
-        node["scaling"]["means"] = arch.m_scaling.mean;
-        node["scaling"]["stdevs"] = arch.m_scaling.sd;
+        node["scaling"] = arch.m_scaling;
 
         return node;
     }
@@ -156,14 +160,29 @@ struct convert<agile::neural_net>
         arch.predictor_order = node["input_order"].as<std::vector<std::string>>();
 		arch.target_order = node["target_order"].as<std::vector<std::string>>();
 
-        arch.m_scaling.mean = node["scaling"]["means"].as<std::map<std::string, double>>();
-        arch.m_scaling.sd = node["scaling"]["stdevs"].as<std::map<std::string, double>>();
+        agile::scaling s = node["scaling"].as<agile::scaling>();
+
+
+        arch.load_scaling(s);
+        // arch.m_scaling = node["scaling"].as<agile::scaling>();
+
+        // auto merp = node["scaling"]["means"].as<std::map<std::string, double>>();
+
+        // for (auto &entry : merp)
+        // {
+        //     std::cout << "first = " << entry.first << ", second = " << entry.second << std::endl;
+        //     arch.m_scaling.mean[entry.first] = entry.second;
+
+        // }
+
+        // // arch.m_scaling.mean = std::move(node["scaling"]["means"].as<std::map<std::string, double>>());
+        // arch.m_scaling.mean =((node["scaling"]["stdevs"].as<std::map<std::string, double>>()));
 
         return true;
     }
 };
 
-} // end namespace agile
+} // end namespace yaml
 
 
 #endif
