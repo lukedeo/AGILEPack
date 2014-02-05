@@ -231,10 +231,10 @@ void neural_net::check(bool tantrum)
 }
 
 //----------------------------------------------------------------------------
-std::map<std::string, double> neural_net::predict_map(std::map<std::string, double> v, bool scale)
+std::map<std::string, double> neural_net::predict_map(
+    std::map<std::string, double> v, bool scale)
 {
     int idx = 0;
-
     m_tmp_input.resize(predictor_order.size(), Eigen::NoChange);
     m_tmp_output.resize(target_order.size(), Eigen::NoChange);
     if (scale)
@@ -253,7 +253,6 @@ std::map<std::string, double> neural_net::predict_map(std::map<std::string, doub
             ++idx;
         }
     }
-    // std::cout << "m_tmp_input = " << m_tmp_input << std::endl;
     m_tmp_output = predict(m_tmp_input);
     idx = 0;
     std::map<std::string, double> prediction;
@@ -262,7 +261,6 @@ std::map<std::string, double> neural_net::predict_map(std::map<std::string, doub
         prediction[name] = m_tmp_output(idx);
         ++idx;
     }
-
     return std::move(prediction);
 }
 
