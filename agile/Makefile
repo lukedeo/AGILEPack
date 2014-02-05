@@ -60,7 +60,7 @@ endif
 
 CXX          ?= g++
 # CXX          := clang++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_INC) -I$(HACKED_BOOST) -I./root/include
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR)
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
@@ -84,7 +84,7 @@ EXECUTABLE   := AGILE
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(LIB)/libagile.so $(EXECUTABLE)
+ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.so
 
 
 all: $(INFOMSG) $(YAML) $(ALLOUTPUT)

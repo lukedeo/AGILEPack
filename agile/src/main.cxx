@@ -1,6 +1,7 @@
-#include "include/architecture.hh"
-#include "include/layer.hh"
-#include "include/autoencoder.hh"
+// #include "include/architecture.hh"
+// #include "include/layer.hh"
+// #include "include/autoencoder.hh"
+#include "agile_base.hh"
 #include <fstream>
 // #include "numeric_handler.hh"
 

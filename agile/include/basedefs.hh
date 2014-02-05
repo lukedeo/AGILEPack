@@ -22,7 +22,7 @@
 #include <iomanip>
 #include <cstddef>
 #include <stdlib.h>
-#include "yaml-cpp/yaml.h"
+#include "yaml_core.hh"
 
 typedef double numeric;
 enum layer_type { linear, rectified, sigmoid, softmax };
