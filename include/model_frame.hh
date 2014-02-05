@@ -75,27 +75,9 @@ public:
 	void scale();
 
 
-	void load_scaling(const agile::scaling &scale)
-	{
-        // for (auto &entry : scale.mean)
-        // {
-        //     std::cout << "variable name: " << entry.first << ", mean: " << entry.second << std::endl;
-        // }
-		m_scaling = scale;
-		
-		// for (auto &entry : m_scaling.mean)
-  //       {
-  //           std::cout << "variable name: " << entry.first << ", mean: " << entry.second << std::endl;
-  //       }
-	}
-	void load_scaling(agile::scaling &&scale)
-	{
-		m_scaling = std::move(scale);
-	}
-	agile::scaling get_scaling()
-	{
-		return m_scaling;
-	}
+	void load_scaling(const agile::scaling &scale);
+	// void load_scaling(agile::scaling &&scale);
+	agile::scaling get_scaling();
 	agile::matrix& Y();
 	agile::matrix& X();
 

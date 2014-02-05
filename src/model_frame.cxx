@@ -91,16 +91,28 @@ void model_frame::scale()
     }
 }
 //----------------------------------------------------------------------------
-// void model_frame::load_scaling(const agile::scaling &scale)
-// {
+void model_frame::load_scaling(const agile::scaling &scale)
+{
+    m_scaling = scale;
+    int idx = 0;
+    for (auto &name : inputs)
+    {
+        m_X.col(idx).array() -= m_scaling.sd[name];
+        m_X.col(idx) /= m_scaling.mean[name];
+        ++idx;
+    }
+    idx = 0;
+    // for (auto &name : outputs)
+    // {
+    //     ++idx;
+    // }
+}
 
-// }
-
-// //----------------------------------------------------------------------------
-// agile::scaling model_frame::get_scaling()
-// {
-
-// }
+//----------------------------------------------------------------------------
+agile::scaling model_frame::get_scaling()
+{
+    return m_scaling;
+}
 //----------------------------------------------------------------------------
 agile::matrix& model_frame::Y()
 {

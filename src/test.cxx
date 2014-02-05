@@ -7,6 +7,17 @@
 #include "neural_net.hh"
 #include <fstream>
 
+
+template <class T, class U>
+std::ostream& operator << ( std::ostream& o, const std::map<T, U> &m)
+{
+    for (auto &e : m)
+    {
+        o << e.first << ": " << e.second << std::endl;
+    }
+    return o;
+}
+
 int main(int argc, char const *argv[])
 {
     auto in_file = std::string(argv[1]);
@@ -52,6 +63,8 @@ int main(int argc, char const *argv[])
     std::cout << "Pulling dataset from ROOT file...";
     agile::dataframe D = TR.get_dataframe(1000);
 
+    // std::cout << "D = " << agile::knit(D[0]) << "\n reader = " << (TR(0 , TR.get_ordered_branch_names())) << std::endl;
+
     std::cout << "Done." << std::endl;
 
     std::string formula = (argc <= 3) ? "bottom + light + charm ~ * -eta -pt": std::string(argv[3]);
@@ -90,13 +103,13 @@ int main(int argc, char const *argv[])
 
     std::cout << "Unsupervised Learning...";
 
-    arch.train_unsupervised(2);
+    arch.train_unsupervised(15);
 
     arch.to_yaml("neural_network_pretrain.yaml");
 
     arch.set_learning(0.001);
     
-    int epochs = 3;
+    int epochs = 300;
 
     std::cout << "Done." << std::endl;
 
@@ -118,13 +131,14 @@ int main(int argc, char const *argv[])
     Model.add_dataset(D);
     Model.model_formula(formula);
     Model.generate();
+    // Model.load_scaling(arch.get_scaling());
     Model.scale();
 
     auto X = Model.X();
     auto Y = Model.Y();
     //----------------------------------------------------------------------------
 
-    for (int point = 0; point < 3; ++point)
+    for (int point = 0; point < 6; ++point)
     {
         agile::rowvec r = arch.predict(X.row(point));
         std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
@@ -136,31 +150,50 @@ int main(int argc, char const *argv[])
     agile::neural_net ARCH;
     ARCH.from_yaml("neural_network_refined.yaml");
 
-    for (int point = 0; point < 3; ++point)
+    for (int point = 0; point < 6; ++point)
     {
         agile::rowvec r = ARCH.predict(X.row(point));
         std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
     }
 
-    ARCH.to_yaml("neural_network_refined_2.yaml");
+    // for (int point = 0; point < 6; ++point)
+    // {
+    //     auto r = arch.predict_map(TR(point, arch.get_inputs()));
+        
+    //     auto o = TR(point, arch.get_outputs());
 
-    auto mymap = TR(0, ARCH.get_inputs());
+    //     std::cout << "predicted:\n" << r << "\nactual:\n" << o << std::endl;
+    // }
 
-    std::cout << "X = " << X.row(0) << std::endl;
+    // std::cout << "loaded:\n";
 
-    for (auto &entry : mymap)
-    {
-        std::cout << entry.second << "   ";
-    }
-    std::cout << "" << std::endl;
+    
+    // agile::neural_net ARCH;
+    // ARCH.from_yaml("neural_network_refined.yaml");
 
-    auto pred = ARCH.predict_map(mymap);
+    // for (int point = 0; point < 6; ++point)
+    // {
+    //     auto r = ARCH.predict_map(TR(point, ARCH.get_inputs()));
+        
+    //     auto o = TR(point, ARCH.get_outputs());
+
+    //     std::cout << "predicted:\n" << r << "\nactual:\n" << o << std::endl;
+    // }
 
 
-    for (auto &entry : pred)
-    {
-        std::cout << entry.first << ":  " << entry.second << std::endl;
-    }
+    // ARCH.to_yaml("neural_network_refined_2.yaml");
+
+    // auto mymap = TR(0, ARCH.get_inputs());
+
+    // std::cout << "X = " << X.row(0) << std::endl;
+
+    // std::cout << mymap << std::endl;
+
+    // std::cout << "" << std::endl;
+
+    // auto pred = ARCH.predict_map(mymap);
+
+    // std::cout << pred << std::endl;
 
 
     return 0;
