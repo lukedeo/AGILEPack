@@ -4,11 +4,12 @@
 # --- set dirs
 BIN          := bin
 SRC          := src
-INC          := include
+# INC          := include
+INC := ./
 # PYTHON       := python
 LIB          := $(CURDIR)/lib
 
-HACKED_BOOST := boost_subset
+# HACKED_BOOST := boost_subset
 
 
 #  set search path
