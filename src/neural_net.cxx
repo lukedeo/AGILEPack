@@ -253,7 +253,7 @@ std::map<std::string, double> neural_net::predict_map(std::map<std::string, doub
             ++idx;
         }
     }
-
+    // std::cout << "m_tmp_input = " << m_tmp_input << std::endl;
     m_tmp_output = predict(m_tmp_input);
     idx = 0;
     std::map<std::string, double> prediction;

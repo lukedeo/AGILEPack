@@ -79,8 +79,8 @@ void model_frame::scale()
     for (auto &name : inputs)
     {
         agile::calc_normalization(m_X.col(idx), name, m_scaling);
-        m_X.col(idx).array() -= m_scaling.sd[name];
-        m_X.col(idx) /= m_scaling.mean[name];
+        m_X.col(idx).array() -= m_scaling.mean[name];
+        m_X.col(idx) /= m_scaling.sd[name];
         ++idx;
     }
     idx = 0;
@@ -97,8 +97,8 @@ void model_frame::load_scaling(const agile::scaling &scale)
     int idx = 0;
     for (auto &name : inputs)
     {
-        m_X.col(idx).array() -= m_scaling.sd[name];
-        m_X.col(idx) /= m_scaling.mean[name];
+        m_X.col(idx).array() -= m_scaling.mean[name];
+        m_X.col(idx) /= m_scaling.sd[name];
         ++idx;
     }
     idx = 0;

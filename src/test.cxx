@@ -131,30 +131,35 @@ int main(int argc, char const *argv[])
     Model.add_dataset(D);
     Model.model_formula(formula);
     Model.generate();
-    // Model.load_scaling(arch.get_scaling());
-    Model.scale();
+    Model.load_scaling(arch.get_scaling());
+    // Model.scale();
 
     auto X = Model.X();
     auto Y = Model.Y();
+
+
+    std::cout << "within model = " << arch.predict(X.row(0)) << std::endl;
+    // std::cout << X.row(0) << std::endl;
+    std::cout << "in reader = " << arch.predict_map(TR(0, arch.get_inputs())) << std::endl;
     //----------------------------------------------------------------------------
 
-    for (int point = 0; point < 6; ++point)
-    {
-        agile::rowvec r = arch.predict(X.row(point));
-        std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
-    }
+    // for (int point = 0; point < 6; ++point)
+    // {
+    //     agile::rowvec r = arch.predict(X.row(point));
+    //     std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
+    // }
 
-    std::cout << "loaded:\n";
+    // std::cout << "loaded:\n";
 
     
-    agile::neural_net ARCH;
-    ARCH.from_yaml("neural_network_refined.yaml");
+    // agile::neural_net ARCH;
+    // ARCH.from_yaml("neural_network_refined.yaml");
 
-    for (int point = 0; point < 6; ++point)
-    {
-        agile::rowvec r = ARCH.predict(X.row(point));
-        std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
-    }
+    // for (int point = 0; point < 6; ++point)
+    // {
+    //     agile::rowvec r = ARCH.predict(X.row(point));
+    //     std::cout << "predicted:\n" << r << "\nactual:\n" << Y.row(point) << std::endl;
+    // }
 
     // for (int point = 0; point < 6; ++point)
     // {
