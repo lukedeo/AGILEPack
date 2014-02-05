@@ -5,7 +5,7 @@
 # --- set directories
 BIN          := bin
 SRC          := src
-INC          := include
+INC          := ./
 LIB          := $(CURDIR)/lib
 
 
@@ -39,7 +39,7 @@ EXE_OBJ      := dataframe_test.o
 EXECUTABLE   := test
 
 LIB_OBJ      := $(FRAME_OBJ)
-ALLOBJ       := $(EXE_OBJ) $(FRAME_OBJ)
+ALLOBJ       := $(FRAME_OBJ)
 ALLOUTPUT    := $(EXECUTABLE)
 
 

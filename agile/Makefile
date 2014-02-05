@@ -14,10 +14,10 @@ ifneq ($(MAKECMDGOALS),basic)
 
 # ...if not, build us some YAML
 
-YAML_INC     := $(YAML_DIR)/include
+YAML_INC     := $(YAML_DIR)
 YAML_LIB     := $(YAML_DIR)/lib
 
-HACKED_BOOST := $(YAML_DIR)/boost_subset
+# HACKED_BOOST := $(YAML_DIR)/boost_subset
 
 LIBS         += -L$(YAML_LIB) 
 #-Wl,-rpath,$(YAML_LIB)
@@ -30,8 +30,7 @@ else
 
 # or you've got your shit together and you have yaml-cpp already
 
-YAML_INC     := $(YAML_DIR)/include
-HACKED_BOOST := $(YAML_DIR)/boost_subset
+YAML_INC     := $(YAML_DIR)
 LIBS         += -lyaml-cpp # link with the one you've already got
 
 INFOMSG      := dont_build_yaml

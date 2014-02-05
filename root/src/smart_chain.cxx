@@ -5,7 +5,7 @@
 //           Luke de Oliveira (luke.deoliveira@yale.edu) (basically nothing)
 //-----------------------------------------------------------------------------
 
-#include "dataframe/include/smart_chain.hh"
+#include "include/smart_chain.hh"
 #include "TChain.h"
 #include "TFile.h"
 #include "TError.h"

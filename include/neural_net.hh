@@ -1,7 +1,9 @@
 #ifndef NEURAL__NET__HH
 #define NEURAL__NET__HH 
 
-#include "architecture.hh"
+// #include "architecture.hh"
+
+#include "Core.hh"
 #include "dataframe.hh"
 #include "model_frame.hh"
 

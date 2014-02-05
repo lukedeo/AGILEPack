@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "dataframe/include/dataframe.hh"
+#include "include/dataframe.hh"
 #include <iostream>
 
 namespace agile

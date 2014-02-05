@@ -5,7 +5,7 @@
 BIN          := bin
 SRC          := src
 # INC          := include
-INC := ./
+INC          := ./
 # PYTHON       := python
 LIB          := $(CURDIR)/lib
 
@@ -32,7 +32,7 @@ SOURCES = $(shell ls src/*.cpp | xargs -n 1 basename)
 OBJ = $(SOURCES:%.cpp=%.o)
 
 all: $(LIB)/libyamlc++.a
-	@echo "libyamlc++.so build successful."
+	@echo "libyamlc++.a build successful."
 
 $(LIB)/libyamlc++.a: $(OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)

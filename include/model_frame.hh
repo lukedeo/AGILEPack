@@ -7,7 +7,7 @@
 #ifndef MODEL__FRAME__HH
 #define MODEL__FRAME__HH 
 #include "dataframe.hh"
-#include "basedefs.hh"
+#include "Core.hh"
 #include <unordered_set>
 
 //----------------------------------------------------------------------------

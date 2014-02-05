@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "dataframe/include/csv_reader.hh"
+#include "include/csv_reader.hh"
 namespace agile
 {
 

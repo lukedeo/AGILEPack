@@ -10,7 +10,7 @@
 #include <cstddef> //std::size_t
 #include "smart_chain.hh"
 #include "numeric_handler.hh"
-#include "dataframe.hh"
+#include "dataframe/dataframe_core.hh"
 
 
 namespace agile

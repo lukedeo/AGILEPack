@@ -1,10 +1,11 @@
 #include "dataframe.hh"
 #include "model_frame.hh"
 #include "tree_reader.hh"
-#include "architecture.hh"
-#include "layer.hh"
-#include "autoencoder.hh"
+// #include "architecture.hh"
+// #include "layer.hh"
+// #include "autoencoder.hh"
 #include "neural_net.hh"
+#include "Core.hh"
 #include <fstream>
 
 

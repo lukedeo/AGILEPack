@@ -13,7 +13,7 @@ ROOT_INC     := $(ROOT_DIR)/include
 
 AGILE_DIR    := $(CURDIR)/agile
 AGILE_LIB    := $(AGILE_DIR)/lib
-AGILE_INC    := $(AGILE_DIR)/include
+AGILE_INC    := $(AGILE_DIR)
 
 
 DATAFRAME_DIR := $(CURDIR)/dataframe
@@ -22,7 +22,7 @@ DATAFRAME_INC := $(DATAFRAME_DIR)/include
 
 YAML_DIR      := $(CURDIR)/yaml-cpp
 YAML_LIB      := $(YAML_DIR)/lib
-YAML_INC      := $(YAML_DIR)/include
+YAML_INC      := $(YAML_DIR)
 
 BOOST_INC      := $(YAML_DIR)/boost_subset
 
@@ -46,6 +46,7 @@ CXXFLAGS     += -I$(AGILE_INC)
 CXXFLAGS     += -I$(ROOT_INC)
 CXXFLAGS     += -I$(YAML_INC)
 CXXFLAGS     += -I$(BOOST_INC)
+CXXFLAGS     += -I./
 
 LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
 LIBS         += -ldataframe

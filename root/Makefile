@@ -4,10 +4,10 @@
 # --- set directories
 BIN          := bin
 SRC          := src
-INC          := include
+INC          := ./
 LIB          := $(CURDIR)/lib
 
-DFRAME_INC   := $(CURDIR)/../dataframe/include
+DFRAME_INC   := $(CURDIR)/../
 
 
 #  set search path
