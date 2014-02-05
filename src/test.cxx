@@ -145,23 +145,23 @@ int main(int argc, char const *argv[])
 
     ARCH.to_yaml("neural_network_refined_2.yaml");
 
-    // auto mymap = TR(2, ARCH.get_inputs());
+    auto mymap = TR(2, ARCH.get_inputs());
 
-    // std::cout << "X = " << X.row(2) << std::endl;
+    std::cout << "X = " << X.row(2) << std::endl;
 
-    // for (auto &entry : mymap)
-    // {
-    //     std::cout << entry.second << "   ";
-    // }
-    // std::cout << "" << std::endl;
+    for (auto &entry : mymap)
+    {
+        std::cout << entry.second << "   ";
+    }
+    std::cout << "" << std::endl;
 
-    // auto pred = ARCH.predict_map(mymap);
+    auto pred = ARCH.predict_map(mymap);
 
 
-    // for (auto &entry : pred)
-    // {
-    //     std::cout << entry.first << ":  " << entry.second << std::endl;
-    // }
+    for (auto &entry : pred)
+    {
+        std::cout << entry.first << ":  " << entry.second << std::endl;
+    }
 
 
     return 0;
