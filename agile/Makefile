@@ -3,7 +3,7 @@
 # --- set directories
 BIN          := bin
 SRC          := src
-INC          := $(CURDIR)
+INC          := $(CURDIR)/../
 LIB          := $(CURDIR)/lib
 
 YAML_DIR     := $(CURDIR)/../yaml-cpp
@@ -60,7 +60,7 @@ endif
 
 CXX          ?= g++
 # CXX          := clang++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR)
+CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR) -I./
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
@@ -84,15 +84,15 @@ EXE_OBJ      := main.o
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
-ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.so
+ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.a
 
 
 all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
-	@echo "AGILE base (libagile.so) build successful."
+	@echo "AGILE base (libagile.a) build successful."
 
 complete: all
 
-lib: $(INFOMSG) $(YAML) $(LIB)/libagile.so
+lib: $(INFOMSG) $(YAML) $(LIB)/libagile.a
 
 cli: $(INFOMSG) $(YAML) $(EXECUTABLE)
 
@@ -106,10 +106,11 @@ $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)
 
-$(LIB)/libagile.so: $(LIB_OBJ:%=$(BIN)/%)
+$(LIB)/libagile.a: $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking $^ --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	# @$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	@ar rc $@ $^ && ranlib $@
 
 $(YAML):
 	@$(MAKE) -C $(YAML_DIR)
@@ -121,7 +122,7 @@ build_yaml:
 	@echo "Installing a local version of the libyamlc++.a"
 
 production_code: 
-	@echo "production version of libagile.so"
+	@echo "production version of libagile.a"
 
 
 basic: all

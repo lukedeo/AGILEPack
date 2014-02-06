@@ -5,7 +5,7 @@
 BIN          := bin
 SRC          := src
 INC          := include
-# LIB          := $(CURDIR)/lib
+LIB          := $(CURDIR)/lib
 
 ROOT_DIR     := $(CURDIR)/root
 ROOT_LIB     := $(ROOT_DIR)/lib
@@ -91,7 +91,12 @@ ALLOBJ       := $(EXE_OBJ) $(BINARIES)
 
 
 LIBRARIES    := agile_proxy dataframe_proxy root_proxy
-ALLOUTPUT    := $(LIBRARIES) $(EXECUTABLE)
+
+LIBRARY      := $(LIBRARIES) $(LIB)/libAGILEPack.a
+
+ALLOUTPUT    := $(LIBRARY) $(EXECUTABLE)
+
+
 
 
 all: $(ALLOUTPUT)
@@ -101,10 +106,11 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
 
-# $(LIB)/libAGILE.so: $(LIB_OBJ:%=$(BIN)/%)
-# 	@mkdir -p $(LIB)
-# 	@echo "linking $^ --> $@"
-# 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+
+$(LIBRARY): $(BINARIES:%=$(BIN)/%)
+	@mkdir -p $(LIB)
+	@echo "linking objects --> $@"
+	@ar rc $@ $(shell find ./ | grep "\.o") && ranlib $@
 
 
 agile_proxy:

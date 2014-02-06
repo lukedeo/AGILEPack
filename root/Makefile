@@ -4,7 +4,7 @@
 # --- set directories
 BIN          := bin
 SRC          := src
-INC          := ./
+INC          := ../
 LIB          := $(CURDIR)/lib
 
 DFRAME_INC   := $(CURDIR)/../dataframe
@@ -19,7 +19,7 @@ vpath %.hh   $(INC)
 
 CXX          ?= g++
 # CXX          := clang++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
+CXXFLAGS     := -Wall -fPIC -I$(INC) -I./ -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
 
 ROOTCFLAGS    := $(shell root-config --cflags)
 ROOTLIBS      := -L$(shell root-config --libdir)
@@ -35,7 +35,7 @@ LIBS         += $(ROOTLIBS)
 
 LIBS         += -L$(DFRAME_INC)/lib -ldataframe
 
-LIBRARY = $(LIB)/libROOTinterface.so
+LIBRARY = $(LIB)/libROOTinterface.a
 
 # ---- define objects
 
@@ -53,7 +53,7 @@ ALLOUTPUT    := $(LIBRARY)
 
 
 all: $(ALLOUTPUT)
-	@echo "libROOTinterface.so build successful."
+	@echo "$(LIBRARY) build successful."
 
 $(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
@@ -62,7 +62,8 @@ $(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 $(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	# @$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	@ar rc $@ $^ && ranlib $@
 
 
 

@@ -5,7 +5,7 @@
 BIN          := bin
 SRC          := src
 # INC          := include
-INC          := ./
+INC          := ../
 # PYTHON       := python
 LIB          := $(CURDIR)/lib
 
@@ -21,7 +21,7 @@ vpath %.h    $(INC)
 
 CXX          ?= g++
 # CXX          := clang++
-CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I$(HACKED_BOOST) -g -std=c++11 
+CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I./ -g -std=c++11 
 # LDFLAGS      := -Wl,--no-undefined 
 
 # ---- define objects
@@ -37,7 +37,6 @@ all: $(LIB)/libyamlc++.a
 $(LIB)/libyamlc++.a: $(OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
-	#@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
 	@ar rc $@ $^ && ranlib $@
 
 # --------------------------------------------------
