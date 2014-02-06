@@ -7,7 +7,7 @@ SRC          := src
 INC          := ./
 LIB          := $(CURDIR)/lib
 
-DFRAME_INC   := $(CURDIR)/../
+DFRAME_INC   := $(CURDIR)/../dataframe
 
 
 #  set search path
@@ -33,7 +33,7 @@ LDFLAGS      += $(ROOTLDFLAGS)
 LIBS         += $(ROOTLIBS)
 # LDFLAGS      := -Wl,--no-undefined 
 
-LIBS         += -L$(DFRAME_INC)/../lib -ldataframe
+LIBS         += -L$(DFRAME_INC)/lib -ldataframe
 
 LIBRARY = $(LIB)/libROOTinterface.so
 

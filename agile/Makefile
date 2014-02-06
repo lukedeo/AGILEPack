@@ -80,7 +80,7 @@ UTIL_OBJ     := activation.o basedefs.o
 EXE_OBJ      := main.o
 
 
-EXECUTABLE   := AGILE
+# EXECUTABLE   := AGILE
 
 LIB_OBJ      := $(LAYER_OBJ) $(UTIL_OBJ)
 ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
@@ -118,7 +118,7 @@ dont_build_yaml:
 	@echo "Assuming YAML C++ exists somewhere."
 
 build_yaml: 
-	@echo "Installing a local version of the libyamlc++.so"
+	@echo "Installing a local version of the libyamlc++.a"
 
 production_code: 
 	@echo "production version of libagile.so"

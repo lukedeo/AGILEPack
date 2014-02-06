@@ -24,10 +24,6 @@ YAML_DIR      := $(CURDIR)/yaml-cpp
 YAML_LIB      := $(YAML_DIR)/lib
 YAML_INC      := $(YAML_DIR)
 
-BOOST_INC      := $(YAML_DIR)/boost_subset
-
-
-
 
 #  set search path
 vpath %.o    $(BIN)
@@ -45,7 +41,7 @@ CXXFLAGS     += -I$(DATAFRAME_INC)
 CXXFLAGS     += -I$(AGILE_INC)
 CXXFLAGS     += -I$(ROOT_INC)
 CXXFLAGS     += -I$(YAML_INC)
-CXXFLAGS     += -I$(BOOST_INC)
+# CXXFLAGS     += -I$(BOOST_INC)
 CXXFLAGS     += -I./
 
 LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)

@@ -1,10 +1,10 @@
 #ifndef NEURAL__NET__HH
 #define NEURAL__NET__HH 
 
-// #include "architecture.hh"
+#include "agile/agile_base.hh"
 
-#include "Core.hh"
-#include "dataframe.hh"
+// #include "Core.hh"
+#include "dataframe/dataframe_core.hh"
 #include "model_frame.hh"
 
 namespace agile

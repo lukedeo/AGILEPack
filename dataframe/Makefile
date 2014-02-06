@@ -21,7 +21,7 @@ vpath %.hh   $(INC)
 CXX          ?= g++
 # CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
-LIBRARY      := $(LIB)/libdataframe.so
+LIBRARY      := $(LIB)/libdataframe.a
 # LDFLAGS      := -Wl,--no-undefined 
 
 # --- external dirs 
@@ -44,7 +44,7 @@ ALLOUTPUT    := $(EXECUTABLE)
 
 
 all: $(LIBRARY)
-	@echo "libdataframe.so build sucessful."
+	@echo "libdataframe.a build sucessful."
 
 lib: $(LIBRARY)
 
@@ -56,7 +56,8 @@ $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 $(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	# @$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
+	@ar rc $@ $^ && ranlib $@
 
 # --------------------------------------------------
 

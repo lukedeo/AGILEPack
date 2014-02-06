@@ -38,7 +38,7 @@ $(LIB)/libyamlc++.a: $(OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
 	#@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
-	ar rc $@ $^ && ranlib $@
+	@ar rc $@ $^ && ranlib $@
 
 # --------------------------------------------------
 

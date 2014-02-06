@@ -6,8 +6,8 @@
 
 #ifndef MODEL__FRAME__HH
 #define MODEL__FRAME__HH 
-#include "dataframe.hh"
-#include "Core.hh"
+#include "dataframe/dataframe_core.hh"
+#include "agile/agile_base.hh"
 #include <unordered_set>
 
 //----------------------------------------------------------------------------
