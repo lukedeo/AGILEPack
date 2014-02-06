@@ -14,10 +14,10 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/intel.hpp"
-#include "boost_mod/mpl/aux_/config/gcc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/intel.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/gcc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 // agurt, 25/apr/04: technically, the ADL workaround is only needed for GCC,
 // but putting everything expect public, user-specializable metafunctions into

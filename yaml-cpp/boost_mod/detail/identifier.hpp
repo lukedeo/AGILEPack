@@ -10,8 +10,8 @@
 #ifndef BOOST_IDENTIFIER_HPP
 #define BOOST_IDENTIFIER_HPP
 
-#include "boost_mod/utility/enable_if.hpp"
-#include "boost_mod/type_traits/is_base_of.hpp"
+#include "yaml-cpp/boost_mod/utility/enable_if.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_base_of.hpp"
 #include <iosfwd>
 
 namespace boost

@@ -58,12 +58,12 @@
 #ifndef BOOST_NUMERIC_TRAITS_HPP_DWA20001901
 # define BOOST_NUMERIC_TRAITS_HPP_DWA20001901
 
-# include "boost_mod/config.hpp"
-# include "boost_mod/cstdint.hpp"
-# include "boost_mod/static_assert.hpp"
-# include "boost_mod/type_traits.hpp"
-# include "boost_mod/detail/select_type.hpp"
-# include "boost_mod/limits.hpp"
+# include "yaml-cpp/boost_mod/config.hpp"
+# include "yaml-cpp/boost_mod/cstdint.hpp"
+# include "yaml-cpp/boost_mod/static_assert.hpp"
+# include "yaml-cpp/boost_mod/type_traits.hpp"
+# include "yaml-cpp/boost_mod/detail/select_type.hpp"
+# include "yaml-cpp/boost_mod/limits.hpp"
 
 namespace boost { namespace detail {
 

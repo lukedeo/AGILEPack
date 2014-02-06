@@ -8,10 +8,10 @@
 
 #ifndef BOOST_DETAIL_WIN_SYSTEM_HPP
 #define BOOST_DETAIL_WIN_SYSTEM_HPP
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #include <cstdarg>
 
-#include "boost_mod/detail/win/basic_types.hpp"
+#include "yaml-cpp/boost_mod/detail/win/basic_types.hpp"
 extern "C" __declspec(dllimport) void __stdcall GetSystemInfo (struct system_info *);
 
 namespace boost {

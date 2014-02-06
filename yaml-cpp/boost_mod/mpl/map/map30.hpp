@@ -16,25 +16,25 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/map/map20.hpp"
+#   include "yaml-cpp/boost_mod/mpl/map/map20.hpp"
 #endif
 
-#include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/use_preprocessed.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER map30.hpp
-#   include "boost_mod/mpl/map/aux_/include_preprocessed.hpp"
+#   include "yaml-cpp/boost_mod/mpl/map/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include "boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
 
 namespace boost { namespace mpl {
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(21, 30, "boost_mod/mpl/map/aux_/numbered.hpp"))
+    (3,(21, 30, "yaml-cpp/boost_mod/mpl/map/aux_/numbered.hpp"))
 #   include BOOST_PP_ITERATE()
 
 }}

@@ -14,10 +14,10 @@
 # ifndef BOOST_PREPROCESSOR_LIST_DETAIL_FOLD_LEFT_HPP
 # define BOOST_PREPROCESSOR_LIST_DETAIL_FOLD_LEFT_HPP
 #
-# include "boost_mod/preprocessor/control/expr_iif.hpp"
-# include "boost_mod/preprocessor/control/iif.hpp"
-# include "boost_mod/preprocessor/list/adt.hpp"
-# include "boost_mod/preprocessor/tuple/elem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/expr_iif.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/iif.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/list/adt.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/elem.hpp"
 #
 # define BOOST_PP_LIST_FOLD_LEFT_1(o, s, l) BOOST_PP_IIF(BOOST_PP_LIST_IS_CONS(l), BOOST_PP_LIST_FOLD_LEFT_2, BOOST_PP_TUPLE_ELEM_3_1)(o, BOOST_PP_IIF(BOOST_PP_LIST_IS_CONS(l), o, BOOST_PP_TUPLE_ELEM_3_1)(2, s, BOOST_PP_LIST_FIRST(l)), BOOST_PP_LIST_REST(l))
 # define BOOST_PP_LIST_FOLD_LEFT_2(o, s, l) BOOST_PP_IIF(BOOST_PP_LIST_IS_CONS(l), BOOST_PP_LIST_FOLD_LEFT_3, BOOST_PP_TUPLE_ELEM_3_1)(o, BOOST_PP_IIF(BOOST_PP_LIST_IS_CONS(l), o, BOOST_PP_TUPLE_ELEM_3_1)(3, s, BOOST_PP_LIST_FIRST(l)), BOOST_PP_LIST_REST(l))

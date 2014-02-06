@@ -48,18 +48,18 @@
 //              to degrade gracefully, rather than trash the compiler (John Maddock).
 //
 
-#include "boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_ABSTRACT
-#include "boost_mod/static_assert.hpp"
-#include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
 #ifdef BOOST_NO_IS_ABSTRACT
-#include "boost_mod/type_traits/is_polymorphic.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_polymorphic.hpp"
 #endif
 #endif
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 
 namespace boost {
@@ -148,6 +148,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_abstract,T,::boost::detail::is_polymorphic_imp<T
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif //BOOST_TT_IS_ABSTRACT_CLASS_HPP

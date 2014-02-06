@@ -7,24 +7,24 @@
 # define BOOST_ZIP_ITERATOR_TMB_07_13_2003_HPP_
 
 #include <stddef.h>
-#include "boost_mod/iterator.hpp"
-#include "boost_mod/iterator/iterator_traits.hpp"
-#include "boost_mod/iterator/iterator_facade.hpp"
-#include "boost_mod/iterator/iterator_adaptor.hpp" // for enable_if_convertible
-#include "boost_mod/iterator/iterator_categories.hpp"
-#include "boost_mod/detail/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_traits.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_facade.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp" // for enable_if_convertible
+#include "yaml-cpp/boost_mod/iterator/iterator_categories.hpp"
+#include "yaml-cpp/boost_mod/detail/iterator.hpp"
 
-#include "boost_mod/iterator/detail/minimum_category.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/minimum_category.hpp"
 
-#include "boost_mod/tuple/tuple.hpp"
+#include "yaml-cpp/boost_mod/tuple/tuple.hpp"
 
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/mpl/and.hpp"
-#include "boost_mod/mpl/apply.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/lambda.hpp"
-#include "boost_mod/mpl/placeholders.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/mpl/and.hpp"
+#include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/placeholders.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 
 namespace boost {
 

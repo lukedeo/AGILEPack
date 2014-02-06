@@ -9,13 +9,13 @@
 #ifndef BOOST_TT_IS_BASE_OF_TR1_HPP_INCLUDED
 #define BOOST_TT_IS_BASE_OF_TR1_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_base_and_derived.hpp"
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_base_and_derived.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost { namespace tr1{
 
@@ -45,6 +45,6 @@ BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC2_2(typename Base,typename Derived,is_base_o
 
 } } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_BASE_OF_TR1_HPP_INCLUDED

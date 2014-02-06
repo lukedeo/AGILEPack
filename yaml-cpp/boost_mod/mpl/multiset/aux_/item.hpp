@@ -14,20 +14,20 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/multiset/aux_/tag.hpp"
-#include "boost_mod/mpl/int.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
-#include "boost_mod/mpl/aux_/value_wknd.hpp"
-#include "boost_mod/mpl/aux_/static_cast.hpp"
-#include "boost_mod/mpl/aux_/config/arrays.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/multiset/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/int.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/arrays.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
-#   include "boost_mod/mpl/eval_if.hpp"
-#   include "boost_mod/mpl/next.hpp"
-#   include "boost_mod/type_traits/is_same.hpp"
+#   include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/next.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 #endif
 
 

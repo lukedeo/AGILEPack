@@ -14,13 +14,13 @@
 # ifndef BOOST_PREPROCESSOR_CONTROL_WHILE_HPP
 # define BOOST_PREPROCESSOR_CONTROL_WHILE_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/debug/error.hpp"
-# include "boost_mod/preprocessor/detail/auto_rec.hpp"
-# include "boost_mod/preprocessor/list/fold_left.hpp"
-# include "boost_mod/preprocessor/list/fold_right.hpp"
-# include "boost_mod/preprocessor/logical/bitand.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/debug/error.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/detail/auto_rec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/list/fold_left.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/list/fold_right.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/bitand.hpp"
 #
 # /* BOOST_PP_WHILE */
 #
@@ -39,13 +39,13 @@
 # define BOOST_PP_WHILE_F(d, _) 0
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
-#    include "boost_mod/preprocessor/control/detail/edg/while.hpp"
+#    include "yaml-cpp/boost_mod/preprocessor/control/detail/edg/while.hpp"
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
-#    include "boost_mod/preprocessor/control/detail/msvc/while.hpp"
+#    include "yaml-cpp/boost_mod/preprocessor/control/detail/msvc/while.hpp"
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
-#    include "boost_mod/preprocessor/control/detail/dmc/while.hpp"
+#    include "yaml-cpp/boost_mod/preprocessor/control/detail/dmc/while.hpp"
 # else
-#    include "boost_mod/preprocessor/control/detail/while.hpp"
+#    include "yaml-cpp/boost_mod/preprocessor/control/detail/while.hpp"
 # endif
 #
 # define BOOST_PP_WHILE_257(p, o, s) BOOST_PP_ERROR(0x0001)

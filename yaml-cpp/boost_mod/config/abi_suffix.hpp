@@ -7,7 +7,7 @@
 // http://www.boost.org/LICENSE_1_0.txt).
 
 // This header should be #included AFTER code that was preceded by a #include
-// "boost_mod/config/abi_prefix.hpp".
+// "yaml-cpp/boost_mod/config/abi_prefix.hpp".
 
 #ifndef BOOST_CONFIG_ABI_PREFIX_HPP
 # error Header boost_mod/config/abi_suffix.hpp must only be used after boost/config/abi_prefix.hpp

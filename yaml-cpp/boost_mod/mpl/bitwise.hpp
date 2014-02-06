@@ -15,10 +15,10 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/bitand.hpp"
-#include "boost_mod/mpl/bitor.hpp"
-#include "boost_mod/mpl/bitxor.hpp"
-#include "boost_mod/mpl/shift_left.hpp"
-#include "boost_mod/mpl/shift_right.hpp"
+#include "yaml-cpp/boost_mod/mpl/bitand.hpp"
+#include "yaml-cpp/boost_mod/mpl/bitor.hpp"
+#include "yaml-cpp/boost_mod/mpl/bitxor.hpp"
+#include "yaml-cpp/boost_mod/mpl/shift_left.hpp"
+#include "yaml-cpp/boost_mod/mpl/shift_right.hpp"
 
 #endif // BOOST_MPL_BITWISE_HPP_INCLUDED

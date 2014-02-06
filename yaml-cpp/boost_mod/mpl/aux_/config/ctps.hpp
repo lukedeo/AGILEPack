@@ -14,8 +14,8 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if    !defined(BOOST_MPL_CFG_NO_NONTYPE_TEMPLATE_PARTIAL_SPEC) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE) \
@@ -25,6 +25,6 @@
 
 #endif
 
-// BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION is defined in "boost_mod/config.hpp"
+// BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION is defined in "yaml-cpp/boost_mod/config.hpp"
 
 #endif // BOOST_MPL_AUX_CONFIG_CTPS_HPP_INCLUDED

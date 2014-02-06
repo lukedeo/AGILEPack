@@ -7,34 +7,34 @@
 #ifndef BOOST_ITERATOR_FACADE_23022003THW_HPP
 #define BOOST_ITERATOR_FACADE_23022003THW_HPP
 
-#include "boost_mod/iterator.hpp"
-#include "boost_mod/iterator/interoperable.hpp"
-#include "boost_mod/iterator/iterator_traits.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/interoperable.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_traits.hpp"
 
-#include "boost_mod/iterator/detail/facade_iterator_category.hpp"
-#include "boost_mod/iterator/detail/enable_if.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/facade_iterator_category.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/enable_if.hpp"
 
-#include "boost_mod/static_assert.hpp"
-#include "boost_mod/utility/addressof.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/utility/addressof.hpp"
 
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/type_traits/add_const.hpp"
-#include "boost_mod/type_traits/add_pointer.hpp"
-#include "boost_mod/type_traits/remove_const.hpp"
-#include "boost_mod/type_traits/remove_reference.hpp"
-#include "boost_mod/type_traits/is_convertible.hpp"
-#include "boost_mod/type_traits/is_pod.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_convertible.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pod.hpp"
 
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/or.hpp"
-#include "boost_mod/mpl/and.hpp"
-#include "boost_mod/mpl/not.hpp"
-#include "boost_mod/mpl/always.hpp"
-#include "boost_mod/mpl/apply.hpp"
-#include "boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/or.hpp"
+#include "yaml-cpp/boost_mod/mpl/and.hpp"
+#include "yaml-cpp/boost_mod/mpl/not.hpp"
+#include "yaml-cpp/boost_mod/mpl/always.hpp"
+#include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
 
-#include "boost_mod/iterator/detail/config_def.hpp" // this goes last
+#include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp" // this goes last
 
 namespace boost
 {
@@ -869,6 +869,6 @@ BOOST_ITERATOR_FACADE_PLUS((
 
 } // namespace boost
 
-#include "boost_mod/iterator/detail/config_undef.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // BOOST_ITERATOR_FACADE_23022003THW_HPP

@@ -7,32 +7,32 @@
 #ifndef BOOST_INDIRECT_ITERATOR_23022003THW_HPP
 #define BOOST_INDIRECT_ITERATOR_23022003THW_HPP
 
-#include "boost_mod/iterator.hpp"
-#include "boost_mod/iterator/iterator_adaptor.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp"
 
-#include "boost_mod/pointee.hpp"
-#include "boost_mod/indirect_reference.hpp"
-#include "boost_mod/detail/iterator.hpp"
+#include "yaml-cpp/boost_mod/pointee.hpp"
+#include "yaml-cpp/boost_mod/indirect_reference.hpp"
+#include "yaml-cpp/boost_mod/detail/iterator.hpp"
 
-#include "boost_mod/detail/indirect_traits.hpp"
+#include "yaml-cpp/boost_mod/detail/indirect_traits.hpp"
 
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/type_traits/add_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_reference.hpp"
 
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/not.hpp"
-#include "boost_mod/mpl/has_xxx.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/not.hpp"
+#include "yaml-cpp/boost_mod/mpl/has_xxx.hpp"
 
 #ifdef BOOST_MPL_CFG_NO_HAS_XXX
-# include "boost_mod/shared_ptr.hpp"
-# include "boost_mod/scoped_ptr.hpp"
-# include "boost_mod/mpl/bool.hpp"
+# include "yaml-cpp/boost_mod/shared_ptr.hpp"
+# include "yaml-cpp/boost_mod/scoped_ptr.hpp"
+# include "yaml-cpp/boost_mod/mpl/bool.hpp"
 # include <memory>
 #endif 
 
-#include "boost_mod/iterator/detail/config_def.hpp" // must be last #include
+#include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp" // must be last #include
 
 namespace boost
 {
@@ -134,6 +134,6 @@ namespace boost
 
 } // namespace boost
 
-#include "boost_mod/iterator/detail/config_undef.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // BOOST_INDIRECT_ITERATOR_23022003THW_HPP

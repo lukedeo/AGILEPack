@@ -15,10 +15,10 @@
 #ifndef BOOST_STRING_REF_HPP
 #define BOOST_STRING_REF_HPP
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/utility/string_ref_fwd.hpp"
-#include "boost_mod/throw_exception.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/utility/string_ref_fwd.hpp"
+#include "yaml-cpp/boost_mod/throw_exception.hpp"
 
 #include <cstddef>
 #include <stdexcept>

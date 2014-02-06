@@ -15,7 +15,7 @@
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#include "boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
 
 namespace boost
 {

@@ -8,14 +8,14 @@
 #ifndef BOOST_TT_IS_POLYMORPHIC_HPP
 #define BOOST_TT_IS_POLYMORPHIC_HPP
 
-#include "boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_POLYMORPHIC
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
 #endif
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost{
 
@@ -109,6 +109,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_polymorphic,T,BOOST_IS_POLYMORPHIC(T))
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif

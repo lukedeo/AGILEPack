@@ -14,14 +14,14 @@
 // $Date: 2009-08-20 00:50:16 -0700 (Thu, 20 Aug 2009) $
 // $Revision: 55679 $
 
-#include "boost_mod/mpl/push_front_fwd.hpp"
-#include "boost_mod/mpl/assert.hpp"
-#include "boost_mod/mpl/aux_/has_type.hpp"
-#include "boost_mod/mpl/aux_/traits_lambda_spec.hpp"
-#include "boost_mod/mpl/aux_/config/forwarding.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/push_front_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/assert.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/has_type.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/traits_lambda_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/forwarding.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
 
-#include "boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 
 namespace boost { namespace mpl {
 

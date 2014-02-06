@@ -14,12 +14,12 @@
 // $Date: 2008-10-11 00:22:05 -0700 (Sat, 11 Oct 2008) $
 // $Revision: 49274 $
 
-#include "boost_mod/mpl/aux_/find_if_pred.hpp"
-#include "boost_mod/mpl/arg.hpp"
-#include "boost_mod/mpl/iter_fold_if.hpp"
-#include "boost_mod/mpl/aux_/common_name_wknd.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/find_if_pred.hpp"
+#include "yaml-cpp/boost_mod/mpl/arg.hpp"
+#include "yaml-cpp/boost_mod/mpl/iter_fold_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/common_name_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 
 namespace boost { namespace mpl {
 

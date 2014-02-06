@@ -12,7 +12,7 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/exception/detail/type_info.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/type_info.hpp"
 #include <iomanip>
 #include <ios>
 #include <string>

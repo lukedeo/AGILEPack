@@ -14,14 +14,14 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
-#include "boost_mod/type_traits/is_empty.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_empty.hpp"
 
 // should be always the last #include directive
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost { namespace mpl {
 
@@ -54,6 +54,6 @@ namespace boost {
 BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_empty, mpl::empty_base, true)
 }
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_MPL_EMPTY_BASE_HPP_INCLUDED

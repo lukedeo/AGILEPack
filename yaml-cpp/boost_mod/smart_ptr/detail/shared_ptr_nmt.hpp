@@ -14,10 +14,10 @@
 //  See http://www.boost.org/libs/smart_ptr/shared_ptr.htm for documentation.
 //
 
-#include "boost_mod/assert.hpp"
-#include "boost_mod/checked_delete.hpp"
-#include "boost_mod/throw_exception.hpp"
-#include "boost_mod/smart_ptr/detail/atomic_count.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/checked_delete.hpp"
+#include "yaml-cpp/boost_mod/throw_exception.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count.hpp"
 
 #ifndef BOOST_NO_AUTO_PTR
 # include <memory>          // for std::auto_ptr

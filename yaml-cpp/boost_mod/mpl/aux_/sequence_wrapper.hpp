@@ -17,18 +17,18 @@
 // $Date: 2008-10-10 23:46:00 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49271 $
 
-#   include "boost_mod/mpl/aux_/config/ctps.hpp"
-#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
 
-#   include "boost_mod/preprocessor/arithmetic/sub.hpp"
-#   include "boost_mod/preprocessor/tuple/elem.hpp"
-#   include "boost_mod/preprocessor/enum_params_with_a_default.hpp"
-#   include "boost_mod/preprocessor/enum_params.hpp"
-#   include "boost_mod/preprocessor/enum.hpp"
-#   include "boost_mod/preprocessor/repeat.hpp"
-#   include "boost_mod/preprocessor/comma_if.hpp"
-#   include "boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/arithmetic/sub.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/tuple/elem.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/enum_params_with_a_default.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/enum_params.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/enum.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/comma_if.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
 
 #if defined(BOOST_MPL_PREPROCESSING_MODE)
 #   undef LONG_MAX
@@ -160,7 +160,7 @@ struct BOOST_PP_CAT(AUX778076_SEQUENCE_NAME,_chooser);
 #endif
 
 #define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, AUX778076_SEQUENCE_LIMIT, "boost_mod/mpl/aux_/sequence_wrapper.hpp"))
+    (3,(0, AUX778076_SEQUENCE_LIMIT, "yaml-cpp/boost_mod/mpl/aux_/sequence_wrapper.hpp"))
 #include BOOST_PP_ITERATE()
 
 // real C++ version is already taken care of
@@ -174,7 +174,7 @@ namespace aux {
 #define AUX778076_COUNT_ARGS_TEMPLATE_PARAM AUX778076_SEQUENCE_TEMPLATE_PARAM
 #define AUX778076_COUNT_ARGS_ARITY          AUX778076_SEQUENCE_LIMIT
 #define AUX778076_COUNT_ARGS_USE_STANDARD_PP_PRIMITIVES
-#include "boost_mod/mpl/aux_/count_args.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/count_args.hpp"
 
 template<
       AUX778076_SEQUENCE_PARAMS()

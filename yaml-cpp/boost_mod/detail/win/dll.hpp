@@ -9,8 +9,8 @@
 #ifndef BOOST_DETAIL_WIN_DLL_HPP
 #define BOOST_DETAIL_WIN_DLL_HPP
 
-#include "boost_mod/detail/win/basic_types.hpp"
-#include "boost_mod/detail/win/security.hpp"
+#include "yaml-cpp/boost_mod/detail/win/basic_types.hpp"
+#include "yaml-cpp/boost_mod/detail/win/security.hpp"
 
 namespace boost
 {

@@ -14,8 +14,8 @@
 # ifndef BOOST_PREPROCESSOR_CONTROL_DETAIL_EDG_WHILE_HPP
 # define BOOST_PREPROCESSOR_CONTROL_DETAIL_EDG_WHILE_HPP
 #
-# include "boost_mod/preprocessor/control/if.hpp"
-# include "boost_mod/preprocessor/tuple/eat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/if.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/eat.hpp"
 #
 # define BOOST_PP_WHILE_1(p, o, s) BOOST_PP_WHILE_1_I(p, o, s)
 # define BOOST_PP_WHILE_2(p, o, s) BOOST_PP_WHILE_2_I(p, o, s)

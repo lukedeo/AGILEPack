@@ -9,14 +9,14 @@
 #ifndef BOOST_FUNCTION_INPUT_ITERATOR
 #define BOOST_FUNCTION_INPUT_ITERATOR
 
-#include "boost_mod/assert.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/function_types/is_function_pointer.hpp"
-#include "boost_mod/function_types/is_function_reference.hpp"
-#include "boost_mod/function_types/result_type.hpp"
-#include "boost_mod/iterator/iterator_facade.hpp"
-#include "boost_mod/none.hpp"
-#include "boost_mod/optional/optional.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/function_types/is_function_pointer.hpp"
+#include "yaml-cpp/boost_mod/function_types/is_function_reference.hpp"
+#include "yaml-cpp/boost_mod/function_types/result_type.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_facade.hpp"
+#include "yaml-cpp/boost_mod/none.hpp"
+#include "yaml-cpp/boost_mod/optional/optional.hpp"
 
 namespace boost {
 

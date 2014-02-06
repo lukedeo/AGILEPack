@@ -6,11 +6,11 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "yaml-cpp/node/iterator.h"
-#include "yaml-cpp/node/ptr.h"
-#include "yaml-cpp/node/type.h"
-#include "boost_mod/utility.hpp"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/node/iterator.h"
+#include "yaml-cpp/yaml-cpp/node/ptr.h"
+#include "yaml-cpp/yaml-cpp/node/type.h"
+#include "yaml-cpp/boost_mod/utility.hpp"
 #include <list>
 #include <utility>
 #include <vector>

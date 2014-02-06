@@ -13,9 +13,9 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/preprocessor/expr_if.hpp"
-#include "boost_mod/preprocessor/inc.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/expr_if.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #if !defined(AUX778076_COUNT_ARGS_PARAM_NAME)
 #   define AUX778076_COUNT_ARGS_PARAM_NAME T
@@ -29,8 +29,8 @@
 
 #if !defined(AUX778076_COUNT_ARGS_USE_STANDARD_PP_PRIMITIVES)
 
-#   include "boost_mod/mpl/aux_/preprocessor/repeat.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/params.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
 
 #   define AUX778076_COUNT_ARGS_REPEAT BOOST_MPL_PP_REPEAT
 #   define AUX778076_COUNT_ARGS_PARAMS(param) \
@@ -42,9 +42,9 @@
 
 #else
 
-#   include "boost_mod/preprocessor/enum_shifted_params.hpp"
-#   include "boost_mod/preprocessor/repeat.hpp"
-#   include "boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/enum_shifted_params.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
 
 #   define AUX778076_COUNT_ARGS_REPEAT BOOST_PP_REPEAT
 #   define AUX778076_COUNT_ARGS_PARAMS(param) \

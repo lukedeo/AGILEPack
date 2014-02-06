@@ -6,20 +6,20 @@
 #ifndef BOOST_ITERATOR_CATEGORIES_HPP
 # define BOOST_ITERATOR_CATEGORIES_HPP
 
-# include "boost_mod/config.hpp"
-# include "boost_mod/detail/iterator.hpp"
-# include "boost_mod/iterator/detail/config_def.hpp"
+# include "yaml-cpp/boost_mod/config.hpp"
+# include "yaml-cpp/boost_mod/detail/iterator.hpp"
+# include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp"
 
-# include "boost_mod/detail/workaround.hpp"
+# include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
-# include "boost_mod/mpl/eval_if.hpp"
-# include "boost_mod/mpl/identity.hpp"
-# include "boost_mod/mpl/placeholders.hpp"
-# include "boost_mod/mpl/aux_/lambda_support.hpp"
+# include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+# include "yaml-cpp/boost_mod/mpl/identity.hpp"
+# include "yaml-cpp/boost_mod/mpl/placeholders.hpp"
+# include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 
-# include "boost_mod/type_traits/is_convertible.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_convertible.hpp"
 
-# include "boost_mod/static_assert.hpp"
+# include "yaml-cpp/boost_mod/static_assert.hpp"
 
 namespace boost {
 
@@ -183,6 +183,6 @@ struct iterator_traversal<mpl::_>
 
 } // namespace boost
 
-#include "boost_mod/iterator/detail/config_undef.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // BOOST_ITERATOR_CATEGORIES_HPP

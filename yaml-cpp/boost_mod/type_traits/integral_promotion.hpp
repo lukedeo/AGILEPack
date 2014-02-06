@@ -6,18 +6,18 @@
 #ifndef FILE_boost_type_traits_integral_promotion_hpp_INCLUDED
 #define FILE_boost_type_traits_integral_promotion_hpp_INCLUDED
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/type_traits/integral_constant.hpp"
-#include "boost_mod/type_traits/is_const.hpp"
-#include "boost_mod/type_traits/is_enum.hpp"
-#include "boost_mod/type_traits/is_volatile.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/type_traits/integral_constant.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_enum.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_volatile.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
 
 // Should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -189,7 +189,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(
     )
 }
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // #ifndef FILE_boost_type_traits_integral_promotion_hpp_INCLUDED
 

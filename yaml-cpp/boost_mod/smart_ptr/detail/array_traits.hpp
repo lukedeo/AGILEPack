@@ -9,7 +9,7 @@
 #ifndef BOOST_SMART_PTR_DETAIL_ARRAY_TRAITS_HPP
 #define BOOST_SMART_PTR_DETAIL_ARRAY_TRAITS_HPP
 
-#include "boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
 
 namespace boost {
     namespace detail {

@@ -15,17 +15,17 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/fold.hpp"
-#include "boost_mod/mpl/reverse_fold.hpp"
-#include "boost_mod/mpl/pair_view.hpp"
-#include "boost_mod/mpl/is_sequence.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/lambda.hpp"
-#include "boost_mod/mpl/bind.hpp"
-#include "boost_mod/mpl/or.hpp"
-#include "boost_mod/mpl/not.hpp"
-#include "boost_mod/mpl/aux_/na.hpp"
-#include "boost_mod/mpl/aux_/inserter_algorithm.hpp"
+#include "yaml-cpp/boost_mod/mpl/fold.hpp"
+#include "yaml-cpp/boost_mod/mpl/reverse_fold.hpp"
+#include "yaml-cpp/boost_mod/mpl/pair_view.hpp"
+#include "yaml-cpp/boost_mod/mpl/is_sequence.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/bind.hpp"
+#include "yaml-cpp/boost_mod/mpl/or.hpp"
+#include "yaml-cpp/boost_mod/mpl/not.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/inserter_algorithm.hpp"
 
 namespace boost { namespace mpl {
 

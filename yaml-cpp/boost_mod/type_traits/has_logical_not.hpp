@@ -14,7 +14,7 @@
 #define BOOST_TT_FORBIDDEN_IF\
    false
 
-#include "boost_mod/type_traits/detail/has_prefix_operator.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/has_prefix_operator.hpp"
 
 #undef BOOST_TT_TRAIT_NAME
 #undef BOOST_TT_TRAIT_OP

@@ -6,11 +6,11 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "yaml-cpp/node/type.h"
-#include "yaml-cpp/node/ptr.h"
-#include "yaml-cpp/node/detail/node_data.h"
-#include "boost_mod/utility.hpp"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/node/type.h"
+#include "yaml-cpp/yaml-cpp/node/ptr.h"
+#include "yaml-cpp/yaml-cpp/node/detail/node_data.h"
+#include "yaml-cpp/boost_mod/utility.hpp"
 
 namespace YAML
 {

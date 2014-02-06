@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "include/layer.hh"
+#include "agile/include/layer.hh"
 #include <stdlib.h>
 
 //----------------------------------------------------------------------------

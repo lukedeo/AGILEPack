@@ -9,15 +9,15 @@
 #ifndef BOOST_TT_IS_SCALAR_HPP_INCLUDED
 #define BOOST_TT_IS_SCALAR_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_arithmetic.hpp"
-#include "boost_mod/type_traits/is_enum.hpp"
-#include "boost_mod/type_traits/is_pointer.hpp"
-#include "boost_mod/type_traits/is_member_pointer.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_arithmetic.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_enum.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -50,6 +50,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_scalar,T,::boost::detail::is_scalar_impl<T>::val
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_SCALAR_HPP_INCLUDED

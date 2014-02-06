@@ -11,11 +11,11 @@
 // $Date: 2011-10-09 15:28:33 -0700 (Sun, 09 Oct 2011) $
 // $Revision: 74865 $
 
-#include "boost_mod/type_traits/detail/template_arity_spec.hpp"
-#include "boost_mod/type_traits/integral_constant.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/template_arity_spec.hpp"
+#include "yaml-cpp/boost_mod/type_traits/integral_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 //
 // Unfortunately some libraries have started using this header without

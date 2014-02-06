@@ -64,9 +64,9 @@
 //
 
 #include <iostream>
-#include "boost_mod/current_function.hpp"
-#include "boost_mod/assert.hpp"
-#include "boost_mod/detail/no_exceptions_support.hpp"
+#include "yaml-cpp/boost_mod/current_function.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/detail/no_exceptions_support.hpp"
 
 //  IDE's like Visual Studio perform better if output goes to std::cout or
 //  some other stream, so allow user to configure output stream:

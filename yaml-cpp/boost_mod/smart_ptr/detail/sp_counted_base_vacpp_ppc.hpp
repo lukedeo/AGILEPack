@@ -21,7 +21,7 @@
 //  formulation
 //
 
-#include "boost_mod/detail/sp_typeinfo.hpp"
+#include "yaml-cpp/boost_mod/detail/sp_typeinfo.hpp"
 
 extern "builtin" void __lwsync(void);
 extern "builtin" void __isync(void);

@@ -14,9 +14,9 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/single_element_iter.hpp"
-#include "boost_mod/mpl/iterator_range.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/single_element_iter.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_range.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
 
 namespace boost { namespace mpl {
 

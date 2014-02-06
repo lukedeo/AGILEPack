@@ -19,27 +19,27 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/next.hpp"
-#   include "boost_mod/mpl/apply_wrap.hpp"
+#   include "yaml-cpp/boost_mod/mpl/next.hpp"
+#   include "yaml-cpp/boost_mod/mpl/apply_wrap.hpp"
 #endif
 
-#include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/use_preprocessed.hpp"
 
 #if    !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER advance_forward.hpp
-#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include "boost_mod/mpl/limits/unrolling.hpp"
-#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
-#   include "boost_mod/mpl/aux_/config/eti.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/unrolling.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
 
-#   include "boost_mod/preprocessor/iterate.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
-#   include "boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 
@@ -47,7 +47,7 @@ namespace boost { namespace mpl { namespace aux {
 template< BOOST_MPL_AUX_NTTP_DECL(long, N) > struct advance_forward;
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "boost_mod/mpl/aux_/advance_forward.hpp"))
+    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "yaml-cpp/boost_mod/mpl/aux_/advance_forward.hpp"))
 #   include BOOST_PP_ITERATE()
 
 // implementation for N that exceeds BOOST_MPL_LIMIT_UNROLLING
@@ -94,7 +94,7 @@ struct advance_forward< BOOST_PP_FRAME_ITERATION(1) >
 
 #if i_ > 0
 #   define BOOST_PP_ITERATION_PARAMS_2 \
-    (3,(1, i_, "boost_mod/mpl/aux_/advance_forward.hpp"))
+    (3,(1, i_, "yaml-cpp/boost_mod/mpl/aux_/advance_forward.hpp"))
 #   include BOOST_PP_ITERATE()
 #endif
         typedef BOOST_PP_CAT(iter,i_) type;

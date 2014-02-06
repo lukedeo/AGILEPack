@@ -15,17 +15,17 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/order_fwd.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/has_key.hpp"
-#include "boost_mod/mpl/aux_/overload_names.hpp"
-#include "boost_mod/mpl/aux_/static_cast.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/traits_lambda_spec.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/order_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/has_key.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/overload_names.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/traits_lambda_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 namespace boost { namespace mpl {
 

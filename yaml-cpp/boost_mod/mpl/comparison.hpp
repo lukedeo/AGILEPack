@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/equal_to.hpp"
-#include "boost_mod/mpl/not_equal_to.hpp"
-#include "boost_mod/mpl/less.hpp"
-#include "boost_mod/mpl/greater.hpp"
-#include "boost_mod/mpl/less_equal.hpp"
-#include "boost_mod/mpl/greater_equal.hpp"
+#include "yaml-cpp/boost_mod/mpl/equal_to.hpp"
+#include "yaml-cpp/boost_mod/mpl/not_equal_to.hpp"
+#include "yaml-cpp/boost_mod/mpl/less.hpp"
+#include "yaml-cpp/boost_mod/mpl/greater.hpp"
+#include "yaml-cpp/boost_mod/mpl/less_equal.hpp"
+#include "yaml-cpp/boost_mod/mpl/greater_equal.hpp"
 
 #endif // BOOST_MPL_COMPARISON_HPP_INCLUDED

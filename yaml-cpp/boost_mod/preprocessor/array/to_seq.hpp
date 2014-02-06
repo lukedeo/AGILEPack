@@ -13,9 +13,9 @@
 # ifndef BOOST_PREPROCESSOR_ARRAY_TO_SEQ_HPP
 # define BOOST_PREPROCESSOR_ARRAY_TO_SEQ_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/tuple/to_seq.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/to_seq.hpp"
 #
 # /* BOOST_PP_ARRAY_TO_SEQ */
 #

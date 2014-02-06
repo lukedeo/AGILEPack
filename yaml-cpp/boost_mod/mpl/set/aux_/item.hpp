@@ -15,13 +15,13 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/void.hpp"
-#include "boost_mod/mpl/next.hpp"
-#include "boost_mod/mpl/prior.hpp"
-#include "boost_mod/mpl/set/aux_/set0.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/config/arrays.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/void.hpp"
+#include "yaml-cpp/boost_mod/mpl/next.hpp"
+#include "yaml-cpp/boost_mod/mpl/prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/set/aux_/set0.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/arrays.hpp"
 
 namespace boost { namespace mpl {
 

@@ -10,10 +10,10 @@
 #define BOOST_TT_CONFIG_HPP_INCLUDED
 
 #ifndef BOOST_CONFIG_HPP
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #endif
 
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 //
 // whenever we have a conversion function with ellipses

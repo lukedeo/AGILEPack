@@ -12,8 +12,8 @@
 # ifndef BOOST_PREPROCESSOR_DETAIL_IS_NULLARY_HPP
 # define BOOST_PREPROCESSOR_DETAIL_IS_NULLARY_HPP
 #
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/detail/check.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/detail/check.hpp"
 #
 # /* BOOST_PP_IS_NULLARY */
 #

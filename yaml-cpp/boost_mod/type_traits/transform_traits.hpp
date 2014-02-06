@@ -12,10 +12,10 @@
 #ifndef BOOST_TT_TRANSFORM_TRAITS_HPP_INCLUDED
 #define BOOST_TT_TRANSFORM_TRAITS_HPP_INCLUDED
 
-#include "boost_mod/type_traits/add_pointer.hpp"
-#include "boost_mod/type_traits/add_reference.hpp"
-#include "boost_mod/type_traits/remove_bounds.hpp"
-#include "boost_mod/type_traits/remove_pointer.hpp"
-#include "boost_mod/type_traits/remove_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_bounds.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_reference.hpp"
 
 #endif // BOOST_TT_TRANSFORM_TRAITS_HPP_INCLUDED

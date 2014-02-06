@@ -5,9 +5,9 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/node/ptr.h"
+#include "yaml-cpp/yaml-cpp/node/ptr.h"
 #include <set>
-#include "boost_mod/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/shared_ptr.hpp"
 
 namespace YAML
 {

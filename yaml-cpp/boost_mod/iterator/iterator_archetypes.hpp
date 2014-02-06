@@ -6,28 +6,28 @@
 #ifndef BOOST_ITERATOR_ARCHETYPES_HPP
 #define BOOST_ITERATOR_ARCHETYPES_HPP
 
-#include "boost_mod/iterator/iterator_categories.hpp"
-#include "boost_mod/operators.hpp"
-#include "boost_mod/static_assert.hpp"
-#include "boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_categories.hpp"
+#include "yaml-cpp/boost_mod/operators.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
 
-#include "boost_mod/iterator/detail/facade_iterator_category.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/facade_iterator_category.hpp"
 
-#include "boost_mod/type_traits/is_const.hpp"
-#include "boost_mod/type_traits/add_const.hpp"
-#include "boost_mod/type_traits/remove_const.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
 
-#include "boost_mod/concept_archetype.hpp"
+#include "yaml-cpp/boost_mod/concept_archetype.hpp"
 
-#include "boost_mod/mpl/aux_/msvc_eti_base.hpp"
-#include "boost_mod/mpl/bitand.hpp"
-#include "boost_mod/mpl/int.hpp"
-#include "boost_mod/mpl/equal_to.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/and.hpp"
-#include "boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/msvc_eti_base.hpp"
+#include "yaml-cpp/boost_mod/mpl/bitand.hpp"
+#include "yaml-cpp/boost_mod/mpl/int.hpp"
+#include "yaml-cpp/boost_mod/mpl/equal_to.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/and.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
 
 #include <cstddef>
 

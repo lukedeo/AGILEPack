@@ -14,9 +14,9 @@
 # ifndef BOOST_PREPROCESSOR_REPETITION_ENUM_PARAMS_HPP
 # define BOOST_PREPROCESSOR_REPETITION_ENUM_PARAMS_HPP
 #
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/punctuation/comma_if.hpp"
-# include "boost_mod/preprocessor/repetition/repeat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/punctuation/comma_if.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/repetition/repeat.hpp"
 #
 # /* BOOST_PP_ENUM_PARAMS */
 #

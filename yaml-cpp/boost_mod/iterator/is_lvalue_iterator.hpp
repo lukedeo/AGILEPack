@@ -4,16 +4,16 @@
 #ifndef IS_LVALUE_ITERATOR_DWA2003112_HPP
 # define IS_LVALUE_ITERATOR_DWA2003112_HPP
 
-#include "boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
 
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/detail/iterator.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/detail/iterator.hpp"
 
-#include "boost_mod/iterator/detail/any_conversion_eater.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/any_conversion_eater.hpp"
 
 // should be the last #includes
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
-#include "boost_mod/iterator/detail/config_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp"
 
 #ifndef BOOST_NO_IS_CONVERTIBLE
 
@@ -144,7 +144,7 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(
 
 #endif
 
-#include "boost_mod/iterator/detail/config_undef.hpp"
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // IS_LVALUE_ITERATOR_DWA2003112_HPP

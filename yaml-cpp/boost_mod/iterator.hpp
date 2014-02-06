@@ -16,7 +16,7 @@
 
 #include <iterator>
 #include <cstddef>           // std::ptrdiff_t
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 namespace boost
 {

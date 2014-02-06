@@ -15,13 +15,13 @@
 // $Date: 2010-04-26 14:31:09 -0700 (Mon, 26 Apr 2010) $
 // $Revision: 61591 $
 
-#include "boost_mod/mpl/transform.hpp"
-#include "boost_mod/mpl/begin_end.hpp"
-#include "boost_mod/mpl/iterator_tags.hpp"
-#include "boost_mod/mpl/next.hpp"
-#include "boost_mod/mpl/lambda.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/transform.hpp"
+#include "yaml-cpp/boost_mod/mpl/begin_end.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_tags.hpp"
+#include "yaml-cpp/boost_mod/mpl/next.hpp"
+#include "yaml-cpp/boost_mod/mpl/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
 
 namespace boost { namespace mpl {
 

@@ -14,13 +14,13 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/push_front_fwd.hpp"
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/push_front_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
 
 #if defined(BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES)
 
-#   include "boost_mod/mpl/vector/aux_/item.hpp"
-#   include "boost_mod/mpl/vector/aux_/tag.hpp"
+#   include "yaml-cpp/boost_mod/mpl/vector/aux_/item.hpp"
+#   include "yaml-cpp/boost_mod/mpl/vector/aux_/tag.hpp"
 
 namespace boost { namespace mpl {
 

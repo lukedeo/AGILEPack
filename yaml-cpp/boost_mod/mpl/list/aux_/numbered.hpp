@@ -16,10 +16,10 @@
 
 #if defined(BOOST_PP_IS_ITERATING)
 
-#include "boost_mod/preprocessor/enum_params.hpp"
-#include "boost_mod/preprocessor/enum_shifted_params.hpp"
-#include "boost_mod/preprocessor/dec.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/enum_shifted_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/dec.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #define i BOOST_PP_FRAME_ITERATION(1)
 

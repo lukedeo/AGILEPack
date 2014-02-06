@@ -14,13 +14,13 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/find_if.hpp"
-#include "boost_mod/mpl/iterator_range.hpp"
-#include "boost_mod/mpl/iterator_tags.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/aux_/lambda_spec.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
-#include "boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/mpl/find_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_range.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_tags.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 
 namespace boost { namespace mpl {
 

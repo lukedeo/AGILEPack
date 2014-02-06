@@ -6,21 +6,21 @@
 //
 //  See http://www.boost.org/libs/type_traits for most recent version including documentation.
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/type_traits/ice.hpp"
-#include "boost_mod/type_traits/integral_constant.hpp"
-#include "boost_mod/type_traits/is_const.hpp"
-#include "boost_mod/type_traits/is_fundamental.hpp"
-#include "boost_mod/type_traits/is_integral.hpp"
-#include "boost_mod/type_traits/is_pointer.hpp"
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/type_traits/is_void.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
-#include "boost_mod/type_traits/remove_pointer.hpp"
-#include "boost_mod/type_traits/remove_reference.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/ice.hpp"
+#include "yaml-cpp/boost_mod/type_traits/integral_constant.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_fundamental.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_integral.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_void.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_reference.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 // cannot include this header without getting warnings of the kind:
 // gcc:
@@ -207,4 +207,4 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF2(BOOST_TT_TRAIT_NAME, Rhs, Ret=::boost::detail::BOOS
 #   pragma warning ( pop )
 #endif
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"

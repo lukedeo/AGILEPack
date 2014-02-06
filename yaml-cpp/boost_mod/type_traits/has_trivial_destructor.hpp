@@ -9,13 +9,13 @@
 #ifndef BOOST_TT_HAS_TRIVIAL_DESTRUCTOR_HPP_INCLUDED
 #define BOOST_TT_HAS_TRIVIAL_DESTRUCTOR_HPP_INCLUDED
 
-#include "boost_mod/type_traits/config.hpp"
-#include "boost_mod/type_traits/intrinsics.hpp"
-#include "boost_mod/type_traits/is_pod.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pod.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -44,6 +44,6 @@ BOOST_TT_AUX_BOOL_TRAIT_SPEC1(has_trivial_destructor,void volatile,false)
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_HAS_TRIVIAL_DESTRUCTOR_HPP_INCLUDED

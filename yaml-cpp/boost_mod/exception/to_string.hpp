@@ -12,8 +12,8 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/utility/enable_if.hpp"
-#include "boost_mod/exception/detail/is_output_streamable.hpp"
+#include "yaml-cpp/boost_mod/utility/enable_if.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/is_output_streamable.hpp"
 #include <sstream>
 
 namespace

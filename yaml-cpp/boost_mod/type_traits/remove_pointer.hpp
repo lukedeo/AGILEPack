@@ -9,21 +9,21 @@
 #ifndef BOOST_TT_REMOVE_POINTER_HPP_INCLUDED
 #define BOOST_TT_REMOVE_POINTER_HPP_INCLUDED
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 #ifdef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#include "boost_mod/type_traits/broken_compiler_spec.hpp"
+#include "yaml-cpp/boost_mod/type_traits/broken_compiler_spec.hpp"
 #endif
 
 #if BOOST_WORKAROUND(BOOST_MSVC,<=1300)
-#include "boost_mod/type_traits/msvc/remove_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/msvc/remove_pointer.hpp"
 #elif defined(BOOST_MSVC)
-#include "boost_mod/type_traits/remove_cv.hpp"
-#include "boost_mod/type_traits/is_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
 #endif
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -87,6 +87,6 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(remove_pointer,T,typename boost::detail::remove_poi
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_REMOVE_POINTER_HPP_INCLUDED

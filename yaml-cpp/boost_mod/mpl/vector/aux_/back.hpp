@@ -14,12 +14,12 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/back_fwd.hpp"
-#include "boost_mod/mpl/next_prior.hpp"
-#include "boost_mod/mpl/vector/aux_/at.hpp"
-#include "boost_mod/mpl/vector/aux_/tag.hpp"
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/back_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/next_prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/vector/aux_/at.hpp"
+#include "yaml-cpp/boost_mod/mpl/vector/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
 namespace boost { namespace mpl {
 

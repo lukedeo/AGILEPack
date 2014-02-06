@@ -14,14 +14,14 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/limits/arity.hpp"
-#include "boost_mod/mpl/aux_/config/dtp.hpp"
-#include "boost_mod/mpl/aux_/config/preprocessor.hpp"
+#include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/dtp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/preprocessor.hpp"
 
-#include "boost_mod/preprocessor/comma_if.hpp"
-#include "boost_mod/preprocessor/logical/and.hpp"
-#include "boost_mod/preprocessor/identity.hpp"
-#include "boost_mod/preprocessor/empty.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/comma_if.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/logical/and.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/identity.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/empty.hpp"
 
 // BOOST_MPL_PP_DEF_PARAMS_TAIL(1,T,value): , T1 = value, .., Tn = value
 // BOOST_MPL_PP_DEF_PARAMS_TAIL(2,T,value): , T2 = value, .., Tn = value
@@ -29,8 +29,8 @@
 
 #if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
 
-#   include "boost_mod/mpl/aux_/preprocessor/filter_params.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/sub.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/filter_params.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/sub.hpp"
 
 #   define BOOST_MPL_PP_DEF_PARAMS_TAIL_IMPL(i, param, value_func) \
     BOOST_MPL_PP_DEF_PARAMS_TAIL_DELAY_1( \
@@ -63,12 +63,12 @@
 
 #else
 
-#   include "boost_mod/preprocessor/arithmetic/add.hpp"
-#   include "boost_mod/preprocessor/arithmetic/sub.hpp"
-#   include "boost_mod/preprocessor/inc.hpp"
-#   include "boost_mod/preprocessor/tuple/elem.hpp"
-#   include "boost_mod/preprocessor/repeat.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/arithmetic/add.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/arithmetic/sub.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/tuple/elem.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_PP_AUX_TAIL_PARAM_FUNC(unused, i, op) \
     , BOOST_PP_CAT( \

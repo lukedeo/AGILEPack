@@ -11,6 +11,6 @@
 #endif
 
 #define BOOST_FUNCTION_NUM_ARGS BOOST_PP_ITERATION()
-#include "boost_mod/function/detail/maybe_include.hpp"
+#include "yaml-cpp/boost_mod/function/detail/maybe_include.hpp"
 #undef BOOST_FUNCTION_NUM_ARGS
 

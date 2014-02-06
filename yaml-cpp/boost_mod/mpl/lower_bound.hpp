@@ -14,34 +14,34 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/less.hpp"
-#include "boost_mod/mpl/lambda.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/less.hpp"
+#include "yaml-cpp/boost_mod/mpl/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x610))
 #   define BOOST_MPL_CFG_STRIPPED_DOWN_LOWER_BOUND_IMPL
 #endif
 
 #if !defined(BOOST_MPL_CFG_STRIPPED_DOWN_LOWER_BOUND_IMPL)
-#   include "boost_mod/mpl/minus.hpp"
-#   include "boost_mod/mpl/divides.hpp"
-#   include "boost_mod/mpl/size.hpp"
-#   include "boost_mod/mpl/advance.hpp"
-#   include "boost_mod/mpl/begin_end.hpp"
-#   include "boost_mod/mpl/long.hpp"
-#   include "boost_mod/mpl/eval_if.hpp"
-#   include "boost_mod/mpl/prior.hpp"
-#   include "boost_mod/mpl/deref.hpp"
-#   include "boost_mod/mpl/apply.hpp"
-#   include "boost_mod/mpl/aux_/value_wknd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/minus.hpp"
+#   include "yaml-cpp/boost_mod/mpl/divides.hpp"
+#   include "yaml-cpp/boost_mod/mpl/size.hpp"
+#   include "yaml-cpp/boost_mod/mpl/advance.hpp"
+#   include "yaml-cpp/boost_mod/mpl/begin_end.hpp"
+#   include "yaml-cpp/boost_mod/mpl/long.hpp"
+#   include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/prior.hpp"
+#   include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#   include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
 #else
-#   include "boost_mod/mpl/not.hpp"
-#   include "boost_mod/mpl/find.hpp"
-#   include "boost_mod/mpl/bind.hpp"
+#   include "yaml-cpp/boost_mod/mpl/not.hpp"
+#   include "yaml-cpp/boost_mod/mpl/find.hpp"
+#   include "yaml-cpp/boost_mod/mpl/bind.hpp"
 #endif
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 namespace boost { namespace mpl {
 

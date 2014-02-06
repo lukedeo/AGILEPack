@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "include/activation.hh"
+#include "agile/include/activation.hh"
 
 //----------------------------------------------------------------------------
 agile::vector agile::functions::rect_lin_unit(const agile::vector &v)

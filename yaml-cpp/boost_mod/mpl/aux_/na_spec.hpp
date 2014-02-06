@@ -15,24 +15,24 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/lambda_fwd.hpp"
-#   include "boost_mod/mpl/int.hpp"
-#   include "boost_mod/mpl/bool.hpp"
-#   include "boost_mod/mpl/aux_/na.hpp"
-#   include "boost_mod/mpl/aux_/arity.hpp"
-#   include "boost_mod/mpl/aux_/template_arity_fwd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/lambda_fwd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/int.hpp"
+#   include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/arity.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/template_arity_fwd.hpp"
 #endif
 
-#include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/enum.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/def_params_tail.hpp"
-#include "boost_mod/mpl/aux_/lambda_arity_param.hpp"
-#include "boost_mod/mpl/aux_/config/dtp.hpp"
-#include "boost_mod/mpl/aux_/config/eti.hpp"
-#include "boost_mod/mpl/aux_/nttp_decl.hpp"
-#include "boost_mod/mpl/aux_/config/ttp.hpp"
-#include "boost_mod/mpl/aux_/config/lambda.hpp"
-#include "boost_mod/mpl/aux_/config/overload_resolution.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/enum.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/def_params_tail.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_arity_param.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/dtp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ttp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/overload_resolution.hpp"
 
 
 #define BOOST_MPL_AUX_NA_PARAMS(i) \

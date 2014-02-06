@@ -6,10 +6,10 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "yaml-cpp/node/node.h"
-#include "yaml-cpp/node/detail/iterator_fwd.h"
-#include "yaml-cpp/node/detail/iterator.h"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/node/node.h"
+#include "yaml-cpp/yaml-cpp/node/detail/iterator_fwd.h"
+#include "yaml-cpp/yaml-cpp/node/detail/iterator.h"
 #include <list>
 #include <utility>
 #include <vector>

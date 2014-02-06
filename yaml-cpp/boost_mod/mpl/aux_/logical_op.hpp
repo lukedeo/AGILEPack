@@ -14,24 +14,24 @@
 // NO INCLUDE GUARDS, THE HEADER IS INTENDED FOR MULTIPLE INCLUSION!
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/bool.hpp"
-#   include "boost_mod/mpl/aux_/nested_type_wknd.hpp"
-#   include "boost_mod/mpl/aux_/na_spec.hpp"
-#   include "boost_mod/mpl/aux_/lambda_support.hpp"
+#   include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nested_type_wknd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 #endif
 
-#include "boost_mod/mpl/limits/arity.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/ext_params.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/def_params_tail.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/enum.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/sub.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/ext_params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/def_params_tail.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/enum.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/sub.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
-#include "boost_mod/preprocessor/dec.hpp"
-#include "boost_mod/preprocessor/inc.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/dec.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 namespace boost { namespace mpl {
 

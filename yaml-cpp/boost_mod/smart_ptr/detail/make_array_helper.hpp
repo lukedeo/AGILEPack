@@ -9,7 +9,7 @@
 #ifndef BOOST_SMART_PTR_DETAIL_MAKE_ARRAY_HELPER_HPP
 #define BOOST_SMART_PTR_DETAIL_MAKE_ARRAY_HELPER_HPP
 
-#include "boost_mod/type_traits/alignment_of.hpp"
+#include "yaml-cpp/boost_mod/type_traits/alignment_of.hpp"
 
 namespace boost {
     namespace detail {

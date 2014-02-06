@@ -14,14 +14,14 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/O1_size_fwd.hpp"
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/aux_/has_size.hpp"
-#include "boost_mod/mpl/aux_/config/forwarding.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/O1_size_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/has_size.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/forwarding.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 namespace boost { namespace mpl {
 

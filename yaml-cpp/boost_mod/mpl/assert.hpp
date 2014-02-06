@@ -14,28 +14,28 @@
 // $Date: 2013-05-23 07:38:22 -0700 (Thu, 23 May 2013) $
 // $Revision: 84442 $
 
-#include "boost_mod/mpl/not.hpp"
-#include "boost_mod/mpl/aux_/value_wknd.hpp"
-#include "boost_mod/mpl/aux_/nested_type_wknd.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
-#include "boost_mod/mpl/aux_/na.hpp"
-#include "boost_mod/mpl/aux_/adl_barrier.hpp"
+#include "yaml-cpp/boost_mod/mpl/not.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nested_type_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/adl_barrier.hpp"
 
-#include "boost_mod/mpl/aux_/config/nttp.hpp"
-#include "boost_mod/mpl/aux_/config/dtp.hpp"
-#include "boost_mod/mpl/aux_/config/gcc.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/pp_counter.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/nttp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/dtp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/gcc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/pp_counter.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
-#include "boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
-#include "boost_mod/config.hpp" // make sure 'size_t' is placed into 'std'
+#include "yaml-cpp/boost_mod/config.hpp" // make sure 'size_t' is placed into 'std'
 #include <cstddef>
 
 #if BOOST_WORKAROUND(BOOST_MSVC, == 1700)
-#include "boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
 #endif
 
 #if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x610)) \

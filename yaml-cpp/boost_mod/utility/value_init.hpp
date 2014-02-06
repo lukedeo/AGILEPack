@@ -21,13 +21,13 @@
 // issues, by clearing the bytes of T, before constructing the T object it
 // contains. More details on these issues are at libs/utility/value_init.htm
 
-#include "boost_mod/aligned_storage.hpp"
-#include "boost_mod/config.hpp" // For BOOST_NO_COMPLETE_VALUE_INITIALIZATION.
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/static_assert.hpp"
-#include "boost_mod/type_traits/cv_traits.hpp"
-#include "boost_mod/type_traits/alignment_of.hpp"
-#include "boost_mod/swap.hpp"
+#include "yaml-cpp/boost_mod/aligned_storage.hpp"
+#include "yaml-cpp/boost_mod/config.hpp" // For BOOST_NO_COMPLETE_VALUE_INITIALIZATION.
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/type_traits/cv_traits.hpp"
+#include "yaml-cpp/boost_mod/type_traits/alignment_of.hpp"
+#include "yaml-cpp/boost_mod/swap.hpp"
 #include <cstring>
 #include <new>
 

@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_IF_HPP
 # define BOOST_PREPROCESSOR_IF_HPP
 #
-# include "boost_mod/preprocessor/control/if.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/if.hpp"
 #
 # endif

@@ -14,7 +14,7 @@
 #ifndef BOOST_UTILITY_ENABLE_IF_HPP
 #define BOOST_UTILITY_ENABLE_IF_HPP
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 // Even the definition of enable_if causes problems on some compilers,
 // so it's macroed out for all compilers that do not support SFINAE

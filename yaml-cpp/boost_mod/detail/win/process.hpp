@@ -9,8 +9,8 @@
 #ifndef BOOST_DETAIL_WIN_PROCESS_HPP
 #define BOOST_DETAIL_WIN_PROCESS_HPP
 
-#include "boost_mod/detail/win/basic_types.hpp"
-#include "boost_mod/detail/win/GetCurrentProcess.hpp"
+#include "yaml-cpp/boost_mod/detail/win/basic_types.hpp"
+#include "yaml-cpp/boost_mod/detail/win/GetCurrentProcess.hpp"
 
 namespace boost {
 namespace detail {

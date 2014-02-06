@@ -12,11 +12,11 @@
 //  See http://www.boost.org/libs/smart_ptr/make_shared.html
 //  for documentation.
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/smart_ptr/shared_ptr.hpp"
-#include "boost_mod/smart_ptr/detail/sp_forward.hpp"
-#include "boost_mod/type_traits/type_with_alignment.hpp"
-#include "boost_mod/type_traits/alignment_of.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_forward.hpp"
+#include "yaml-cpp/boost_mod/type_traits/type_with_alignment.hpp"
+#include "yaml-cpp/boost_mod/type_traits/alignment_of.hpp"
 #include <cstddef>
 #include <new>
 

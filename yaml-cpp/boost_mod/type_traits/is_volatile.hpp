@@ -21,23 +21,23 @@
 #ifndef BOOST_TT_IS_VOLATILE_HPP_INCLUDED
 #define BOOST_TT_IS_VOLATILE_HPP_INCLUDED
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost_mod/type_traits/detail/cv_traits_impl.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/cv_traits_impl.hpp"
 #   if BOOST_WORKAROUND(BOOST_MSVC, < 1400)
-#       include "boost_mod/type_traits/remove_bounds.hpp"
+#       include "yaml-cpp/boost_mod/type_traits/remove_bounds.hpp"
 #   endif
 #else
-#   include "boost_mod/type_traits/is_reference.hpp"
-#   include "boost_mod/type_traits/is_array.hpp"
-#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#   include "boost_mod/type_traits/detail/false_result.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/false_result.hpp"
 #endif
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -147,6 +147,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_volatile,T,::boost::detail::is_volatile_impl<T>:
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_VOLATILE_HPP_INCLUDED

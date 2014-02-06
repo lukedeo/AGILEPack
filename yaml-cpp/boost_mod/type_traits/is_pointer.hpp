@@ -21,24 +21,24 @@
 #ifndef BOOST_TT_IS_POINTER_HPP_INCLUDED
 #define BOOST_TT_IS_POINTER_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_member_pointer.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
-#include "boost_mod/type_traits/detail/ice_not.hpp"
-#include "boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_not.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
 #if !BOOST_WORKAROUND(BOOST_MSVC,<=1300)
-#include "boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
 #endif
 
 #ifdef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost_mod/type_traits/is_reference.hpp"
-#   include "boost_mod/type_traits/is_array.hpp"
-#   include "boost_mod/type_traits/detail/is_function_ptr_tester.hpp"
-#   include "boost_mod/type_traits/detail/false_result.hpp"
-#   include "boost_mod/type_traits/detail/ice_or.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/is_function_ptr_tester.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/false_result.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
 #endif
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -157,6 +157,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_pointer,T,::boost::detail::is_pointer_impl<T>::v
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_POINTER_HPP_INCLUDED

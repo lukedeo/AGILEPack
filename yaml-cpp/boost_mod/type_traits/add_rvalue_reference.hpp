@@ -8,15 +8,15 @@
 #ifndef BOOST_TYPE_TRAITS_EXT_ADD_RVALUE_REFERENCE__HPP
 #define BOOST_TYPE_TRAITS_EXT_ADD_RVALUE_REFERENCE__HPP
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 //----------------------------------------------------------------------------//
 
-#include "boost_mod/type_traits/is_void.hpp"
-#include "boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_void.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 //----------------------------------------------------------------------------//
 //                                                                            //
@@ -60,7 +60,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(add_rvalue_reference,T,typename boost::type_traits_
 
 }  // namespace boost
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif  // BOOST_TYPE_TRAITS_EXT_ADD_RVALUE_REFERENCE__HPP
 

@@ -14,12 +14,12 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
 
-#include "boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 

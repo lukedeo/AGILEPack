@@ -15,18 +15,18 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/void.hpp"
-#include "boost_mod/mpl/pair.hpp"
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/next.hpp"
-#include "boost_mod/mpl/prior.hpp"
-#include "boost_mod/mpl/map/aux_/map0.hpp"
-#include "boost_mod/mpl/aux_/order_impl.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/config/arrays.hpp"
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/void.hpp"
+#include "yaml-cpp/boost_mod/mpl/pair.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/next.hpp"
+#include "yaml-cpp/boost_mod/mpl/prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/map0.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/order_impl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/arrays.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
 
 namespace boost { namespace mpl {

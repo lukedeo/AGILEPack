@@ -14,21 +14,21 @@
 //  See http://www.boost.org/libs/smart_ptr/shared_array.htm for documentation.
 //
 
-#include "boost_mod/config.hpp"   // for broken compiler workarounds
+#include "yaml-cpp/boost_mod/config.hpp"   // for broken compiler workarounds
 
 #if defined(BOOST_NO_MEMBER_TEMPLATES) && !defined(BOOST_MSVC6_MEMBER_TEMPLATES)
-#include "boost_mod/smart_ptr/detail/shared_array_nmt.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/shared_array_nmt.hpp"
 #else
 
 #include <memory>             // TR1 cyclic inclusion fix
 
-#include "boost_mod/assert.hpp"
-#include "boost_mod/checked_delete.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/checked_delete.hpp"
 
-#include "boost_mod/smart_ptr/shared_ptr.hpp"
-#include "boost_mod/smart_ptr/detail/shared_count.hpp"
-#include "boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/shared_count.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #include <cstddef>            // for std::ptrdiff_t
 #include <algorithm>          // for std::swap
@@ -202,7 +202,7 @@ public:
     }
 
 // implicit conversion to "bool"
-#include "boost_mod/smart_ptr/detail/operator_bool.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/operator_bool.hpp"
 
     bool unique() const BOOST_NOEXCEPT
     {

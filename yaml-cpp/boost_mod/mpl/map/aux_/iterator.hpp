@@ -15,17 +15,17 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/map/aux_/map0.hpp"
-#include "boost_mod/mpl/map/aux_/at_impl.hpp"
-#include "boost_mod/mpl/map/aux_/tag.hpp"
-#include "boost_mod/mpl/iterator_tags.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/next.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/void.hpp"
-#include "boost_mod/mpl/aux_/nttp_decl.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/map0.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/at_impl.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_tags.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/next.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/void.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
 namespace boost { namespace mpl {
 

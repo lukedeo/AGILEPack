@@ -30,7 +30,7 @@
 
 #ifndef BOOST_ALGORITHM_HPP
 # define BOOST_ALGORITHM_HPP
-# include "boost_mod/detail/iterator.hpp"
+# include "yaml-cpp/boost_mod/detail/iterator.hpp"
 // Algorithms on sequences
 //
 // The functions in this file have not yet gone through formal
@@ -40,17 +40,17 @@
 
 #include <algorithm>
 #include <vector>
-#include "boost_mod/range/begin.hpp"
-#include "boost_mod/range/end.hpp"
-#include "boost_mod/range/algorithm/copy.hpp"
-#include "boost_mod/range/algorithm/equal.hpp"
-#include "boost_mod/range/algorithm/sort.hpp"
-#include "boost_mod/range/algorithm/stable_sort.hpp"
-#include "boost_mod/range/algorithm/find_if.hpp"
-#include "boost_mod/range/algorithm/count.hpp"
-#include "boost_mod/range/algorithm/count_if.hpp"
-#include "boost_mod/range/algorithm_ext/is_sorted.hpp"
-#include "boost_mod/range/algorithm_ext/iota.hpp"
+#include "yaml-cpp/boost_mod/range/begin.hpp"
+#include "yaml-cpp/boost_mod/range/end.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/copy.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/equal.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/sort.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/stable_sort.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/find_if.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/count.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm/count_if.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm_ext/is_sorted.hpp"
+#include "yaml-cpp/boost_mod/range/algorithm_ext/iota.hpp"
 
 namespace boost {
 

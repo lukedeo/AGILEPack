@@ -15,16 +15,16 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#   include "boost_mod/mpl/limits/unrolling.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/repeat.hpp"
-#   include "boost_mod/mpl/aux_/config/ctps.hpp"
-#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/unrolling.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
 
-#   include "boost_mod/preprocessor/arithmetic/sub.hpp"
-#   include "boost_mod/preprocessor/iterate.hpp"
-#   include "boost_mod/preprocessor/dec.hpp"
-#   include "boost_mod/preprocessor/inc.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/arithmetic/sub.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/dec.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 // local macros, #undef-ined at the end of the header
 
@@ -81,7 +81,7 @@ struct AUX778076_FOLD_IMPL_NAME;
     && !defined(BOOST_MPL_CFG_NO_NONTYPE_TEMPLATE_PARTIAL_SPEC)
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "boost_mod/mpl/aux_/reverse_fold_impl_body.hpp"))
+    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "yaml-cpp/boost_mod/mpl/aux_/reverse_fold_impl_body.hpp"))
 #   include BOOST_PP_ITERATE()
 
 // implementation for N that exceeds BOOST_MPL_LIMIT_UNROLLING
@@ -171,7 +171,7 @@ template< BOOST_MPL_AUX_NTTP_DECL(long, N) >
 struct AUX778076_FOLD_CHUNK_NAME;
 
 #   define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "boost_mod/mpl/aux_/reverse_fold_impl_body.hpp"))
+    (3,(0, BOOST_MPL_LIMIT_UNROLLING, "yaml-cpp/boost_mod/mpl/aux_/reverse_fold_impl_body.hpp"))
 #   include BOOST_PP_ITERATE()
 
 // implementation for N that exceeds BOOST_MPL_LIMIT_UNROLLING

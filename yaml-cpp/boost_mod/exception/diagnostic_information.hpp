@@ -12,19 +12,19 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/exception/get_error_info.hpp"
-#include "boost_mod/exception/info.hpp"
-#include "boost_mod/utility/enable_if.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/exception/get_error_info.hpp"
+#include "yaml-cpp/boost_mod/exception/info.hpp"
+#include "yaml-cpp/boost_mod/utility/enable_if.hpp"
 #ifndef BOOST_NO_RTTI
-#include "boost_mod/units/detail/utility.hpp"
+#include "yaml-cpp/boost_mod/units/detail/utility.hpp"
 #endif
 #include <exception>
 #include <sstream>
 #include <string>
 
 #ifndef BOOST_NO_EXCEPTIONS
-#include "boost_mod/exception/current_exception_cast.hpp"
+#include "yaml-cpp/boost_mod/exception/current_exception_cast.hpp"
 namespace
 boost
     {

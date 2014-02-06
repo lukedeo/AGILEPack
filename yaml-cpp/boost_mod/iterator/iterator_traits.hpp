@@ -5,8 +5,8 @@
 #ifndef ITERATOR_TRAITS_DWA200347_HPP
 # define ITERATOR_TRAITS_DWA200347_HPP
 
-# include "boost_mod/detail/iterator.hpp"
-# include "boost_mod/detail/workaround.hpp"
+# include "yaml-cpp/boost_mod/detail/iterator.hpp"
+# include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost { 
 

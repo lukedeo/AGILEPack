@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_ASSERT_MSG_HPP
 # define BOOST_PREPROCESSOR_ASSERT_MSG_HPP
 #
-# include "boost_mod/preprocessor/debug/assert.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/debug/assert.hpp"
 #
 # endif

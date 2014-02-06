@@ -11,16 +11,16 @@
 #define BOOST_FUNCTION_PROLOGUE_HPP
 #  include <cassert>
 #  include <algorithm>
-#  include "boost_mod/config/no_tr1/functional.hpp" // unary_function, binary_function
-#  include "boost_mod/throw_exception.hpp"
-#  include "boost_mod/config.hpp"
-#  include "boost_mod/function/function_base.hpp"
-#  include "boost_mod/mem_fn.hpp"
-#  include "boost_mod/type_traits/is_integral.hpp"
-#  include "boost_mod/preprocessor/enum.hpp"
-#  include "boost_mod/preprocessor/enum_params.hpp"
-#  include "boost_mod/preprocessor/cat.hpp"
-#  include "boost_mod/preprocessor/repeat.hpp"
-#  include "boost_mod/preprocessor/inc.hpp"
-#  include "boost_mod/type_traits/is_void.hpp"
+#  include "yaml-cpp/boost_mod/config/no_tr1/functional.hpp" // unary_function, binary_function
+#  include "yaml-cpp/boost_mod/throw_exception.hpp"
+#  include "yaml-cpp/boost_mod/config.hpp"
+#  include "yaml-cpp/boost_mod/function/function_base.hpp"
+#  include "yaml-cpp/boost_mod/mem_fn.hpp"
+#  include "yaml-cpp/boost_mod/type_traits/is_integral.hpp"
+#  include "yaml-cpp/boost_mod/preprocessor/enum.hpp"
+#  include "yaml-cpp/boost_mod/preprocessor/enum_params.hpp"
+#  include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#  include "yaml-cpp/boost_mod/preprocessor/repeat.hpp"
+#  include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#  include "yaml-cpp/boost_mod/type_traits/is_void.hpp"
 #endif // BOOST_FUNCTION_PROLOGUE_HPP

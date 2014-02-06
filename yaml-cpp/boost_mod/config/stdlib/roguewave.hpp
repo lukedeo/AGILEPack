@@ -13,7 +13,7 @@
 #define BOOST_RW_STDLIB 1 
 
 #if !defined(__STD_RWCOMPILER_H__) && !defined(_RWSTD_VER)
-#  include "boost_mod/config/no_tr1/utility.hpp"
+#  include "yaml-cpp/boost_mod/config/no_tr1/utility.hpp"
 #  if !defined(__STD_RWCOMPILER_H__) && !defined(_RWSTD_VER)
 #     error This is not the Rogue Wave standard library
 #  endif

@@ -13,13 +13,13 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
-#include "boost_mod/mpl/aux_/config/preprocessor.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/preprocessor.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/stringize.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/stringize.hpp"
 
 #if defined(BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES)
 #   define AUX778076_INCLUDE_DIR typeof_based

@@ -12,7 +12,7 @@
 # error double inclusion of header boost_mod/config/abi_prefix.hpp is an error
 #endif
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 // this must occur after all other includes and before any code appears:
 #ifdef BOOST_HAS_ABI_HEADERS

@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/preprocessor.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/preprocessor.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
 
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_PP_REPEAT(n,f,param) \
     BOOST_PP_CAT(BOOST_MPL_PP_REPEAT_,n)(f,param) \
@@ -38,7 +38,7 @@
 
 #else 
 
-#   include "boost_mod/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/repeat.hpp"
 
 #   define BOOST_MPL_PP_REPEAT(n,f,param) \
     BOOST_PP_REPEAT(n,f,param) \

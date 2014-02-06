@@ -12,8 +12,8 @@
 # ifndef BOOST_PREPROCESSOR_FACILITIES_IS_1_HPP
 # define BOOST_PREPROCESSOR_FACILITIES_IS_1_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/facilities/is_empty.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/facilities/is_empty.hpp"
 #
 # /* BOOST_PP_IS_1 */
 #

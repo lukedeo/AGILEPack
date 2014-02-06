@@ -11,10 +11,10 @@
 #ifndef BOOST_TT_ICE_HPP_INCLUDED
 #define BOOST_TT_ICE_HPP_INCLUDED
 
-#include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
-#include "boost_mod/type_traits/detail/ice_not.hpp"
-#include "boost_mod/type_traits/detail/ice_eq.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_not.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_eq.hpp"
 
 #endif // BOOST_TT_ICE_HPP_INCLUDED

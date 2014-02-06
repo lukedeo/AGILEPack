@@ -12,11 +12,11 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/exception/exception.hpp"
-#include "boost_mod/exception/to_string_stub.hpp"
-#include "boost_mod/exception/detail/error_info_impl.hpp"
-#include "boost_mod/shared_ptr.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/exception/exception.hpp"
+#include "yaml-cpp/boost_mod/exception/to_string_stub.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/error_info_impl.hpp"
+#include "yaml-cpp/boost_mod/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #include <map>
 
 namespace

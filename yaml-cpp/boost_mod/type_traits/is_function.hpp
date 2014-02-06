@@ -11,19 +11,19 @@
 #ifndef BOOST_TT_IS_FUNCTION_HPP_INCLUDED
 #define BOOST_TT_IS_FUNCTION_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_reference.hpp"
-#include "boost_mod/type_traits/detail/false_result.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/false_result.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
-#   include "boost_mod/type_traits/detail/is_function_ptr_helper.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/is_function_ptr_helper.hpp"
 #else
-#   include "boost_mod/type_traits/detail/is_function_ptr_tester.hpp"
-#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/is_function_ptr_tester.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
 #endif
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 // is a type a function?
 // Please note that this implementation is unnecessarily complex:
@@ -106,6 +106,6 @@ BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC1_1(typename T,is_function,T&&,false)
 #endif
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_FUNCTION_HPP_INCLUDED

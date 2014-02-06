@@ -7,12 +7,12 @@
 #ifndef BOOST_INTEROPERABLE_23022003THW_HPP
 # define BOOST_INTEROPERABLE_23022003THW_HPP
 
-# include "boost_mod/mpl/bool.hpp"
-# include "boost_mod/mpl/or.hpp"
+# include "yaml-cpp/boost_mod/mpl/bool.hpp"
+# include "yaml-cpp/boost_mod/mpl/or.hpp"
 
-# include "boost_mod/type_traits/is_convertible.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_convertible.hpp"
 
-# include "boost_mod/iterator/detail/config_def.hpp" // must appear last
+# include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp" // must appear last
 
 namespace boost
 {
@@ -45,6 +45,6 @@ namespace boost
 
 } // namespace boost
 
-# include "boost_mod/iterator/detail/config_undef.hpp"
+# include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // BOOST_INTEROPERABLE_23022003THW_HPP

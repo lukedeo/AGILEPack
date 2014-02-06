@@ -13,10 +13,10 @@
 //  http://www.boost.org/libs/smart_ptr/enable_shared_from_this.html
 //
 
-#include "boost_mod/smart_ptr/weak_ptr.hpp"
-#include "boost_mod/smart_ptr/shared_ptr.hpp"
-#include "boost_mod/assert.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/weak_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 namespace boost
 {

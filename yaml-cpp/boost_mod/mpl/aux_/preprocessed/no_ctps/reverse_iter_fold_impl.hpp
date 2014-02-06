@@ -6,7 +6,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //
 
-// Preprocessed version of "boost_mod/mpl/aux_/reverse_iter_fold_impl.hpp" header
+// Preprocessed version of "yaml-cpp/boost_mod/mpl/aux_/reverse_iter_fold_impl.hpp" header
 // -- DO NOT modify by hand!
 
 namespace boost { namespace mpl { namespace aux {

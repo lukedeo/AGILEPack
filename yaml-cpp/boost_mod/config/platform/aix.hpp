@@ -14,7 +14,7 @@
 #define BOOST_HAS_NANOSLEEP
 #define BOOST_HAS_CLOCK_GETTIME
 
-// This needs support in "boost_mod/cstdint.hpp" exactly like FreeBSD.
+// This needs support in "yaml-cpp/boost_mod/cstdint.hpp" exactly like FreeBSD.
 // This platform has header named <inttypes.h> which includes all
 // the things needed.
 #define BOOST_HAS_STDINT_H
@@ -26,7 +26,7 @@
 //#define BOOST_HAS_PTHREAD_YIELD
 
 // boilerplate code:
-#include "boost_mod/config/posix_features.hpp"
+#include "yaml-cpp/boost_mod/config/posix_features.hpp"
 
 
 

@@ -9,7 +9,7 @@
 #
 # /* See http://www.boost.org for most recent version. */
 #
-# include "boost_mod/preprocessor/slot/detail/shared.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/slot/detail/shared.hpp"
 #
 # undef BOOST_PP_ITERATION_FINISH_5
 #

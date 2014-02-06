@@ -26,14 +26,14 @@
 //  It maps to a CRITICAL_SECTION on Windows or a pthread_mutex on POSIX.
 //
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if !defined(BOOST_HAS_THREADS)
-#  include "boost_mod/smart_ptr/detail/lwm_nop.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/lwm_nop.hpp"
 #elif defined(BOOST_HAS_PTHREADS)
-#  include "boost_mod/smart_ptr/detail/lwm_pthreads.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/lwm_pthreads.hpp"
 #elif defined(BOOST_HAS_WINTHREADS) || defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#  include "boost_mod/smart_ptr/detail/lwm_win32_cs.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/lwm_win32_cs.hpp"
 #else
 // Use #define BOOST_DISABLE_THREADS to avoid the error
 #  error Unrecognized threading platform

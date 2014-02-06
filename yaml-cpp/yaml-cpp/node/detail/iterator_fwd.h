@@ -6,7 +6,7 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/dll.h"
 #include <list>
 #include <utility>
 #include <vector>

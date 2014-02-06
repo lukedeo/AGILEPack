@@ -15,22 +15,22 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/at_fwd.hpp"
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/map/aux_/tag.hpp"
-#include "boost_mod/mpl/aux_/order_impl.hpp"
-#include "boost_mod/mpl/aux_/overload_names.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/ptr_to_ref.hpp"
-#include "boost_mod/mpl/aux_/static_cast.hpp"
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/at_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/order_impl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/overload_names.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/ptr_to_ref.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
 #if !defined(BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES)
-#   include "boost_mod/mpl/eval_if.hpp"
-#   include "boost_mod/mpl/pair.hpp"
-#   include "boost_mod/mpl/void.hpp"
-#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#   include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/pair.hpp"
+#   include "yaml-cpp/boost_mod/mpl/void.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
 #endif
 
 namespace boost { namespace mpl {

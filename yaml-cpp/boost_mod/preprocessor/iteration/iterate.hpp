@@ -12,13 +12,13 @@
 # ifndef BOOST_PREPROCESSOR_ITERATION_ITERATE_HPP
 # define BOOST_PREPROCESSOR_ITERATION_ITERATE_HPP
 #
-# include "boost_mod/preprocessor/arithmetic/dec.hpp"
-# include "boost_mod/preprocessor/arithmetic/inc.hpp"
-# include "boost_mod/preprocessor/array/elem.hpp"
-# include "boost_mod/preprocessor/array/size.hpp"
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/slot/slot.hpp"
-# include "boost_mod/preprocessor/tuple/elem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/dec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/inc.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/array/elem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/array/size.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/slot/slot.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/elem.hpp"
 #
 # /* BOOST_PP_ITERATION_DEPTH */
 #
@@ -73,10 +73,10 @@
 #
 # define BOOST_PP_ITERATE() BOOST_PP_CAT(BOOST_PP_ITERATE_, BOOST_PP_INC(BOOST_PP_ITERATION_DEPTH()))
 #
-# define BOOST_PP_ITERATE_1 "boost_mod/preprocessor/iteration/detail/iter/forward1.hpp"
-# define BOOST_PP_ITERATE_2 "boost_mod/preprocessor/iteration/detail/iter/forward2.hpp"
-# define BOOST_PP_ITERATE_3 "boost_mod/preprocessor/iteration/detail/iter/forward3.hpp"
-# define BOOST_PP_ITERATE_4 "boost_mod/preprocessor/iteration/detail/iter/forward4.hpp"
-# define BOOST_PP_ITERATE_5 "boost_mod/preprocessor/iteration/detail/iter/forward5.hpp"
+# define BOOST_PP_ITERATE_1 "yaml-cpp/boost_mod/preprocessor/iteration/detail/iter/forward1.hpp"
+# define BOOST_PP_ITERATE_2 "yaml-cpp/boost_mod/preprocessor/iteration/detail/iter/forward2.hpp"
+# define BOOST_PP_ITERATE_3 "yaml-cpp/boost_mod/preprocessor/iteration/detail/iter/forward3.hpp"
+# define BOOST_PP_ITERATE_4 "yaml-cpp/boost_mod/preprocessor/iteration/detail/iter/forward4.hpp"
+# define BOOST_PP_ITERATE_5 "yaml-cpp/boost_mod/preprocessor/iteration/detail/iter/forward5.hpp"
 #
 # endif

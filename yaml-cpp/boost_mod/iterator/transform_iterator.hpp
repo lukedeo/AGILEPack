@@ -7,27 +7,27 @@
 #ifndef BOOST_TRANSFORM_ITERATOR_23022003THW_HPP
 #define BOOST_TRANSFORM_ITERATOR_23022003THW_HPP
 
-#include "boost_mod/iterator.hpp"
-#include "boost_mod/iterator/detail/enable_if.hpp"
-#include "boost_mod/iterator/iterator_adaptor.hpp"
-#include "boost_mod/iterator/iterator_categories.hpp"
-#include "boost_mod/mpl/not.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/type_traits/function_traits.hpp"
-#include "boost_mod/type_traits/is_const.hpp"
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/type_traits/is_function.hpp"
-#include "boost_mod/type_traits/is_reference.hpp"
-#include "boost_mod/type_traits/remove_const.hpp"
-#include "boost_mod/type_traits/remove_reference.hpp"
-#include "boost_mod/utility/result_of.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/enable_if.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_categories.hpp"
+#include "yaml-cpp/boost_mod/mpl/not.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/type_traits/function_traits.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_function.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_reference.hpp"
+#include "yaml-cpp/boost_mod/utility/result_of.hpp"
 
 
 #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1310))
-# include "boost_mod/type_traits/is_base_and_derived.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_base_and_derived.hpp"
 
 #endif 
-#include "boost_mod/iterator/detail/config_def.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp"
 
 
 namespace boost
@@ -167,6 +167,6 @@ namespace boost
 
 } // namespace boost
 
-#include "boost_mod/iterator/detail/config_undef.hpp"
+#include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // BOOST_TRANSFORM_ITERATOR_23022003THW_HPP

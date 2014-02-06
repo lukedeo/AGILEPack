@@ -15,9 +15,9 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/remove_if.hpp"
-#include "boost_mod/mpl/same_as.hpp"
-#include "boost_mod/mpl/aux_/inserter_algorithm.hpp"
+#include "yaml-cpp/boost_mod/mpl/remove_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/same_as.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/inserter_algorithm.hpp"
 
 namespace boost { namespace mpl {
 

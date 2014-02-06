@@ -18,43 +18,43 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/numeric_cast.hpp"
-#   include "boost_mod/mpl/apply_wrap.hpp"
-#   include "boost_mod/mpl/if.hpp"
-#   include "boost_mod/mpl/tag.hpp"
-#   include "boost_mod/mpl/aux_/numeric_cast_utils.hpp"
-#   include "boost_mod/mpl/aux_/na.hpp"
-#   include "boost_mod/mpl/aux_/na_spec.hpp"
-#   include "boost_mod/mpl/aux_/lambda_support.hpp"
-#   include "boost_mod/mpl/aux_/msvc_eti_base.hpp"
-#   include "boost_mod/mpl/aux_/value_wknd.hpp"
-#   include "boost_mod/mpl/aux_/config/eti.hpp"
-#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "yaml-cpp/boost_mod/mpl/numeric_cast.hpp"
+#   include "yaml-cpp/boost_mod/mpl/apply_wrap.hpp"
+#   include "yaml-cpp/boost_mod/mpl/if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/tag.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/numeric_cast_utils.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/msvc_eti_base.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
 #endif
 
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
 
 #if defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     || defined(BOOST_MPL_PREPROCESSING_MODE)
 
-#   include "boost_mod/mpl/limits/arity.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/partial_spec_params.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/def_params_tail.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/repeat.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/ext_params.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/enum.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/add.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/sub.hpp"
-#   include "boost_mod/mpl/aux_/config/ctps.hpp"
-#   include "boost_mod/mpl/aux_/config/eti.hpp"
-#   include "boost_mod/mpl/aux_/config/msvc.hpp"
-#   include "boost_mod/mpl/aux_/config/workaround.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/partial_spec_params.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/def_params_tail.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/ext_params.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/enum.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/add.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/sub.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
-#   include "boost_mod/preprocessor/dec.hpp"
-#   include "boost_mod/preprocessor/inc.hpp"
-#   include "boost_mod/preprocessor/iterate.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/dec.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 
 #if !defined(AUX778076_OP_ARITY)
@@ -184,7 +184,7 @@ struct AUX778076_OP_NAME
 };
 
 #define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,( BOOST_PP_DEC(AUX778076_OP_ARITY), 2, "boost_mod/mpl/aux_/numeric_op.hpp" ))
+    (3,( BOOST_PP_DEC(AUX778076_OP_ARITY), 2, "yaml-cpp/boost_mod/mpl/aux_/numeric_op.hpp" ))
 #include BOOST_PP_ITERATE()
 
 #   undef AUX778076_OP_N_CALLS

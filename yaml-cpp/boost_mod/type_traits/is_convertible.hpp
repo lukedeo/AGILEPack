@@ -12,29 +12,29 @@
 #ifndef BOOST_TT_IS_CONVERTIBLE_HPP_INCLUDED
 #define BOOST_TT_IS_CONVERTIBLE_HPP_INCLUDED
 
-#include "boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_CONVERTIBLE
-#include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#include "boost_mod/type_traits/config.hpp"
-#include "boost_mod/type_traits/is_array.hpp"
-#include "boost_mod/type_traits/ice.hpp"
-#include "boost_mod/type_traits/is_arithmetic.hpp"
-#include "boost_mod/type_traits/is_void.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
+#include "yaml-cpp/boost_mod/type_traits/ice.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_arithmetic.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_void.hpp"
 #ifndef BOOST_NO_IS_ABSTRACT
-#include "boost_mod/type_traits/is_abstract.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_abstract.hpp"
 #endif
-#include "boost_mod/type_traits/add_lvalue_reference.hpp"
-#include "boost_mod/type_traits/add_rvalue_reference.hpp"
-#include "boost_mod/type_traits/is_function.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_lvalue_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_rvalue_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_function.hpp"
 
 #if defined(__MWERKS__)
-#include "boost_mod/type_traits/remove_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_reference.hpp"
 #endif
 
 #endif // BOOST_IS_CONVERTIBLE
 
 // should be always the last #include directive
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -487,6 +487,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF2(is_convertible,From,To,BOOST_IS_CONVERTIBLE(From,To
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_CONVERTIBLE_HPP_INCLUDED

@@ -10,7 +10,7 @@
 #ifndef BOOST_TT_CONDITIONAL_HPP_INCLUDED
 #define BOOST_TT_CONDITIONAL_HPP_INCLUDED
 
-#include "boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
 
 namespace boost {
 

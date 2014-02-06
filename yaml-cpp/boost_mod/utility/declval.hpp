@@ -8,11 +8,11 @@
 #ifndef BOOST_TYPE_TRAITS_EXT_DECLVAL__HPP
 #define BOOST_TYPE_TRAITS_EXT_DECLVAL__HPP
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 //----------------------------------------------------------------------------//
 
-#include "boost_mod/type_traits/add_rvalue_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_rvalue_reference.hpp"
 //#include <boost/type_traits/add_lvalue_reference.hpp>
 
 //----------------------------------------------------------------------------//

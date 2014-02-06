@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_DEC_HPP
 # define BOOST_PREPROCESSOR_DEC_HPP
 #
-# include "boost_mod/preprocessor/arithmetic/dec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/dec.hpp"
 #
 # endif

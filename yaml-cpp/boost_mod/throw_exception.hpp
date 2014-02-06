@@ -26,9 +26,9 @@
 //  http://www.boost.org/libs/utility/throw_exception.html
 //
 
-#include "boost_mod/exception/detail/attribute_noreturn.hpp"
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/attribute_noreturn.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #include <exception>
 
 #if !defined( BOOST_EXCEPTION_DISABLE ) && defined( __BORLANDC__ ) && BOOST_WORKAROUND( __BORLANDC__, BOOST_TESTED_AT(0x593) )
@@ -40,8 +40,8 @@
 #endif
 
 #if !defined( BOOST_EXCEPTION_DISABLE )
-# include "boost_mod/exception/exception.hpp"
-# include "boost_mod/current_function.hpp"
+# include "yaml-cpp/boost_mod/exception/exception.hpp"
+# include "yaml-cpp/boost_mod/current_function.hpp"
 # define BOOST_THROW_EXCEPTION(x) ::boost::exception_detail::throw_exception_(x,BOOST_CURRENT_FUNCTION,__FILE__,__LINE__)
 #else
 # define BOOST_THROW_EXCEPTION(x) ::boost::throw_exception(x)

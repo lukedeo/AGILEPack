@@ -9,8 +9,8 @@
 #ifndef BOOST_DETAIL_WIN_ERROR_HANDLING_HPP
 #define BOOST_DETAIL_WIN_ERROR_HANDLING_HPP
 
-#include "boost_mod/detail/win/basic_types.hpp"
-#include "boost_mod/detail/win/GetCurrentThread.hpp"
+#include "yaml-cpp/boost_mod/detail/win/basic_types.hpp"
+#include "yaml-cpp/boost_mod/detail/win/GetCurrentThread.hpp"
 
 namespace boost {
 namespace detail {

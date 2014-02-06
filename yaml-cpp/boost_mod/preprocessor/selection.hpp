@@ -12,7 +12,7 @@
 # ifndef BOOST_PREPROCESSOR_SELECTION_HPP
 # define BOOST_PREPROCESSOR_SELECTION_HPP
 #
-# include "boost_mod/preprocessor/selection/max.hpp"
-# include "boost_mod/preprocessor/selection/min.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/selection/max.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/selection/min.hpp"
 #
 # endif

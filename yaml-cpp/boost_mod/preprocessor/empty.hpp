@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_EMPTY_HPP
 # define BOOST_PREPROCESSOR_EMPTY_HPP
 #
-# include "boost_mod/preprocessor/facilities/empty.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/facilities/empty.hpp"
 #
 # endif

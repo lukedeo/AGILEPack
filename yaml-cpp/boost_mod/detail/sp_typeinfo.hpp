@@ -15,11 +15,11 @@
 // See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if defined( BOOST_NO_TYPEID )
 
-#include "boost_mod/current_function.hpp"
+#include "yaml-cpp/boost_mod/current_function.hpp"
 #include <functional>
 
 namespace boost

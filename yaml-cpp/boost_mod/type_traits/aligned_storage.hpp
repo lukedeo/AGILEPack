@@ -8,6 +8,6 @@
 
 #ifndef BOOST_TT_ALIGNED_STORAGE_HPP_INCLUDED
 #  define BOOST_TT_ALIGNED_STORAGE_HPP_INCLUDED
-#  include "boost_mod/aligned_storage.hpp"
+#  include "yaml-cpp/boost_mod/aligned_storage.hpp"
 #endif // BOOST_TT_ALIGNED_STORAGE_HPP_INCLUDED
 

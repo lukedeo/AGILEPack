@@ -11,10 +11,10 @@
 #ifndef BOOST_DETAIL_NAMED_TEMPLATE_PARAMS_HPP
 #define BOOST_DETAIL_NAMED_TEMPLATE_PARAMS_HPP
 
-#include "boost_mod/type_traits/conversion_traits.hpp"
-#include "boost_mod/type_traits/composite_traits.hpp" // for is_reference
+#include "yaml-cpp/boost_mod/type_traits/conversion_traits.hpp"
+#include "yaml-cpp/boost_mod/type_traits/composite_traits.hpp" // for is_reference
 #if defined(__BORLANDC__)
-#include "boost_mod/type_traits/ice.hpp"
+#include "yaml-cpp/boost_mod/type_traits/ice.hpp"
 #endif
 
 namespace boost {

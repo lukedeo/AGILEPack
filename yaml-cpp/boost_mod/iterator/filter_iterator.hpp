@@ -7,12 +7,12 @@
 #ifndef BOOST_FILTER_ITERATOR_23022003THW_HPP
 #define BOOST_FILTER_ITERATOR_23022003THW_HPP
 
-#include "boost_mod/iterator.hpp"
-#include "boost_mod/iterator/iterator_adaptor.hpp"
-#include "boost_mod/iterator/iterator_categories.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_categories.hpp"
 
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
 
 namespace boost
 {

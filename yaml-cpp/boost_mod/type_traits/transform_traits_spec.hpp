@@ -9,6 +9,6 @@
 #ifndef BOOST_TT_TRANSFORM_TRAITS_SPEC_HPP_INCLUDED
 #define BOOST_TT_TRANSFORM_TRAITS_SPEC_HPP_INCLUDED
 
-#include "boost_mod/type_traits/broken_compiler_spec.hpp"
+#include "yaml-cpp/boost_mod/type_traits/broken_compiler_spec.hpp"
 
 #endif // BOOST_TT_TRANSFORM_TRAITS_SPEC_HPP_INCLUDED

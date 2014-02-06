@@ -14,18 +14,18 @@
 // $Date: 2009-08-17 22:16:53 -0700 (Mon, 17 Aug 2009) $
 // $Revision: 55648 $
 
-#include "boost_mod/mpl/is_sequence.hpp"
-#include "boost_mod/mpl/begin_end.hpp"
-#include "boost_mod/mpl/apply.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/next_prior.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/mpl/assert.hpp"
-#include "boost_mod/mpl/aux_/unwrap.hpp"
+#include "yaml-cpp/boost_mod/mpl/is_sequence.hpp"
+#include "yaml-cpp/boost_mod/mpl/begin_end.hpp"
+#include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/next_prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/assert.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/unwrap.hpp"
 
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/utility/value_init.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/utility/value_init.hpp"
 
 namespace boost { namespace mpl {
 

@@ -14,7 +14,7 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 // MWCW 7.x-8.0 "losts" default template parameters of nested class 
 // templates when their owner classes are passed as arguments to other 

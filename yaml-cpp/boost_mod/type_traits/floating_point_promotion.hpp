@@ -6,19 +6,19 @@
 #ifndef FILE_boost_type_traits_floating_point_promotion_hpp_INCLUDED
 #define FILE_boost_type_traits_floating_point_promotion_hpp_INCLUDED
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #ifdef BOOST_NO_CV_SPECIALIZATIONS
-#include "boost_mod/mpl/at.hpp"
-#include "boost_mod/mpl/int.hpp"
-#include "boost_mod/mpl/multiplies.hpp"
-#include "boost_mod/mpl/plus.hpp"
-#include "boost_mod/mpl/vector.hpp"
-#include "boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/mpl/at.hpp"
+#include "yaml-cpp/boost_mod/mpl/int.hpp"
+#include "yaml-cpp/boost_mod/mpl/multiplies.hpp"
+#include "yaml-cpp/boost_mod/mpl/plus.hpp"
+#include "yaml-cpp/boost_mod/mpl/vector.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 #endif
 
 // Should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -85,7 +85,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(
     )
 }
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // #ifndef FILE_boost_type_traits_floating_point_promotion_hpp_INCLUDED
 

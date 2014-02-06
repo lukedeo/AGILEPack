@@ -14,12 +14,12 @@
 // $Date: 2010-05-11 14:33:24 -0700 (Tue, 11 May 2010) $
 // $Revision: 61921 $
 
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/gcc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/gcc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 namespace boost { namespace mpl {
 

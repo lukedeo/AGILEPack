@@ -31,7 +31,7 @@
    >::value
 
 
-#include "boost_mod/type_traits/detail/has_postfix_operator.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/has_postfix_operator.hpp"
 
 #undef BOOST_TT_TRAIT_NAME
 #undef BOOST_TT_TRAIT_OP

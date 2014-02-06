@@ -16,25 +16,25 @@
 // $Date: 2010-07-18 17:46:31 -0700 (Sun, 18 Jul 2010) $
 // $Revision: 64146 $
 
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
-#include "boost_mod/mpl/aux_/config/gcc.hpp"
-#include "boost_mod/mpl/aux_/config/has_xxx.hpp"
-#include "boost_mod/mpl/aux_/config/msvc_typename.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/gcc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/has_xxx.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc_typename.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
-#include "boost_mod/preprocessor/array/elem.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/control/if.hpp"
-#include "boost_mod/preprocessor/repetition/enum_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/array/elem.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/control/if.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
 
 #if BOOST_WORKAROUND( __BORLANDC__, BOOST_TESTED_AT(0x590) )
-# include "boost_mod/type_traits/is_class.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
 #endif
 
 #if !defined(BOOST_MPL_CFG_NO_HAS_XXX)
@@ -48,8 +48,8 @@
 
 // Modified dwa 8/Oct/02 to handle reference types.
 
-#   include "boost_mod/mpl/if.hpp"
-#   include "boost_mod/mpl/bool.hpp"
+#   include "yaml-cpp/boost_mod/mpl/if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/bool.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 

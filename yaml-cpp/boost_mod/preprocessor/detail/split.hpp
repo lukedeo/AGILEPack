@@ -10,7 +10,7 @@
 # ifndef BOOST_PREPROCESSOR_DETAIL_SPLIT_HPP
 # define BOOST_PREPROCESSOR_DETAIL_SPLIT_HPP
 #
-# include "boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
 #
 # /* BOOST_PP_SPLIT */
 #

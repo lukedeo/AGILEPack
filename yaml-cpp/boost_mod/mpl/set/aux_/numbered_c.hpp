@@ -15,10 +15,10 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/preprocessor/repetition/enum_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
-#include "boost_mod/preprocessor/dec.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/dec.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #define i_ BOOST_PP_FRAME_ITERATION(1)
 

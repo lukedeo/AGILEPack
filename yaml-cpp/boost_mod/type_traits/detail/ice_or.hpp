@@ -8,7 +8,7 @@
 #ifndef BOOST_TT_DETAIL_ICE_OR_HPP_INCLUDED
 #define BOOST_TT_DETAIL_ICE_OR_HPP_INCLUDED
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 namespace boost {
 namespace type_traits {

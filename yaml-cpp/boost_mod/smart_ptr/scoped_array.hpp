@@ -11,12 +11,12 @@
 //  http://www.boost.org/libs/smart_ptr/scoped_array.htm
 //
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/assert.hpp"
-#include "boost_mod/checked_delete.hpp"
-#include "boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/checked_delete.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
 
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #include <cstddef>            // for std::ptrdiff_t
 
@@ -88,7 +88,7 @@ public:
     }
 
 // implicit conversion to "bool"
-#include "boost_mod/smart_ptr/detail/operator_bool.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/operator_bool.hpp"
 
     void swap(scoped_array & b) BOOST_NOEXCEPT
     {

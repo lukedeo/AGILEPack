@@ -6,10 +6,10 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "yaml-cpp/node/ptr.h"
-#include "boost_mod/iterator/iterator_facade.hpp"
-#include "boost_mod/utility/enable_if.hpp"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/node/ptr.h"
+#include "yaml-cpp/boost_mod/iterator/iterator_facade.hpp"
+#include "yaml-cpp/boost_mod/utility/enable_if.hpp"
 #include <map>
 #include <utility>
 #include <vector>

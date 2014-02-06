@@ -9,11 +9,11 @@
 #ifndef BOOST_DETAIL_ALLOCATOR_UTILITIES_HPP
 #define BOOST_DETAIL_ALLOCATOR_UTILITIES_HPP
 
-#include "boost_mod/config.hpp" /* keep it first to prevent nasty warns in MSVC */
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/mpl/aux_/msvc_never_true.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/config.hpp" /* keep it first to prevent nasty warns in MSVC */
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/msvc_never_true.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 #include <cstddef>
 #include <memory>
 #include <new>
@@ -119,7 +119,7 @@ struct partial_std_allocator_rebind_to
 #if BOOST_WORKAROUND(BOOST_MSVC,<1300)
 /* Workaround for a problem in MSVC with dependent template typedefs
  * when doing rebinding of allocators.
- * Modeled after "boost_mod/mpl/aux_/msvc_dtw.hpp" (thanks, Aleksey!)
+ * Modeled after "yaml-cpp/boost_mod/mpl/aux_/msvc_dtw.hpp" (thanks, Aleksey!)
  */
 
 template<typename Allocator>

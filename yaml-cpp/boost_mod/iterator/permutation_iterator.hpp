@@ -10,7 +10,7 @@
 
 #include <iterator>
 
-#include "boost_mod/iterator/iterator_adaptor.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp"
 
 
 namespace boost

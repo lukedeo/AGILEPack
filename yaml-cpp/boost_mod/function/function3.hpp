@@ -8,5 +8,5 @@
 // For more information, see http://www.boost.org
 
 #define BOOST_FUNCTION_NUM_ARGS 3
-#include "boost_mod/function/detail/maybe_include.hpp"
+#include "yaml-cpp/boost_mod/function/detail/maybe_include.hpp"
 #undef BOOST_FUNCTION_NUM_ARGS

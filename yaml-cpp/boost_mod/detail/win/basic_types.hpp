@@ -8,9 +8,9 @@
 
 #ifndef BOOST_DETAIL_WIN_BASIC_TYPES_HPP
 #define BOOST_DETAIL_WIN_BASIC_TYPES_HPP
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #include <cstdarg>
-#include "boost_mod/cstdint.hpp"
+#include "yaml-cpp/boost_mod/cstdint.hpp"
 #if defined( BOOST_USE_WINDOWS_H )
 # include <windows.h>
 #elif defined( WIN32 ) || defined( _WIN32 ) || defined( __WIN32__ ) ||  defined(__CYGWIN__)

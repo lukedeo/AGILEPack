@@ -9,12 +9,12 @@
 #ifndef BOOST_TT_ALIGNMENT_OF_HPP_INCLUDED
 #define BOOST_TT_ALIGNMENT_OF_HPP_INCLUDED
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #include <cstddef>
 
-#include "boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
 // should be the last #include
-#include "boost_mod/type_traits/detail/size_t_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/size_t_trait_def.hpp"
 
 #ifdef BOOST_MSVC
 #   pragma warning(push)
@@ -122,7 +122,7 @@ BOOST_TT_AUX_SIZE_T_TRAIT_SPEC1(alignment_of,void const volatile,0)
 #   pragma warning(pop)
 #endif
 
-#include "boost_mod/type_traits/detail/size_t_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/size_t_trait_undef.hpp"
 
 #endif // BOOST_TT_ALIGNMENT_OF_HPP_INCLUDED
 

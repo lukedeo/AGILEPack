@@ -13,9 +13,9 @@
 # ifndef BOOST_PREPROCESSOR_TUPLE_REM_HPP
 # define BOOST_PREPROCESSOR_TUPLE_REM_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/facilities/overload.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/facilities/overload.hpp"
 #
 # /* BOOST_PP_REM */
 #

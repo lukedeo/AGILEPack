@@ -11,12 +11,12 @@
 
 #include <new> // std::nothrow_t
 #include <cstddef> // std::size_t
-#include "boost_mod/type_traits/config.hpp"
-#include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 namespace detail {
@@ -135,6 +135,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(has_new_operator,T,::boost::detail::has_new_operato
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_HAS_NEW_OPERATOR_HPP_INCLUDED

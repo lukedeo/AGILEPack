@@ -14,27 +14,27 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/intel.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/intel.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if BOOST_WORKAROUND(__EDG_VERSION__, <= 244) && !defined(BOOST_INTEL_CXX_VERSION)
-#   include "boost_mod/mpl/has_xxx.hpp"
+#   include "yaml-cpp/boost_mod/mpl/has_xxx.hpp"
 #elif BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-#   include "boost_mod/mpl/has_xxx.hpp"
-#   include "boost_mod/mpl/if.hpp"
-#   include "boost_mod/mpl/bool.hpp"
-#   include "boost_mod/mpl/aux_/msvc_is_class.hpp"
+#   include "yaml-cpp/boost_mod/mpl/has_xxx.hpp"
+#   include "yaml-cpp/boost_mod/mpl/if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/msvc_is_class.hpp"
 #elif BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x610))
-#   include "boost_mod/mpl/if.hpp"
-#   include "boost_mod/mpl/bool.hpp"
-#   include "boost_mod/mpl/aux_/yes_no.hpp"
-#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#   include "boost_mod/type_traits/is_class.hpp"
+#   include "yaml-cpp/boost_mod/mpl/if.hpp"
+#   include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
 #else
-#   include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#   include "boost_mod/mpl/aux_/yes_no.hpp"
-#   include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
 #endif
 
 namespace boost { namespace mpl { namespace aux {

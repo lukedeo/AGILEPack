@@ -16,7 +16,7 @@
 #include <ios>
 #include <string>
 #include <iterator>
-#include "boost_mod/io/ios_state.hpp"
+#include "yaml-cpp/boost_mod/io/ios_state.hpp"
 
 namespace boost
 {

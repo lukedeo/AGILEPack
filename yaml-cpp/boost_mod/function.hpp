@@ -12,8 +12,8 @@
 
 #include <functional> // unary_function, binary_function
 
-#include "boost_mod/preprocessor/iterate.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #ifndef BOOST_FUNCTION_MAX_ARGS
 #  define BOOST_FUNCTION_MAX_ARGS 10
@@ -21,46 +21,46 @@
 
 // Include the prologue here so that the use of file-level iteration
 // in anything that may be included by function_template.hpp doesn't break
-#include "boost_mod/function/detail/prologue.hpp"
+#include "yaml-cpp/boost_mod/function/detail/prologue.hpp"
 
 // Older Visual Age C++ version do not handle the file iteration well
 #if BOOST_WORKAROUND(__IBMCPP__, >= 500) && BOOST_WORKAROUND(__IBMCPP__, < 800)
 #  if BOOST_FUNCTION_MAX_ARGS >= 0
-#    include "boost_mod/function/function0.hpp"
+#    include "yaml-cpp/boost_mod/function/function0.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 1
-#    include "boost_mod/function/function1.hpp"
+#    include "yaml-cpp/boost_mod/function/function1.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 2
-#    include "boost_mod/function/function2.hpp"
+#    include "yaml-cpp/boost_mod/function/function2.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 3
-#    include "boost_mod/function/function3.hpp"
+#    include "yaml-cpp/boost_mod/function/function3.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 4
-#    include "boost_mod/function/function4.hpp"
+#    include "yaml-cpp/boost_mod/function/function4.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 5
-#    include "boost_mod/function/function5.hpp"
+#    include "yaml-cpp/boost_mod/function/function5.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 6
-#    include "boost_mod/function/function6.hpp"
+#    include "yaml-cpp/boost_mod/function/function6.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 7
-#    include "boost_mod/function/function7.hpp"
+#    include "yaml-cpp/boost_mod/function/function7.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 8
-#    include "boost_mod/function/function8.hpp"
+#    include "yaml-cpp/boost_mod/function/function8.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 9
-#    include "boost_mod/function/function9.hpp"
+#    include "yaml-cpp/boost_mod/function/function9.hpp"
 #  endif
 #  if BOOST_FUNCTION_MAX_ARGS >= 10
-#    include "boost_mod/function/function10.hpp"
+#    include "yaml-cpp/boost_mod/function/function10.hpp"
 #  endif
 #else
 // What is the '3' for?
-#  define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_FUNCTION_MAX_ARGS,"boost_mod/function/detail/function_iterate.hpp"))
+#  define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_FUNCTION_MAX_ARGS,"yaml-cpp/boost_mod/function/detail/function_iterate.hpp"))
 #  include BOOST_PP_ITERATE()
 #  undef BOOST_PP_ITERATION_PARAMS_1
 #endif

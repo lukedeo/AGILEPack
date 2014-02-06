@@ -7,7 +7,7 @@
 #ifndef ACTIVATION_HH
 #define ACTIVATION_HH 
 
-#include "include/basedefs.hh"
+#include "agile/include/basedefs.hh"
 
 namespace agile
 {

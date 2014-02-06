@@ -14,14 +14,14 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/sequence_tag_fwd.hpp"
-#include "boost_mod/mpl/aux_/has_tag.hpp"
-#include "boost_mod/mpl/aux_/has_begin.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/is_msvc_eti_arg.hpp"
-#include "boost_mod/mpl/aux_/config/eti.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/sequence_tag_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/has_tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/has_begin.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/is_msvc_eti_arg.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 namespace boost { namespace mpl {
 

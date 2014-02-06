@@ -9,16 +9,16 @@
 #ifndef BOOST_TT_REMOVE_EXTENT_HPP_INCLUDED
 #define BOOST_TT_REMOVE_EXTENT_HPP_INCLUDED
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 #include <cstddef>
 
 #if BOOST_WORKAROUND(BOOST_MSVC,<=1300)
-#include "boost_mod/type_traits/msvc/remove_extent.hpp"
+#include "yaml-cpp/boost_mod/type_traits/msvc/remove_extent.hpp"
 #endif
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 #if !BOOST_WORKAROUND(BOOST_MSVC,<=1300)
 
@@ -43,6 +43,6 @@ BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_1(typename T,remove_extent,T const volatil
 
 #endif
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_REMOVE_BOUNDS_HPP_INCLUDED

@@ -9,28 +9,28 @@
 #ifndef BOOST_RESULT_OF_HPP
 #define BOOST_RESULT_OF_HPP
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/iteration/iterate.hpp"
-#include "boost_mod/preprocessor/repetition/enum_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_binary_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_shifted_params.hpp"
-#include "boost_mod/preprocessor/facilities/intercept.hpp"
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/mpl/has_xxx.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/mpl/or.hpp"
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/type_traits/is_pointer.hpp"
-#include "boost_mod/type_traits/is_member_function_pointer.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
-#include "boost_mod/type_traits/remove_reference.hpp"
-#include "boost_mod/utility/declval.hpp"
-#include "boost_mod/utility/enable_if.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/iteration/iterate.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_binary_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_shifted_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/facilities/intercept.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/has_xxx.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_function_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_reference.hpp"
+#include "yaml-cpp/boost_mod/utility/declval.hpp"
+#include "yaml-cpp/boost_mod/utility/enable_if.hpp"
 
 #ifndef BOOST_RESULT_OF_NUM_ARGS
 #  define BOOST_RESULT_OF_NUM_ARGS 16
@@ -182,7 +182,7 @@ struct tr1_result_of_impl<F, FArgs, false>
 
 } // end namespace detail
 
-#define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_RESULT_OF_NUM_ARGS,"boost_mod/utility/detail/result_of_iterate.hpp"))
+#define BOOST_PP_ITERATION_PARAMS_1 (3,(0,BOOST_RESULT_OF_NUM_ARGS,"yaml-cpp/boost_mod/utility/detail/result_of_iterate.hpp"))
 #include BOOST_PP_ITERATE()
 
 #else

@@ -9,9 +9,9 @@
 #ifndef BOOST_SMART_PTR_DETAIL_ARRAY_UTILITY_HPP
 #define BOOST_SMART_PTR_DETAIL_ARRAY_UTILITY_HPP
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/type_traits/has_trivial_constructor.hpp"
-#include "boost_mod/type_traits/has_trivial_destructor.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_constructor.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_destructor.hpp"
 
 namespace boost {
     namespace detail {

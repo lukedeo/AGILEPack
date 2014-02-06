@@ -17,11 +17,11 @@
 
 #else
 
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
-#include "boost_mod/preprocessor/enum_params.hpp"
-#include "boost_mod/preprocessor/dec.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/dec.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #define i_ BOOST_PP_FRAME_ITERATION(1)
 

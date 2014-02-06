@@ -18,11 +18,11 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
-#include "boost_mod/smart_ptr/detail/lightweight_mutex.hpp"
-#include "boost_mod/type_traits/type_with_alignment.hpp"
-#include "boost_mod/type_traits/alignment_of.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/lightweight_mutex.hpp"
+#include "yaml-cpp/boost_mod/type_traits/type_with_alignment.hpp"
+#include "yaml-cpp/boost_mod/type_traits/alignment_of.hpp"
 
 #include <new>              // ::operator new, ::operator delete
 #include <cstddef>          // std::size_t

@@ -7,9 +7,9 @@
 #ifndef BOOST_REVERSE_ITERATOR_23022003THW_HPP
 #define BOOST_REVERSE_ITERATOR_23022003THW_HPP
 
-#include "boost_mod/next_prior.hpp"
-#include "boost_mod/iterator.hpp"
-#include "boost_mod/iterator/iterator_adaptor.hpp"
+#include "yaml-cpp/boost_mod/next_prior.hpp"
+#include "yaml-cpp/boost_mod/iterator.hpp"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp"
 
 namespace boost
 {

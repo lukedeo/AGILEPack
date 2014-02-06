@@ -124,8 +124,8 @@ Sample usage:
 #ifndef BOOST_SCOPED_ENUM_EMULATION_HPP
 #define BOOST_SCOPED_ENUM_EMULATION_HPP
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost
 {

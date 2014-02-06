@@ -24,7 +24,7 @@
 //  formulation
 //
 
-#include "boost_mod/detail/sp_typeinfo.hpp"
+#include "yaml-cpp/boost_mod/detail/sp_typeinfo.hpp"
 
 namespace boost
 {

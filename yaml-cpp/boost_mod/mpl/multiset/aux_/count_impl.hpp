@@ -14,18 +14,18 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/multiset/aux_/tag.hpp"
-#include "boost_mod/mpl/count_fwd.hpp"
-#include "boost_mod/mpl/int.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/static_cast.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/multiset/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/count_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/int.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
-#   include "boost_mod/mpl/if.hpp"
-#   include "boost_mod/type_traits/is_reference.hpp"
+#   include "yaml-cpp/boost_mod/mpl/if.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
 #endif
 
 namespace boost { namespace mpl {

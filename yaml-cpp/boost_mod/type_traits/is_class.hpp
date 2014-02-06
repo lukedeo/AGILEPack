@@ -10,31 +10,31 @@
 #ifndef BOOST_TT_IS_CLASS_HPP_INCLUDED
 #define BOOST_TT_IS_CLASS_HPP_INCLUDED
 
-#include "boost_mod/type_traits/config.hpp"
-#include "boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_CLASS
-#   include "boost_mod/type_traits/is_union.hpp"
-#   include "boost_mod/type_traits/detail/ice_and.hpp"
-#   include "boost_mod/type_traits/detail/ice_not.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_union.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/ice_not.hpp"
 
 #ifdef BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
-#   include "boost_mod/type_traits/detail/yes_no_type.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
 #else
-#   include "boost_mod/type_traits/is_scalar.hpp"
-#   include "boost_mod/type_traits/is_array.hpp"
-#   include "boost_mod/type_traits/is_reference.hpp"
-#   include "boost_mod/type_traits/is_void.hpp"
-#   include "boost_mod/type_traits/is_function.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_scalar.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_void.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_function.hpp"
 #endif
 
 #endif // BOOST_IS_CLASS
 
 #ifdef __EDG_VERSION__
-#   include "boost_mod/type_traits/remove_cv.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
 #endif
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -135,6 +135,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_class,T,::boost::detail::is_class_impl<T>::value
     
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_CLASS_HPP_INCLUDED

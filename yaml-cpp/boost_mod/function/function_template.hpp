@@ -10,8 +10,8 @@
 
 // Note: this header is a header template and must NOT have multiple-inclusion
 // protection.
-#include "boost_mod/function/detail/prologue.hpp"
-#include "boost_mod/detail/no_exceptions_support.hpp"
+#include "yaml-cpp/boost_mod/function/detail/prologue.hpp"
+#include "yaml-cpp/boost_mod/detail/no_exceptions_support.hpp"
 
 #if defined(BOOST_MSVC)
 #   pragma warning( push )

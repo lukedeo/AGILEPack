@@ -6,11 +6,11 @@
 #endif
 
 
-#include "yaml-cpp/node/node.h"
-#include "yaml-cpp/node/iterator.h"
-#include "yaml-cpp/node/detail/memory.h"
-#include "yaml-cpp/node/detail/node.h"
-#include "yaml-cpp/exceptions.h"
+#include "yaml-cpp/yaml-cpp/node/node.h"
+#include "yaml-cpp/yaml-cpp/node/iterator.h"
+#include "yaml-cpp/yaml-cpp/node/detail/memory.h"
+#include "yaml-cpp/yaml-cpp/node/detail/node.h"
+#include "yaml-cpp/yaml-cpp/exceptions.h"
 #include <string>
 
 namespace YAML

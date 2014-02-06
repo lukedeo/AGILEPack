@@ -9,7 +9,7 @@
 #ifndef BOOST_DETAIL_WIN_GETTHREADTIMES_HPP
 #define BOOST_DETAIL_WIN_GETTHREADTIMES_HPP
 
-#include "boost_mod/detail/win/time.hpp"
+#include "yaml-cpp/boost_mod/detail/win/time.hpp"
 
 namespace boost {
 namespace detail {

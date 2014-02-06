@@ -15,13 +15,13 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/limits/list.hpp"
-#   include "boost_mod/mpl/aux_/na.hpp"
-#   include "boost_mod/mpl/aux_/config/preprocessor.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/list.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/preprocessor.hpp"
 
-#   include "boost_mod/preprocessor/inc.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
-#   include "boost_mod/preprocessor/stringize.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/stringize.hpp"
 
 #if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING)
 #   define AUX778076_LIST_HEADER \
@@ -37,21 +37,21 @@
 #   undef AUX778076_LIST_HEADER
 #endif
 
-#include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/use_preprocessed.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER list.hpp
-#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include "boost_mod/mpl/limits/list.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/list.hpp"
 
 #   define AUX778076_SEQUENCE_NAME list
 #   define AUX778076_SEQUENCE_LIMIT BOOST_MPL_LIMIT_LIST_SIZE
-#   include "boost_mod/mpl/aux_/sequence_wrapper.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/sequence_wrapper.hpp"
 
 #endif // BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
 #endif // BOOST_MPL_LIST_HPP_INCLUDED

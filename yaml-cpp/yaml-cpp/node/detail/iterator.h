@@ -6,11 +6,11 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "yaml-cpp/node/ptr.h"
-#include "yaml-cpp/node/detail/node_iterator.h"
-#include "boost_mod/iterator/iterator_adaptor.hpp"
-#include "boost_mod/utility.hpp"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/node/ptr.h"
+#include "yaml-cpp/yaml-cpp/node/detail/node_iterator.h"
+#include "yaml-cpp/boost_mod/iterator/iterator_adaptor.hpp"
+#include "yaml-cpp/boost_mod/utility.hpp"
 
 namespace YAML
 {

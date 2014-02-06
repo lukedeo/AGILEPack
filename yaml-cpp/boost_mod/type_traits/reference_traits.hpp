@@ -10,6 +10,6 @@
 #ifndef BOOST_TT_REFERENCE_TRAITS_HPP_INCLUDED
 #define BOOST_TT_REFERENCE_TRAITS_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
 
 #endif // BOOST_TT_REFERENCE_TRAITS_HPP_INCLUDED

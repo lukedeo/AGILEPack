@@ -8,19 +8,19 @@
 #ifndef BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 #define BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/preprocessor/list/for_each_i.hpp"
-#include "boost_mod/preprocessor/tuple/to_list.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/list/transform.hpp"
-#include "boost_mod/preprocessor/list/append.hpp"
-#include "boost_mod/type_traits/alignment_of.hpp"
-#include "boost_mod/type_traits/is_pod.hpp"
-#include "boost_mod/static_assert.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/list/for_each_i.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/tuple/to_list.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/list/transform.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/list/append.hpp"
+#include "yaml-cpp/boost_mod/type_traits/alignment_of.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pod.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 #include <cstddef>
 
@@ -392,7 +392,7 @@ template <> struct type_with_alignment<16>{ typedef align::a16 type; };
 #   pragma warning(pop)
 #endif
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 

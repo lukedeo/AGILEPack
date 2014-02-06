@@ -14,7 +14,7 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/preprocessor/seq/subseq.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/seq/subseq.hpp"
 
 #define BOOST_MPL_PP_RANGE(first, length) \
     BOOST_PP_SEQ_SUBSEQ((0)(1)(2)(3)(4)(5)(6)(7)(8)(9), first, length) \

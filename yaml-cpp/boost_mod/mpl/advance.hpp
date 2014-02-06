@@ -14,18 +14,18 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/advance_fwd.hpp"
-#include "boost_mod/mpl/less.hpp"
-#include "boost_mod/mpl/negate.hpp"
-#include "boost_mod/mpl/long.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/tag.hpp"
-#include "boost_mod/mpl/apply_wrap.hpp"
-#include "boost_mod/mpl/aux_/advance_forward.hpp"
-#include "boost_mod/mpl/aux_/advance_backward.hpp"
-#include "boost_mod/mpl/aux_/value_wknd.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#include "yaml-cpp/boost_mod/mpl/advance_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/less.hpp"
+#include "yaml-cpp/boost_mod/mpl/negate.hpp"
+#include "yaml-cpp/boost_mod/mpl/long.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/apply_wrap.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/advance_forward.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/advance_backward.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
 
 namespace boost { namespace mpl {
 

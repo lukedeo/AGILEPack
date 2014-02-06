@@ -13,9 +13,9 @@
 # ifndef BOOST_PREPROCESSOR_ARRAY_ENUM_HPP
 # define BOOST_PREPROCESSOR_ARRAY_ENUM_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/tuple/rem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_ARRAY_ENUM */
 #

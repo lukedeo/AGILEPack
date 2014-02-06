@@ -9,27 +9,27 @@
 #ifndef BOOST_TT_IS_EMPTY_HPP_INCLUDED
 #define BOOST_TT_IS_EMPTY_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_convertible.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
-#include "boost_mod/type_traits/config.hpp"
-#include "boost_mod/type_traits/intrinsics.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_convertible.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/intrinsics.hpp"
 
 #ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost_mod/type_traits/remove_cv.hpp"
-#   include "boost_mod/type_traits/is_class.hpp"
-#   include "boost_mod/type_traits/add_reference.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/add_reference.hpp"
 #else
-#   include "boost_mod/type_traits/is_reference.hpp"
-#   include "boost_mod/type_traits/is_pointer.hpp"
-#   include "boost_mod/type_traits/is_member_pointer.hpp"
-#   include "boost_mod/type_traits/is_array.hpp"
-#   include "boost_mod/type_traits/is_void.hpp"
-#   include "boost_mod/type_traits/detail/ice_and.hpp"
-#   include "boost_mod/type_traits/detail/ice_not.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_member_pointer.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_void.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/ice_not.hpp"
 #endif
 
 // should be always the last #include directive
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 #ifndef BOOST_INTERNAL_IS_EMPTY
 #define BOOST_INTERNAL_IS_EMPTY(T) false
@@ -221,7 +221,7 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_empty,T,::boost::detail::is_empty_impl<T>::value
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #undef BOOST_INTERNAL_IS_EMPTY
 

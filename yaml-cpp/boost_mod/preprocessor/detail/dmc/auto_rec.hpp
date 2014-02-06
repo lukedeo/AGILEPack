@@ -12,7 +12,7 @@
 # ifndef BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 # define BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 #
-# include "boost_mod/preprocessor/control/iif.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/iif.hpp"
 #
 # /* BOOST_PP_AUTO_REC */
 #

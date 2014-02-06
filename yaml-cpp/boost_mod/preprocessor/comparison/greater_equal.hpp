@@ -14,8 +14,8 @@
 # ifndef BOOST_PREPROCESSOR_COMPARISON_GREATER_EQUAL_HPP
 # define BOOST_PREPROCESSOR_COMPARISON_GREATER_EQUAL_HPP
 #
-# include "boost_mod/preprocessor/comparison/less_equal.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/comparison/less_equal.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
 #
 # /* BOOST_PP_GREATER_EQUAL */
 #

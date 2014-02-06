@@ -10,13 +10,13 @@
 #ifndef BOOST_TT_IS_SIGNED_HPP_INCLUDED
 #define BOOST_TT_IS_SIGNED_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_integral.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
-#include "boost_mod/type_traits/is_enum.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_integral.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_enum.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -135,6 +135,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_signed,T,::boost::detail::is_signed_imp<T>::valu
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED

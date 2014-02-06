@@ -5,8 +5,8 @@
 #ifndef BOOST_TYPE_TRAITS_MSVC_REMOVE_REFERENCE_HOLT_2004_0827
 #define BOOST_TYPE_TRAITS_MSVC_REMOVE_REFERENCE_HOLT_2004_0827
 
-#include "boost_mod/type_traits/msvc/typeof.hpp"
-#include "boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/msvc/typeof.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
 
 namespace boost {
     namespace detail {

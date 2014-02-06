@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_MIN_HPP
 # define BOOST_PREPROCESSOR_MIN_HPP
 #
-# include "boost_mod/preprocessor/selection/min.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/selection/min.hpp"
 #
 # endif

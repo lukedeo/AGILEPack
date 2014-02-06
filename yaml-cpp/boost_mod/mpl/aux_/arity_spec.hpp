@@ -14,15 +14,15 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/int.hpp"
-#include "boost_mod/mpl/limits/arity.hpp"
-#include "boost_mod/mpl/aux_/config/dtp.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#include "boost_mod/mpl/aux_/arity.hpp"
-#include "boost_mod/mpl/aux_/template_arity_fwd.hpp"
-#include "boost_mod/mpl/aux_/config/ttp.hpp"
-#include "boost_mod/mpl/aux_/config/lambda.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/int.hpp"
+#include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/dtp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/arity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/template_arity_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ttp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
 
 #if defined(BOOST_MPL_CFG_BROKEN_DEFAULT_PARAMETERS_IN_NESTED_TEMPLATES)
 #   define BOOST_MPL_AUX_NONTYPE_ARITY_SPEC(i,type,name) \

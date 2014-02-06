@@ -5,8 +5,8 @@
 #ifndef BOOST_TYPE_TRAITS_MSVC_REMOVE_BOUNDS_HOLT_2004_0827
 #define BOOST_TYPE_TRAITS_MSVC_REMOVE_BOUNDS_HOLT_2004_0827
 
-#include "boost_mod/type_traits/msvc/typeof.hpp"
-#include "boost_mod/type_traits/is_array.hpp"
+#include "yaml-cpp/boost_mod/type_traits/msvc/typeof.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
 
 namespace boost {
     namespace detail {

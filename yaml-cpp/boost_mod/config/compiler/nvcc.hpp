@@ -19,10 +19,10 @@
 // NVCC Basically behaves like some flavor of MSVC6 + some specific quirks
 #ifdef __GNUC__
 
-#include "boost_mod/config/compiler/gcc.hpp"
+#include "yaml-cpp/boost_mod/config/compiler/gcc.hpp"
 
 #elif defined(_MSC_VER)
 
-#include "boost_mod/config/compiler/visualc.hpp"
+#include "yaml-cpp/boost_mod/config/compiler/visualc.hpp"
 
 #endif

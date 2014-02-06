@@ -10,10 +10,10 @@
 #ifndef BOOST_UTILITY_BASE_FROM_MEMBER_HPP
 #define BOOST_UTILITY_BASE_FROM_MEMBER_HPP
 
-#include "boost_mod/preprocessor/arithmetic/inc.hpp"
-#include "boost_mod/preprocessor/repetition/enum_binary_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_params.hpp"
-#include "boost_mod/preprocessor/repetition/repeat_from_to.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/arithmetic/inc.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_binary_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/repeat_from_to.hpp"
 
 
 //  Base-from-member arity configuration macro  ------------------------------//

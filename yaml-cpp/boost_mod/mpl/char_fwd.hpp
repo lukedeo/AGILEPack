@@ -14,8 +14,8 @@
 // $Date: 2008-06-14 08:41:37 -0700 (Sat, 16 Jun 2008) $
 // $Revision: 24874 $
 
-#include "boost_mod/mpl/aux_/adl_barrier.hpp"
-#include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/adl_barrier.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
 

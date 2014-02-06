@@ -15,11 +15,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/preprocessor/seq/size.hpp"
-#include "boost_mod/preprocessor/arithmetic/dec.hpp"
-#include "boost_mod/preprocessor/punctuation/paren.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/config/config.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/seq/size.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/arithmetic/dec.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/punctuation/paren.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
 
 // returns 1 if 'seq' is a PP-sequence, 0 otherwise:
 //

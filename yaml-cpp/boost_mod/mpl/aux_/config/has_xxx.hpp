@@ -15,8 +15,8 @@
 // $Date: 2010-07-02 01:32:03 -0700 (Fri, 02 Jul 2010) $
 // $Revision: 63518 $
 
-#include "boost_mod/mpl/aux_/config/overload_resolution.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/overload_resolution.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 // agurt, 11/jan/03: signals a stub-only 'has_xxx' implementation
 

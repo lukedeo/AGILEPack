@@ -4,26 +4,26 @@
 #ifndef FACADE_ITERATOR_CATEGORY_DWA20031118_HPP
 # define FACADE_ITERATOR_CATEGORY_DWA20031118_HPP
 
-# include "boost_mod/iterator/iterator_categories.hpp"
+# include "yaml-cpp/boost_mod/iterator/iterator_categories.hpp"
 
-# include "boost_mod/mpl/or.hpp"  // used in iterator_tag inheritance logic
-# include "boost_mod/mpl/and.hpp"
-# include "boost_mod/mpl/if.hpp"
-# include "boost_mod/mpl/eval_if.hpp"
-# include "boost_mod/mpl/identity.hpp"
-# include "boost_mod/mpl/assert.hpp"
+# include "yaml-cpp/boost_mod/mpl/or.hpp"  // used in iterator_tag inheritance logic
+# include "yaml-cpp/boost_mod/mpl/and.hpp"
+# include "yaml-cpp/boost_mod/mpl/if.hpp"
+# include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+# include "yaml-cpp/boost_mod/mpl/identity.hpp"
+# include "yaml-cpp/boost_mod/mpl/assert.hpp"
 
-# include "boost_mod/type_traits/is_same.hpp"
-# include "boost_mod/type_traits/is_const.hpp"
-# include "boost_mod/type_traits/is_reference.hpp"
-# include "boost_mod/type_traits/is_convertible.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_convertible.hpp"
 
-# include "boost_mod/type_traits/is_same.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 
-# include "boost_mod/iterator/detail/config_def.hpp" // try to keep this last
+# include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp" // try to keep this last
 
 # ifdef BOOST_ITERATOR_REF_CONSTNESS_KILLS_WRITABILITY
-#  include "boost_mod/detail/indirect_traits.hpp"
+#  include "yaml-cpp/boost_mod/detail/indirect_traits.hpp"
 # endif
 
 //
@@ -195,6 +195,6 @@ struct facade_iterator_category
 
 }} // namespace boost::detail
 
-# include "boost_mod/iterator/detail/config_undef.hpp"
+# include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // FACADE_ITERATOR_CATEGORY_DWA20031118_HPP

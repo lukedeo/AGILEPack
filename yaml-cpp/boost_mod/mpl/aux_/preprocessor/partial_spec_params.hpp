@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/limits/arity.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/enum.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/sub.hpp"
-#include "boost_mod/preprocessor/comma_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/enum.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/sub.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/comma_if.hpp"
 
 #define BOOST_MPL_PP_PARTIAL_SPEC_PARAMS(n, param, def) \
 BOOST_MPL_PP_PARAMS(n, param) \

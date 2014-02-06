@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/aux_/nttp_decl.hpp"
-#include "boost_mod/mpl/aux_/nested_type_wknd.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nested_type_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 
 namespace boost { namespace mpl {
 

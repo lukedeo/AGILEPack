@@ -9,7 +9,7 @@
 #ifndef BOOST_DETAIL_WIN_HANDLES_HPP
 #define BOOST_DETAIL_WIN_HANDLES_HPP
 
-#include "boost_mod/detail/win/basic_types.hpp"
+#include "yaml-cpp/boost_mod/detail/win/basic_types.hpp"
 
 
 namespace boost

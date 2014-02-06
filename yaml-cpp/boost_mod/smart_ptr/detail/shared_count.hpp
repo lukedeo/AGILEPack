@@ -22,18 +22,18 @@
 # pragma warn -8027     // Functions containing try are not expanded inline
 #endif
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/checked_delete.hpp"
-#include "boost_mod/throw_exception.hpp"
-#include "boost_mod/smart_ptr/bad_weak_ptr.hpp"
-#include "boost_mod/smart_ptr/detail/sp_counted_base.hpp"
-#include "boost_mod/smart_ptr/detail/sp_counted_impl.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/checked_delete.hpp"
+#include "yaml-cpp/boost_mod/throw_exception.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/bad_weak_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_counted_base.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_counted_impl.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 // In order to avoid circular dependencies with Boost.TR1
 // we make sure that our include of <memory> doesn't try to
 // pull in the TR1 headers: that's why we use this header 
 // rather than including <memory> directly:
-#include "boost_mod/config/no_tr1/memory.hpp"  // std::auto_ptr
+#include "yaml-cpp/boost_mod/config/no_tr1/memory.hpp"  // std::auto_ptr
 #include <functional>       // std::less
 
 #ifdef BOOST_NO_EXCEPTIONS
@@ -41,7 +41,7 @@
 #endif
 
 #if !defined( BOOST_NO_CXX11_SMART_PTR )
-# include "boost_mod/utility/addressof.hpp"
+# include "yaml-cpp/boost_mod/utility/addressof.hpp"
 #endif
 
 namespace boost

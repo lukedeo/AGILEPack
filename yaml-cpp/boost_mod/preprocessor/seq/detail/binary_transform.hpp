@@ -12,10 +12,10 @@
 # ifndef BOOST_PREPROCESSOR_SEQ_DETAIL_BINARY_TRANSFORM_HPP
 # define BOOST_PREPROCESSOR_SEQ_DETAIL_BINARY_TRANSFORM_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/tuple/eat.hpp"
-# include "boost_mod/preprocessor/tuple/rem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/eat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_SEQ_BINARY_TRANSFORM */
 #

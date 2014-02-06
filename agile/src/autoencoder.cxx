@@ -4,7 +4,7 @@
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
 
-#include "include/autoencoder.hh"
+#include "agile/include/autoencoder.hh"
 
 autoencoder::autoencoder(int n_inputs, int n_outputs, 
     layer_type encoder_type, layer_type decoder_type) :

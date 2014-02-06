@@ -8,7 +8,7 @@
 // For more information, see http://www.boost.org
 #ifndef BOOST_FUNCTION_FWD_HPP
 #define BOOST_FUNCTION_FWD_HPP
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if defined(__sgi) && defined(_COMPILER_VERSION) && _COMPILER_VERSION <= 730 && !defined(BOOST_STRICT_CONFIG)
 // Work around a compiler bug.

@@ -10,14 +10,14 @@
 #ifndef BOOST_TT_IS_MEMBER_OBJECT_POINTER_HPP_INCLUDED
 #define BOOST_TT_IS_MEMBER_OBJECT_POINTER_HPP_INCLUDED
 
-#include "boost_mod/type_traits/config.hpp"
-#include "boost_mod/type_traits/is_member_pointer.hpp"
-#include "boost_mod/type_traits/is_member_function_pointer.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
-#include "boost_mod/type_traits/detail/ice_not.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_function_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_not.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -41,6 +41,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_member_object_pointer,T,::boost::detail::is_memb
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED

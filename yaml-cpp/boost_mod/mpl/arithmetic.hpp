@@ -14,12 +14,12 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/plus.hpp"
-#include "boost_mod/mpl/minus.hpp"
-#include "boost_mod/mpl/times.hpp"
-#include "boost_mod/mpl/divides.hpp"
-#include "boost_mod/mpl/modulus.hpp"
-#include "boost_mod/mpl/negate.hpp"
-#include "boost_mod/mpl/multiplies.hpp" // deprecated
+#include "yaml-cpp/boost_mod/mpl/plus.hpp"
+#include "yaml-cpp/boost_mod/mpl/minus.hpp"
+#include "yaml-cpp/boost_mod/mpl/times.hpp"
+#include "yaml-cpp/boost_mod/mpl/divides.hpp"
+#include "yaml-cpp/boost_mod/mpl/modulus.hpp"
+#include "yaml-cpp/boost_mod/mpl/negate.hpp"
+#include "yaml-cpp/boost_mod/mpl/multiplies.hpp" // deprecated
 
 #endif // BOOST_MPL_ARITHMETIC_HPP_INCLUDED

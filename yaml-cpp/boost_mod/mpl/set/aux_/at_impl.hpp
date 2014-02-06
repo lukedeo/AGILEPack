@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/at_fwd.hpp"
-#include "boost_mod/mpl/set/aux_/has_key_impl.hpp"
-#include "boost_mod/mpl/set/aux_/tag.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/void.hpp"
+#include "yaml-cpp/boost_mod/mpl/at_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/set/aux_/has_key_impl.hpp"
+#include "yaml-cpp/boost_mod/mpl/set/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/void.hpp"
 
 namespace boost { namespace mpl {
 

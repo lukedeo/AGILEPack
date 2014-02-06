@@ -14,7 +14,7 @@
 
 //  Intel compiler setup:
 
-#include "boost_mod/config/compiler/common_edg.hpp"
+#include "yaml-cpp/boost_mod/config/compiler/common_edg.hpp"
 
 #if defined(__INTEL_COMPILER)
 #  define BOOST_INTEL_CXX_VERSION __INTEL_COMPILER

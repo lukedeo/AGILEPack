@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_FOR_HPP
 # define BOOST_PREPROCESSOR_FOR_HPP
 #
-# include "boost_mod/preprocessor/repetition/for.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/repetition/for.hpp"
 #
 # endif

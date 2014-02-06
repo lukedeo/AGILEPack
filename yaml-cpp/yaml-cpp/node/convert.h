@@ -6,10 +6,10 @@
 #endif
 
 
-#include "yaml-cpp/binary.h"
-#include "yaml-cpp/node/node.h"
-#include "yaml-cpp/node/iterator.h"
-#include "yaml-cpp/null.h"
+#include "yaml-cpp/yaml-cpp/binary.h"
+#include "yaml-cpp/yaml-cpp/node/node.h"
+#include "yaml-cpp/yaml-cpp/node/iterator.h"
+#include "yaml-cpp/yaml-cpp/null.h"
 #include <limits>
 #include <list>
 #include <map>

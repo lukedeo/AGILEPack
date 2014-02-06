@@ -14,28 +14,28 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/not.hpp"
-#include "boost_mod/mpl/and.hpp"
-#include "boost_mod/mpl/begin_end.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/sequence_tag_fwd.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/mpl/void.hpp"
-#include "boost_mod/mpl/aux_/has_tag.hpp"
-#include "boost_mod/mpl/aux_/has_begin.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
-#include "boost_mod/mpl/aux_/config/eti.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/not.hpp"
+#include "yaml-cpp/boost_mod/mpl/and.hpp"
+#include "yaml-cpp/boost_mod/mpl/begin_end.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/sequence_tag_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/void.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/has_tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/has_begin.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 #if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-#   include "boost_mod/mpl/aux_/msvc_is_class.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/msvc_is_class.hpp"
 #elif BOOST_WORKAROUND(BOOST_MSVC, == 1300)
-#   include "boost_mod/type_traits/is_class.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
 #endif
 
-#include "boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
 
 namespace boost { namespace mpl {
 

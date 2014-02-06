@@ -14,17 +14,17 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/copy.hpp"
-#include "boost_mod/mpl/clear.hpp"
-#include "boost_mod/mpl/front_inserter.hpp"
-#include "boost_mod/mpl/joint_view.hpp"
-#include "boost_mod/mpl/iterator_range.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/iter_push_front.hpp"
-#include "boost_mod/mpl/aux_/traits_lambda_spec.hpp"
-#include "boost_mod/mpl/aux_/config/forwarding.hpp"
+#include "yaml-cpp/boost_mod/mpl/copy.hpp"
+#include "yaml-cpp/boost_mod/mpl/clear.hpp"
+#include "yaml-cpp/boost_mod/mpl/front_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/joint_view.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_range.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/iter_push_front.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/traits_lambda_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/forwarding.hpp"
 
-#include "boost_mod/type_traits/same_traits.hpp"
+#include "yaml-cpp/boost_mod/type_traits/same_traits.hpp"
 
 namespace boost { namespace mpl {
 

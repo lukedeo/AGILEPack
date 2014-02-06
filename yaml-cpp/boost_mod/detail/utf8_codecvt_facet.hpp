@@ -82,8 +82,8 @@
 #include <cwchar>   // for mbstate_t
 #include <cstddef>  // for std::size_t
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #if defined(BOOST_NO_STDC_NAMESPACE)
 namespace std {

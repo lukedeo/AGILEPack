@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_ENUM_HPP
 # define BOOST_PREPROCESSOR_ENUM_HPP
 #
-# include "boost_mod/preprocessor/repetition/enum.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/repetition/enum.hpp"
 #
 # endif

@@ -15,15 +15,15 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/set/aux_/tag.hpp"
-#include "boost_mod/mpl/has_key_fwd.hpp"
-#include "boost_mod/mpl/bool.hpp"
-#include "boost_mod/mpl/aux_/overload_names.hpp"
-#include "boost_mod/mpl/aux_/static_cast.hpp"
-#include "boost_mod/mpl/aux_/yes_no.hpp"
-#include "boost_mod/mpl/aux_/type_wrapper.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/set/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/has_key_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/bool.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/overload_names.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/yes_no.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
 
 namespace boost { namespace mpl {
 

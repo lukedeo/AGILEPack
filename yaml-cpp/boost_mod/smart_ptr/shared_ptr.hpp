@@ -14,29 +14,29 @@
 //  See http://www.boost.org/libs/smart_ptr/shared_ptr.htm for documentation.
 //
 
-#include "boost_mod/config.hpp"   // for broken compiler workarounds
+#include "yaml-cpp/boost_mod/config.hpp"   // for broken compiler workarounds
 
 #if defined(BOOST_NO_MEMBER_TEMPLATES) && !defined(BOOST_MSVC6_MEMBER_TEMPLATES)
-#include "boost_mod/smart_ptr/detail/shared_ptr_nmt.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/shared_ptr_nmt.hpp"
 #else
 
 // In order to avoid circular dependencies with Boost.TR1
 // we make sure that our include of <memory> doesn't try to
 // pull in the TR1 headers: that's why we use this header 
 // rather than including <memory> directly:
-#include "boost_mod/config/no_tr1/memory.hpp"  // std::auto_ptr
+#include "yaml-cpp/boost_mod/config/no_tr1/memory.hpp"  // std::auto_ptr
 
-#include "boost_mod/assert.hpp"
-#include "boost_mod/checked_delete.hpp"
-#include "boost_mod/throw_exception.hpp"
-#include "boost_mod/smart_ptr/detail/shared_count.hpp"
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/smart_ptr/detail/sp_convertible.hpp"
-#include "boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/checked_delete.hpp"
+#include "yaml-cpp/boost_mod/throw_exception.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/shared_count.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_convertible.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
 
 #if !defined(BOOST_SP_NO_ATOMIC_ACCESS)
-#include "boost_mod/smart_ptr/detail/spinlock_pool.hpp"
-#include "boost_mod/memory_order.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/spinlock_pool.hpp"
+#include "yaml-cpp/boost_mod/memory_order.hpp"
 #endif
 
 #include <algorithm>            // for std::swap
@@ -669,7 +669,7 @@ public:
     }
 
 // implicit conversion to "bool"
-#include "boost_mod/smart_ptr/detail/operator_bool.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/operator_bool.hpp"
 
     bool unique() const BOOST_NOEXCEPT
     {

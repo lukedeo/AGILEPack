@@ -6,7 +6,7 @@
  /*
   *   LOCATION:    see http://www.boost.org for most recent version.
   *   FILE         auto_link.hpp
-  *   VERSION      see "boost_mod/version.hpp"
+  *   VERSION      see "yaml-cpp/boost_mod/version.hpp"
   *   DESCRIPTION: Automatic library inclusion for Borland/Microsoft compilers.
   */
 
@@ -76,7 +76,7 @@ BOOST_LIB_VERSION:    The Boost version, in the form x_y, for Boost version x.y.
 
 #ifdef __cplusplus
 #  ifndef BOOST_CONFIG_HPP
-#     include "boost_mod/config.hpp"
+#     include "yaml-cpp/boost_mod/config.hpp"
 #  endif
 #elif defined(_MSC_VER) && !defined(__MWERKS__) && !defined(__EDG_VERSION__)
 //
@@ -95,7 +95,7 @@ BOOST_LIB_VERSION:    The Boost version, in the form x_y, for Boost version x.y.
     || (defined(__ICL) && defined(_MSC_EXTENSIONS) && (_MSC_VER >= 1200))
 
 #ifndef BOOST_VERSION_HPP
-#  include "boost_mod/version.hpp"
+#  include "yaml-cpp/boost_mod/version.hpp"
 #endif
 
 #ifndef BOOST_LIB_NAME

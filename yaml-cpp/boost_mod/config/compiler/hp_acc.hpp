@@ -13,7 +13,7 @@
 //  HP aCC C++ compiler setup:
 
 #if defined(__EDG__)
-#include "boost_mod/config/compiler/common_edg.hpp"
+#include "yaml-cpp/boost_mod/config/compiler/common_edg.hpp"
 #endif
 
 #if (__HP_aCC <= 33100)

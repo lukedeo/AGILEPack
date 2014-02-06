@@ -12,11 +12,11 @@
 //  http://www.boost.org/LICENSE_1_0.txt
 //
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/shared_ptr.hpp"
-#include "boost_mod/weak_ptr.hpp"
-#include "boost_mod/assert.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/weak_ptr.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost
 {

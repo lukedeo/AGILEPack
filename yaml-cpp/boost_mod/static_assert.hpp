@@ -14,8 +14,8 @@
 #ifndef BOOST_STATIC_ASSERT_HPP
 #define BOOST_STATIC_ASSERT_HPP
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #if defined(__GNUC__) && !defined(__GXX_EXPERIMENTAL_CXX0X__)
 //

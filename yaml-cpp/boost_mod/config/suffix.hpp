@@ -546,8 +546,8 @@ namespace boost{
 
 #if defined(BOOST_NO_EXPLICIT_FUNCTION_TEMPLATE_ARGUMENTS) && defined(__cplusplus)
 
-#  include "boost_mod/type.hpp"
-#  include "boost_mod/non_type.hpp"
+#  include "yaml-cpp/boost_mod/type.hpp"
+#  include "yaml-cpp/boost_mod/non_type.hpp"
 
 #  define BOOST_EXPLICIT_TEMPLATE_TYPE(t)              boost::type<t>* = 0
 #  define BOOST_EXPLICIT_TEMPLATE_TYPE_SPEC(t)         boost::type<t>*

@@ -12,8 +12,8 @@
 #ifndef BOOST_UTILITY_ADDRESSOF_HPP
 # define BOOST_UTILITY_ADDRESSOF_HPP
 
-# include "boost_mod/config.hpp"
-# include "boost_mod/detail/workaround.hpp"
+# include "yaml-cpp/boost_mod/config.hpp"
+# include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost
 {

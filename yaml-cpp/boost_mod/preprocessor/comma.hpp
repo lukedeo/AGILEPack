@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_COMMA_HPP
 # define BOOST_PREPROCESSOR_COMMA_HPP
 #
-# include "boost_mod/preprocessor/punctuation/comma.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/punctuation/comma.hpp"
 #
 # endif

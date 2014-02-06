@@ -13,11 +13,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/compiler.hpp"
-#include "boost_mod/mpl/aux_/config/preprocessor.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/stringize.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/compiler.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/preprocessor.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/stringize.hpp"
 
 #if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING)
 #   define AUX778076_PREPROCESSED_HEADER \
@@ -34,7 +34,7 @@
 #   include AUX778076_INCLUDE_STRING
 #   undef AUX778076_INCLUDE_STRING
 #else
-#   include BOOST_PP_STRINGIZE(boost_mod/mpl/aux_/preprocessed/AUX778076_PREPROCESSED_HEADER)
+#   include BOOST_PP_STRINGIZE(yaml-cpp/boost_mod/mpl/aux_/preprocessed/AUX778076_PREPROCESSED_HEADER)
 #endif
 
 #   undef AUX778076_PREPROCESSED_HEADER

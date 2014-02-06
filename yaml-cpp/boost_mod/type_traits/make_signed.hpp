@@ -9,24 +9,24 @@
 #ifndef BOOST_TT_MAKE_SIGNED_HPP_INCLUDED
 #define BOOST_TT_MAKE_SIGNED_HPP_INCLUDED
 
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/type_traits/is_integral.hpp"
-#include "boost_mod/type_traits/is_signed.hpp"
-#include "boost_mod/type_traits/is_unsigned.hpp"
-#include "boost_mod/type_traits/is_enum.hpp"
-#include "boost_mod/type_traits/is_same.hpp"
-#include "boost_mod/type_traits/remove_cv.hpp"
-#include "boost_mod/type_traits/is_const.hpp"
-#include "boost_mod/type_traits/is_volatile.hpp"
-#include "boost_mod/type_traits/add_const.hpp"
-#include "boost_mod/type_traits/add_volatile.hpp"
-#include "boost_mod/type_traits/detail/ice_or.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
-#include "boost_mod/type_traits/detail/ice_not.hpp"
-#include "boost_mod/static_assert.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_integral.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_signed.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_unsigned.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_enum.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_same.hpp"
+#include "yaml-cpp/boost_mod/type_traits/remove_cv.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_volatile.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_volatile.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_or.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_not.hpp"
+#include "yaml-cpp/boost_mod/static_assert.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -147,7 +147,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(make_signed,T,typename boost::detail::make_signed_i
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_ADD_REFERENCE_HPP_INCLUDED
 

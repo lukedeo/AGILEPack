@@ -14,13 +14,13 @@
 #ifndef BOOST_TT_DETAIL_IS_MEM_FUN_POINTER_TESTER_HPP_INCLUDED
 #define BOOST_TT_DETAIL_IS_MEM_FUN_POINTER_TESTER_HPP_INCLUDED
 
-#include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#include "boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
 
 #if defined(BOOST_TT_PREPROCESSING_MODE)
-#   include "boost_mod/preprocessor/iterate.hpp"
-#   include "boost_mod/preprocessor/enum_params.hpp"
-#   include "boost_mod/preprocessor/comma_if.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/enum_params.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/comma_if.hpp"
 #endif
 
 namespace boost {
@@ -2636,7 +2636,7 @@ yes_type is_mem_fun_pointer_tester(R (__cdecl T::*const volatile*)( T0 , T1 , T2
 #else
 
 #define BOOST_PP_ITERATION_PARAMS_1 \
-    (3, (0, 25, "boost_mod/type_traits/detail/is_mem_fun_pointer_tester.hpp"))
+    (3, (0, 25, "yaml-cpp/boost_mod/type_traits/detail/is_mem_fun_pointer_tester.hpp"))
 #include BOOST_PP_ITERATE()
 
 #endif // BOOST_TT_PREPROCESSING_MODE

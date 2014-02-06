@@ -17,7 +17,7 @@
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if defined( BOOST_USE_WINDOWS_H )
 

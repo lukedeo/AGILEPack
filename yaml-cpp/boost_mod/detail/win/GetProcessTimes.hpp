@@ -9,7 +9,7 @@
 #ifndef BOOST_DETAIL_WIN_GETPROCESSTIMES_HPP
 #define BOOST_DETAIL_WIN_GETPROCESSTIMES_HPP
 
-#include "boost_mod/detail/win/time.hpp"
+#include "yaml-cpp/boost_mod/detail/win/time.hpp"
 
 namespace boost {
 namespace detail {

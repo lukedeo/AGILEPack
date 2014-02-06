@@ -15,14 +15,14 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/set/aux_/set0.hpp"
-#include "boost_mod/mpl/has_key.hpp"
-#include "boost_mod/mpl/iterator_tags.hpp"
-#include "boost_mod/mpl/next.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/set/aux_/set0.hpp"
+#include "yaml-cpp/boost_mod/mpl/has_key.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_tags.hpp"
+#include "yaml-cpp/boost_mod/mpl/next.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
 namespace boost { namespace mpl {
 

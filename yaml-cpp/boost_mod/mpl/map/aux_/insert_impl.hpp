@@ -15,13 +15,13 @@
 // $Date: 2009-08-23 21:11:00 -0700 (Sun, 23 Aug 2009) $
 // $Revision: 55751 $
 
-#include "boost_mod/mpl/insert_fwd.hpp"
-#include "boost_mod/mpl/next_prior.hpp"
-#include "boost_mod/mpl/map/aux_/contains_impl.hpp"
-#include "boost_mod/mpl/map/aux_/item.hpp"
-#include "boost_mod/mpl/map/aux_/tag.hpp"
-#include "boost_mod/mpl/aux_/na.hpp"
-#include "boost_mod/mpl/aux_/config/typeof.hpp"
+#include "yaml-cpp/boost_mod/mpl/insert_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/next_prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/contains_impl.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/item.hpp"
+#include "yaml-cpp/boost_mod/mpl/map/aux_/tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/typeof.hpp"
 
 namespace boost { namespace mpl {
 

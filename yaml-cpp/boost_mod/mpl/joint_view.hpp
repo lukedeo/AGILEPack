@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/joint_iter.hpp"
-#include "boost_mod/mpl/plus.hpp"
-#include "boost_mod/mpl/size_fwd.hpp"
-#include "boost_mod/mpl/begin_end.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/joint_iter.hpp"
+#include "yaml-cpp/boost_mod/mpl/plus.hpp"
+#include "yaml-cpp/boost_mod/mpl/size_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/begin_end.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
 
 namespace boost { namespace mpl {
 

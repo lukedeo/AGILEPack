@@ -12,14 +12,14 @@
 # ifndef BOOST_PREPROCESSOR_SEQ_FOR_EACH_PRODUCT_HPP
 # define BOOST_PREPROCESSOR_SEQ_FOR_EACH_PRODUCT_HPP
 #
-# include "boost_mod/preprocessor/arithmetic/dec.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/control/if.hpp"
-# include "boost_mod/preprocessor/repetition/for.hpp"
-# include "boost_mod/preprocessor/seq/seq.hpp"
-# include "boost_mod/preprocessor/seq/size.hpp"
-# include "boost_mod/preprocessor/tuple/elem.hpp"
-# include "boost_mod/preprocessor/tuple/rem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/dec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/if.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/repetition/for.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/seq/seq.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/seq/size.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/elem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_SEQ_FOR_EACH_PRODUCT */
 #

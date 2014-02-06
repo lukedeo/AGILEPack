@@ -4,13 +4,13 @@
 #ifndef BOOST_DETAIL_IS_XXX_DWA20051011_HPP
 # define BOOST_DETAIL_IS_XXX_DWA20051011_HPP
 
-# include "boost_mod/config.hpp"
-# include "boost_mod/mpl/bool.hpp"
-# include "boost_mod/preprocessor/enum_params.hpp"
+# include "yaml-cpp/boost_mod/config.hpp"
+# include "yaml-cpp/boost_mod/mpl/bool.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/enum_params.hpp"
 
 # if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-# include "boost_mod/type_traits/is_reference.hpp"
-# include "boost_mod/type_traits/add_reference.hpp"
+# include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+# include "yaml-cpp/boost_mod/type_traits/add_reference.hpp"
 
 #  define BOOST_DETAIL_IS_XXX_DEF(name, qualified_name, nargs)          \
 template <class X_>                                                     \

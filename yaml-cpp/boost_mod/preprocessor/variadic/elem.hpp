@@ -13,8 +13,8 @@
 # ifndef BOOST_PREPROCESSOR_VARIADIC_ELEM_HPP
 # define BOOST_PREPROCESSOR_VARIADIC_ELEM_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
 #
 # /* BOOST_PP_VARIADIC_ELEM */
 #

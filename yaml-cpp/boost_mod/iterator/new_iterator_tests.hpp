@@ -29,17 +29,17 @@
 //              (David Abrahams)
 
 # include <iterator>
-# include "boost_mod/type_traits.hpp"
-# include "boost_mod/static_assert.hpp"
-# include "boost_mod/concept_archetype.hpp" // for detail::dummy_constructor
-# include "boost_mod/detail/iterator.hpp"
-# include "boost_mod/pending/iterator_tests.hpp"
-# include "boost_mod/iterator/is_readable_iterator.hpp"
-# include "boost_mod/iterator/is_lvalue_iterator.hpp"
+# include "yaml-cpp/boost_mod/type_traits.hpp"
+# include "yaml-cpp/boost_mod/static_assert.hpp"
+# include "yaml-cpp/boost_mod/concept_archetype.hpp" // for detail::dummy_constructor
+# include "yaml-cpp/boost_mod/detail/iterator.hpp"
+# include "yaml-cpp/boost_mod/pending/iterator_tests.hpp"
+# include "yaml-cpp/boost_mod/iterator/is_readable_iterator.hpp"
+# include "yaml-cpp/boost_mod/iterator/is_lvalue_iterator.hpp"
 
-# include "boost_mod/iterator/detail/config_def.hpp"
-# include "boost_mod/detail/is_incrementable.hpp"
-# include "boost_mod/detail/lightweight_test.hpp"
+# include "yaml-cpp/boost_mod/iterator/detail/config_def.hpp"
+# include "yaml-cpp/boost_mod/detail/is_incrementable.hpp"
+# include "yaml-cpp/boost_mod/detail/lightweight_test.hpp"
 
 namespace boost {
 
@@ -259,6 +259,6 @@ void random_access_readable_iterator_test(Iterator i, int N, TrueVals vals)
 
 } // namespace boost
 
-# include "boost_mod/iterator/detail/config_undef.hpp"
+# include "yaml-cpp/boost_mod/iterator/detail/config_undef.hpp"
 
 #endif // BOOST_NEW_ITERATOR_TESTS_HPP

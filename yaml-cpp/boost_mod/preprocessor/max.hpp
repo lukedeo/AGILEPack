@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_MAX_HPP
 # define BOOST_PREPROCESSOR_MAX_HPP
 #
-# include "boost_mod/preprocessor/selection/max.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/selection/max.hpp"
 #
 # endif

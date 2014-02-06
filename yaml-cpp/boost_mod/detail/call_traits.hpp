@@ -19,14 +19,14 @@
 #define BOOST_DETAIL_CALL_TRAITS_HPP
 
 #ifndef BOOST_CONFIG_HPP
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #endif
 #include <cstddef>
 
-#include "boost_mod/type_traits/is_arithmetic.hpp"
-#include "boost_mod/type_traits/is_enum.hpp"
-#include "boost_mod/type_traits/is_pointer.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_arithmetic.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_enum.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost{
 

@@ -16,6 +16,6 @@
 // $Revision: 49267 $
 
 #define BOOST_MPL_CFG_NO_UNNAMED_PLACEHOLDER_SUPPORT
-#include "boost_mod/mpl/bind.hpp"
+#include "yaml-cpp/boost_mod/mpl/bind.hpp"
 
 #endif // BOOST_MPL_AUX_BASIC_BIND_HPP_INCLUDED

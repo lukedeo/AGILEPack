@@ -14,22 +14,22 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/partition.hpp"
-#include "boost_mod/mpl/copy.hpp"
-#include "boost_mod/mpl/vector.hpp"
-#include "boost_mod/mpl/back_inserter.hpp"
-#include "boost_mod/mpl/front_inserter.hpp"
-#include "boost_mod/mpl/iterator_range.hpp"
-#include "boost_mod/mpl/joint_view.hpp"
-#include "boost_mod/mpl/single_view.hpp"
-#include "boost_mod/mpl/begin_end.hpp"
-#include "boost_mod/mpl/empty.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/apply.hpp"
-#include "boost_mod/mpl/identity.hpp"
-#include "boost_mod/mpl/less.hpp"
-#include "boost_mod/mpl/aux_/na.hpp"
+#include "yaml-cpp/boost_mod/mpl/partition.hpp"
+#include "yaml-cpp/boost_mod/mpl/copy.hpp"
+#include "yaml-cpp/boost_mod/mpl/vector.hpp"
+#include "yaml-cpp/boost_mod/mpl/back_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/front_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_range.hpp"
+#include "yaml-cpp/boost_mod/mpl/joint_view.hpp"
+#include "yaml-cpp/boost_mod/mpl/single_view.hpp"
+#include "yaml-cpp/boost_mod/mpl/begin_end.hpp"
+#include "yaml-cpp/boost_mod/mpl/empty.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#include "yaml-cpp/boost_mod/mpl/identity.hpp"
+#include "yaml-cpp/boost_mod/mpl/less.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 

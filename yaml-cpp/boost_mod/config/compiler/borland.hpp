@@ -251,10 +251,10 @@
 //
 #if __BORLANDC__ != 0x600 // not implemented for version 6 compiler yet
 #ifndef BOOST_ABI_PREFIX
-#  define BOOST_ABI_PREFIX "boost_mod/config/abi/borland_prefix.hpp"
+#  define BOOST_ABI_PREFIX "yaml-cpp/boost_mod/config/abi/borland_prefix.hpp"
 #endif
 #ifndef BOOST_ABI_SUFFIX
-#  define BOOST_ABI_SUFFIX "boost_mod/config/abi/borland_suffix.hpp"
+#  define BOOST_ABI_SUFFIX "yaml-cpp/boost_mod/config/abi/borland_suffix.hpp"
 #endif
 #endif
 //

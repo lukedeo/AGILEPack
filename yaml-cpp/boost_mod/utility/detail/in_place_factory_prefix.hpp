@@ -15,15 +15,15 @@
 
 #include <new>
 #include <cstddef>
-#include "boost_mod/config.hpp"
-#include "boost_mod/preprocessor/cat.hpp"
-#include "boost_mod/preprocessor/punctuation/paren.hpp"
-#include "boost_mod/preprocessor/iteration/iterate.hpp"
-#include "boost_mod/preprocessor/repetition/repeat.hpp"
-#include "boost_mod/preprocessor/repetition/enum.hpp"
-#include "boost_mod/preprocessor/repetition/enum_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_binary_params.hpp"
-#include "boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/punctuation/paren.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/iteration/iterate.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/repeat.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_binary_params.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/repetition/enum_trailing_params.hpp"
 
 #define BOOST_DEFINE_INPLACE_FACTORY_CLASS_MEMBER_INIT(z,n,_) BOOST_PP_CAT(m_a,n) BOOST_PP_LPAREN() BOOST_PP_CAT(a,n) BOOST_PP_RPAREN()
 #define BOOST_DEFINE_INPLACE_FACTORY_CLASS_MEMBER_DECL(z,n,_) BOOST_PP_CAT(A,n) const& BOOST_PP_CAT(m_a,n);

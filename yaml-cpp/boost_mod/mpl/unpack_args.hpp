@@ -19,29 +19,29 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/apply.hpp"
-#   include "boost_mod/mpl/at.hpp"
-#   include "boost_mod/mpl/size.hpp"
-#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
-#   include "boost_mod/mpl/aux_/lambda_spec.hpp"
+#   include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#   include "yaml-cpp/boost_mod/mpl/at.hpp"
+#   include "yaml-cpp/boost_mod/mpl/size.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/lambda_spec.hpp"
 #endif
 
-#include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/use_preprocessed.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER unpack_args.hpp
-#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include "boost_mod/mpl/limits/arity.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/repeat.hpp"
-#   include "boost_mod/mpl/aux_/config/ctps.hpp"
-#   include "boost_mod/mpl/aux_/config/forwarding.hpp"
-#   include "boost_mod/preprocessor/iterate.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/forwarding.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 
 namespace boost { namespace mpl {
@@ -69,7 +69,7 @@ template< BOOST_MPL_AUX_NTTP_DECL(int, size) > struct unpack_args_impl
 #endif
 
 #define BOOST_PP_ITERATION_PARAMS_1 \
-    (3,(0, BOOST_MPL_LIMIT_METAFUNCTION_ARITY, "boost_mod/mpl/unpack_args.hpp"))
+    (3,(0, BOOST_MPL_LIMIT_METAFUNCTION_ARITY, "yaml-cpp/boost_mod/mpl/unpack_args.hpp"))
 #include BOOST_PP_ITERATE()
 
 }

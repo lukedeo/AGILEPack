@@ -14,8 +14,8 @@
 // $Revision: 49267 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/integral_c.hpp"
-#   include "boost_mod/mpl/aux_/value_wknd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/integral_c.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
 #endif
 
 #if !defined(AUX778076_OP_PREFIX)
@@ -24,20 +24,20 @@
 
 #define AUX778076_OP_ARITY 2
 
-#include "boost_mod/mpl/aux_/numeric_op.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/numeric_op.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/use_preprocessed.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER AUX778076_OP_PREFIX.hpp
-#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
-#   include "boost_mod/mpl/aux_/config/integral.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/integral.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 namespace boost { namespace mpl {
 

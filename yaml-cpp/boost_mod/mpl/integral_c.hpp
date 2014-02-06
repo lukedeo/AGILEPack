@@ -14,10 +14,10 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/integral_c_fwd.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/integral_c_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if BOOST_WORKAROUND(__HP_aCC, <= 53800)
 // the type of non-type template arguments may not depend on template arguments
@@ -29,7 +29,7 @@
 #define AUX_WRAPPER_NAME integral_c
 #define AUX_WRAPPER_VALUE_TYPE T
 #define AUX_WRAPPER_INST(value) AUX_WRAPPER_NAME< T, value >
-#include "boost_mod/mpl/aux_/integral_wrapper.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/integral_wrapper.hpp"
 
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) \

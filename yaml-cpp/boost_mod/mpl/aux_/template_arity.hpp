@@ -18,46 +18,46 @@
 // $Date: 2010-04-26 11:48:26 -0700 (Mon, 26 Apr 2010) $
 // $Revision: 61584 $
 
-#include "boost_mod/mpl/aux_/config/ttp.hpp"
-#include "boost_mod/mpl/aux_/config/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ttp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/lambda.hpp"
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#   include "boost_mod/mpl/aux_/template_arity_fwd.hpp"
-#   include "boost_mod/mpl/int.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/template_arity_fwd.hpp"
+#   include "yaml-cpp/boost_mod/mpl/int.hpp"
 #   if !defined(BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT)
 #   if defined(BOOST_MPL_CFG_EXTENDED_TEMPLATE_PARAMETERS_MATCHING)
-#       include "boost_mod/mpl/aux_/type_wrapper.hpp"
+#       include "yaml-cpp/boost_mod/mpl/aux_/type_wrapper.hpp"
 #   endif
 #   else
-#       include "boost_mod/mpl/aux_/has_rebind.hpp"
+#       include "yaml-cpp/boost_mod/mpl/aux_/has_rebind.hpp"
 #   endif
 #endif
 
-#include "boost_mod/mpl/aux_/config/static_constant.hpp"
-#include "boost_mod/mpl/aux_/config/use_preprocessed.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/static_constant.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/use_preprocessed.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   define BOOST_MPL_PREPROCESSED_HEADER template_arity.hpp
-#   include "boost_mod/mpl/aux_/include_preprocessed.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/include_preprocessed.hpp"
 
 #else
 
 #   if !defined(BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT)
 #   if defined(BOOST_MPL_CFG_EXTENDED_TEMPLATE_PARAMETERS_MATCHING)
 
-#   include "boost_mod/mpl/limits/arity.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/range.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/repeat.hpp"
-#   include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#   include "boost_mod/mpl/aux_/nttp_decl.hpp"
+#   include "yaml-cpp/boost_mod/mpl/limits/arity.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/range.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/repeat.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
 
-#   include "boost_mod/preprocessor/seq/fold_left.hpp"
-#   include "boost_mod/preprocessor/comma_if.hpp"
-#   include "boost_mod/preprocessor/iterate.hpp"
-#   include "boost_mod/preprocessor/inc.hpp"
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/seq/fold_left.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/comma_if.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/iterate.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/inc.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 
 #   define AUX778076_ARITY BOOST_PP_INC(BOOST_MPL_LIMIT_METAFUNCTION_ARITY)
 
@@ -91,7 +91,7 @@ struct max_arity
 arity_tag<0>::type arity_helper(...);
 
 #   define BOOST_PP_ITERATION_LIMITS (1, AUX778076_ARITY)
-#   define BOOST_PP_FILENAME_1 "boost_mod/mpl/aux_/template_arity.hpp"
+#   define BOOST_PP_FILENAME_1 "yaml-cpp/boost_mod/mpl/aux_/template_arity.hpp"
 #   include BOOST_PP_ITERATE()
 
 template< typename F, BOOST_MPL_AUX_NTTP_DECL(int, N) >
@@ -129,7 +129,7 @@ struct template_arity
 #   endif // BOOST_MPL_CFG_EXTENDED_TEMPLATE_PARAMETERS_MATCHING
 #   else // BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT
 
-#   include "boost_mod/mpl/aux_/config/eti.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 

@@ -23,7 +23,7 @@
 #include <typeinfo>           // for bad_cast, bad_typeid
 #include <exception>          // for exception, bad_exception
 #include <stdexcept>          // for std exception hierarchy
-#include "boost_mod/cstdlib.hpp"  // for exit codes
+#include "yaml-cpp/boost_mod/cstdlib.hpp"  // for exit codes
 # if __GNUC__ != 2 || __GNUC_MINOR__ > 96
 #   include <ostream>         // for ostream
 # else

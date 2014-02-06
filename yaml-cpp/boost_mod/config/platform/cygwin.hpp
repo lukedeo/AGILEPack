@@ -43,7 +43,7 @@
 #define BOOST_NO_FENV_H
 
 // boilerplate code:
-#include "boost_mod/config/posix_features.hpp"
+#include "yaml-cpp/boost_mod/config/posix_features.hpp"
 
 //
 // Cygwin lies about XSI conformance, there is no nl_types.h:

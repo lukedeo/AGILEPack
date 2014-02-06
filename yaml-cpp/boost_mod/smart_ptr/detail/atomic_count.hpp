@@ -72,8 +72,8 @@
 //      are called driven by smart_ptr interface...
 //
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/smart_ptr/detail/sp_has_sync.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_has_sync.hpp"
 
 #ifndef BOOST_HAS_THREADS
 
@@ -90,24 +90,24 @@ typedef long atomic_count;
 }
 
 #elif defined(BOOST_AC_USE_PTHREADS)
-#  include "boost_mod/smart_ptr/detail/atomic_count_pthreads.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count_pthreads.hpp"
 
 #elif defined( __GNUC__ ) && ( defined( __i386__ ) || defined( __x86_64__ ) )
-#  include "boost_mod/smart_ptr/detail/atomic_count_gcc_x86.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count_gcc_x86.hpp"
 
 #elif defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#  include "boost_mod/smart_ptr/detail/atomic_count_win32.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count_win32.hpp"
 
 #elif defined( BOOST_SP_HAS_SYNC )
-#  include "boost_mod/smart_ptr/detail/atomic_count_sync.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count_sync.hpp"
 
 #elif defined(__GLIBCPP__) || defined(__GLIBCXX__)
-#  include "boost_mod/smart_ptr/detail/atomic_count_gcc.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count_gcc.hpp"
 
 #elif defined(BOOST_HAS_PTHREADS)
 
 #  define BOOST_AC_USE_PTHREADS
-#  include "boost_mod/smart_ptr/detail/atomic_count_pthreads.hpp"
+#  include "yaml-cpp/boost_mod/smart_ptr/detail/atomic_count_pthreads.hpp"
 
 #else
 

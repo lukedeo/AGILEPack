@@ -12,11 +12,11 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/detail/sp_typeinfo.hpp"
-#include "boost_mod/current_function.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/sp_typeinfo.hpp"
+#include "yaml-cpp/boost_mod/current_function.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #ifndef BOOST_NO_TYPEID
-#include "boost_mod/units/detail/utility.hpp"
+#include "yaml-cpp/boost_mod/units/detail/utility.hpp"
 #endif
 #include <string>
 

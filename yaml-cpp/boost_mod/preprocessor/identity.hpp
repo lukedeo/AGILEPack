@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_IDENTITY_HPP
 # define BOOST_PREPROCESSOR_IDENTITY_HPP
 #
-# include "boost_mod/preprocessor/facilities/identity.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/facilities/identity.hpp"
 #
 # endif

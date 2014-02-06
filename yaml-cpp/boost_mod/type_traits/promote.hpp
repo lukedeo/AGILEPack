@@ -6,12 +6,12 @@
 #ifndef FILE_boost_type_traits_promote_hpp_INCLUDED
 #define FILE_boost_type_traits_promote_hpp_INCLUDED
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/type_traits/integral_promotion.hpp"
-#include "boost_mod/type_traits/floating_point_promotion.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/integral_promotion.hpp"
+#include "yaml-cpp/boost_mod/type_traits/floating_point_promotion.hpp"
 
 // Should be the last #include
-#include "boost_mod/type_traits/detail/type_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -34,7 +34,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(
     )
 }
 
-#include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // #ifndef FILE_boost_type_traits_promote_hpp_INCLUDED
 

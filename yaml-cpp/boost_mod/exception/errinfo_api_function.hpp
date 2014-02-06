@@ -6,7 +6,7 @@
 #ifndef UUID_DDFBB4546C1211DEA4659E9055D89593
 #define UUID_DDFBB4546C1211DEA4659E9055D89593
 
-#include "boost_mod/exception/error_info.hpp"
+#include "yaml-cpp/boost_mod/exception/error_info.hpp"
 
 namespace
 boost

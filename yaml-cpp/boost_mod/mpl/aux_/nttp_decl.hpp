@@ -14,7 +14,7 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/config/nttp.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/nttp.hpp"
 
 #if defined(BOOST_MPL_CFG_NTTP_BUG)
 
@@ -23,7 +23,7 @@ typedef int         _mpl_nttp_int;
 typedef unsigned    _mpl_nttp_unsigned;
 typedef long        _mpl_nttp_long;
 
-#   include "boost_mod/preprocessor/cat.hpp"
+#   include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
 #   define BOOST_MPL_AUX_NTTP_DECL(T, x) BOOST_PP_CAT(_mpl_nttp_,T) x /**/
 
 #else

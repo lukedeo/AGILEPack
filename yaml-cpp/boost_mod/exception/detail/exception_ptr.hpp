@@ -12,16 +12,16 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 #ifdef BOOST_NO_EXCEPTIONS
 #error This header requires exception handling to be enabled.
 #endif
-#include "boost_mod/exception/exception.hpp"
-#include "boost_mod/exception/info.hpp"
-#include "boost_mod/exception/diagnostic_information.hpp"
-#include "boost_mod/exception/detail/type_info.hpp"
-#include "boost_mod/exception/detail/clone_current_exception.hpp"
-#include "boost_mod/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/exception/exception.hpp"
+#include "yaml-cpp/boost_mod/exception/info.hpp"
+#include "yaml-cpp/boost_mod/exception/diagnostic_information.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/type_info.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/clone_current_exception.hpp"
+#include "yaml-cpp/boost_mod/shared_ptr.hpp"
 #include <stdexcept>
 #include <new>
 #include <ios>

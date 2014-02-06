@@ -14,12 +14,12 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/ptr_to_ref.hpp"
-#include "boost_mod/mpl/aux_/config/operators.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/ptr_to_ref.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/operators.hpp"
 
 #if defined(BOOST_MPL_CFG_USE_OPERATORS_OVERLOADING)
 
-#   include "boost_mod/mpl/aux_/static_cast.hpp"
+#   include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
 
 #   define BOOST_MPL_AUX_OVERLOAD_VALUE_BY_KEY  operator/
 #   define BOOST_MPL_AUX_OVERLOAD_ITEM_BY_ORDER operator|

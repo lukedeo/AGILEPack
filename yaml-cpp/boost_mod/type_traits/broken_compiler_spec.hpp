@@ -9,8 +9,8 @@
 #ifndef BOOST_TT_BROKEN_COMPILER_SPEC_HPP_INCLUDED
 #define BOOST_TT_BROKEN_COMPILER_SPEC_HPP_INCLUDED
 
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 // these are needed regardless of BOOST_TT_NO_BROKEN_COMPILER_SPEC 
 #if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
@@ -88,7 +88,7 @@ template<> struct trait##_impl<spec> \
     }}                                                                              \
     /**/
 
-#   include "boost_mod/type_traits/detail/type_trait_undef.hpp"
+#   include "yaml-cpp/boost_mod/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 

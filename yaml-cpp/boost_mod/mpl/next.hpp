@@ -14,6 +14,6 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/next_prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/next_prior.hpp"
 
 #endif // BOOST_MPL_NEXT_HPP_INCLUDED

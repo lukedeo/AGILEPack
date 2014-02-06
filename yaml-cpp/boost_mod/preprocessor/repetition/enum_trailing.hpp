@@ -12,13 +12,13 @@
 # ifndef BOOST_PREPROCESSOR_REPETITION_ENUM_TRAILING_HPP
 # define BOOST_PREPROCESSOR_REPETITION_ENUM_TRAILING_HPP
 #
-# include "boost_mod/preprocessor/cat.hpp"
-# include "boost_mod/preprocessor/config/config.hpp"
-# include "boost_mod/preprocessor/debug/error.hpp"
-# include "boost_mod/preprocessor/detail/auto_rec.hpp"
-# include "boost_mod/preprocessor/repetition/repeat.hpp"
-# include "boost_mod/preprocessor/tuple/elem.hpp"
-# include "boost_mod/preprocessor/tuple/rem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/cat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/debug/error.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/detail/auto_rec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/repetition/repeat.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/elem.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_ENUM_TRAILING */
 #

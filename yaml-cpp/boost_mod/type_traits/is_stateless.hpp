@@ -9,16 +9,16 @@
 #ifndef BOOST_TT_IS_STATELESS_HPP_INCLUDED
 #define BOOST_TT_IS_STATELESS_HPP_INCLUDED
 
-#include "boost_mod/type_traits/has_trivial_constructor.hpp"
-#include "boost_mod/type_traits/has_trivial_copy.hpp"
-#include "boost_mod/type_traits/has_trivial_destructor.hpp"
-#include "boost_mod/type_traits/is_class.hpp"
-#include "boost_mod/type_traits/is_empty.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_constructor.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_copy.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_destructor.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_class.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_empty.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -43,6 +43,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_stateless,T,::boost::detail::is_stateless_impl<T
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_STATELESS_HPP_INCLUDED

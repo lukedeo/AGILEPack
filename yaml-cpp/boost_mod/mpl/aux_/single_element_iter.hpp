@@ -14,15 +14,15 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/iterator_tags.hpp"
-#include "boost_mod/mpl/advance_fwd.hpp"
-#include "boost_mod/mpl/distance_fwd.hpp"
-#include "boost_mod/mpl/next_prior.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/int.hpp"
-#include "boost_mod/mpl/aux_/nttp_decl.hpp"
-#include "boost_mod/mpl/aux_/value_wknd.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/iterator_tags.hpp"
+#include "yaml-cpp/boost_mod/mpl/advance_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/distance_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/next_prior.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/int.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/nttp_decl.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/value_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
 namespace boost { namespace mpl { 
 

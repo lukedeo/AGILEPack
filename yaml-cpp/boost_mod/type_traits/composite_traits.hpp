@@ -13,13 +13,13 @@
 #ifndef BOOST_TT_COMPOSITE_TRAITS_HPP_INCLUDED
 #define BOOST_TT_COMPOSITE_TRAITS_HPP_INCLUDED
 
-#include "boost_mod/type_traits/is_array.hpp"
-#include "boost_mod/type_traits/is_enum.hpp"
-#include "boost_mod/type_traits/is_member_pointer.hpp"
-#include "boost_mod/type_traits/is_member_function_pointer.hpp"
-#include "boost_mod/type_traits/is_pointer.hpp"
-#include "boost_mod/type_traits/is_reference.hpp"
-#include "boost_mod/type_traits/is_union.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_array.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_enum.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_member_function_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_pointer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_union.hpp"
 
 #endif // BOOST_TT_COMPOSITE_TRAITS_HPP_INCLUDED
 

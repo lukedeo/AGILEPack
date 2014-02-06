@@ -18,6 +18,6 @@
 #define AUX778076_OP_NAME   bitxor_
 #define AUX778076_OP_PREFIX bitxor
 #define AUX778076_OP_TOKEN  ^
-#include "boost_mod/mpl/aux_/arithmetic_op.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/arithmetic_op.hpp"
 
 #endif // BOOST_MPL_BITXOR_HPP_INCLUDED

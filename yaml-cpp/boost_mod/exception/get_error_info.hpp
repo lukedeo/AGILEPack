@@ -12,10 +12,10 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/exception/exception.hpp"
-#include "boost_mod/exception/detail/error_info_impl.hpp"
-#include "boost_mod/exception/detail/type_info.hpp"
-#include "boost_mod/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/exception/exception.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/error_info_impl.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/type_info.hpp"
+#include "yaml-cpp/boost_mod/shared_ptr.hpp"
 
 namespace
 boost

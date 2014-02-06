@@ -14,7 +14,7 @@
 # ifndef BOOST_PREPROCESSOR_LIST_TO_SEQ_HPP
 # define BOOST_PREPROCESSOR_LIST_TO_SEQ_HPP
 #
-# include "boost_mod/preprocessor/list/for_each.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/list/for_each.hpp"
 #
 # /* BOOST_PP_LIST_TO_SEQ */
 #

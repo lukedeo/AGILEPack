@@ -12,9 +12,9 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/exception/to_string.hpp"
-#include "boost_mod/exception/detail/object_hex_dump.hpp"
-#include "boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/exception/to_string.hpp"
+#include "yaml-cpp/boost_mod/exception/detail/object_hex_dump.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
 
 namespace
 boost

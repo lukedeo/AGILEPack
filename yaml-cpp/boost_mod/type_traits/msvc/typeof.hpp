@@ -5,8 +5,8 @@
 #ifndef BOOST_TYPETRAITS_MSVC_TYPEOF_HPP
 #define BOOST_TYPETRAITS_MSVC_TYPEOF_HPP
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 namespace boost { namespace detail {
 # if BOOST_WORKAROUND(BOOST_MSVC,==1300)

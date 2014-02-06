@@ -14,16 +14,16 @@
 # ifndef BOOST_PREPROCESSOR_LOGICAL_HPP
 # define BOOST_PREPROCESSOR_LOGICAL_HPP
 #
-# include "boost_mod/preprocessor/logical/and.hpp"
-# include "boost_mod/preprocessor/logical/bitand.hpp"
-# include "boost_mod/preprocessor/logical/bitnor.hpp"
-# include "boost_mod/preprocessor/logical/bitor.hpp"
-# include "boost_mod/preprocessor/logical/bitxor.hpp"
-# include "boost_mod/preprocessor/logical/bool.hpp"
-# include "boost_mod/preprocessor/logical/compl.hpp"
-# include "boost_mod/preprocessor/logical/nor.hpp"
-# include "boost_mod/preprocessor/logical/not.hpp"
-# include "boost_mod/preprocessor/logical/or.hpp"
-# include "boost_mod/preprocessor/logical/xor.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/and.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/bitand.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/bitnor.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/bitor.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/bitxor.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/bool.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/compl.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/nor.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/not.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/or.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/logical/xor.hpp"
 #
 # endif

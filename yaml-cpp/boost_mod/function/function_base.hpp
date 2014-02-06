@@ -15,28 +15,28 @@
 #include <string>
 #include <memory>
 #include <new>
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/sp_typeinfo.hpp"
-#include "boost_mod/assert.hpp"
-#include "boost_mod/integer.hpp"
-#include "boost_mod/type_traits/has_trivial_copy.hpp"
-#include "boost_mod/type_traits/has_trivial_destructor.hpp"
-#include "boost_mod/type_traits/is_const.hpp"
-#include "boost_mod/type_traits/is_integral.hpp"
-#include "boost_mod/type_traits/is_volatile.hpp"
-#include "boost_mod/type_traits/composite_traits.hpp"
-#include "boost_mod/type_traits/ice.hpp"
-#include "boost_mod/ref.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/type_traits/alignment_of.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/sp_typeinfo.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/integer.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_copy.hpp"
+#include "yaml-cpp/boost_mod/type_traits/has_trivial_destructor.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_const.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_integral.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_volatile.hpp"
+#include "yaml-cpp/boost_mod/type_traits/composite_traits.hpp"
+#include "yaml-cpp/boost_mod/type_traits/ice.hpp"
+#include "yaml-cpp/boost_mod/ref.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/type_traits/alignment_of.hpp"
 #ifndef BOOST_NO_SFINAE
-#  include "boost_mod/utility/enable_if.hpp"
+#  include "yaml-cpp/boost_mod/utility/enable_if.hpp"
 #else
-#  include "boost_mod/mpl/bool.hpp"
+#  include "yaml-cpp/boost_mod/mpl/bool.hpp"
 #endif
-#include "boost_mod/function_equal.hpp"
-#include "boost_mod/function/function_fwd.hpp"
+#include "yaml-cpp/boost_mod/function_equal.hpp"
+#include "yaml-cpp/boost_mod/function/function_fwd.hpp"
 
 #if defined(BOOST_MSVC)
 #   pragma warning( push )

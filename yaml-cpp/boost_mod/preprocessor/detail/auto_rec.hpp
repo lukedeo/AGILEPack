@@ -9,16 +9,16 @@
 #
 # /* See http://www.boost.org for most recent version. */
 #
-# include "boost_mod/preprocessor/config/config.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/config/config.hpp"
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
-#     include "boost_mod/preprocessor/detail/dmc/auto_rec.hpp"
+#     include "yaml-cpp/boost_mod/preprocessor/detail/dmc/auto_rec.hpp"
 # else
 #
 # ifndef BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 # define BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 #
-# include "boost_mod/preprocessor/control/iif.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/control/iif.hpp"
 #
 # /* BOOST_PP_AUTO_REC */
 #

@@ -14,13 +14,13 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/find_if.hpp"
-#include "boost_mod/mpl/deref.hpp"
-#include "boost_mod/mpl/lambda.hpp"
-#include "boost_mod/mpl/apply.hpp"
-#include "boost_mod/mpl/pair.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/mpl/find_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/deref.hpp"
+#include "yaml-cpp/boost_mod/mpl/lambda.hpp"
+#include "yaml-cpp/boost_mod/mpl/apply.hpp"
+#include "yaml-cpp/boost_mod/mpl/pair.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 
 namespace boost { namespace mpl {
 

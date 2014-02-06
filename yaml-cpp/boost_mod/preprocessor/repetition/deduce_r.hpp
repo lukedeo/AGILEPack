@@ -12,8 +12,8 @@
 # ifndef BOOST_PREPROCESSOR_REPETITION_DEDUCE_R_HPP
 # define BOOST_PREPROCESSOR_REPETITION_DEDUCE_R_HPP
 #
-# include "boost_mod/preprocessor/detail/auto_rec.hpp"
-# include "boost_mod/preprocessor/repetition/for.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/detail/auto_rec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/repetition/for.hpp"
 #
 # /* BOOST_PP_DEDUCE_R */
 #

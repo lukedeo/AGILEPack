@@ -12,22 +12,22 @@
 #pragma warning(push,1)
 #endif
 
-#include "boost_mod/exception/diagnostic_information.hpp"
-#include "boost_mod/exception/error_info.hpp"
-#include "boost_mod/exception/exception.hpp"
-#include "boost_mod/exception/get_error_info.hpp"
-#include "boost_mod/exception/info.hpp"
-#include "boost_mod/exception/info_tuple.hpp"
-#include "boost_mod/exception/errinfo_api_function.hpp"
-#include "boost_mod/exception/errinfo_at_line.hpp"
-#include "boost_mod/exception/errinfo_errno.hpp"
-#include "boost_mod/exception/errinfo_file_handle.hpp"
-#include "boost_mod/exception/errinfo_file_name.hpp"
-#include "boost_mod/exception/errinfo_file_open_mode.hpp"
-#include "boost_mod/exception/errinfo_type_info_name.hpp"
+#include "yaml-cpp/boost_mod/exception/diagnostic_information.hpp"
+#include "yaml-cpp/boost_mod/exception/error_info.hpp"
+#include "yaml-cpp/boost_mod/exception/exception.hpp"
+#include "yaml-cpp/boost_mod/exception/get_error_info.hpp"
+#include "yaml-cpp/boost_mod/exception/info.hpp"
+#include "yaml-cpp/boost_mod/exception/info_tuple.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_api_function.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_at_line.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_errno.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_file_handle.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_file_name.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_file_open_mode.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_type_info_name.hpp"
 #ifndef BOOST_NO_EXCEPTIONS
-#include "boost_mod/exception/errinfo_nested_exception.hpp"
-#include "boost_mod/exception_ptr.hpp"
+#include "yaml-cpp/boost_mod/exception/errinfo_nested_exception.hpp"
+#include "yaml-cpp/boost_mod/exception_ptr.hpp"
 #endif
 
 #if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)

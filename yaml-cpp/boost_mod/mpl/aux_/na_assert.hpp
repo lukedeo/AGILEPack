@@ -14,18 +14,18 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/na.hpp"
-#include "boost_mod/mpl/aux_/config/msvc.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/msvc.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if !BOOST_WORKAROUND(_MSC_FULL_VER, <= 140050601)    \
     && !BOOST_WORKAROUND(__EDG_VERSION__, <= 243)
-#   include "boost_mod/mpl/assert.hpp"
+#   include "yaml-cpp/boost_mod/mpl/assert.hpp"
 #   define BOOST_MPL_AUX_ASSERT_NOT_NA(x) \
     BOOST_MPL_ASSERT_NOT((boost::mpl::is_na<type>)) \
 /**/
 #else
-#   include "boost_mod/static_assert.hpp"
+#   include "yaml-cpp/boost_mod/static_assert.hpp"
 #   define BOOST_MPL_AUX_ASSERT_NOT_NA(x) \
     BOOST_STATIC_ASSERT(!boost::mpl::is_na<x>::value) \
 /**/

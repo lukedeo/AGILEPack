@@ -14,11 +14,11 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/clear_fwd.hpp"
-#include "boost_mod/mpl/aux_/clear_impl.hpp"
-#include "boost_mod/mpl/sequence_tag.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/lambda_support.hpp"
+#include "yaml-cpp/boost_mod/mpl/clear_fwd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/clear_impl.hpp"
+#include "yaml-cpp/boost_mod/mpl/sequence_tag.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/lambda_support.hpp"
 
 namespace boost { namespace mpl {
 

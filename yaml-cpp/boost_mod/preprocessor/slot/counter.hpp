@@ -12,7 +12,7 @@
 # ifndef BOOST_PREPROCESSOR_SLOT_COUNTER_HPP
 # define BOOST_PREPROCESSOR_SLOT_COUNTER_HPP
 #
-# include "boost_mod/preprocessor/slot/detail/def.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/slot/detail/def.hpp"
 #
 # /* BOOST_PP_COUNTER */
 #
@@ -20,6 +20,6 @@
 #
 # /* BOOST_PP_UPDATE_COUNTER */
 #
-# define BOOST_PP_UPDATE_COUNTER() "boost_mod/preprocessor/slot/detail/counter.hpp"
+# define BOOST_PP_UPDATE_COUNTER() "yaml-cpp/boost_mod/preprocessor/slot/detail/counter.hpp"
 #
 # endif

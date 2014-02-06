@@ -15,23 +15,23 @@
 // $Date: 2009-08-17 22:16:53 -0700 (Mon, 17 Aug 2009) $
 // $Revision: 55648 $
 
-#include "boost_mod/mpl/back_inserter.hpp"
-#include "boost_mod/mpl/front_inserter.hpp"
-#include "boost_mod/mpl/push_back.hpp"
-#include "boost_mod/mpl/push_front.hpp"
-#include "boost_mod/mpl/back_inserter.hpp"
-#include "boost_mod/mpl/front_inserter.hpp"
-#include "boost_mod/mpl/clear.hpp"
-#include "boost_mod/mpl/eval_if.hpp"
-#include "boost_mod/mpl/if.hpp"
-#include "boost_mod/mpl/aux_/na.hpp"
-#include "boost_mod/mpl/aux_/common_name_wknd.hpp"
-#include "boost_mod/mpl/aux_/na_spec.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/params.hpp"
-#include "boost_mod/mpl/aux_/preprocessor/default_params.hpp"
-#include "boost_mod/mpl/aux_/config/ctps.hpp"
+#include "yaml-cpp/boost_mod/mpl/back_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/front_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/push_back.hpp"
+#include "yaml-cpp/boost_mod/mpl/push_front.hpp"
+#include "yaml-cpp/boost_mod/mpl/back_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/front_inserter.hpp"
+#include "yaml-cpp/boost_mod/mpl/clear.hpp"
+#include "yaml-cpp/boost_mod/mpl/eval_if.hpp"
+#include "yaml-cpp/boost_mod/mpl/if.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/common_name_wknd.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/na_spec.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/preprocessor/default_params.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/ctps.hpp"
 
-#include "boost_mod/preprocessor/arithmetic/dec.hpp"
+#include "yaml-cpp/boost_mod/preprocessor/arithmetic/dec.hpp"
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 

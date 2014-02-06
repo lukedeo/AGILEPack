@@ -14,6 +14,6 @@
 #
 # /* BOOST_PP_INCLUDE_SELF */
 #
-# define BOOST_PP_INCLUDE_SELF() "boost_mod/preprocessor/iteration/detail/self.hpp"
+# define BOOST_PP_INCLUDE_SELF() "yaml-cpp/boost_mod/preprocessor/iteration/detail/self.hpp"
 #
 # endif

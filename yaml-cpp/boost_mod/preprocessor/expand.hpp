@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_EXPAND_HPP
 # define BOOST_PREPROCESSOR_EXPAND_HPP
 #
-# include "boost_mod/preprocessor/facilities/expand.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/facilities/expand.hpp"
 #
 # endif

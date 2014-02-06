@@ -16,6 +16,6 @@
 
 #define AUX778076_OP_NAME greater
 #define AUX778076_OP_TOKEN >
-#include "boost_mod/mpl/aux_/comparison_op.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/comparison_op.hpp"
 
 #endif // BOOST_MPL_GREATER_HPP_INCLUDED

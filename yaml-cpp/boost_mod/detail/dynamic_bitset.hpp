@@ -13,8 +13,8 @@
 #define BOOST_DETAIL_DYNAMIC_BITSET_HPP
 
 #include <cstddef>
-#include "boost_mod/config.hpp"
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 
 namespace boost {

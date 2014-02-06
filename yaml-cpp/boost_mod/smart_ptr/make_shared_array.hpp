@@ -9,11 +9,11 @@
 #ifndef BOOST_SMART_PTR_MAKE_SHARED_ARRAY_HPP
 #define BOOST_SMART_PTR_MAKE_SHARED_ARRAY_HPP
 
-#include "boost_mod/smart_ptr/shared_ptr.hpp"
-#include "boost_mod/smart_ptr/detail/array_deleter.hpp"
-#include "boost_mod/smart_ptr/detail/array_traits.hpp"
-#include "boost_mod/smart_ptr/detail/make_array_helper.hpp"
-#include "boost_mod/smart_ptr/detail/sp_if_array.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/array_deleter.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/array_traits.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/make_array_helper.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_if_array.hpp"
 #if !defined(BOOST_NO_CXX11_HDR_INITIALIZER_LIST)
 #include <initializer_list>
 #endif

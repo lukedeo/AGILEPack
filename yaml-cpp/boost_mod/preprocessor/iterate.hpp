@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_ITERATE_HPP
 # define BOOST_PREPROCESSOR_ITERATE_HPP
 #
-# include "boost_mod/preprocessor/iteration/iterate.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/iteration/iterate.hpp"
 #
 # endif

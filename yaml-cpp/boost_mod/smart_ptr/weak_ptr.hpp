@@ -14,8 +14,8 @@
 //
 
 #include <memory> // boost.TR1 include order fix
-#include "boost_mod/smart_ptr/detail/shared_count.hpp"
-#include "boost_mod/smart_ptr/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/shared_count.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/shared_ptr.hpp"
 
 namespace boost
 {

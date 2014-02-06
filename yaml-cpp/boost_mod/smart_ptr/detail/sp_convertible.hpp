@@ -15,7 +15,7 @@
 //  See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
 #if !defined( BOOST_SP_NO_SP_CONVERTIBLE ) && defined( BOOST_NO_SFINAE )
 # define BOOST_SP_NO_SP_CONVERTIBLE

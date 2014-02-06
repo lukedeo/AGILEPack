@@ -8,7 +8,7 @@
 #ifndef BOOST_DETAIL_SORTED_HPP
 #define BOOST_DETAIL_SORTED_HPP
 
-#include "boost_mod/detail/iterator.hpp"
+#include "yaml-cpp/boost_mod/detail/iterator.hpp"
 
 #include <functional>
 

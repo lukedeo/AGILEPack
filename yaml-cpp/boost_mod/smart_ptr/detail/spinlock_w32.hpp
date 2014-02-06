@@ -15,8 +15,8 @@
 //  http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#include "boost_mod/detail/interlocked.hpp"
-#include "boost_mod/smart_ptr/detail/yield_k.hpp"
+#include "yaml-cpp/boost_mod/detail/interlocked.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/yield_k.hpp"
 
 // BOOST_COMPILER_FENCE
 

@@ -9,8 +9,8 @@
 #ifndef BOOST_SMART_PTR_DETAIL_ARRAY_DELETER_HPP
 #define BOOST_SMART_PTR_DETAIL_ARRAY_DELETER_HPP
 
-#include "boost_mod/smart_ptr/detail/array_utility.hpp"
-#include "boost_mod/smart_ptr/detail/sp_forward.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/array_utility.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_forward.hpp"
 
 namespace boost {
     namespace detail {

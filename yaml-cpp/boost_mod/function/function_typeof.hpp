@@ -8,8 +8,8 @@
 // For more information, see http://www.boost.org
 #ifndef BOOST_FUNCTION_TYPEOF_HPP
 #define BOOST_FUNCTION_TYPEOF_HPP
-#include "boost_mod/function/function_fwd.hpp"
-#include "boost_mod/typeof/typeof.hpp"
+#include "yaml-cpp/boost_mod/function/function_fwd.hpp"
+#include "yaml-cpp/boost_mod/typeof/typeof.hpp"
 
 #include BOOST_TYPEOF_INCREMENT_REGISTRATION_GROUP()
 

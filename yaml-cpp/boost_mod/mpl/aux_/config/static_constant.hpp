@@ -16,7 +16,7 @@
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
 // BOOST_STATIC_CONSTANT is defined here:
-#   include "boost_mod/config.hpp"
+#   include "yaml-cpp/boost_mod/config.hpp"
 #else
 // undef the macro for the preprocessing mode
 #   undef BOOST_STATIC_CONSTANT

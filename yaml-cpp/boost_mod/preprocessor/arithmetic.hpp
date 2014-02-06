@@ -14,12 +14,12 @@
 # ifndef BOOST_PREPROCESSOR_ARITHMETIC_HPP
 # define BOOST_PREPROCESSOR_ARITHMETIC_HPP
 #
-# include "boost_mod/preprocessor/arithmetic/add.hpp"
-# include "boost_mod/preprocessor/arithmetic/dec.hpp"
-# include "boost_mod/preprocessor/arithmetic/div.hpp"
-# include "boost_mod/preprocessor/arithmetic/inc.hpp"
-# include "boost_mod/preprocessor/arithmetic/mod.hpp"
-# include "boost_mod/preprocessor/arithmetic/mul.hpp"
-# include "boost_mod/preprocessor/arithmetic/sub.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/add.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/dec.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/div.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/inc.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/mod.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/mul.hpp"
+# include "yaml-cpp/boost_mod/preprocessor/arithmetic/sub.hpp"
 #
 # endif

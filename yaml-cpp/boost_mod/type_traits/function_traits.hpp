@@ -9,9 +9,9 @@
 #ifndef BOOST_TT_FUNCTION_TRAITS_HPP_INCLUDED
 #define BOOST_TT_FUNCTION_TRAITS_HPP_INCLUDED
 
-#include "boost_mod/config.hpp"
-#include "boost_mod/type_traits/is_function.hpp"
-#include "boost_mod/type_traits/add_pointer.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_function.hpp"
+#include "yaml-cpp/boost_mod/type_traits/add_pointer.hpp"
 
 namespace boost {
 

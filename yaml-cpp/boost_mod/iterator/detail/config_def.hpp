@@ -13,8 +13,8 @@
 // 23/02/03 thw
 //
 
-#include "boost_mod/config.hpp" // for prior
-#include "boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/config.hpp" // for prior
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
 
 #ifdef BOOST_ITERATOR_CONFIG_DEF
 # error you have nested config_def #inclusion.
@@ -94,7 +94,7 @@
 #  define BOOST_NO_IS_CONVERTIBLE_TEMPLATE // The following program fails to compile:
 
 #  if 0 // test code
-    #include "boost_mod/type_traits/is_convertible.hpp"
+    #include "yaml-cpp/boost_mod/type_traits/is_convertible.hpp"
     template <class T>
     struct foo
     {

@@ -14,15 +14,15 @@
 // $Date: 2008-10-10 23:19:02 -0700 (Fri, 10 Oct 2008) $
 // $Revision: 49267 $
 
-#include "boost_mod/mpl/aux_/static_cast.hpp"
-#include "boost_mod/mpl/aux_/config/integral.hpp"
-#include "boost_mod/mpl/aux_/config/eti.hpp"
-#include "boost_mod/mpl/aux_/config/workaround.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/static_cast.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/integral.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/eti.hpp"
+#include "yaml-cpp/boost_mod/mpl/aux_/config/workaround.hpp"
 
 #if defined(BOOST_MPL_CFG_BCC_INTEGRAL_CONSTANTS) \
     || defined(BOOST_MPL_CFG_MSVC_60_ETI_BUG)
 
-#   include "boost_mod/mpl/int.hpp"
+#   include "yaml-cpp/boost_mod/mpl/int.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 template< typename C_ > struct value_wknd

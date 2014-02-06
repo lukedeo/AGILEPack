@@ -21,14 +21,14 @@
 #ifndef BOOST_TT_IS_SAME_HPP_INCLUDED
 #define BOOST_TT_IS_SAME_HPP_INCLUDED
 
-#include "boost_mod/type_traits/config.hpp"
+#include "yaml-cpp/boost_mod/type_traits/config.hpp"
 #ifdef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#include "boost_mod/type_traits/detail/yes_no_type.hpp"
-#include "boost_mod/type_traits/detail/ice_and.hpp"
-#include "boost_mod/type_traits/is_reference.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/yes_no_type.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/ice_and.hpp"
+#include "yaml-cpp/boost_mod/type_traits/is_reference.hpp"
 #endif
 // should be the last #include
-#include "boost_mod/type_traits/detail/bool_trait_def.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -97,7 +97,7 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF2(is_same,T,U,(::boost::detail::is_same_impl<T,U>::va
 
 } // namespace boost
 
-#include "boost_mod/type_traits/detail/bool_trait_undef.hpp"
+#include "yaml-cpp/boost_mod/type_traits/detail/bool_trait_undef.hpp"
 
 #endif  // BOOST_TT_IS_SAME_HPP_INCLUDED
 

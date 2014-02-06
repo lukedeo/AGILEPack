@@ -13,14 +13,14 @@
 //  See http://www.boost.org/libs/smart_ptr/intrusive_ptr.html for documentation.
 //
 
-#include "boost_mod/config.hpp"
+#include "yaml-cpp/boost_mod/config.hpp"
 
-#include "boost_mod/assert.hpp"
-#include "boost_mod/detail/workaround.hpp"
-#include "boost_mod/smart_ptr/detail/sp_convertible.hpp"
-#include "boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
+#include "yaml-cpp/boost_mod/assert.hpp"
+#include "yaml-cpp/boost_mod/detail/workaround.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_convertible.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/sp_nullptr_t.hpp"
 
-#include "boost_mod/config/no_tr1/functional.hpp"           // for std::less
+#include "yaml-cpp/boost_mod/config/no_tr1/functional.hpp"           // for std::less
 
 #if !defined(BOOST_NO_IOSTREAM)
 #if !defined(BOOST_NO_IOSFWD)
@@ -164,7 +164,7 @@ public:
     }
 
 // implicit conversion to "bool"
-#include "boost_mod/smart_ptr/detail/operator_bool.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/detail/operator_bool.hpp"
 
     void swap(intrusive_ptr & rhs) BOOST_NOEXCEPT
     {

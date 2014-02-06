@@ -1,0 +1,8 @@
+#ifndef BASE__HH__BASE
+#define BASE__HH__BASE 
+
+#include "Core.hh"
+#include "ROOT.hh"
+#include "include/neural_net.hh"
+
+#endif
