@@ -85,21 +85,21 @@ EXE_OBJ      := test.o
 
 
 
-EXECUTABLE   := test
+EXECUTABLE   := #test
 
 ALLOBJ       := $(EXE_OBJ) $(BINARIES) 
 
 
 LIBRARIES    := agile_proxy dataframe_proxy root_proxy
 
-LIBRARY      := $(LIBRARIES) $(LIB)/libAGILEPack.a
+LIBRARY      := $(LIB)/libAGILEPack.a
 
 ALLOUTPUT    := $(LIBRARY) $(EXECUTABLE)
 
 
 
 
-all: $(ALLOUTPUT)
+all: $(LIBRARY)
 
 
 $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
@@ -107,7 +107,7 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
 
 
-$(LIBRARY): $(BINARIES:%=$(BIN)/%)
+$(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects --> $@"
 	@ar rc $@ $(shell find ./ | grep "\.o") && ranlib $@
