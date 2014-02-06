@@ -6,8 +6,8 @@
 #endif
 
 
-#include "yaml-cpp/mark.h"
-#include "yaml-cpp/traits.h"
+#include "yaml-cpp/yaml-cpp/mark.h"
+#include "yaml-cpp/yaml-cpp/traits.h"
 #include <stdexcept>
 #include <string>
 #include <sstream>

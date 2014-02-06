@@ -6,8 +6,8 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "boost_mod/shared_ptr.hpp"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/boost_mod/shared_ptr.hpp"
 
 namespace YAML
 {

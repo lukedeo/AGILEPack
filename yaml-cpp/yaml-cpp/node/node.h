@@ -6,11 +6,11 @@
 #endif
 
 
-#include "yaml-cpp/dll.h"
-#include "yaml-cpp/node/ptr.h"
-#include "yaml-cpp/node/type.h"
-#include "yaml-cpp/node/detail/iterator_fwd.h"
-#include "yaml-cpp/node/detail/bool_type.h"
+#include "yaml-cpp/yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/node/ptr.h"
+#include "yaml-cpp/yaml-cpp/node/type.h"
+#include "yaml-cpp/yaml-cpp/node/detail/iterator_fwd.h"
+#include "yaml-cpp/yaml-cpp/node/detail/bool_type.h"
 #include <stdexcept>
 
 namespace YAML

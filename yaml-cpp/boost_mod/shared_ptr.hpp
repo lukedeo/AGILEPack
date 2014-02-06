@@ -14,6 +14,6 @@
 //  See http://www.boost.org/libs/smart_ptr/shared_ptr.htm for documentation.
 //
 
-#include "boost_mod/smart_ptr/shared_ptr.hpp"
+#include "yaml-cpp/boost_mod/smart_ptr/shared_ptr.hpp"
 
 #endif  // #ifndef BOOST_SHARED_PTR_HPP_INCLUDED

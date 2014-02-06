@@ -5,7 +5,7 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp/dll.h"
 
 namespace YAML
 {
