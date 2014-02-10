@@ -26,7 +26,7 @@ For the estimation of the posterior probability that a given jet is a bottom jet
 
 Now, let's see how the AGILEPack API helps us load this into a usable format.
 
-```
+```c++
 agile::root::tree_reader btag_reader;            // declare a tree_reader instance
 btag_reader.add_file("training.root", "Physics") // Load the file and TTree
 
@@ -47,13 +47,13 @@ btag_reader.set_branch("eta", agile::root::single_precision);
 
 What happens now? Well, suppose we want to get the value of `pt` at the 4th entry. We can call:
 
-```
+```c++
 btag_reader(4, "pt")
 ```
 
 This is great, but doesn't help us train a neural network. Enter, the `agile::dataframe`. Unfortunately, it's necessary for neural network training to have access to data stored in a structure that provides random pattern access. Thus, we can use the the `agile::dataframe` as a sort of temporary storage. Let's dump some entries from our `TTree` stored in `btag_reader` into a `dataframe`.
 
-```
+```c++
 agile::dataframe D = btag_reader.get_dataframe(1000);
 //                                ~~~~~~~~~~~~~~^
 //                            Dumps 1000 entries
@@ -69,7 +69,7 @@ agile::dataframe D = btag_reader.get_dataframe();
 
 Ah shoot, there's another ROOT file called `training_2.root` with a `TTree` called `more_physics` that I *also* want in this `dataframe`. Fear not!
 
-```
+```c++
 agile::root::tree_reader another_reader;                   // declare a tree_reader instance
 another_reader.add_file("training_2.root", "more_physics") // Load the file and TTree
 
@@ -113,7 +113,7 @@ Is simply "predict `bottom` and `pt` as functions of everything on the right han
 
 ##Training a neural network.
 
-```
+```c++
 // let's reuse the agile::dataframe named D from before
 agile::neural_net my_net;
 
