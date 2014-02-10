@@ -6,7 +6,6 @@
 int main(int argc, char const *argv[])
 {
     std::string s("A simple CLI for AGILEPack centered around providing ");
-
     s += "functionality for \ntraining and testing Deep Learning";
 
     optionparser::parser p(s + " models on ROOT TTrees");
