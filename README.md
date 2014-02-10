@@ -17,7 +17,7 @@ This is a work in progress, with the ultimate goal of a versatile Deep Learning 
 
 The package can be downloaded using
 ```
-git clone --recursive git@github.com:lukedeo/AGILEPack.git
+git clone --recursive https://github.com/lukedeo/AGILEPack.git
 ```
 and is relatively basic to install. As long as `Eigen` is in a place such that
 
