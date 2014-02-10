@@ -42,7 +42,7 @@ struct option
             h+= m_short_flag;
         }
 
-        printf("%-19s%s\n", h.c_str(), m_help.c_str());
+        printf("%-25s%s\n", h.c_str(), m_help.c_str());
     }
 
     bool &found() 
