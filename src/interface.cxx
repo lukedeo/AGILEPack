@@ -55,8 +55,6 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_value)
                                     .default_value("-1");
 //----------------------------------------------------------------------------
-    
-
     p.eat_arguments(argc, argv);
 
     return 0;
