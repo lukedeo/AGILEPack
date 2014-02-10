@@ -1,5 +1,5 @@
 // #include "Base"
-#include "include/parser.hh"
+#include "cmd-parser/include/parser.hh"
 
 // void config_info(); 
 
@@ -17,7 +17,6 @@ int main(int argc, char const *argv[])
                                 .mode(optionparser::store_mult_values);
 
     p.add_option("--save", "-s").help("Name of file to save the YAML neural network file to.")
-                                .required(false)
                                 .mode(optionparser::store_value);
 
     p.add_option("--learning")  .help("Pass a learning rate.")
@@ -47,7 +46,16 @@ int main(int argc, char const *argv[])
     p.add_option("--struct")    .help(struct_help)
                                 .mode(optionparser::store_mult_values);
 
-    
+
+    std::string autoencoder_help = "Pretraining using deep autoencoders, if you pass an\n";
+    autoencoder_help.append(25, ' ');
+    autoencoder_help += "integer n, it will train the first n layers. It defaults to all.";
+
+    p.add_option("--deepauto", "-d").help(autoencoder_help)
+                                    .mode(optionparser::store_value)
+                                    .default_value("-1");
+
+
 
     p.eat_arguments(argc, argv);
 
