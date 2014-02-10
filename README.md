@@ -17,41 +17,21 @@ This is a work in progress, with the ultimate goal of a versatile Deep Learning 
 
 The package can be downloaded using
 ```
-git clone https://github.com/lukedeo/AGILEPack.git
+git clone --recursive git@github.com:lukedeo/AGILEPack.git
 ```
-and is relatively basic to install. I *highly* recommend letting `make` do it's thing with the default `make` invocation and build my slight hack of the `yaml-cpp` library, since I use `std::unique_ptr<T>` and `std::move()` functionality, which definitely ain't a bad thing. There's also a stripped `boost` mod shipped with this, since `yaml-cpp` uses it. A standard installation *including* `yaml-cpp` can built with 
+and is relatively basic to install. As long as `Eigen` is in a place such that
 
+```c++ 
+#include <Eigen/Dense>
 ```
-make
-```
-which builds a local `yaml-cpp` library called `libYAMLCPP_INTERNAL.so`, which is then linked to the AGILEPack excecutable. 
-
-If you know **for sure** that `yaml-cpp` has been installed in a standard linker search path such as `/usr/lib` or `/usr/local/lib` (or you've hacked it into the linker search), then you can install just the AGILEPack software linking to your pre-existing library using
-
-```
-make basic
-```
-
-If this gives you something on the order of 
-
-```ld: linker some_cryptic_error exit status 1```, 
-
-then simply build the local `yaml-cpp` shared library using simply
+won't cause your compiler to yell at you, you should be able to build the whole shebang with.
 
 ```
 make
 ```
 
-If you are using this in a performance sensitive application, compile with
 
-```
-make production
-```
-
-which will compile with `-O2` optimization, and the `Eigen` flag `-DEIGEN_NO_DEBUG`, which turns off some expensive dimension checks. 
-
-
-
+This will build a static library called `lib/libAGILEPack.a`, which you can then link against with 
 
 
 
