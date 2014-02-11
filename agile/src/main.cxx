@@ -15,11 +15,11 @@ int main(int argc, char const *argv[])
          1.0, 0.0, 
          1.0, 1.0;
 
-    agile::matrix T(4, 2);
-    T << 0.0, 0.0,
-         1.0, 1.0,
-         1.0, 1.0,
-         0.0, 1.0;
+    agile::matrix T(4, 1);
+    T << 0.0,
+         1.0,
+         1.0,
+         0.0;
 
 
     architecture arch; 
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
     // arch.add_a_layer<autoencoder>(2, 4, sigmoid);
     arch.emplace_back(new autoencoder(2, 4, sigmoid));
     arch.emplace_back(new autoencoder(4, 3, sigmoid));
-    arch.emplace_back(new layer(3, 2, sigmoid));
+    arch.emplace_back(new layer(3, 1, sigmoid));
 
     for (int i = 0; i < 100000; ++i)
     {

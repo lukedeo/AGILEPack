@@ -32,7 +32,24 @@ make
 
 This will build a static library called `lib/libAGILEPack.a`, which you can then link against to do sweet things like build Deep Learners.
 
-Let's say you 
+Let's say you have a program called `prog.cxx` that uses AGILEPack. If you're using ROOT stuff. Provided that your file takes the form
+```c++
+#include "Base"
+           ^~~~~~ Includes all AGILEPack stuff!
+#include <myotherheaders.h>
+
+int main(int argc, char const *argv[])
+{
+	// Do stuff with AGILEPack!
+}
+```
+
+You can compile this program with:
+
+```bash
+[g|clang]++ -std=c++11 `root-config --cflags` `root-config --libs` -I/path/to/AGILEPack -L/path/to/AGILEPack/lib -lAGILEPack prog.cxx -o prog
+^~~~~~~~~~~~~~~~~~~~~^  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^       ^~~~~~~~~~~~~~~~~~~~~~~~^           ~~~~~~~~^ 
+```
 
 
 
