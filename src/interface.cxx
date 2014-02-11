@@ -1,7 +1,9 @@
-// #include "Base"
+#include "Base"
 #include "cmd-parser/include/parser.hh"
 
-// void config_info(); 
+void config_info();
+
+void complain(const std::string &complaint);
 
 
 //----------------------------------------------------------------------------
@@ -32,7 +34,9 @@ int main(int argc, char const *argv[])
     config_help.append(25, ' ');
     config_help += "of over the command line. For help on formatting, pass\n";
     config_help.append(25, ' ');
-    config_help += "the '-confighelp' flag. This overrides all paramaters from CLI.";
+    config_help += "the '-confighelp' flag. This overrides all paramaters from CLI.\n";
+    config_help.append(25, ' ');
+    config_help += "This is required for specifying training variables.\n";
 
     p.add_option("--config", "-c")  .help(config_help)
                                     .mode(optionparser::store_value);
@@ -76,13 +80,33 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
     p.eat_arguments(argc, argv);
 
+    if (p.get_value("confighelp"))
+    {
+        config_info();
+    }
+
+    if (!p.get_value("file"))
+    {
+        complain("need to pass at least one file.");
+    }
+
+    std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
+    std::string save_file(p.get_value<std::string>("save"));
+    
+
 
 
     return 0;
 }
 
 
-// void config_info()
-// {
+void config_info()
+{
+    exit(0);
+}
 
-// }
+void complain(const std::string &complaint)
+{
+    std::cerr << "Error: " << complaint << std::endl;
+    exit(1);
+}
