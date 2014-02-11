@@ -5,6 +5,8 @@ void config_info();
 
 void complain(const std::string &complaint);
 
+const std::string timestamp(void);
+
 
 //----------------------------------------------------------------------------
 int main(int argc, char const *argv[])
@@ -80,19 +82,22 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
     p.eat_arguments(argc, argv);
 
-    if (p.get_value("confighelp"))
-    {
-        config_info();
-    }
+    if (p.get_value("confighelp")) config_info();
 
-    if (!p.get_value("file"))
-    {
-        complain("need to pass at least one file.");
-    }
+    if (!p.get_value("file")) complain("need to pass at least one file.");
+
+    if (!p.get_value("config")) complain("need a config file for variable specification.");
+
+    
 
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
-    std::string save_file(p.get_value<std::string>("save"));
-    
+
+
+    std::string save_file = (p.get_value("save") ? p.get_value<std::string>("save") : std::string("neural_net" + timestamp() + ".yaml"));
+
+
+
+
 
 
 
@@ -109,4 +114,14 @@ void complain(const std::string &complaint)
 {
     std::cerr << "Error: " << complaint << std::endl;
     exit(1);
+}
+
+const std::string timestamp(void)  
+{
+    time_t now = time(0);
+    struct tm tstruct;
+    char buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    return buf;
 }
