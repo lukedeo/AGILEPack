@@ -1,5 +1,6 @@
-#include "Base"
+// #include "Base"
 #include "cmd-parser/include/parser.hh"
+#include <time.h>
 
 void config_info();
 
@@ -20,20 +21,23 @@ int main(int argc, char const *argv[])
     p.add_option("--file", "-f")    .help("Pass at least one file to add to a TChain for training.")
                                     .mode(optionparser::store_mult_values);
 //----------------------------------------------------------------------------
+    p.add_option("--tree", "-t")    .help("Name of the TTree to extract.")
+                                    .mode(optionparser::store_value);
+//----------------------------------------------------------------------------
     p.add_option("--save", "-s")    .help("Name of file to save the YAML neural network file to.")
                                     .mode(optionparser::store_value);
 //----------------------------------------------------------------------------
     p.add_option("--learning")      .help("Pass a learning rate.")
                                     .mode(optionparser::store_value)
-                                    .default_value("");
+                                    .default_value(0.1);
 //----------------------------------------------------------------------------
-    p.add_option("--momentum")      .help("Pass a learning rate.")
+    p.add_option("--momentum")      .help("Pass a momentum value.")
                                     .mode(optionparser::store_value)
-                                    .default_value("");
+                                    .default_value(0.5);
 //----------------------------------------------------------------------------
     p.add_option("--regularize")    .help("Pass an l2 norm regularizer.")
                                     .mode(optionparser::store_value)
-                                    .default_value("");
+                                    .default_value(0.00001);
 //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load to begin training")
                                     .mode(optionparser::store_value);
@@ -64,27 +68,35 @@ int main(int argc, char const *argv[])
 
     p.add_option("--deepauto", "-d").help(autoencoder_help)
                                     .mode(optionparser::store_value)
-                                    .default_value("-1");
+                                    .default_value(-1);
+//----------------------------------------------------------------------------
+    std::string type_help = "Specify the type of predicive target we are trying to \n";
+    type_help.append(25, ' ');
+    type_help += "work with. Can be one of 'regress', 'multiclass', or 'binary'.";
+
+    p.add_option("--type", "-T")    .help(type_help)
+                                    .mode(optionparser::store_value)
+                                    .default_value("regress");
 //----------------------------------------------------------------------------
     p.add_option("--verbose", "-v") .help("Make the output verbose");
 //----------------------------------------------------------------------------
     p.add_option("-start")          .help("Start index for training. (Default = 0)")
                                     .mode(optionparser::store_value)
-                                    .default_value("0");
+                                    .default_value(0);
 //----------------------------------------------------------------------------
     p.add_option("-end")            .help("End index for training. (Default, whole tree)")
                                     .mode(optionparser::store_value)
-                                    .default_value("-1");  
+                                    .default_value(-1);  
 //----------------------------------------------------------------------------
     p.add_option("-epochs")         .help("Number of passes over the Trees. (Default = 10)")
                                     .mode(optionparser::store_value)
-                                    .default_value("10");
+                                    .default_value(10);
 //----------------------------------------------------------------------------
     std::string prog_string = "Output progress files every (n) epochs. If n isn't passed,\n";
     prog_string.append(25, ' ');
     p.add_option("-prog")           .help(prog_string + "uses default. (Default = 1)")
                                     .mode(optionparser::store_value)
-                                    .default_value("1");
+                                    .default_value(1);
 //----------------------------------------------------------------------------
     p.eat_arguments(argc, argv);
 
@@ -92,7 +104,11 @@ int main(int argc, char const *argv[])
 
     if (!p.get_value("file")) complain("need to pass at least one file.");
 
+    if (!p.get_value("tree")) complain("need to pass a tree name.");
+
     if (!p.get_value("config")) complain("need a config file for variable specification.");
+
+    if (!p.get_value("struct")) complain("need to pass a struct");
 
 
 
@@ -101,9 +117,28 @@ int main(int argc, char const *argv[])
 
     std::string save_file = (p.get_value("save") ? p.get_value<std::string>("save") : std::string("neural_net" + timestamp() + ".yaml"));
 
-    double learning = p.get_value<double>("learning"), 
-           momentum = p.get_value<double>("momentum"),
-           regularizer = p.get_value<double>("regularize"),  
+    double  learning =    p.get_value<double>("learning"), 
+            momentum =    p.get_value<double>("momentum"),
+            regularizer = p.get_value<double>("regularize");
+
+
+    int     deepauto =    p.get_value<int>("deepauto"),
+            start =       p.get_value<int>("start"),
+            end =         p.get_value<int>("end"),
+            epochs =      p.get_value<int>("epochs"),
+            prog =        p.get_value<int>("prog");
+
+    bool    verbose =     p.get_value("verbose");
+
+    std::vector<int> structure = p.get_value<std::vector<int>>("struct");
+
+
+
+
+
+
+
+
 
 
 
