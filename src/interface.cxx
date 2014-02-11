@@ -24,10 +24,16 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_value);
 //----------------------------------------------------------------------------
     p.add_option("--learning")      .help("Pass a learning rate.")
-                                    .mode(optionparser::store_value);
+                                    .mode(optionparser::store_value)
+                                    .default_value("");
 //----------------------------------------------------------------------------
     p.add_option("--momentum")      .help("Pass a learning rate.")
-                                    .mode(optionparser::store_value);
+                                    .mode(optionparser::store_value)
+                                    .default_value("");
+//----------------------------------------------------------------------------
+    p.add_option("--regularize")    .help("Pass an l2 norm regularizer.")
+                                    .mode(optionparser::store_value)
+                                    .default_value("");
 //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load to begin training")
                                     .mode(optionparser::store_value);
@@ -88,12 +94,16 @@ int main(int argc, char const *argv[])
 
     if (!p.get_value("config")) complain("need a config file for variable specification.");
 
-    
+
 
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
 
     std::string save_file = (p.get_value("save") ? p.get_value<std::string>("save") : std::string("neural_net" + timestamp() + ".yaml"));
+
+    double learning = p.get_value<double>("learning"), 
+           momentum = p.get_value<double>("momentum"),
+           regularizer = p.get_value<double>("regularize"),  
 
 
 
