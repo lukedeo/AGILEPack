@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# AGILEPATH=$(pwd) 
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [[ $1 == "--root" ]]; then
+	ROOTSTUFF="`root-config --cflags` `root-config --libs`"
+fi
+
+echo "-std=c++11 $ROOTSTUFF -I$DIR -L$DIR/lib -lAGILEPack"

@@ -47,14 +47,12 @@ int main(int argc, char const *argv[])
 You can compile this program with:
 
 ```bash
-[g|clang]++ -std=c++11 `root-config --cflags` `root-config --libs` -I/path/to/AGILEPack -L/path/to/AGILEPack/lib -lAGILEPack prog.cxx -o prog
-^~~~~~~~~~~~~~~~~~~~~^  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^       ^~~~~~~~~~~~~~~~~~~~~~~~^           ~~~~~~~~^ 
+g++ `/path/to/AGILEPack/agile-config`  prog.cxx -o prog
+				^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+		    fixes include paths and links -lAGILEPack
 ```
 
-
-
-
-
+which will produce an excecutable called `prog`.
 
 
 
@@ -71,7 +69,7 @@ You can compile this program with:
   - [ ] Dropout/DropConnect layers.
   - [ ] Inverted Deep Network Encoding. 
 - [x] Dynamic changes to layers (additions, deletions).
-- [ ] Interface with the CERN `ROOT` framework.
+- [x] Interface with the CERN `ROOT` framework.
 - [x] Complete serialization of network structure with `YAML` file.
 - [ ] More to come...
 
