@@ -48,8 +48,8 @@ You can compile this program with:
 
 ```bash
 g++ `/path/to/AGILEPack/agile-config --root`  prog.cxx -o prog
-     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
- fixes include paths and links -lAGILEPack
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+     fixes include paths and links -lAGILEPack
 ```
 
 which will produce an excecutable called `prog`.
