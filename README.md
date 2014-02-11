@@ -24,14 +24,15 @@ and is relatively basic to install. As long as `Eigen` is in a place such that
 ```c++ 
 #include <Eigen/Dense>
 ```
-won't cause your compiler to yell at you, you should be able to build the whole shebang with.
+won't cause your compiler to yell at you, you should be able to build the whole shebang with
 
 ```
 make
 ```
 
+This will build a static library called `lib/libAGILEPack.a`, which you can then link against to do sweet things like build Deep Learners.
 
-This will build a static library called `lib/libAGILEPack.a`, which you can then link against with 
+Let's say you 
 
 
 
