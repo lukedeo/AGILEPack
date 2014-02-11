@@ -22,7 +22,8 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_mult_values);
 //----------------------------------------------------------------------------
     p.add_option("--tree", "-t")    .help("Name of the TTree to extract.")
-                                    .mode(optionparser::store_value);
+                                    .mode(optionparser::store_value)
+                                    .default_value(std::string("neural_net" + timestamp() + ".yaml"));
 //----------------------------------------------------------------------------
     p.add_option("--save", "-s")    .help("Name of file to save the YAML neural network file to.")
                                     .mode(optionparser::store_value);
@@ -114,8 +115,10 @@ int main(int argc, char const *argv[])
 
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
+    std::string ttree_name =  p.get_value<std::string>("tree"),
+                config_file = p.get_value<std::string>("config"),
+                save_file =   p.get_value<std::string>("save");
 
-    std::string save_file = (p.get_value("save") ? p.get_value<std::string>("save") : std::string("neural_net" + timestamp() + ".yaml"));
 
     double  learning =    p.get_value<double>("learning"), 
             momentum =    p.get_value<double>("momentum"),
@@ -131,20 +134,6 @@ int main(int argc, char const *argv[])
     bool    verbose =     p.get_value("verbose");
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return 0;
 }
