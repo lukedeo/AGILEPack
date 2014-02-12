@@ -1,4 +1,4 @@
-// #include "Base"
+#include "Base"
 #include "cmd-parser/include/parser.hh"
 #include <time.h>
 
@@ -22,11 +22,11 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_mult_values);
 //----------------------------------------------------------------------------
     p.add_option("--tree", "-t")    .help("Name of the TTree to extract.")
-                                    .mode(optionparser::store_value)
-                                    .default_value(std::string("neural_net" + timestamp() + ".yaml"));
+                                    .mode(optionparser::store_value);
 //----------------------------------------------------------------------------
     p.add_option("--save", "-s")    .help("Name of file to save the YAML neural network file to.")
-                                    .mode(optionparser::store_value);
+                                    .mode(optionparser::store_value)
+                                    .default_value(std::string("neural_net" + timestamp() + ".yaml"));
 //----------------------------------------------------------------------------
     p.add_option("--learning")      .help("Pass a learning rate.")
                                     .mode(optionparser::store_value)
@@ -39,6 +39,9 @@ int main(int argc, char const *argv[])
     p.add_option("--regularize")    .help("Pass an l2 norm regularizer.")
                                     .mode(optionparser::store_value)
                                     .default_value(0.00001);
+    p.add_option("--batch")         .help("Mini-batch size.")
+                                    .mode(optionparser::store_value)
+                                    .default_value(10);
 //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load to begin training")
                                     .mode(optionparser::store_value);
@@ -107,7 +110,7 @@ int main(int argc, char const *argv[])
 
     if (!p.get_value("tree")) complain("need to pass a tree name.");
 
-    if (!p.get_value("config")) complain("need a config file for variable specification.");
+    // if (!p.get_value("config")) complain("need a config file for variable specification.");
 
     if (!p.get_value("struct")) complain("need to pass a struct");
 
@@ -116,7 +119,7 @@ int main(int argc, char const *argv[])
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
     std::string ttree_name =  p.get_value<std::string>("tree"),
-                config_file = p.get_value<std::string>("config"),
+                // config_file = p.get_value<std::string>("config"),
                 save_file =   p.get_value<std::string>("save");
 
 
@@ -129,11 +132,93 @@ int main(int argc, char const *argv[])
             start =       p.get_value<int>("start"),
             end =         p.get_value<int>("end"),
             epochs =      p.get_value<int>("epochs"),
+            batch =       p.get_value<int>("batch"),
             prog =        p.get_value<int>("prog");
 
     bool    verbose =     p.get_value("verbose");
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
+
+
+    std::cout << "all parameters in!" << std::endl;
+
+
+//----------------------------------------------------------------------------
+
+
+    agile::root::tree_reader TR;
+
+
+    for (auto &file : root_files)
+    {
+       TR.add_file(file, ttree_name);
+    }
+
+    std::cout << "added files!" << std::endl;
+    TR.set_branch("pt", agile::root::double_precision);
+    TR.set_branch("bottom", agile::root::integer);
+    TR.set_branch("charm", agile::root::integer);
+    TR.set_branch("light", agile::root::integer);
+    TR.set_branch("eta", agile::root::double_precision);
+    TR.set_branch("cat_pT", agile::root::integer);
+    TR.set_branch("cat_eta", agile::root::integer);
+    TR.set_branch("nSingleTracks", agile::root::integer);
+    TR.set_branch("nTracks", agile::root::integer);
+    TR.set_branch("nTracksAtVtx", agile::root::integer);
+    TR.set_branch("nVTX", agile::root::integer);
+    TR.set_branch("SV1", agile::root::double_precision);
+    TR.set_branch("SV0", agile::root::double_precision);
+    TR.set_branch("ip3d_pb", agile::root::double_precision);
+    TR.set_branch("ip3d_pu", agile::root::double_precision);
+    TR.set_branch("ip3d_pc", agile::root::double_precision);
+    TR.set_branch("jfit_efrc", agile::root::double_precision);
+    TR.set_branch("jfit_mass", agile::root::double_precision);
+    TR.set_branch("jfit_sig3d", agile::root::double_precision);
+    TR.set_branch("svp_mass", agile::root::double_precision);
+    TR.set_branch("svp_efrc", agile::root::double_precision);
+    TR.set_branch("energyFraction", agile::root::double_precision);
+    TR.set_branch("mass", agile::root::double_precision);
+    TR.set_branch("maxSecondaryVertexRho", agile::root::double_precision);
+    TR.set_branch("maxTrackRapidity", agile::root::double_precision);
+    TR.set_branch("meanTrackRapidity", agile::root::double_precision);
+    TR.set_branch("minTrackRapidity", agile::root::double_precision);
+    TR.set_branch("significance3d", agile::root::double_precision);
+    TR.set_branch("subMaxSecondaryVertexRho", agile::root::double_precision);
+    TR.set_branch("jfit_nvtx", agile::root::integer);
+    TR.set_branch("jfit_nvtx1t", agile::root::integer);
+    TR.set_branch("jfit_ntrkAtVx", agile::root::integer);
+
+    std::cout << "Pulling dataset from ROOT file...";
+    agile::dataframe D = TR.get_dataframe(end - start, start);
+
+    agile::neural_net net;
+    net.add_data(D);
+
+    layer_type net_type;
+    std::string passed_target = p.get_value<std::string>("type");
+
+    if (passed_target == "regress") net_type = linear;
+    else if (passed_target == "multiclass") net_type = softmax;
+    else if (passed_target == "binary") net_type = sigmoid;
+    else complain("type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+
+    int i;
+    for (i = 0; i < (structure.size() - 2); ++i)
+    {
+        net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+    }
+    net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+ 
+    net.model_formula("bottom + charm + light ~ * -pt -eta");
+
+    net.set_learning(learning);
+    net.set_regularizer(regularizer);
+    net.set_momentum(momentum);
+    net.set_batch_size(batch);
+    
+    net.check(0);
+
+    net.to_yaml(save_file);
 
     return 0;
 }

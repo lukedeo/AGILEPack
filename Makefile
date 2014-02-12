@@ -44,18 +44,18 @@ CXXFLAGS     += -I$(YAML_INC)
 # CXXFLAGS     += -I$(BOOST_INC)
 CXXFLAGS     += -I./
 
-LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
-LIBS         += -ldataframe
+# LIBS         += -L$(DATAFRAME_LIB) -Wl,-rpath,$(DATAFRAME_LIB)
+# LIBS         += -ldataframe
 
-LIBS         += -L$(AGILE_LIB) -Wl,-rpath,$(AGILE_LIB)
-LIBS         += -lagile
+# LIBS         += -L$(AGILE_LIB) -Wl,-rpath,$(AGILE_LIB)
+# LIBS         += -lagile
 
-LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
-LIBS         += -lyamlc++
+# LIBS         += -L$(YAML_LIB) -Wl,-rpath,$(YAML_LIB)
+# LIBS         += -lyamlc++
 
 
-LIBS         += -L$(ROOT_LIB) -Wl,-rpath,$(ROOT_LIB)
-LIBS         += -lROOTinterface
+# LIBS         += -L$(ROOT_LIB) -Wl,-rpath,$(ROOT_LIB)
+# LIBS         += -lROOTinterface
 # LDFLAGS      := -Wl,--no-undefined 
 
 # fix for ubuntu (that doesn't use bash for /bin/sh)
@@ -81,11 +81,11 @@ LIBS         += $(ROOTLIBS)
 
 # - command line interface
 BINARIES     := model_frame.o neural_net.o
-EXE_OBJ      := test.o
+EXE_OBJ      := interface.o
 
 
 
-EXECUTABLE   := #test
+EXECUTABLE   := DeepLearn
 
 ALLOBJ       := $(EXE_OBJ) $(BINARIES) 
 
@@ -99,12 +99,12 @@ ALLOUTPUT    := $(LIBRARY) $(EXECUTABLE)
 
 
 
-all: $(LIBRARY)
+all: $(LIBRARY) $(EXECUTABLE)
 
-
-$(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) $(BINARIES:%=$(BIN)/%)
+#$(BINARIES:%=$(BIN)/%)
+$(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) 
 	@echo "linking $^ --> $@"
-	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
+	@$(CXX) -o $@ $^ $(LIBS) $(LIBRARY) $(LDFLAGS)
 
 
 $(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
