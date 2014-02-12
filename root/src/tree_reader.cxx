@@ -104,7 +104,7 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
-agile::dataframe tree_reader::get_dataframe(int entries, int start)
+agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose)
 {
     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
     {
@@ -121,6 +121,7 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start)
     D.set_column_names(feature_names);
     for (curr_entry = start; curr_entry < stop; ++curr_entry)
     {
+        
         D.push_back(std::move(at((unsigned int)curr_entry)));
     }
     return std::move(D);
