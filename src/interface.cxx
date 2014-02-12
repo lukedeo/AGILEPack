@@ -139,12 +139,7 @@ int main(int argc, char const *argv[])
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
 
-
-    std::cout << "all parameters in!" << std::endl;
-
-
 //----------------------------------------------------------------------------
-
 
     agile::root::tree_reader TR;
 
@@ -187,9 +182,7 @@ int main(int argc, char const *argv[])
     TR.set_branch("jfit_nvtx", agile::root::integer);
     TR.set_branch("jfit_nvtx1t", agile::root::integer);
     TR.set_branch("jfit_ntrkAtVx", agile::root::integer);
-
-    std::cout << "Pulling dataset from ROOT file...";
-    agile::dataframe D = TR.get_dataframe(end - start, start);
+    agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
 
     agile::neural_net net;
     net.add_data(D);
@@ -209,7 +202,7 @@ int main(int argc, char const *argv[])
     }
     net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
  
-    net.model_formula("bottom + charm + light ~ * -pt -eta");
+    net.model_formula("bottom + charm + light ~ * -pt -eta", true, verbose);
 
     net.set_learning(learning);
     net.set_regularizer(regularizer);

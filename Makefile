@@ -108,6 +108,7 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%)
 
 
 $(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
+	@rm $(EXECUTABLE)
 	@mkdir -p $(LIB)
 	@echo "linking objects --> $@"
 	@ar rc $@ $(shell find ./ | grep "\.o") && ranlib $@

@@ -11,6 +11,7 @@
 #include "smart_chain.hh"
 #include "numeric_handler.hh"
 #include "dataframe/dataframe_core.hh"
+#include "agile/agile_base.hh"
 
 
 namespace agile

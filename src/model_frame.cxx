@@ -48,19 +48,38 @@ void model_frame::model_formula(const std::string &formula)
 
 // model_frame::make_binned(const std::string &name, const std::vector<double> bins);
 
-void model_frame::generate()
+void model_frame::generate(bool verbose)
 {
     agile::matrix T = eigen_spew(DF);
 
     m_X.resize(DF.rows(), inputs.size());
     m_Y.resize(DF.rows(), outputs.size());
 
-    int idx = 0;
+    unsigned int columns_to_extract = inputs.size();
+
+    if (outputs.at(0) != "")
+    {
+        columns_to_extract += outputs.size();
+    }
+    if (verbose)
+    {
+        std::cout << "\nGenerating base model formula..." << std::endl;
+    }
+
+    int idx = 0, ctr = 0;
+    double pct;
     for (auto &name : inputs)
     {
         m_X.col(idx) = T.col(DF.get_column_idx(name));
         ++idx;
+        ++ctr;
+        if (verbose)
+        {
+            pct = (double)(ctr) / (double)(columns_to_extract);
+            agile::progress_bar(pct * 100);
+        }
     }
+    x_set = true;
     idx = 0;
     if (outputs.at(0) != "")
     {
@@ -68,27 +87,54 @@ void model_frame::generate()
         {
             m_Y.col(idx) = T.col(DF.get_column_idx(name));
             ++idx;
+            ++ctr;
+            if (verbose)
+            {
+                pct = (double)(ctr) / (double)(columns_to_extract);
+                agile::progress_bar(pct * 100);
+            }
         }
+        y_set = true;
+
     }
 }
 
 //----------------------------------------------------------------------------
-void model_frame::scale()
+void model_frame::scale(bool verbose)
 {
+    if (!x_set)
+    {
+        throw std::runtime_error("must load an X into model frame before scaling.");
+    }
+    unsigned int columns_to_extract = inputs.size();
     int idx = 0;
+    double pct;
+    if (verbose)
+    {
+        std::cout << "\nScaling model frame..." << std::endl;
+    }
     for (auto &name : inputs)
     {
         agile::calc_normalization(m_X.col(idx), name, m_scaling);
         m_X.col(idx).array() -= m_scaling.mean[name];
         m_X.col(idx) /= m_scaling.sd[name];
         ++idx;
+        if (verbose)
+        {
+            pct = (double)(idx) / (double)(columns_to_extract);
+            agile::progress_bar(pct * 100);
+        }
     }
-    idx = 0;
-    for (auto &name : outputs)
+    if (verbose)
     {
-        agile::calc_normalization(m_Y.col(idx), name, m_scaling);
-        ++idx;
+        std::cout << std::endl;
     }
+    // idx = 0;
+    // for (auto &name : outputs)
+    // {
+    //     agile::calc_normalization(m_Y.col(idx), name, m_scaling);
+    //     ++idx;
+    // }
 }
 //----------------------------------------------------------------------------
 void model_frame::load_scaling(const agile::scaling &scale)

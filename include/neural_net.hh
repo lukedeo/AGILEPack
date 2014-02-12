@@ -37,7 +37,7 @@ public:
 	// void set_formula(const std::string &formula);
 	// void add_predictor(const std::string &name);
 	// void add_target(const std::string &name);
-	void model_formula(const std::string &formula, bool scale = true);
+	void model_formula(const std::string &formula, bool scale = true, bool verbose = false);
 	// agile::dataframe& data();
 	// void finalize(bool scale = true);
 	void from_yaml(const std::string &filename);

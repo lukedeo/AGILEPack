@@ -111,16 +111,26 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose
         throw dimension_error(
             "tried to access element in TTree beyond range.");
     }
+
+    if (verbose)
+    {
+        std::cout << "Pulling agile::dataframe from tree_reader..." << std::endl;
+    }
     entries = (entries < 0) ? m_size : entries;
     start = (start < 0) ? 0 : start;
     auto stop = start + entries;
 
     int curr_entry = 0;
-
+    double pct;
     agile::dataframe D;
     D.set_column_names(feature_names);
     for (curr_entry = start; curr_entry < stop; ++curr_entry)
     {
+        if (verbose)
+        {
+            pct = (double)(curr_entry - start) / (double)(entries);
+            agile::progress_bar(pct * 100);
+        }
         
         D.push_back(std::move(at((unsigned int)curr_entry)));
     }
