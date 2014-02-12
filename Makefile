@@ -108,6 +108,7 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%)
 
 
 $(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
+	@touch $(EXECUTABLE)
 	@rm $(EXECUTABLE)
 	@mkdir -p $(LIB)
 	@echo "linking objects --> $@"

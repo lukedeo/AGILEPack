@@ -104,6 +104,39 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
+void tree_reader::set_branches(const std::string &yamlfile)
+{
+    YAML::Node config = YAML::LoadFile(yamlfile);
+    std::vector<std::string> branches;
+    std::vector<agile::root::numeric_type> types;
+    std::map<std::string, std::string> vars = config.as<std::map<std::string, std::string>>();
+    for (auto &entry : vars)
+    {
+        branches.push_back(entry.first);
+        auto type = entry.second;
+        if (type == "double")
+        {
+            types.push_back(agile::root::double_precision);
+        }
+        else if (type == "float")
+        {
+            types.push_back(agile::root::single_precision);
+        }
+        else if (type == "int")
+        {
+            types.push_back(agile::root::integer);
+        }
+        else
+        {
+            throw std::domain_error("type " + type + " for branch " + entry.first + ".");
+        }
+    }
+    for (auto &entry : vars)
+    {
+        std::cout << "" << std::endl;
+    }
+}
+//----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose)
 {
     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))

@@ -149,6 +149,7 @@ int main(int argc, char const *argv[])
        TR.add_file(file, ttree_name);
     }
 
+//----------------------------------------------------------------------------
     std::cout << "added files!" << std::endl;
     TR.set_branch("pt", agile::root::double_precision);
     TR.set_branch("bottom", agile::root::integer);
@@ -182,6 +183,10 @@ int main(int argc, char const *argv[])
     TR.set_branch("jfit_nvtx", agile::root::integer);
     TR.set_branch("jfit_nvtx1t", agile::root::integer);
     TR.set_branch("jfit_ntrkAtVx", agile::root::integer);
+
+//----------------------------------------------------------------------------
+
+
     agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
 
     agile::neural_net net;
@@ -190,17 +195,21 @@ int main(int argc, char const *argv[])
     layer_type net_type;
     std::string passed_target = p.get_value<std::string>("type");
 
+//----------------------------------------------------------------------------
+
     if (passed_target == "regress") net_type = linear;
     else if (passed_target == "multiclass") net_type = softmax;
     else if (passed_target == "binary") net_type = sigmoid;
     else complain("type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+    
+//----------------------------------------------------------------------------
 
     int i;
     for (i = 0; i < (structure.size() - 2); ++i)
     {
         net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
     }
-    net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+    net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
  
     net.model_formula("bottom + charm + light ~ * -pt -eta", true, verbose);
 

@@ -12,6 +12,7 @@
 #include "numeric_handler.hh"
 #include "dataframe/dataframe_core.hh"
 #include "agile/agile_base.hh"
+#include "yaml-cpp/yaml_core.hh"
 
 
 namespace agile
@@ -50,6 +51,8 @@ public:
     void add_file(std::string filename, std::string tree_name = "");
 
     void set_branch(std::string branch_name, numeric_type type);
+
+    void set_branches(const std::string &yamlfile);
 
     std::vector<std::string> get_ordered_branch_names();
 
