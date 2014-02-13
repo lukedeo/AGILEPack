@@ -6,7 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GOAL=$1
 
 if [[ -z "$GOAL" ]]; then
-	echo "usage: agile-config {compile, link} [--root]"
+	echo "usage: agile-config {compile, link, build} [--root]"
 	exit
 fi
 
@@ -23,4 +23,14 @@ if [[ "$GOAL" == "link" ]]; then
 	COMMAND="-L$DIR/lib -lAGILEPack $ROOTSTUFF"
 
 fi
+
+if [[ "$GOAL" == "build" ]]; then
+	if [[ $2 == "--root" ]]; then
+		ROOTSTUFF="`root-config --ldflags` `root-config --libs`"
+		ROOTCFLAGS="`root-config --cflags`"
+	fi
+	COMMAND="-std=c++11 -Wall -fPIC -I$DIR $ROOTCFLAGS -L$DIR/lib -lAGILEPack $ROOTSTUFF"
+fi
+
+
 echo $COMMAND
