@@ -9,7 +9,6 @@ if [[ -z "$GOAL" ]]; then
 	echo "usage: agile-config {compile, link, build} [--root]"
 	exit
 fi
-
 if [[ "$GOAL" == "compile" ]]; then
 	if [[ $2 == "--root" ]]; then
 		ROOTSTUFF="`root-config --cflags`"
