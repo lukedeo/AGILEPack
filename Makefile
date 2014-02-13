@@ -107,9 +107,9 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%)
 	@$(CXX) -o $@ $^ $(LIBS) $(LIBRARY) $(LDFLAGS)
 
 
-$(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
-	@touch $(BIN)/$(EXE_OBJ)
-	@rm $(BIN)/$(EXE_OBJ)
+# $(BINARIES:%=$(BIN)/%)
+$(LIBRARY): $(LIBRARIES) 
+	@touch $(BIN)/$(EXE_OBJ) && rm $(BIN)/$(EXE_OBJ)
 	@touch $(EXECUTABLE)
 	@rm $(EXECUTABLE)
 	@mkdir -p $(LIB)
