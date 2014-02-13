@@ -71,8 +71,8 @@ public:
 //-----------------------------------------------------------------------------
 //  generation and final model frames.
 //-----------------------------------------------------------------------------
-	void generate();
-	void scale();
+	void generate(bool verbose = false);
+	void scale(bool verbose = false);
 
 
 	void load_scaling(const agile::scaling &scale);

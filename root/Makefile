@@ -62,7 +62,6 @@ $(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 $(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
-	# @$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
 	@ar rc $@ $^ && ranlib $@
 
 

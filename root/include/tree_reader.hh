@@ -11,6 +11,8 @@
 #include "smart_chain.hh"
 #include "numeric_handler.hh"
 #include "dataframe/dataframe_core.hh"
+#include "agile/agile_base.hh"
+#include "yaml-cpp/yaml_core.hh"
 
 
 namespace agile
@@ -50,9 +52,11 @@ public:
 
     void set_branch(std::string branch_name, numeric_type type);
 
+    void set_branches(const std::string &yamlfile);
+
     std::vector<std::string> get_ordered_branch_names();
 
-    agile::dataframe get_dataframe(int entries = -1, int start = -1);
+    agile::dataframe get_dataframe(int entries = -1, int start = -1, bool verbose = false);
 
     // std::pair<agile::dataframe, agile::dataframe> get_data_pair(
     //     const std::vector<std::string> &inputs, 

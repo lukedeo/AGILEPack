@@ -61,7 +61,8 @@ inline agile::matrix eigen_spew(D &d)
     }
     return std::move(M);
 }
-
+//----------------------------------------------------------------------------
+void progress_bar(int percent);
 }
 
 #endif

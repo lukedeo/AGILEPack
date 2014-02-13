@@ -104,23 +104,76 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
-agile::dataframe tree_reader::get_dataframe(int entries, int start)
+void tree_reader::set_branches(const std::string &yamlfile)
+{
+    YAML::Node tmp = YAML::LoadFile(yamlfile);
+    try
+    {
+        YAML::Node config = tmp["variables"];
+        std::vector<std::string> branches;
+        std::vector<agile::root::numeric_type> types;
+        std::map<std::string, std::string> vars = config.as<std::map<std::string, std::string>>();
+        for (auto &entry : vars)
+        {
+            branches.push_back(entry.first);
+            auto type = entry.second;
+            if (type == "double")
+            {
+                types.push_back(agile::root::double_precision);
+            }
+            else if (type == "float")
+            {
+                types.push_back(agile::root::single_precision);
+            }
+            else if (type == "int")
+            {
+                types.push_back(agile::root::integer);
+            }
+            else
+            {
+                throw std::domain_error("type " + type + " for branch " + entry.first + ".");
+            }
+        }
+        for (auto &entry : vars)
+        {
+            std::cout << entry.first << ": " << entry.second << std::endl;
+        }
+    }
+    catch(YAML::BadConversion &e)
+    {
+        throw std::runtime_error("configuration files must have a map entitled 'variables'");
+    }
+    
+}
+//----------------------------------------------------------------------------
+agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose)
 {
     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
     {
         throw dimension_error(
             "tried to access element in TTree beyond range.");
     }
+
+    if (verbose)
+    {
+        std::cout << "Pulling agile::dataframe from tree_reader..." << std::endl;
+    }
     entries = (entries < 0) ? m_size : entries;
     start = (start < 0) ? 0 : start;
     auto stop = start + entries;
 
     int curr_entry = 0;
-
+    double pct;
     agile::dataframe D;
     D.set_column_names(feature_names);
     for (curr_entry = start; curr_entry < stop; ++curr_entry)
     {
+        if (verbose)
+        {
+            pct = (double)(curr_entry - start) / (double)(entries);
+            agile::progress_bar(pct * 100);
+        }
+        
         D.push_back(std::move(at((unsigned int)curr_entry)));
     }
     return std::move(D);
