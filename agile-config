@@ -1,11 +1,26 @@
-#!/bin/bash
-
-# AGILEPATH=$(pwd) 
+#!/bin/bash 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [[ $1 == "--root" ]]; then
-	ROOTSTUFF="`root-config --cflags` `root-config --libs`"
+
+GOAL=$1
+
+if [[ -z "$GOAL" ]]; then
+	echo "usage: agile-config {compile, link} [--root]"
+	exit
 fi
 
-echo "-std=c++11 $ROOTSTUFF -I$DIR -L$DIR/lib -lAGILEPack"
+if [[ "$GOAL" == "compile" ]]; then
+	if [[ $2 == "--root" ]]; then
+		ROOTSTUFF="`root-config --cflags`"
+	fi
+	COMMAND="-std=c++11 -Wall -fPIC -I$DIR $ROOTSTUFF"
+fi
+if [[ "$GOAL" == "link" ]]; then
+	if [[ $2 == "--root" ]]; then
+		ROOTSTUFF="`root-config --ldflags` `root-config --libs`"
+	fi
+	COMMAND="-L$DIR/lib -lAGILEPack $ROOTSTUFF"
+
+fi
+echo $COMMAND
