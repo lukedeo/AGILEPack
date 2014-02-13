@@ -1,5 +1,5 @@
 #include "Base"
-#include "cmd-parser/include/parser.hh"
+#include "include/parser.hh"
 #include <time.h>
 
 void config_info();

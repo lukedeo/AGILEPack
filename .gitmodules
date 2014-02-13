@@ -1,3 +1,0 @@
-[submodule "include/cmd-parser"]
-	path = include/cmd-parser
-	url = https://github.com/lukedeo/cmd-parser.git
