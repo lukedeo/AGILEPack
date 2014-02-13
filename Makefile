@@ -108,6 +108,8 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%)
 
 
 $(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
+	@touch $(BIN)/$(EXE_OBJ)
+	@rm $(BIN)/$(EXE_OBJ)
 	@touch $(EXECUTABLE)
 	@rm $(EXECUTABLE)
 	@mkdir -p $(LIB)
