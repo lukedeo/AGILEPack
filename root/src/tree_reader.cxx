@@ -106,35 +106,44 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
 //----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
 {
-    YAML::Node config = YAML::LoadFile(yamlfile);
-    std::vector<std::string> branches;
-    std::vector<agile::root::numeric_type> types;
-    std::map<std::string, std::string> vars = config.as<std::map<std::string, std::string>>();
-    for (auto &entry : vars)
+    YAML::Node tmp = YAML::LoadFile(yamlfile);
+    try
     {
-        branches.push_back(entry.first);
-        auto type = entry.second;
-        if (type == "double")
+        YAML::Node config = tmp["variables"];
+        std::vector<std::string> branches;
+        std::vector<agile::root::numeric_type> types;
+        std::map<std::string, std::string> vars = config.as<std::map<std::string, std::string>>();
+        for (auto &entry : vars)
         {
-            types.push_back(agile::root::double_precision);
+            branches.push_back(entry.first);
+            auto type = entry.second;
+            if (type == "double")
+            {
+                types.push_back(agile::root::double_precision);
+            }
+            else if (type == "float")
+            {
+                types.push_back(agile::root::single_precision);
+            }
+            else if (type == "int")
+            {
+                types.push_back(agile::root::integer);
+            }
+            else
+            {
+                throw std::domain_error("type " + type + " for branch " + entry.first + ".");
+            }
         }
-        else if (type == "float")
+        for (auto &entry : vars)
         {
-            types.push_back(agile::root::single_precision);
-        }
-        else if (type == "int")
-        {
-            types.push_back(agile::root::integer);
-        }
-        else
-        {
-            throw std::domain_error("type " + type + " for branch " + entry.first + ".");
+            std::cout << entry.first << ": " << entry.second << std::endl;
         }
     }
-    for (auto &entry : vars)
+    catch(YAML::BadConversion &e)
     {
-        std::cout << "" << std::endl;
+        throw std::runtime_error("configuration files must have a map entitled 'variables'");
     }
+    
 }
 //----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose)

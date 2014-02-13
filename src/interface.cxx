@@ -148,6 +148,7 @@ int main(int argc, char const *argv[])
     {
        TR.add_file(file, ttree_name);
     }
+    TR.set_branches("config.yaml");
 
 //----------------------------------------------------------------------------
     std::cout << "added files!" << std::endl;
