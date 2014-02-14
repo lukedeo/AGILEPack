@@ -4,32 +4,28 @@
 # --- set dirs
 BIN          := bin
 SRC          := src
-# INC          := include
 INC          := ../
-# PYTHON       := python
 LIB          := $(CURDIR)/lib
-
-# HACKED_BOOST := boost_subset
-
 
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cpp  $(SRC) 
 vpath %.h    $(INC) 
 
-# --- set compiler and flags (roll c options and include paths together)
+# --- set compiler and flags 
+
+DEBUG        := -g
 
 CXX          ?= g++
-# CXX          := clang++
-CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I./ -g -std=c++11 
-# LDFLAGS      := -Wl,--no-undefined 
+CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I./ $(DEBUG) -std=c++11 
 
 # ---- define objects
-LIBRARY = $(LIB)/libyamlc++.a
 
-SOURCES = $(shell ls src/*.cpp | xargs -n 1 basename)
+LIBRARY      = $(LIB)/libyamlc++.a
 
-OBJ = $(SOURCES:%.cpp=%.o)
+SOURCES      = $(shell ls src/*.cpp | xargs -n 1 basename)
+
+OBJ          = $(SOURCES:%.cpp=%.o)
 
 all: $(LIB)/libyamlc++.a
 	@echo "libyamlc++.a build successful."

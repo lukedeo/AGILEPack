@@ -1,5 +1,7 @@
 # Makefile for AGILEPack
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+
+
 # --- set directories
 BIN          := bin
 SRC          := src
@@ -8,35 +10,15 @@ LIB          := $(CURDIR)/lib
 
 YAML_DIR     := $(CURDIR)/../yaml-cpp
 
-
-# Check and see if we're just installing AGILE...
-ifneq ($(MAKECMDGOALS),basic)
-
 # ...if not, build us some YAML
 
 YAML_INC     := $(YAML_DIR)
 YAML_LIB     := $(YAML_DIR)/lib
 
-# HACKED_BOOST := $(YAML_DIR)/boost_subset
-
 LIBS         += -L$(YAML_LIB) 
-#-Wl,-rpath,$(YAML_LIB)
 LIBS         += -lyamlc++
 
 YAML         = yaml_proxy
-
-INFOMSG      := build_yaml
-else
-
-# or you've got your shit together and you have yaml-cpp already
-
-YAML_INC     := $(YAML_DIR)
-LIBS         += -lyaml-cpp # link with the one you've already got
-
-INFOMSG      := dont_build_yaml
-
-endif
-
 
 
 #  set search path
@@ -51,34 +33,19 @@ vpath %.hh   $(INC)
 DEBUG =  -O0 -g 
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
-ifneq ($(MAKECMDGOALS),production)
 ADDTL_FLG = $(PRODUCTION)
-else
-ADDTL_FLG = $(DEBUG)
-endif
-
 
 CXX          ?= g++
-# CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR) -I./
-# LDFLAGS      := -Wl,--no-undefined 
-
-# fix for ubuntu (that doesn't use bash for /bin/sh)
-SHELL        := bash
-
-# --- external dirs 
-
-# LIBS += -lyaml-cpp
 
 # ---- define objects
-# - not-python 
+
 LAYER_OBJ    := layer.o autoencoder.o architecture.o
 
 UTIL_OBJ     := activation.o basedefs.o
 
 # - command line interface
 EXE_OBJ      := main.o
-
 
 # EXECUTABLE   := AGILE
 
@@ -87,20 +54,8 @@ ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
 ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.a
 
 
-all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
+all: $(YAML) $(ALLOUTPUT)
 	@echo "AGILE base (libagile.a) build successful."
-
-complete: all
-
-lib: $(INFOMSG) $(YAML) $(LIB)/libagile.a
-
-cli: $(INFOMSG) $(YAML) $(EXECUTABLE)
-
-yaml: $(YAML)
-
-agile: $(INFOMSG) $(ALLOUTPUT)
-
-production: production_code all
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
@@ -113,19 +68,6 @@ $(LIB)/libagile.a: $(LIB_OBJ:%=$(BIN)/%)
 
 $(YAML):
 	@$(MAKE) -C $(YAML_DIR)
-
-dont_build_yaml: 
-	@echo "Assuming YAML C++ exists somewhere."
-
-build_yaml: 
-	@echo "Installing a local version of the libyamlc++.a"
-
-production_code: 
-	@echo "production version of libagile.a"
-
-
-basic: all
-
 
 
 # --------------------------------------------------
