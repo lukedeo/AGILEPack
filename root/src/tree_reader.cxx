@@ -130,10 +130,6 @@ void tree_reader::set_branches(const std::string &yamlfile)
                 throw std::domain_error("type " + type + " for branch " + entry.first + ".");
             }
         }
-        for (auto &entry : vars)
-        {
-            std::cout << entry.first << ": " << entry.second << std::endl;
-        }
     }
     catch(YAML::BadConversion &e)
     {
