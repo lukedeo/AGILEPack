@@ -93,7 +93,11 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_value)
                                     .default_value(-1);  
 //----------------------------------------------------------------------------
-    p.add_option("-epochs")         .help("Number of passes over the Trees. (Default = 10)")
+    p.add_option("-uepochs")        .help("Number of passes over the Trees for Unsupervised Pretraining(Default = 5)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(5);
+//----------------------------------------------------------------------------
+    p.add_option("-sepochs")        .help("Number of passes over the Trees for Supervised Training(Default = 10)")
                                     .mode(optionparser::store_value)
                                     .default_value(10);
 //----------------------------------------------------------------------------
@@ -146,6 +150,11 @@ int main(int argc, char const *argv[])
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
 
+    if (deepauto < 0)
+    {
+        deepauto = structure.size();
+    }
+
 //----------------------------------------------------------------------------
 
     agile::root::tree_reader TR;
@@ -179,11 +188,27 @@ int main(int argc, char const *argv[])
     int i;
     for (i = 0; i < (structure.size() - 2); ++i)
     {
-        net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+        if (i < deepauto)
+        {
+            net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+        }
+        else
+        {
+            net.emplace_back(new layer(structure[i], structure[i + 1], sigmoid));
+        }
+        
     }
-    net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
+    if (i < deepauto)
+    {
+        net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
+    }
+    else
+    {
+        net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
+    }
+    
  
-    net.model_formula("bottom + charm + light ~ * -pt -eta", true, verbose);
+    net.model_formula(model_formula, true, verbose);
 
     net.set_learning(learning);
     net.set_regularizer(regularizer);
