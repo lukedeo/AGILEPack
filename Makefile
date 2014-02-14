@@ -59,7 +59,7 @@ ALLOUTPUT    := $(LIBRARY) $(EXECUTABLE)
 
 all: $(LIBRARY) $(EXECUTABLE)
 
-$(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%) 
+$(EXECUTABLE):  $(EXE_OBJ:%=$(BIN)/%) 
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LIBRARY) $(LDFLAGS)
 
@@ -71,6 +71,8 @@ $(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%)
 	@echo "linking objects --> $@"
 	@ar rc $@ $(shell find $(YAML_DIR) $(ROOT_DIR) $(DATAFRAME_DIR) $(AGILE_DIR) $(BIN)| grep "\.o") && ranlib $@
 
+
+.NOTPARALLEL: $(EXECUTABLE)
 
 agile_proxy:
 	@$(MAKE) -C $(AGILE_DIR)
@@ -119,6 +121,10 @@ clean:
 purge:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
 	rm -fr $(BIN) 
+	@$(MAKE) -C $(AGILE_DIR) purge
+	@$(MAKE) -C $(DATAFRAME_DIR)  purge
+	@$(MAKE) -C $(ROOT_DIR) purge
+
 
 rmdep: 
 	rm -f $(DEP)/*.d
