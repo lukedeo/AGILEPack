@@ -96,7 +96,6 @@ LIBRARY      := $(LIB)/libAGILEPack.a
 
 ALLOUTPUT    := $(LIBRARY) $(EXECUTABLE)
 
-
 all: $(LIBRARY) $(EXECUTABLE)
 
 #$(BINARIES:%=$(BIN)/%)
