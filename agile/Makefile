@@ -109,7 +109,6 @@ $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 $(LIB)/libagile.a: $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking $^ --> $@"
-	# @$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
 	@ar rc $@ $^ && ranlib $@
 
 $(YAML):
