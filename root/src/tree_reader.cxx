@@ -108,25 +108,22 @@ void tree_reader::set_branches(const std::string &yamlfile)
     YAML::Node tmp = YAML::LoadFile(yamlfile);
     try
     {
-        YAML::Node config = tmp["variables"];
-        std::vector<std::string> branches;
-        std::vector<agile::root::numeric_type> types;
+        YAML::Node config = tmp["branches"];
         std::map<std::string, std::string> vars = config.as<std::map<std::string, std::string>>();
         for (auto &entry : vars)
         {
-            branches.push_back(entry.first);
             auto type = entry.second;
             if (type == "double")
             {
-                types.push_back(agile::root::double_precision);
+                set_branch(entry.first, agile::root::double_precision);
             }
             else if (type == "float")
             {
-                types.push_back(agile::root::single_precision);
+                set_branch(entry.first, agile::root::single_precision);
             }
             else if (type == "int")
             {
-                types.push_back(agile::root::integer);
+                set_branch(entry.first, agile::root::integer);
             }
             else
             {
@@ -140,7 +137,7 @@ void tree_reader::set_branches(const std::string &yamlfile)
     }
     catch(YAML::BadConversion &e)
     {
-        throw std::runtime_error("configuration files must have a map entitled 'variables'");
+        throw std::runtime_error("configuration files must have a map entitled 'branches'");
     }
     
 }
