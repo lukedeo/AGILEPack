@@ -42,8 +42,8 @@ public:
 	// void finalize(bool scale = true);
 	void from_yaml(const std::string &filename);
 	void to_yaml(const std::string &filename);
-	void train_unsupervised(const unsigned int &epochs, bool denoising = false, bool tantrum = false);
-	void train_supervised(const unsigned int &epochs, bool tantrum = false);
+	void train_unsupervised(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
+	void train_supervised(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
 
 	void check(bool tantrum = true);
 

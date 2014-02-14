@@ -128,39 +128,62 @@ void neural_net::to_yaml(const std::string &filename)
     }
 }
 //----------------------------------------------------------------------------
-void neural_net::train_unsupervised(const unsigned int &epochs, 
+void neural_net::train_unsupervised(const unsigned int &epochs, bool verbose, 
     bool denoising, bool tantrum)
 {
     if (!m_checked)
     {
         check(tantrum);
     }
-    int idx = 0;
+    int idx = 0, ctr = 0;
+    int total = epochs * n_training;
+    double pct;
     while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
     {
+        if (verbose)
+        {
+            std::cout << "\nPretraining Layer " << idx << ":" << std::endl;
+        }
         for (int e = 0; e < epochs; ++e)
         {
             for (int i = 0; i < n_training; ++i)
             {
+                if (verbose && (ctr % 2 == 0))
+                {
+                    pct = (double)ctr / (double)total;
+                    agile::progress_bar(pct * 100);
+
+                }
                 encode(X.row(i), idx, denoising);
+                ++ctr;
             }
         }
         ++idx;
+        ctr = 0;
         if (idx >= stack.size()) break;
     }
 }
 //----------------------------------------------------------------------------
-void neural_net::train_supervised(const unsigned int &epochs, bool tantrum)
+void neural_net::train_supervised(const unsigned int &epochs, bool verbose, bool tantrum)
 {
     if (!m_checked)
     {
         check(tantrum);
     }
+    int ctr = 0;
+    int total = n_training * epochs;
+    double pct;
     for (int e = 0; e < epochs; ++e)
     {
         for (int i = 0; i < n_training; ++i)
         {
+            if (verbose && (ctr % 2 == 0))
+            {
+                pct = (double)ctr / (double)total;
+                agile::progress_bar(pct * 100);
+            }
             correct(X.row(i), Y.row(i));
+            ++ctr;
         }
     }
 }

@@ -229,15 +229,15 @@ int main(int argc, char const *argv[])
     {
         std::cout << "Performing Unsupervised Pretraining...";
     }
-    net.train_unsupervised(uepochs);
+    net.train_unsupervised(uepochs, verbose);
     if (verbose)
     {
-        std::cout << "Done.\nPerforming Supervised Training...";
+        std::cout << "\nPerforming Supervised Training...\n";
     }
-    net.train_supervised(sepochs);
+    net.train_supervised(sepochs, verbose);
     if (verbose)
     {
-        std::cout << "Done.\nSaving to " << save_file << "...";
+        std::cout << "\nDone.\nSaving to " << save_file << "...";
     }
     net.to_yaml(save_file);
     if (verbose)
