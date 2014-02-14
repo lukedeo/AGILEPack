@@ -20,8 +20,6 @@ LIBS         += -lyamlc++
 
 YAML         = yaml_proxy
 
-INFOMSG      := build_yaml
-
 
 #  set search path
 vpath %.o    $(BIN)
@@ -56,7 +54,7 @@ ALLOBJ       := $(LAYER_OBJ) $(EXE_OBJ) $(UTIL_OBJ)
 ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.a
 
 
-all: $(INFOMSG) $(YAML) $(ALLOUTPUT)
+all: $(YAML) $(ALLOUTPUT)
 	@echo "AGILE base (libagile.a) build successful."
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
