@@ -1,21 +1,21 @@
 # Makefile for libAGILEPack.a and for the main CLI.
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
-# --- set directories
-BIN          := bin
-SRC          := src
-INC          := include
-LIB          := $(CURDIR)/lib
+# --- set directories so the compiler can find things
+BIN           := bin
+SRC           := src
+INC           := include
+LIB           := $(CURDIR)/lib
 
 
 # --- Directories for subdir make invocations.
-ROOT_DIR     := $(CURDIR)/root
-AGILE_DIR    := $(CURDIR)/agile
+ROOT_DIR      := $(CURDIR)/root
+AGILE_DIR     := $(CURDIR)/agile
 DATAFRAME_DIR := $(CURDIR)/dataframe
 YAML_DIR      := $(CURDIR)/yaml-cpp
 
 
-#  set search path
+#  set search paths for automatic file finding.
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) cli-src
 vpath %.hh   $(INC) 
@@ -23,39 +23,37 @@ vpath %.hh   $(INC)
 # --- set compiler and flags (roll c options and include paths together)
 
 
-CXX          ?= g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11
-CXXFLAGS     += -I./
+CXX           ?= g++
+CXXFLAGS      := -Wall -fPIC -I$(INC) -g -std=c++11
+CXXFLAGS      += -I./
 
-# fix for ubuntu (that doesn't use bash for /bin/sh)
-SHELL        := bash
-
-# --- Take care of AGILEPack stuff
+# --- Take care of AGILEPack stuff with agile-config script
 
 AGILECFLAGS   := $(shell ./agile-config compile --root)
 AGILELIBS     := $(shell ./agile-config link --root)
 
-CXXFLAGS     += $(ROOTCFLAGS)
-CXXFLAGS     += $(AGILECFLAGS)
-LDFLAGS      += $(ROOTLDFLAGS)
-LIBS         += $(ROOTLIBS)
-LIBS         += $(AGILELIBS)
+CXXFLAGS      += $(ROOTCFLAGS)
+CXXFLAGS      += $(AGILECFLAGS)
+LDFLAGS       += $(ROOTLDFLAGS)
+LIBS          += $(ROOTLIBS)
+LIBS          += $(AGILELIBS)
 
-# --- command line interface
-BINARIES     := model_frame.o neural_net.o
-EXE_OBJ      := interface.o
+# --- command line interface and library construction
 
-
-EXECUTABLE   := DeepLearn
-
-ALLOBJ       := $(EXE_OBJ) $(BINARIES) 
+BINARIES      := model_frame.o neural_net.o
+EXE_OBJ       := interface.o
 
 
-LIBRARIES    := agile_proxy dataframe_proxy root_proxy
+EXECUTABLE    := DeepLearn
 
-LIBRARY      := $(LIB)/libAGILEPack.a
+ALLOBJ        := $(EXE_OBJ) $(BINARIES) 
 
-ALLOUTPUT    := $(LIBRARY) $(EXECUTABLE)
+
+LIBRARIES     := agile_proxy dataframe_proxy root_proxy
+
+LIBRARY       := $(LIB)/libAGILEPack.a
+
+ALLOUTPUT     := $(LIBRARY) $(EXECUTABLE)
 
 all: $(LIBRARY) $(EXECUTABLE)
 
@@ -118,9 +116,9 @@ clean:
 	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
 	rm -fr $(BIN) 
 
-purge:
-	rm -fr $(CLEANLIST) $(CLEANLIST:%=$(BIN)/%) $(CLEANLIST:%=$(DEP)/%)
-	rm -fr $(BIN) 
+#purge it!
+purge: clean
+	rm -rf $(EXECUTABLE) $(LIB)
 	@$(MAKE) -C $(AGILE_DIR) purge
 	@$(MAKE) -C $(DATAFRAME_DIR)  purge
 	@$(MAKE) -C $(ROOT_DIR) purge

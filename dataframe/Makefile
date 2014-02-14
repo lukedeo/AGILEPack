@@ -1,4 +1,3 @@
-
 # Makefile for Dataframe
 # Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 
@@ -8,55 +7,42 @@ SRC          := src
 INC          := ./
 LIB          := $(CURDIR)/lib
 
-
-
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
 vpath %.hh   $(INC) 
 
-# --- set compiler and flags (roll c options and include paths together)
-
+# --- set compiler and flags
 
 CXX          ?= g++
-# CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
 LIBRARY      := $(LIB)/libdataframe.a
-# LDFLAGS      := -Wl,--no-undefined 
-
-# --- external dirs 
-
-# LIBS += -lyaml-cpp
 
 # ---- define objects
-# - not-python 
 
-FRAME_OBJ     := csv_reader.o dataframe.o 
+FRAME_OBJ    := csv_reader.o dataframe.o 
 
 # - command line interface
+
 EXE_OBJ      := dataframe_test.o
 
-EXECUTABLE   := test
+# EXECUTABLE   := test
 
 LIB_OBJ      := $(FRAME_OBJ)
 ALLOBJ       := $(FRAME_OBJ)
 ALLOUTPUT    := $(EXECUTABLE)
 
 
-all: $(LIBRARY)
+all: $(LIBRARY) $(EXECUTABLE)
 	@echo "libdataframe.a build sucessful."
-
-lib: $(LIBRARY)
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS)
 
-
 $(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
 	@mkdir -p $(LIB)
 	@echo "linking objects to --> $@"
-	# @$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS) -shared
 	@ar rc $@ $^ && ranlib $@
 
 # --------------------------------------------------

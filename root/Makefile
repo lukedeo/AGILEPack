@@ -44,7 +44,7 @@ UTIL_OBJ     := smart_chain.o tree_reader.o
 EXE_OBJ      := root_test.o
 
 
-TEST_EXEC   := root_test
+#TEST_EXEC   := root_test
 
 LIB_OBJ      := $(UTIL_OBJ)
 ALLOBJ       := $(EXE_OBJ) $(UTIL_OBJ)
