@@ -210,7 +210,7 @@ int main(int argc, char const *argv[])
     
     if (verbose)
     {
-        std::cout << "Parsing model formula " << model_formula << "...";
+        std::cout << "\nParsing model formula " << model_formula << "...";
     }
     net.model_formula(model_formula, true, verbose);
     if (verbose)
