@@ -103,6 +103,9 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_value)
                                     .default_value(1);
 //----------------------------------------------------------------------------
+    p.add_option("--formula", "-F") .help("Specify Model Formula")
+                                    .mode(optionparser::store_value);
+//----------------------------------------------------------------------------
     p.eat_arguments(argc, argv);
 
     if (p.get_value("confighelp")) config_info();
@@ -113,15 +116,18 @@ int main(int argc, char const *argv[])
 
     if (!p.get_value("config")) complain("need a config file for variable specification.");
 
-    if (!p.get_value("struct")) complain("need to pass a struct");
+    if (!p.get_value("formula")) complain("need a model formula to train.");
+
+    if (!p.get_value("struct")) complain("need to pass a network structure.");
 
 
 
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
-    std::string ttree_name =  p.get_value<std::string>("tree"),
-                config_file = p.get_value<std::string>("config"),
-                save_file =   p.get_value<std::string>("save");
+    std::string ttree_name =    p.get_value<std::string>("tree"),
+                config_file =   p.get_value<std::string>("config"),
+                save_file =     p.get_value<std::string>("save"),
+                model_formula = p.get_value<std::string>("formula");
 
 
     double  learning =    p.get_value<double>("learning"), 
