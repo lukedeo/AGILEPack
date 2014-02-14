@@ -17,7 +17,7 @@ YAML_DIR      := $(CURDIR)/yaml-cpp
 
 #  set search path
 vpath %.o    $(BIN)
-vpath %.cxx  $(SRC) 
+vpath %.cxx  $(SRC) cli-src
 vpath %.hh   $(INC) 
 
 # --- set compiler and flags (roll c options and include paths together)
@@ -46,7 +46,6 @@ BINARIES     := model_frame.o neural_net.o
 EXE_OBJ      := interface.o
 
 
-
 EXECUTABLE   := DeepLearn
 
 ALLOBJ       := $(EXE_OBJ) $(BINARIES) 
@@ -65,13 +64,12 @@ $(EXECUTABLE): $(EXE_OBJ:%=$(BIN)/%)
 	@$(CXX) -o $@ $^ $(LIBS) $(LIBRARY) $(LDFLAGS)
 
 
-$(LIBRARY): $(LIBRARIES) 
-	@touch $(BIN)/$(EXE_OBJ) && rm $(BIN)/$(EXE_OBJ)
+$(LIBRARY): $(LIBRARIES) $(BINARIES:%=$(BIN)/%) 
 	@touch $(EXECUTABLE)
 	@rm $(EXECUTABLE)
 	@mkdir -p $(LIB)
 	@echo "linking objects --> $@"
-	@ar rc $@ $(shell find ./ | grep "\.o") && ranlib $@
+	@ar rc $@ $(shell find $(YAML_DIR) $(ROOT_DIR) $(DATAFRAME_DIR) $(AGILE_DIR) $(BIN)| grep "\.o") && ranlib $@
 
 
 agile_proxy:
@@ -84,7 +82,7 @@ root_proxy:
 	@$(MAKE) -C $(ROOT_DIR)
 
 
-
+# Rules for dependency generation and compilation
 # --------------------------------------------------
 
 # compile rule
