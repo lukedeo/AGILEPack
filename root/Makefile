@@ -18,7 +18,6 @@ vpath %.hh   $(INC)
 # --- set compiler and flags (roll c options and include paths together)
 
 CXX          ?= g++
-# CXX          := clang++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -I./ -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
 
 ROOTCFLAGS    := $(shell root-config --cflags)
@@ -53,7 +52,7 @@ ALLOUTPUT    := $(LIBRARY)
 
 
 all: $(ALLOUTPUT)
-	@echo "$(LIBRARY) build successful."
+	@echo "libROOTinterface.a build successful."
 
 $(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
@@ -68,6 +67,7 @@ $(LIBRARY): $(LIB_OBJ:%=$(BIN)/%)
 
 # --------------------------------------------------
 
+
 # compile rule
 $(BIN)/%.o: %.cxx
 	@echo compiling $<
@@ -75,20 +75,22 @@ $(BIN)/%.o: %.cxx
 	@$(CXX) -c $(CXXFLAGS) $< -o $@
 
 # use auto dependency generation
-DEP = $(BIN)
 
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(MAKECMDGOALS),rmdep)
-ifneq ($(MAKECMDGOALS),purge)
-include  $(ALLOBJ:%.o=$(DEP)/%.d)
-endif
-endif
-endif
+DEP = $(BIN)
 
 DEPTARGSTR = -MT $(BIN)/$*.o -MT $(DEP)/$*.d
 $(DEP)/%.d: %.cxx
 	@echo making dependencies for $<
 	@mkdir -p $(DEP)
+	@$(CXX) -MM -MP $(DEPTARGSTR) $(CXXFLAGS) $< -o $@ 
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),rmdep)
+ifneq ($(MAKECMDGOALS),purge)
+include $(ALLOBJ:%.o=$(DEP)/%.d)
+endif
+endif
+endif
 
 # clean
 .PHONY : clean rmdep
