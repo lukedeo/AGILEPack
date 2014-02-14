@@ -142,7 +142,8 @@ int main(int argc, char const *argv[])
     int     deepauto =    p.get_value<int>("deepauto"),
             start =       p.get_value<int>("start"),
             end =         p.get_value<int>("end"),
-            epochs =      p.get_value<int>("epochs"),
+            uepochs =      p.get_value<int>("uepochs"),
+            sepochs =      p.get_value<int>("sepochs"),
             batch =       p.get_value<int>("batch"),
             prog =        p.get_value<int>("prog");
 
@@ -207,7 +208,6 @@ int main(int argc, char const *argv[])
         net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
     }
     
- 
     net.model_formula(model_formula, true, verbose);
 
     net.set_learning(learning);
@@ -217,6 +217,8 @@ int main(int argc, char const *argv[])
     
     net.check(0);
 
+    net.train_unsupervised(uepochs);
+    net.train_supervised(sepochs);
     net.to_yaml(save_file);
 
     return 0;
