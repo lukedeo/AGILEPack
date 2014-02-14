@@ -46,7 +46,6 @@ BINARIES     := model_frame.o neural_net.o
 EXE_OBJ      := interface.o
 
 
-
 EXECUTABLE   := DeepLearn
 
 ALLOBJ       := $(EXE_OBJ) $(BINARIES) 
