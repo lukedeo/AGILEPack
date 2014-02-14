@@ -208,7 +208,15 @@ int main(int argc, char const *argv[])
         net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
     }
     
+    if (verbose)
+    {
+        std::cout << "Parsing model formula " << model_formula << "...";
+    }
     net.model_formula(model_formula, true, verbose);
+    if (verbose)
+    {
+        std::cout << "Done." << std::endl;
+    }
 
     net.set_learning(learning);
     net.set_regularizer(regularizer);
@@ -217,9 +225,25 @@ int main(int argc, char const *argv[])
     
     net.check(0);
 
+    if (verbose)
+    {
+        std::cout << "Performing Unsupervised Pretraining...";
+    }
     net.train_unsupervised(uepochs);
+    if (verbose)
+    {
+        std::cout << "Done.\nPerforming Supervised Training...";
+    }
     net.train_supervised(sepochs);
+    if (verbose)
+    {
+        std::cout << "Done.\nSaving to " << save_file << "...";
+    }
     net.to_yaml(save_file);
+    if (verbose)
+    {
+        std::cout << "Done." << std::endl;
+    }
 
     return 0;
 }
