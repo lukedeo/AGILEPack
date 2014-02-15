@@ -19,6 +19,10 @@ DEBUG        := -g
 CXX          ?= g++
 CXXFLAGS     := -O2 -Wall -fPIC -I$(INC) -I./ $(DEBUG) -std=c++11 
 
+ifeq ($(CXX),clang++)
+CXXFLAGS += -stdlib=libc++
+endif
+
 # ---- define objects
 
 LIBRARY      = $(LIB)/libyamlc++.a

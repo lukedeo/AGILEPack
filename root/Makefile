@@ -20,6 +20,10 @@ vpath %.hh   $(INC)
 CXX          ?= g++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -I./ -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
 
+ifeq ($(CXX),clang++)
+CXXFLAGS += -stdlib=libc++
+endif
+
 ROOTCFLAGS    := $(shell root-config --cflags)
 ROOTLIBS      := -L$(shell root-config --libdir)
 ROOTLIBS      += -lCore -lTree -lRIO 

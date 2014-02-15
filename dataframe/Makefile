@@ -18,6 +18,10 @@ CXX          ?= g++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 
 LIBRARY      := $(LIB)/libdataframe.a
 
+ifeq ($(CXX),clang++)
+CXXFLAGS += -stdlib=libc++
+endif
+
 # ---- define objects
 
 FRAME_OBJ    := csv_reader.o dataframe.o 

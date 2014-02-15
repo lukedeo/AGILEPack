@@ -27,6 +27,10 @@ CXX           ?= g++
 CXXFLAGS      := -Wall -fPIC -I$(INC) -g -std=c++11
 CXXFLAGS      += -I./
 
+ifeq ($(CXX),clang++)
+CXXFLAGS += -stdlib=libc++
+endif
+
 # --- Take care of AGILEPack stuff with agile-config script
 
 AGILECFLAGS   := $(shell ./agile-config compile --root)
