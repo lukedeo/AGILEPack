@@ -20,7 +20,6 @@ LIBS         += -lyamlc++
 
 YAML         = yaml_proxy
 
-
 #  set search path
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) 
@@ -34,7 +33,10 @@ DEBUG =  -O0 -g
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
 ADDTL_FLG = $(PRODUCTION)
-# ADDTL_FLG = $(DEBUG)
+
+ifeq ($(AGILE_DEBUG),true)
+ADDTL_FLG = $(DEBUG)
+endif
 
 CXX          ?= g++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR) -I./
@@ -60,6 +62,9 @@ ALLOUTPUT    := $(EXECUTABLE) $(LIB)/libagile.a
 
 
 all: $(YAML) $(ALLOUTPUT)
+ifeq ($(AGILE_DEBUG),true)
+	@echo "Built a debug version."
+endif
 	@echo "AGILE base (libagile.a) build successful."
 
 $(EXECUTABLE): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
