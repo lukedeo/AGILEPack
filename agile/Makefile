@@ -34,6 +34,7 @@ DEBUG =  -O0 -g
 PRODUCTION = -O2 -DEIGEN_NO_DEBUG
 
 ADDTL_FLG = $(PRODUCTION)
+# ADDTL_FLG = $(DEBUG)
 
 CXX          ?= g++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR) -I./
