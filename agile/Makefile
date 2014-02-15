@@ -38,6 +38,10 @@ ADDTL_FLG = $(PRODUCTION)
 CXX          ?= g++
 CXXFLAGS     := -Wall -fPIC -I$(INC) -g -std=c++11 $(ADDTL_FLG) -I$(YAML_DIR) -I./
 
+ifeq ($(CXX),clang++)
+CXXFLAGS += -stdlib=libc++
+endif
+
 # ---- define objects
 
 LAYER_OBJ    := layer.o autoencoder.o architecture.o
