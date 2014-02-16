@@ -2,6 +2,18 @@
 #include "include/parser.hh"
 
 
+
+template <class T, class U>
+std::ostream& operator << ( std::ostream& o, const std::map<T, U> &m)
+{
+    for (auto &e : m)
+    {
+        o << e.first << ":\n" << e.second << std::endl;
+    }
+    return o;
+}
+
+
 void complain(const std::string &complaint);
 
 //----------------------------------------------------------------------------
@@ -20,6 +32,9 @@ int main(int argc, char const *argv[])
                                     .mode(optionparser::store_value);
 //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load.")
+                                    .mode(optionparser::store_value);
+//----------------------------------------------------------------------------
+    p.add_option("--config", "-c")  .help("Branch config file")
                                     .mode(optionparser::store_value);
 //----------------------------------------------------------------------------
     p.add_option("--verbose", "-v") .help("Make the output verbose");
@@ -41,17 +56,19 @@ int main(int argc, char const *argv[])
 
     if (!p.get_value("load")) complain("need a neural network to load.");
 
+    if (!p.get_value("config")) complain("need a root branch config file.");
 
 
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
     std::string ttree_name =    p.get_value<std::string>("tree"),
-                load_file =     p.get_value<std::string>("load");
+                load_file =     p.get_value<std::string>("load"),
+                config_file =   p.get_value<std::string>("config");
 
     int     start =       p.get_value<int>("start"),
             end =         p.get_value<int>("end");
 
-    bool    verbose =     p.get_value("verbose");
+    // bool    verbose =     p.get_value("verbose");
 
 //----------------------------------------------------------------------------
 
@@ -66,81 +83,24 @@ int main(int argc, char const *argv[])
     TR.set_branches(config_file);
 
 //----------------------------------------------------------------------------
-    agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
-
     agile::neural_net net;
-    net.add_data(D);
 
-    layer_type net_type;
-    std::string passed_target = p.get_value<std::string>("type");
+    net.from_yaml(load_file);
 
-//----------------------------------------------------------------------------
+    std::vector<std::string> input_vars {"pt", "bottom", "charm", "light", "MV1"};
 
-    if (passed_target == "regress") net_type = linear;
-    else if (passed_target == "multiclass") net_type = softmax;
-    else if (passed_target == "binary") net_type = sigmoid;
-    else complain("type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
-    
-//----------------------------------------------------------------------------
 
-    int i;
-    for (i = 0; i < (structure.size() - 2); ++i)
+    std::cout << "prob_bottom, bottom, charm, light, pt, MV1" << std::endl;
+    for (int i = start; i < end; ++i)
     {
-        if (i < deepauto)
-        {
-            net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
-        }
-        else
-        {
-            net.emplace_back(new layer(structure[i], structure[i + 1], sigmoid));
-        }
-        
-    }
-    if (i < deepauto)
-    {
-        net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
-    }
-    else
-    {
-        net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
-    }
-    
-    if (verbose)
-    {
-        std::cout << "\nParsing model formula " << model_formula << "...";
-    }
-    net.model_formula(model_formula, true, verbose);
-    if (verbose)
-    {
-        std::cout << "Done." << std::endl;
+        auto pred = net.predict_map(TR(i, net.get_inputs()));
+
+        auto control = TR(i, input_vars);
+
+        std::cout << pred["bottom"] << "," << control["bottom"] << "," << control["charm"] << "," << control["light"] << "," << control["pt"] << "," << control["MV1"] << std::endl;
     }
 
-    net.set_learning(learning);
-    net.set_regularizer(regularizer);
-    net.set_momentum(momentum);
-    net.set_batch_size(batch);
-    
-    net.check(0);
 
-    if (verbose)
-    {
-        std::cout << "Performing Unsupervised Pretraining...";
-    }
-    net.train_unsupervised(uepochs, verbose);
-    if (verbose)
-    {
-        std::cout << "\nPerforming Supervised Training...\n";
-    }
-    net.train_supervised(sepochs, verbose);
-    if (verbose)
-    {
-        std::cout << "\nDone.\nSaving to " << save_file << "...";
-    }
-    net.to_yaml(save_file);
-    if (verbose)
-    {
-        std::cout << "Done." << std::endl;
-    }
 
     return 0;
 }
