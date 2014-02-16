@@ -45,7 +45,6 @@ LIBS          += $(AGILELIBS)
 BINARIES      := model_frame.o neural_net.o
 EXE_OBJ       := test_interface.o
 
-
 EXECUTABLE    := DeepLearnTest
 
 ALLOBJ        := $(EXE_OBJ) $(BINARIES) 
