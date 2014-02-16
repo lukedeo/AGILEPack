@@ -71,7 +71,7 @@ int LinBinner::get_bin(const std::map<std::string, double>& locator) const
 int LinBinner::get_bin(const std::vector<double>& locator, size_t offset) 
   const 
 {
-  size_t index = locator.size() - offset - 1; 
+  int index = locator.size() - offset - 1; 
   if (index < 0) { 
     throw std::runtime_error("could not find " + m_name + " in values given"); 
   }
