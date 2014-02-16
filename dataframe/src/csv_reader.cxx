@@ -26,7 +26,6 @@ std::istream& operator >> ( std::istream& ins, record_t& record )
     }
     return ins;
 }
-
 //----------------------------------------------------------------------------
 std::istream& operator >> ( std::istream& ins, data_t& data )
 {

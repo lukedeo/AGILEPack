@@ -285,6 +285,41 @@ void layer::backpropagate(const agile::vector &v)
     }
 }
 //----------------------------------------------------------------------------
+void layer::backpropagate(const agile::vector &v, double weight)
+{
+    delta.noalias() = v;
+
+    if (m_layer_type == sigmoid)
+    {
+        delta = delta.array() * (agile::functions::exp_sigmoid_deriv(
+            agile::functions::exp_sigmoid(m_out))).array();
+    }
+    if (m_layer_type == rectified)
+    {
+        delta = delta.array() * (agile::functions::rect_lin_unit_deriv(
+            agile::functions::rect_lin_unit(m_out))).array();
+    }
+    // we need something to make this not happen for base 0layer
+    m_dump_below.noalias() = W.transpose() * delta; 
+
+    W_change += delta * m_in.transpose(); 
+    b_change += delta;
+
+    ++ctr;
+    if (ctr >= m_batch_size) // if we need to start a new batch
+    {   
+        ctr = 0;
+        if ((weight > 0.0) && (m_batch_size == 1))
+        {
+            update(weight);
+        }
+        else
+        {
+            update();
+        }
+    }
+}
+//----------------------------------------------------------------------------
 agile::vector layer::dump_below()
 {
     return m_dump_below;
@@ -299,6 +334,20 @@ void layer::update()
     b_change /= m_batch_size;
     b_old = momentum * b_old - learning * b_change;
     b += b_old;
+
+    b_change.fill(0.00);
+    W_change.fill(0.00);
+}
+//----------------------------------------------------------------------------
+void layer::update(double weight)
+{
+    W_change /= m_batch_size;
+    W_old = momentum * W_old - learning * (W_change + regularizer * W);
+    W += weight * W_old;
+    
+    b_change /= m_batch_size;
+    b_old = momentum * b_old - learning * b_change;
+    b += weight * b_old;
 
     b_change.fill(0.00);
     W_change.fill(0.00);

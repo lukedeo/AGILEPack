@@ -56,6 +56,7 @@ public:
 //  Encode / decode operations
 //-----------------------------------------------------------------------------
     virtual void encode(const agile::vector &v, bool noisify = true);
+    virtual void encode(const agile::vector &v, double weight, bool noisify = true);
     virtual agile::vector get_encoding(const agile::vector &v);
     virtual agile::vector reconstruct(const agile::vector &v, 
         bool noisify = true);
