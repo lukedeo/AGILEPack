@@ -90,8 +90,6 @@ private:
     agile::vector m_tmp_input, m_tmp_output;
 
     agile::scaling m_scaling;
-
-    std::map<std::string, std::string> root_branches;
 };
 
 }
