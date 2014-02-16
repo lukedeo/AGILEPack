@@ -14,7 +14,6 @@ AGILE_DIR     := $(CURDIR)/agile
 DATAFRAME_DIR := $(CURDIR)/dataframe
 YAML_DIR      := $(CURDIR)/yaml-cpp
 
-
 #  set search paths for automatic file finding.
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) cli-src
