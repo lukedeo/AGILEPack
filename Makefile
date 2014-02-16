@@ -21,7 +21,6 @@ vpath %.hh   $(INC)
 
 # --- set compiler and flags (roll c options and include paths together)
 
-
 CXX           ?= g++
 CXXFLAGS      := -Wall -fPIC -I$(INC) -g -std=c++11
 CXXFLAGS      += -I./
