@@ -89,8 +89,12 @@ public:
     void charge(const agile::vector& v); 
     agile::vector fire(); // Fire the charge.
     agile::vector dump_below();
+
     void backpropagate(const agile::vector &v);
+    void backpropagate(const agile::vector &v, double weight);
+
     void update();
+    void update(double weight);
 //-----------------------------------------------------------------------------
 //  Parameter Setting methods
 //-----------------------------------------------------------------------------
@@ -151,6 +155,12 @@ public:
          layer -- only valid for class autoencoder");
     }
     virtual void encode(const agile::vector &v, bool noisify = true) 
+    {
+        throw std::logic_error("layer::reconstruct() called on class\
+         layer -- only valid for class autoencoder");
+    }
+
+    virtual void encode(const agile::vector &v, double weight, bool noisify = true) 
     {
         throw std::logic_error("layer::reconstruct() called on class\
          layer -- only valid for class autoencoder");
