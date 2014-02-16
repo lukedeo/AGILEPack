@@ -198,11 +198,11 @@ void neural_net::check(bool tantrum)
             {
                 throw std::runtime_error("dimension mismatch in base layer");
             }
-            std::cout << "Formula passed specifies ";
+            std::cout << agile::colors::red() << "Formula passed specifies ";
             std::cout << X.cols() << " inputs." << std::endl;
             std::cout << "Changing base layer (layer 1) from ";
             std::cout << stack.front()->num_inputs() << " to ";
-            std::cout << X.cols() << " inputs." << std::endl;
+            std::cout << X.cols() << " inputs." << agile::colors::reset() << std::endl;
             stack.front()->resize_input(X.cols());
 
         }
@@ -215,10 +215,10 @@ void neural_net::check(bool tantrum)
                     throw std::runtime_error("dimension mismatch in layer" 
                         + std::to_string(l + 1));
                 }
-                std::cout << "Changing layer " << l + 1 << " from ";
+                std::cout << agile::colors::red() << "Changing layer " << l + 1 << " from ";
                 std::cout << stack.at(l)->num_inputs() << " inputs to ";
                 std::cout << stack.at(l - 1)->num_outputs();
-                std::cout << " inputs." << std::endl;
+                std::cout << " inputs." << agile::colors::reset() << std::endl;
                 stack.at(l)->resize_input(stack.at(l - 1)->num_outputs());
             }
         }
@@ -228,9 +228,9 @@ void neural_net::check(bool tantrum)
             {
                 throw std::runtime_error("dimension mismatch in output layer");
             }
-            std::cout << "Changing output layer from ";
+            std::cout << agile::colors::red() << "Changing output layer from ";
             std::cout << stack.back()->num_outputs() << " to " << Y.cols();
-            std::cout << " outputs." << std::endl;
+            std::cout << " outputs." << agile::colors::reset() << std::endl;
             stack.back()->resize_output(Y.cols());
         }
         m_checked = true;
@@ -242,10 +242,10 @@ void neural_net::check(bool tantrum)
             {
                 throw std::runtime_error("can't use softmax for a 1D output.");
             }
-            std::cout << "WARNING: softmax output type set";
+            std::cout << agile::colors::red() << "WARNING: softmax output type set";
             std::cout << " for a 1 dimensional output. ";
             std::cout << "Assuming you meant regression, ";
-            std::cout << "so continuing with that..." << std::endl;
+            std::cout << "so continuing with that..." << agile::colors::reset() << std::endl;
             stack.back()->set_layer_type(linear);
         }
 
