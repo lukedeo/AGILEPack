@@ -1,6 +1,45 @@
 #include "Base"
 #include "include/parser.hh"
+#include "H5Cpp.h"
 
+#include <time.h>
+#include <vector>
+#include <string> 
+#include <cmath> 
+#include <stdexcept> 
+
+int buildHists(std::vector<std::string> files, std::string out_name, 
+           unsigned flags){ 
+  const bool test = (flags & jtag::test); 
+  if (exists(out_name)) throw std::runtime_error(out_name + " exists"); 
+
+  TreeBuffer buffer(files); 
+  JetPerfHists hists; 
+
+  int test_events = std::min(int(100), buffer.size()); 
+  const int n_events = test ? test_events: buffer.size(); 
+  int total_jets = 0; 
+  if (test) printf("starting loop on %i events\n", n_events); 
+  for (int event = 0; event < n_events; event++) { 
+    buffer.getEntry(event); 
+    const int n_jets = buffer.jet_pt->size(); 
+    total_jets += n_jets; 
+    for (int jidx = 0; jidx < n_jets; jidx++) { 
+      Jet jet(buffer, jidx); 
+      if (jet.pt < 20e3 || std::abs(jet.eta) > 2.5) continue; 
+      hists.fill(jet, 1.0); 
+    }
+  }
+  if (test) buffer.saveSetBranches("required_branches.txt"); 
+  if (test) printf("done event loop, saving\n"); 
+  H5::H5File out_file(out_name.c_str(), H5F_ACC_EXCL); 
+  hists.writeTo(out_file); 
+
+  return 0; 
+}
+
+
+const std::string timestamp(void);
 
 
 template <class T, class U>
@@ -46,6 +85,10 @@ int main(int argc, char const *argv[])
     p.add_option("-end")            .help("End index for testing. (Default, whole tree)")
                                     .mode(optionparser::store_value)
                                     .default_value(-1);  
+//----------------------------------------------------------------------------
+    p.add_option("--hists", "-H")   .help("HDF5 File to write histograms to.")
+                                    .mode(optionparser::store_value)
+                                    .default_value("nnet_perf_hists" + timestamp() + ".h5");  
 //----------------------------------------------------------------------------
 
     p.eat_arguments(argc, argv);
@@ -110,4 +153,15 @@ void complain(const std::string &complaint)
 {
     std::cerr << "Error: " << complaint << std::endl;
     exit(1);
+}
+
+
+const std::string timestamp(void)  
+{
+    time_t now = time(0);
+    struct tm tstruct;
+    char buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    return buf;
 }
