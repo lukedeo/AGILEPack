@@ -257,7 +257,7 @@ agile::vector layer::fire()
     }   
 }
 //----------------------------------------------------------------------------
-void layer::backpropagate(const agile::vector &v)
+void layer::backpropagate(const agile::vector &v, double weight)
 {
     delta.noalias() = v;
 
@@ -281,7 +281,14 @@ void layer::backpropagate(const agile::vector &v)
     if (ctr >= m_batch_size) // if we need to start a new batch
     {   
         ctr = 0;
-        update();
+        if ((weight > 0.0) && (m_batch_size == 1))
+        {
+            update(weight);
+        }
+        else
+        {
+            update();
+        }
     }
 }
 //----------------------------------------------------------------------------
@@ -299,6 +306,20 @@ void layer::update()
     b_change /= m_batch_size;
     b_old = momentum * b_old - learning * b_change;
     b += b_old;
+
+    b_change.fill(0.00);
+    W_change.fill(0.00);
+}
+//----------------------------------------------------------------------------
+void layer::update(double weight)
+{
+    W_change /= m_batch_size;
+    W_old = momentum * W_old - learning * (W_change + regularizer * W);
+    W += weight * W_old;
+    
+    b_change /= m_batch_size;
+    b_old = momentum * b_old - learning * b_change;
+    b += weight * b_old;
 
     b_change.fill(0.00);
     W_change.fill(0.00);
