@@ -89,7 +89,9 @@ public:
     void charge(const agile::vector& v); 
     agile::vector fire(); // Fire the charge.
     agile::vector dump_below();
-    void backpropagate(const agile::vector &v, double weight = -1.0);
+    void backpropagate(const agile::vector &v);
+    void backpropagate(const agile::vector &v, double weight);
+    
     void update();
     void update(double weight);
 //-----------------------------------------------------------------------------

@@ -257,6 +257,34 @@ agile::vector layer::fire()
     }   
 }
 //----------------------------------------------------------------------------
+void layer::backpropagate(const agile::vector &v)
+{
+    delta.noalias() = v;
+
+    if (m_layer_type == sigmoid)
+    {
+        delta = delta.array() * (agile::functions::exp_sigmoid_deriv(
+            agile::functions::exp_sigmoid(m_out))).array();
+    }
+    if (m_layer_type == rectified)
+    {
+        delta = delta.array() * (agile::functions::rect_lin_unit_deriv(
+            agile::functions::rect_lin_unit(m_out))).array();
+    }
+    // we need something to make this not happen for base 0layer
+    m_dump_below.noalias() = W.transpose() * delta; 
+
+    W_change += delta * m_in.transpose(); 
+    b_change += delta;
+
+    ++ctr;
+    if (ctr >= m_batch_size) // if we need to start a new batch
+    {   
+        ctr = 0;
+        update();
+    }
+}
+//----------------------------------------------------------------------------
 void layer::backpropagate(const agile::vector &v, double weight)
 {
     delta.noalias() = v;
