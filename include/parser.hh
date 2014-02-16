@@ -486,10 +486,8 @@ void parser::eat_arguments(int argc, char const *argv[])
             !(match_found) &&
             (argument[1] != '-'))
         {
-            bool have_value = false;
             for (int i = 1; i < argument.size(); ++i)
             {
-                bool valid_flag = false;
                 std::string key(1, argument[i]);
                 bool value_flag = (with_val.count(key) > 0);
                 if (value_flag)
