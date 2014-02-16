@@ -129,7 +129,7 @@ void autoencoder::encode(const agile::vector &v, bool noisify)
     // getchar();
 }
 //----------------------------------------------------------------------------
-void autoencoder::encode(const agile::vector &v, bool noisify, double weight)
+void autoencoder::encode(const agile::vector &v, double weight, bool noisify)
 {
     agile::vector error = reconstruct(v, noisify) - v;  
     decoder.backpropagate(error, weight);
