@@ -14,14 +14,12 @@ AGILE_DIR     := $(CURDIR)/agile
 DATAFRAME_DIR := $(CURDIR)/dataframe
 YAML_DIR      := $(CURDIR)/yaml-cpp
 
-
 #  set search paths for automatic file finding.
 vpath %.o    $(BIN)
 vpath %.cxx  $(SRC) cli-src
 vpath %.hh   $(INC) 
 
 # --- set compiler and flags (roll c options and include paths together)
-
 
 CXX           ?= g++
 CXXFLAGS      := -Wall -fPIC -I$(INC) -g -std=c++11
@@ -46,7 +44,6 @@ LIBS          += $(AGILELIBS)
 
 BINARIES      := model_frame.o neural_net.o
 EXE_OBJ       := test_interface.o
-
 
 EXECUTABLE    := DeepLearnTest
 
@@ -84,7 +81,6 @@ dataframe_proxy:
 
 root_proxy:
 	@$(MAKE) -C $(ROOT_DIR)
-
 
 # Rules for dependency generation and compilation
 # --------------------------------------------------
@@ -126,7 +122,6 @@ purge: clean
 	@$(MAKE) -C $(AGILE_DIR) purge
 	@$(MAKE) -C $(DATAFRAME_DIR)  purge
 	@$(MAKE) -C $(ROOT_DIR) purge
-
 
 rmdep: 
 	rm -f $(DEP)/*.d
