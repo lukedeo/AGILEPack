@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>AGILEPack by lukedeo</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>AGILEPack</h1>
+        <h2>Algorithms for Generalized Inference, Learning, and Extraction Package</h2>
+        <a href="https://github.com/lukedeo/AGILEPack" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="agilepack" class="anchor" href="#agilepack"><span class="octicon octicon-link"></span></a>AGILEPack</h1>
+
+<p>Algorithms for Generalized Inference, Learning, and Extraction Package, By Luke de Oliveira.</p>
+
+<h4>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h4>
+
+<ul>
+<li>
+<a href="http://eigen.tuxfamily.org/"><code>Eigen</code></a> matrix library (header only) for fast matrix operations.</li>
+<li>Compiler support for C++11. If you're not sure and want to cross check your compiler version to see if it's ok, here's some support info about <a href="http://gcc.gnu.org/projects/cxx0x.html">GCC</a> and <a href="http://clang.llvm.org/cxx_status.html">Clang</a>. Other compilers haven't been tested yet.</li>
+<li>
+<a href="https://code.google.com/p/yaml-cpp/" title="yaml-cpp Homepage"><code>yaml-cpp</code></a> for <a href="http://www.yaml.org/" title="YAML Homepage"><code>YAML</code></a> parsing, but a version is made locally by default.</li>
+</ul><h4>
+<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h4>
+
+<p>This is a work in progress, with the ultimate goal of a versatile Deep Learning library in C++. Support will be provided for interfacing with <code>*.root</code> files and providing complete training and testing specifications within the <code>YAML</code> specification and serialization file.</p>
+
+<h4>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h4>
+
+<p>The package can be downloaded using</p>
+
+<pre><code>git clone https://github.com/lukedeo/AGILEPack.git
+</code></pre>
+
+<p>and is relatively basic to install. As long as <code>Eigen</code> is in a place such that</p>
+
+<div class="highlight highlight-c++"><pre><span class="cp">#include &lt;Eigen/Dense&gt;</span>
+</pre></div>
+
+<p>won't cause your compiler to yell at you, you should be able to build the whole shebang with</p>
+
+<pre><code>make
+</code></pre>
+
+<p>This will build a static library called <code>lib/libAGILEPack.a</code>, which you can then link against to do sweet things like build Deep Learners.</p>
+
+<h4>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic Usage</h4>
+
+<p>Let's say you have a program called <code>prog.cxx</code> that uses AGILEPack with ROOT stuff. Provided that your file takes the form</p>
+
+<div class="highlight highlight-c++"><pre><span class="cp">#include "Base"</span>
+           <span class="o">^~~~~~</span> <span class="n">Includes</span> <span class="n">all</span> <span class="n">AGILEPack</span> <span class="n">stuff</span><span class="o">!</span>
+<span class="cp">#include &lt;myotherheaders.h&gt;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="c1">// Do stuff with AGILEPack!</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You can compile this program with:</p>
+
+<div class="highlight highlight-bash"><pre>g++ -o prog prog.cxx <span class="sb">`</span>/path/to/AGILEPack/agile-config build --root<span class="sb">`</span>  
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+      fixes include paths and links -lAGILEPack
+</pre></div>
+
+<p>which will produce an excecutable called <code>prog</code>.</p>
+
+<p>The ordering of these arguments is <strong>very important</strong> on Linux (particularly on SLC)!</p>
+
+<h4>
+<a name="more-compiling-and-linking-stuff" class="anchor" href="#more-compiling-and-linking-stuff"><span class="octicon octicon-link"></span></a>More compiling and linking stuff</h4>
+
+<p>Let's say you're using AGILEPack as part of a larger project, and you need to produce a *.o and then then do other things. Stealing the example from the last section, let's say we want to produce <code>prog.o</code>. We can do this with</p>
+
+<div class="highlight highlight-bash"><pre>g++ -c <span class="sb">`</span>/path/to/AGILEPack/agile-config compile --root<span class="sb">`</span> prog.cxx -o prog.o
+</pre></div>
+
+<p>then link it to other stuff with </p>
+
+<div class="highlight highlight-bash"><pre>g++ -o MyExcecutable prog.o <span class="o">[</span>other *.o ...<span class="o">]</span> <span class="sb">`</span>/path/to/AGILEPack/agile-config link --root<span class="sb">`</span>
+</pre></div>
+
+<h4>
+<a name="algorithms-and-general-features" class="anchor" href="#algorithms-and-general-features"><span class="octicon octicon-link"></span></a>Algorithms and General Features</h4>
+
+<ul>
+<li>[x] Backpropagation for arbitrary layer structure.</li>
+<li>[ ] Support for:
+
+<ul>
+<li>[x] Linear layers with SSE loss.</li>
+<li>[x] Sigmoidal layers with SSE loss.</li>
+<li>[x] Softmax layers with Cross Entropy loss.</li>
+<li>[x] Rectified linear unit layers.</li>
+<li>[x] Autoencoder pre-training (stacked, denoising, etc.)</li>
+<li>[ ] Restricted Boltzmann Machine pre-training.</li>
+<li>[ ] Dropout/DropConnect layers.</li>
+<li>[ ] Inverted Deep Network Encoding. </li>
+</ul>
+</li>
+<li>[x] Dynamic changes to layers (additions, deletions).</li>
+<li>[x] Interface with the CERN <code>ROOT</code> framework.</li>
+<li>[x] Complete serialization of network structure with <code>YAML</code> file.</li>
+<li>[ ] More to come...</li>
+</ul><h4>
+<a name="i-have-qualms-with-agilepack" class="anchor" href="#i-have-qualms-with-agilepack"><span class="octicon octicon-link"></span></a>I have qualms with AGILEPack</h4>
+
+<p>If there's something wrong with <em>anything</em> here, please bother me at <code>luke.deoliveira@yale.edu</code>.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/lukedeo/AGILEPack/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/lukedeo/AGILEPack/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/lukedeo/AGILEPack"></a> is maintained by <a href="https://github.com/lukedeo">lukedeo</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
