@@ -113,9 +113,6 @@ protected:
 
 };
 
-
-
-
 //-----------------------------------------------------------------------------
 //  YAML Serialization Structure 
 //  (look at https://code.google.com/p/yaml-cpp/wiki/Tutorial)
