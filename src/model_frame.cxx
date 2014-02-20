@@ -11,13 +11,13 @@ namespace agile
 
 //----------------------------------------------------------------------------
 model_frame::model_frame(const agile::dataframe &D)
-: DF(D), x_set(false), y_set(false)
+: DF(D), weighting_variable(""), x_set(false), y_set(false)
 {
 }
 // model_frame(agile::dataframe &&D);
 //----------------------------------------------------------------------------
 model_frame::model_frame()
-: x_set(false), y_set(false)
+: weighting_variable(""), x_set(false), y_set(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -170,8 +170,18 @@ agile::matrix& model_frame::X()
     return m_X;
 }
 //----------------------------------------------------------------------------
+// parses formulas of the form bottom ~ pt + eta | weight
 void model_frame::parse_formula(std::string formula)
 {
+
+
+    auto pipe = formula.find_first_of("|");
+
+    if (pipe != std::string::npos)
+    {
+        /* code */
+    }
+
     formula = agile::no_spaces(formula);
     bool parsing = true, wildcard = false;
     auto tilde = formula.find_first_of("~");

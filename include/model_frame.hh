@@ -96,7 +96,7 @@ private:
 	agile::dataframe DF;
 
 	agile::matrix m_X, m_Y;
-	std::string m_formula;
+	std::string m_formula, weighting_variable;
 
 	// std::map<std::string, std::pair<double, double>> constraints;
 
