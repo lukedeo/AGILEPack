@@ -132,6 +132,21 @@ void architecture::correct(const agile::vector &in,
     }
 }
 //----------------------------------------------------------------------------
+void architecture::correct(const agile::vector &in, 
+    const agile::vector &target, double weight)
+{
+    agile::vector error = predict(in) - target;
+    // std::cout << predict(in) << std::endl;
+    // std::cout << "error: " << error << std::endl;
+    int l = n_layers - 1;
+    stack.at(l)->backpropagate(error, weight);
+
+    for (l = (n_layers - 2); l >= 0; --l)
+    {
+        stack.at(l)->backpropagate( stack.at(l + 1)->dump_below(), weight);
+    }
+}
+//----------------------------------------------------------------------------
 void architecture::encode(const agile::vector &in, const unsigned int &which, bool noisify)
 {
     if (which == 0)
@@ -148,7 +163,24 @@ void architecture::encode(const agile::vector &in, const unsigned int &which, bo
     agile::vector v = stack.at(which - 1)->fire();
     stack.at(which)->encode(v, noisify);
 }
+//----------------------------------------------------------------------------
+void architecture::encode(const agile::vector &in, const unsigned int &which, 
+    double weight, bool noisify)
+{
+    if (which == 0)
+    {
+        stack.at(0)->encode(in, weight, noisify);
+        return;
+    }
+    stack.at(0)->charge(in);
 
+    for (unsigned int l = 1; l < which; ++l)
+    {
+        stack.at(l)->charge(stack.at(l - 1)->fire());
+    }
+    agile::vector v = stack.at(which - 1)->fire();
+    stack.at(which)->encode(v, weight, noisify);
+}
 void architecture::set_batch_size(int size)
 {
     if (n_layers < 1)

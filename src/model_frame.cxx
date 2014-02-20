@@ -11,13 +11,13 @@ namespace agile
 
 //----------------------------------------------------------------------------
 model_frame::model_frame(const agile::dataframe &D)
-: DF(D), x_set(false), y_set(false)
+: DF(D), weighting_variable(""), x_set(false), y_set(false), weights_set(false)
 {
 }
 // model_frame(agile::dataframe &&D);
 //----------------------------------------------------------------------------
 model_frame::model_frame()
-: x_set(false), y_set(false)
+: weighting_variable(""), x_set(false), y_set(false), weights_set(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -27,26 +27,19 @@ model_frame::~model_frame()
 //----------------------------------------------------------------------------
 void model_frame::add_dataset(const agile::dataframe &D)
 {
-    // std::cout << "first, there are " << DF.rows() << " rows." << std::endl;
 	DF.append(D);
-    // std::cout << "then, there are " << DF.rows() << " rows." << std::endl;
 }
-
+//----------------------------------------------------------------------------
 void model_frame::add_dataset(agile::dataframe &&D)
 {
     DF.append(std::move(D));
 }
-// model_frame::add_dataset(agile::dataframe &&D);
 //----------------------------------------------------------------------------
 void model_frame::model_formula(const std::string &formula)
 {
     m_formula = formula;
 	parse_formula(formula);
 }
-
-// model_frame::add_constraint(const std::string &name, const std::string constraint);
-
-// model_frame::make_binned(const std::string &name, const std::vector<double> bins);
 
 void model_frame::generate(bool verbose)
 {
@@ -95,7 +88,11 @@ void model_frame::generate(bool verbose)
             }
         }
         y_set = true;
-
+    }
+    if (weighting_variable != "")
+    {
+        m_weighting = T.col(DF.get_column_idx(weighting_variable));
+        weights_set = true;
     }
 }
 
@@ -129,12 +126,6 @@ void model_frame::scale(bool verbose)
     {
         std::cout << std::endl;
     }
-    // idx = 0;
-    // for (auto &name : outputs)
-    // {
-    //     agile::calc_normalization(m_Y.col(idx), name, m_scaling);
-    //     ++idx;
-    // }
 }
 //----------------------------------------------------------------------------
 void model_frame::load_scaling(const agile::scaling &scale)
@@ -148,10 +139,6 @@ void model_frame::load_scaling(const agile::scaling &scale)
         ++idx;
     }
     idx = 0;
-    // for (auto &name : outputs)
-    // {
-    //     ++idx;
-    // }
 }
 
 //----------------------------------------------------------------------------
@@ -170,8 +157,30 @@ agile::matrix& model_frame::X()
     return m_X;
 }
 //----------------------------------------------------------------------------
+agile::vector& model_frame::weighting()
+{
+    if (weighting_variable != "")
+    {
+        return m_weighting;
+    }
+    else
+    {
+        throw std::runtime_error("no weighting variable set.");
+    }  
+}
+//----------------------------------------------------------------------------
+// parses formulas of the form bottom ~ pt + eta | weight
 void model_frame::parse_formula(std::string formula)
 {
+    auto pipe = formula.find_first_of("|");
+
+    if (pipe != std::string::npos)
+    {
+        weighting_variable = agile::no_spaces(formula.substr(pipe + 1));
+        formula = formula.substr(0, pipe);
+        exclusions.insert(weighting_variable);
+    }
+
     formula = agile::no_spaces(formula);
     bool parsing = true, wildcard = false;
     auto tilde = formula.find_first_of("~");

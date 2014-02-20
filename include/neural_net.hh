@@ -60,10 +60,6 @@ public:
 
     void load_scaling(const agile::scaling &scale)
     {
-        // for (auto &entry : scale.mean)
-        // {
-        //     std::cout << "variable name: " << entry.first << ", mean: " << entry.second << std::endl;
-        // }
         m_scaling = scale;
         m_model.load_scaling(scale);
 
@@ -81,12 +77,20 @@ public:
     }
 
 private:
+    void internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
+    void internal_train_supervised_weighted(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
+
+    void internal_train_unsupervised(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
+    void internal_train_supervised(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
+
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;
-	agile::matrix X, Y;
+    // std::string weighting variable = "";
+	agile::matrix X, Y, pattern_weights;
+
 	agile::model_frame m_model;
 	unsigned int n_training;
-	bool m_checked;
+	bool m_checked, m_weighted;
     agile::vector m_tmp_input, m_tmp_output;
 
     agile::scaling m_scaling;
@@ -125,6 +129,11 @@ struct convert<agile::neural_net>
         node["target_order"] = arch.target_order;
 
         node["scaling"] = arch.m_scaling;
+
+        // if(arch.m_weighted())
+        // {
+        //     node["weighting"] = 
+        // }
 
         return node;
     }
