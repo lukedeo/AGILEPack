@@ -165,7 +165,7 @@ void neural_net::train_supervised(const unsigned int &epochs, bool verbose, bool
 
 //----------------------------------------------------------------------------
 
-void internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbose, bool denoising, bool tantrum)
+void neural_net::internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbose, bool denoising, bool tantrum)
 {
     if (!m_checked)
     {
@@ -200,7 +200,7 @@ void internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbo
     }
 }
 //----------------------------------------------------------------------------
-void internal_train_supervised_weighted(const unsigned int &epochs, bool verbose, bool tantrum)
+void neural_net::internal_train_supervised_weighted(const unsigned int &epochs, bool verbose, bool tantrum)
 {
     if (!m_checked)
     {
@@ -224,7 +224,7 @@ void internal_train_supervised_weighted(const unsigned int &epochs, bool verbose
     }
 }
 //----------------------------------------------------------------------------
-void internal_train_unsupervised(const unsigned int &epochs, bool verbose, bool denoising, bool tantrum)
+void neural_net::internal_train_unsupervised(const unsigned int &epochs, bool verbose, bool denoising, bool tantrum)
 {
     if (!m_checked)
     {
@@ -259,7 +259,7 @@ void internal_train_unsupervised(const unsigned int &epochs, bool verbose, bool 
     }
 }
 //----------------------------------------------------------------------------
-void internal_train_supervised(const unsigned int &epochs, bool verbose, bool tantrum)
+void neural_net::internal_train_supervised(const unsigned int &epochs, bool verbose, bool tantrum)
 {
     if (!m_checked)
     {
