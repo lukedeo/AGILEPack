@@ -1,6 +1,5 @@
 #include "agile/include/basedefs.hh"
 
-
 //----------------------------------------------------------------------------
 std::mt19937_64& agile::mersenne_engine() // dumb random number generator
 {
