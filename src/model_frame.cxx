@@ -88,7 +88,10 @@ void model_frame::generate(bool verbose)
             }
         }
         y_set = true;
-
+    }
+    if (weighting_variable != "")
+    {
+        m_weighting = T.col(DF.get_column_idx(weighting_variable));
     }
 }
 
@@ -153,6 +156,18 @@ agile::matrix& model_frame::X()
     return m_X;
 }
 //----------------------------------------------------------------------------
+agile::vector& model_frame::weighting()
+{
+    if (weighting_variable != "")
+    {
+        return m_weighting;
+    }
+    else
+    {
+        throw std::runtime_error("no weighting variable set.");
+    }  
+}
+//----------------------------------------------------------------------------
 // parses formulas of the form bottom ~ pt + eta | weight
 void model_frame::parse_formula(std::string formula)
 {
@@ -162,6 +177,7 @@ void model_frame::parse_formula(std::string formula)
     {
         weighting_variable = agile::no_spaces(formula.substr(pipe + 1));
         formula = formula.substr(0, pipe);
+        exclusions.insert(weighting_variable);
     }
 
     formula = agile::no_spaces(formula);

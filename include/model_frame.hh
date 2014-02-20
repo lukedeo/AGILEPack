@@ -80,6 +80,7 @@ public:
 	agile::scaling get_scaling();
 	agile::matrix& Y();
 	agile::matrix& X();
+	agile::vector& weighting();
 
 	std::vector<std::string> get_inputs();
 	std::vector<std::string> get_outputs();
@@ -96,6 +97,7 @@ private:
 	agile::dataframe DF;
 
 	agile::matrix m_X, m_Y;
+	agile::vector m_weighting;
 	std::string m_formula, weighting_variable;
 
 	// std::map<std::string, std::pair<double, double>> constraints;
