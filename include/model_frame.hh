@@ -85,6 +85,11 @@ public:
 	std::vector<std::string> get_inputs();
 	std::vector<std::string> get_outputs();
 
+	bool is_weighted()
+	{
+		return weights_set;
+	}
+
 private:
 
 //-----------------------------------------------------------------------------
@@ -108,7 +113,7 @@ private:
 
 	std::unordered_set<std::string> exclusions;
 
-	bool x_set, y_set;
+	bool x_set, y_set, weights_set;
 
 	agile::scaling m_scaling;
 
