@@ -11,13 +11,13 @@ namespace agile
 
 //----------------------------------------------------------------------------
 model_frame::model_frame(const agile::dataframe &D)
-: DF(D), weighting_variable(""), x_set(false), y_set(false)
+: DF(D), weighting_variable(""), x_set(false), y_set(false), weights_set(false)
 {
 }
 // model_frame(agile::dataframe &&D);
 //----------------------------------------------------------------------------
 model_frame::model_frame()
-: weighting_variable(""), x_set(false), y_set(false)
+: weighting_variable(""), x_set(false), y_set(false), weights_set(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -92,6 +92,7 @@ void model_frame::generate(bool verbose)
     if (weighting_variable != "")
     {
         m_weighting = T.col(DF.get_column_idx(weighting_variable));
+        weights_set = true;
     }
 }
 

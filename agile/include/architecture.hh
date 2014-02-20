@@ -93,8 +93,10 @@ public:
     agile::vector predict(const agile::vector &v);
     
     void correct(const agile::vector &in, const agile::vector &target);
+    void correct(const agile::vector &in, const agile::vector &target, double weight);
 
     void encode(const agile::vector &in, const unsigned int &which, bool noisify = true);
+    void encode(const agile::vector &in, const unsigned int &which, double weight, bool noisify = true);
 
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization

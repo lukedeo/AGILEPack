@@ -10,19 +10,19 @@ namespace agile
 {
 
 neural_net::neural_net(int num_layers) 
-: architecture(num_layers), m_checked(false)
+: architecture(num_layers), m_checked(false), m_weighted(false)
 {
 }
 //----------------------------------------------------------------------------
 neural_net::neural_net(std::initializer_list<int> il, problem_type type) 
-: architecture(il, type),  m_checked(false)
+: architecture(il, type),  m_checked(false), m_weighted(false)
 {
 }
 //----------------------------------------------------------------------------
 neural_net::neural_net(const neural_net &arch) 
 : architecture(arch), predictor_order(arch.predictor_order), 
 target_order(arch.target_order), X(arch.X), Y(arch.Y), //DF(arch.DF), 
-m_model(arch.m_model),  m_checked(false)
+m_model(arch.m_model),  m_checked(false), m_weighted(false)
 {
     for (auto &entry : arch.stack)
     {
@@ -44,10 +44,11 @@ neural_net& neural_net::operator =(const neural_net &arch)
     target_order = arch.target_order;
     X = arch.X;
     Y = arch.Y;
-    // DF = arch.DF;
+    pattern_weights = arch.pattern_weights;
     m_model = arch.m_model;
     n_training = X.rows();
     m_checked = arch.m_checked;
+    m_weighted = arch.m_weighted;
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -61,10 +62,11 @@ neural_net& neural_net::operator =(neural_net &&arch)
     target_order = std::move(arch.target_order);
     X = std::move(arch.X);
     Y = std::move(arch.Y);
+    pattern_weights = std::move(arch.pattern_weights);
     // DF = arch.DF;
     m_model = std::move(arch.m_model);
     n_training = std::move(n_training);
-    m_checked = std::move(arch.m_checked);
+    m_weighted = std::move(arch.m_weighted);
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -81,11 +83,8 @@ void neural_net::add_data(agile::dataframe &&D)
     m_model.add_dataset(std::move(D));
 
 }
-
-// void set_formula(const std::string &formula);
-// void add_predictor(const std::string &name);
-// void add_target(const std::string &name);
-void neural_net::model_formula(const std::string &formula, bool scale, bool verbose)
+void neural_net::model_formula(const std::string &formula, 
+    bool scale, bool verbose)
 {
     m_model.model_formula(formula);
     m_model.generate(verbose);
@@ -97,11 +96,16 @@ void neural_net::model_formula(const std::string &formula, bool scale, bool verb
     target_order = m_model.get_outputs();
     X = std::move(m_model.X());
     Y = std::move(m_model.Y());
+
+    if (m_model.is_weighted())
+    {
+        pattern_weights = std::move(m_model.weighting());
+        m_weighted = true;
+    }
+
     n_training = X.rows();
     m_tmp_input.resize(X.cols(), Eigen::NoChange);
-    // std::cout << "m_tmp_input.size() = " << m_tmp_input.size() << std::endl;
     m_tmp_output.resize(Y.cols(), Eigen::NoChange);
-    // std::cout << "m_tmp_output.size() = " << m_tmp_output.size() << std::endl;
 
     m_scaling = m_model.get_scaling();
 }
@@ -109,8 +113,6 @@ void neural_net::model_formula(const std::string &formula, bool scale, bool verb
 void neural_net::from_yaml(const std::string &filename)
 {
     YAML::Node config = YAML::LoadFile(filename);
-    // auto net = std::move(config["network"].as<agile::neural_net>());
-
     YAML::convert<agile::neural_net>::decode(config["network"], *this);
 }
 //----------------------------------------------------------------------------
@@ -130,6 +132,96 @@ void neural_net::to_yaml(const std::string &filename)
 //----------------------------------------------------------------------------
 void neural_net::train_unsupervised(const unsigned int &epochs, bool verbose, 
     bool denoising, bool tantrum)
+{
+    if (m_weighted)
+    {
+        internal_train_unsupervised_weighted(epochs, 
+            verbose, denoising, tantrum);
+    }
+    else
+    {
+        internal_train_unsupervised(epochs, verbose, denoising, tantrum);
+    }
+}
+//----------------------------------------------------------------------------
+void neural_net::train_supervised(const unsigned int &epochs, 
+    bool verbose, bool tantrum)
+{
+    if (m_weighted)
+    {
+        internal_train_supervised_weighted(epochs, verbose, tantrum);
+    }
+    else
+    {
+        internal_train_supervised(epochs, verbose, tantrum);
+    }
+}
+
+//----------------------------------------------------------------------------
+
+void neural_net::internal_train_unsupervised_weighted(
+    const unsigned int &epochs, bool verbose, bool denoising, bool tantrum)
+{
+    if (!m_checked)
+    {
+        check(tantrum);
+    }
+    int idx = 0, ctr = 0;
+    int total = epochs * n_training;
+    double pct;
+
+    while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
+    {
+        if (verbose)
+        {
+            std::cout << "\nPretraining Layer " << idx << ":" << std::endl;
+        }
+        for (int e = 0; e < epochs; ++e)
+        {
+            for (int i = 0; i < n_training; ++i)
+            {
+                if (verbose && (ctr % 2 == 0))
+                {
+                    pct = (double)ctr / (double)total;
+                    agile::progress_bar(pct * 100);
+                }
+                encode(X.row(i), idx, pattern_weights(i), denoising);
+                ++ctr;
+            }
+        }
+        ++idx;
+        ctr = 0;
+        if (idx >= stack.size()) break;
+    }
+}
+//----------------------------------------------------------------------------
+void neural_net::internal_train_supervised_weighted(
+    const unsigned int &epochs, bool verbose, bool tantrum)
+{
+    if (!m_checked)
+    {
+        check(tantrum);
+    }
+    int ctr = 0;
+    int total = n_training * epochs;
+    double pct;
+    for (int e = 0; e < epochs; ++e)
+    {
+        for (int i = 0; i < n_training; ++i)
+        {
+            if (verbose && (ctr % 2 == 0))
+            {
+                pct = (double)ctr / (double)total;
+                agile::progress_bar(pct * 100);
+            }
+            correct(X.row(i), Y.row(i), pattern_weights(i));
+            ++ctr;
+        }
+    }
+}
+//----------------------------------------------------------------------------
+void neural_net::internal_train_unsupervised(const unsigned int &epochs, 
+    bool verbose, bool denoising, bool tantrum)
 {
     if (!m_checked)
     {
@@ -164,7 +256,8 @@ void neural_net::train_unsupervised(const unsigned int &epochs, bool verbose,
     }
 }
 //----------------------------------------------------------------------------
-void neural_net::train_supervised(const unsigned int &epochs, bool verbose, bool tantrum)
+void neural_net::internal_train_supervised(const unsigned int &epochs, 
+    bool verbose, bool tantrum)
 {
     if (!m_checked)
     {
@@ -187,6 +280,14 @@ void neural_net::train_supervised(const unsigned int &epochs, bool verbose, bool
         }
     }
 }
+
+
+
+
+
+
+
+
 //----------------------------------------------------------------------------
 void neural_net::check(bool tantrum)
 {
