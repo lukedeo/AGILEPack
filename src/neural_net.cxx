@@ -45,7 +45,6 @@ neural_net& neural_net::operator =(const neural_net &arch)
     X = arch.X;
     Y = arch.Y;
     pattern_weights = arch.pattern_weights;
-    // DF = arch.DF;
     m_model = arch.m_model;
     n_training = X.rows();
     m_checked = arch.m_checked;
@@ -84,10 +83,6 @@ void neural_net::add_data(agile::dataframe &&D)
     m_model.add_dataset(std::move(D));
 
 }
-
-// void set_formula(const std::string &formula);
-// void add_predictor(const std::string &name);
-// void add_target(const std::string &name);
 void neural_net::model_formula(const std::string &formula, 
     bool scale, bool verbose)
 {
@@ -110,9 +105,7 @@ void neural_net::model_formula(const std::string &formula,
 
     n_training = X.rows();
     m_tmp_input.resize(X.cols(), Eigen::NoChange);
-    // std::cout << "m_tmp_input.size() = " << m_tmp_input.size() << std::endl;
     m_tmp_output.resize(Y.cols(), Eigen::NoChange);
-    // std::cout << "m_tmp_output.size() = " << m_tmp_output.size() << std::endl;
 
     m_scaling = m_model.get_scaling();
 }
@@ -120,8 +113,6 @@ void neural_net::model_formula(const std::string &formula,
 void neural_net::from_yaml(const std::string &filename)
 {
     YAML::Node config = YAML::LoadFile(filename);
-    // auto net = std::move(config["network"].as<agile::neural_net>());
-
     YAML::convert<agile::neural_net>::decode(config["network"], *this);
 }
 //----------------------------------------------------------------------------
@@ -158,11 +149,11 @@ void neural_net::train_supervised(const unsigned int &epochs,
 {
     if (m_weighted)
     {
-        internal_train_unsupervised_weighted(epochs, verbose, tantrum);
+        internal_train_supervised_weighted(epochs, verbose, tantrum);
     }
     else
     {
-        internal_train_unsupervised(epochs, verbose, tantrum);
+        internal_train_supervised(epochs, verbose, tantrum);
     }
 }
 
