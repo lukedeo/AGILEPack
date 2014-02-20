@@ -83,7 +83,7 @@ public:
 private:
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;
-	agile::matrix X, Y;
+	agile::matrix X, Y, weights;
 	agile::model_frame m_model;
 	unsigned int n_training;
 	bool m_checked;

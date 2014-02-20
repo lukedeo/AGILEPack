@@ -207,7 +207,14 @@ std::vector<std::string> dataframe::get_column_names()
 
 std::size_t dataframe::get_column_idx(const std::string &name)
 {
-    return column_names.at(name);
+    try
+    {
+        return column_names.at(name);    
+    }
+    catch(std::out_of_range &e)
+    {
+        throw std::out_of_range("no variable named \'" + name + "\' present.");
+    }   
 }
 //----------------------------------------------------------------------------
 void dataframe::set_column_names(std::vector<std::string> v)
