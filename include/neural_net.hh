@@ -38,6 +38,9 @@ public:
 
 	void from_yaml(const std::string &filename);
 	void to_yaml(const std::string &filename);
+    void to_yaml(const std::string &filename, 
+        const std::map<std::string, std::string> &types);
+
 	void train_unsupervised(const unsigned int &epochs, bool verbose = false, 
         bool denoising = false, bool tantrum = false);
 
@@ -75,6 +78,7 @@ private:
 
     void internal_train_supervised(const unsigned int &epochs, 
         bool verbose = false, bool tantrum = false);
+
 
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;

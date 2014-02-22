@@ -129,6 +129,8 @@ void neural_net::to_yaml(const std::string &filename)
         file.close();
     }
 }
+void neural_net::to_yaml(const std::string &filename, 
+    const std::map<std::string, std::string> &types)
 //----------------------------------------------------------------------------
 void neural_net::train_unsupervised(const unsigned int &epochs, bool verbose, 
     bool denoising, bool tantrum)
