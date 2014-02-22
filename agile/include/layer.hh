@@ -304,7 +304,7 @@ namespace YAML
             return true;
         }
     };
-}
+} // end ns YAML
 
 
 #endif

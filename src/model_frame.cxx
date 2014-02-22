@@ -270,25 +270,6 @@ std::vector<std::string> model_frame::get_outputs()
     return outputs;
 }
 //----------------------------------------------------------------------------
-
-
-
-
-// // void model_frame::parse_constraint(const std::string &formula);
-
-// 	std::vector<agile::dataframe> datasets;
-
-// 	agile::matrix X, Y;
-// 	std::string m_formula
-
-// 	std::map<std::string, std::pair<double, double>> constraints;
-
-// 	std::map<std::string, std::vector<double> > binner;
-
-// 	std::vector<std::string> inputs, outputs;
-
-
-//----------------------------------------------------------------------------
 parsing_error::parsing_error(const std::string &what)
 : std::runtime_error(what)
 {}

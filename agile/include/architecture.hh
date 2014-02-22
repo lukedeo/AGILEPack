@@ -38,7 +38,9 @@ public:
 //  Construction, destruction, and copying
 //-----------------------------------------------------------------------------
     explicit architecture(int num_layers = 0);
-    explicit architecture(std::initializer_list<int> il, problem_type type = regress);
+    explicit architecture(std::initializer_list<int> il, 
+        problem_type type = regress);
+
     ~architecture();
     architecture(const architecture &arch);
 
@@ -94,10 +96,14 @@ public:
     agile::vector predict(const agile::vector &v);
     
     void correct(const agile::vector &in, const agile::vector &target);
-    void correct(const agile::vector &in, const agile::vector &target, double weight);
+    void correct(const agile::vector &in, const agile::vector &target, 
+        double weight);
 
-    void encode(const agile::vector &in, const unsigned int &which, bool noisify = true);
-    void encode(const agile::vector &in, const unsigned int &which, double weight, bool noisify = true);
+    void encode(const agile::vector &in, const unsigned int &which, 
+        bool noisify = true);
+
+    void encode(const agile::vector &in, const unsigned int &which, 
+        double weight, bool noisify = true);
 
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization
@@ -228,7 +234,7 @@ struct convert<architecture>
         return true;
     }
 };
-
+//----------------------------------------------------------------------------
 }
 
 
