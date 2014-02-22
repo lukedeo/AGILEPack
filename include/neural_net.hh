@@ -64,14 +64,13 @@ private:
 
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;
-    // std::string weighting variable = "";
+
 	agile::matrix X, Y, pattern_weights;
 
 	agile::model_frame m_model;
 	unsigned int n_training;
 	bool m_checked, m_weighted;
     agile::vector m_tmp_input, m_tmp_output;
-
     agile::scaling m_scaling;
 };
 
