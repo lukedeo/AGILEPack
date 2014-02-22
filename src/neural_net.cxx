@@ -142,8 +142,7 @@ void neural_net::to_yaml(const std::string &filename,
         net["branches"] = types;
         out << net;
         file << out.c_str();
-        file.close();
-        
+        file.close();    
     }
 }
 //----------------------------------------------------------------------------
