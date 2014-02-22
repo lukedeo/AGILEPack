@@ -21,7 +21,7 @@ neural_net::neural_net(std::initializer_list<int> il, problem_type type)
 //----------------------------------------------------------------------------
 neural_net::neural_net(const neural_net &arch) 
 : architecture(arch), predictor_order(arch.predictor_order), 
-target_order(arch.target_order), X(arch.X), Y(arch.Y), //DF(arch.DF), 
+target_order(arch.target_order), X(arch.X), Y(arch.Y),
 m_model(arch.m_model),  m_checked(false), m_weighted(false)
 {
     for (auto &entry : arch.stack)
