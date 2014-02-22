@@ -62,6 +62,7 @@ public:
     template <class T>
     void add_layer(T *L);
 
+    // THIS TAKES OWNERSHIP
     template <class T>
     void emplace_back(T *L);
 
@@ -101,10 +102,6 @@ public:
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------
-    
-    // friend YAML::Emitter& operator << (YAML::Emitter& out, 
-    //     const architecture &arch);
-
     friend struct YAML::convert<architecture>;
 
 protected:
@@ -151,7 +148,7 @@ template <class T>
 void architecture::emplace_back(T *L)
 {
     ++n_layers;
-    stack.emplace_back((T*)(L));
+    stack.emplace_back(std::move((T*)(L)));
 }
 
 template <class T, class ...Args>
