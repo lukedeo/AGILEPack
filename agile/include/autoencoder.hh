@@ -36,6 +36,7 @@ public:
         layer_type encoder_type = linear, layer_type decoder_type = linear);
     autoencoder(const autoencoder &L);
     autoencoder(autoencoder *L);
+
     virtual autoencoder& operator= (const autoencoder &L);
     virtual autoencoder& operator= (autoencoder &&L);
 
@@ -47,6 +48,7 @@ public:
     
     void reset_weights(numeric bound);
     ~autoencoder(); 
+    
     virtual agile::types::paradigm get_paradigm()
     {
         return m_paradigm;
@@ -56,7 +58,9 @@ public:
 //  Encode / decode operations
 //-----------------------------------------------------------------------------
     virtual void encode(const agile::vector &v, bool noisify = true);
-    virtual void encode(const agile::vector &v, double weight, bool noisify = true);
+    virtual void encode(const agile::vector &v, double weight, 
+        bool noisify = true);
+
     virtual agile::vector get_encoding(const agile::vector &v);
     virtual agile::vector reconstruct(const agile::vector &v, 
         bool noisify = true);
@@ -196,5 +200,6 @@ namespace YAML
             return true;
         }
     };
+//----------------------------------------------------------------------------
 }
 #endif
