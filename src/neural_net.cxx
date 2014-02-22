@@ -130,6 +130,22 @@ void neural_net::to_yaml(const std::string &filename)
     }
 }
 //----------------------------------------------------------------------------
+void neural_net::to_yaml(const std::string &filename, 
+    const std::map<std::string, std::string> &types)
+{
+    std::ofstream file(filename);
+    if (file.good())
+    {
+        YAML::Emitter out;
+        YAML::Node net;
+        net["network"] = *this;
+        out << net;
+        file << out.c_str();
+        file.close();
+        net["branches"] = types;
+    }
+}
+//----------------------------------------------------------------------------
 void neural_net::train_unsupervised(const unsigned int &epochs, bool verbose, 
     bool denoising, bool tantrum)
 {
@@ -386,6 +402,54 @@ std::map<std::string, double> neural_net::predict_map(
         ++idx;
     }
     return std::move(prediction);
+}
+//----------------------------------------------------------------------------
+std::vector<std::string> neural_net::get_inputs()
+{
+    return predictor_order;
+}
+//----------------------------------------------------------------------------
+std::vector<std::string> neural_net::get_outputs()
+{
+    return target_order;
+}
+//----------------------------------------------------------------------------
+void neural_net::load_scaling(const agile::scaling &scale)
+{
+    m_scaling = scale;
+    m_model.load_scaling(scale);
+
+}
+//----------------------------------------------------------------------------
+void neural_net::load_scaling(agile::scaling &&scale)
+{
+    m_scaling = (scale);
+    m_model.load_scaling(std::move(scale));
+}
+//----------------------------------------------------------------------------
+agile::scaling neural_net::get_scaling()
+{
+    return m_scaling;
+}
+//----------------------------------------------------------------------------
+void neural_net::set_X(const agile::matrix &A, bool tantrum)
+{
+    if (tantrum)
+    {
+        std::cout << "Warning, overriding default setting of X. Clearing all previously loaded variable based parameters." << std::endl;
+    }
+    X = A;
+    n_training = A.rows();
+}
+//----------------------------------------------------------------------------
+void neural_net::set_Y(const agile::matrix &A, bool tantrum)
+{
+    if (tantrum)
+    {
+        std::cout << "Warning, overriding default setting of Y. Clearing all previously loaded variable based parameters." << std::endl;
+    }
+    Y = A;
+    n_training = A.rows();
 }
 
 }

@@ -56,12 +56,11 @@ public:
 
     std::vector<std::string> get_ordered_branch_names();
 
-    agile::dataframe get_dataframe(int entries = -1, int start = -1, bool verbose = false);
+    agile::dataframe get_dataframe(int entries = -1, int start = -1, 
+        bool verbose = false);
 
-    // std::pair<agile::dataframe, agile::dataframe> get_data_pair(
-    //     const std::vector<std::string> &inputs, 
-    //     const std::vector<std::string> &targets, int entries = -1, 
-    //     int start = -1);
+    std::map<std::string, std::string> get_var_types();
+
 //-----------------------------------------------------------------------------
 //  Element Access
 //-----------------------------------------------------------------------------
@@ -69,8 +68,8 @@ public:
     std::vector<double> operator[](const unsigned int &idx);
     std::vector<double> operator()(const unsigned int &idx);
     double operator()(const unsigned int &idx, std::string col_name);
-    std::map<std::string, double> operator()(const unsigned int &idx, const std::vector<std::string> &names);
-    // std::vector<double> operator[](std::string col_name);
+    std::map<std::string, double> operator()(const unsigned int &idx, 
+        const std::vector<std::string> &names);
 
 //-----------------------------------------------------------------------------
 //  Information
@@ -84,35 +83,17 @@ public:
 private:
 
     smart_chain *m_smart_chain;
-
     unsigned int m_size, m_num_cols;
     bool m_in_memory;
-
     std::string m_tree_name;
-
     std::map<std::string, var_traits> traits;
-
+    std::map<std::string, std::string> variable_type_map;
     typedef __INTERNAL::numeric_handler number_container;
-
     std::vector<std::unique_ptr<number_container>> storage;
-
     std::vector<std::string> feature_names;
 };
 
-}
-
-}
+} // end ns root
+} // end ns agile
 
 #endif
-
-/*
-TO DO:
---------------
-* make iterators
-* make variable name access
-* make option to store in memory
-
-
-
-
-*/

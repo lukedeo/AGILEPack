@@ -86,18 +86,24 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
         {
             m_smart_chain->set_branch(branch_name, 
                 &storage.back()->set_address<float>());
+
+            variable_type_map[branch_name] = "float";
             break;
         }
         case double_precision:
         {
             m_smart_chain->set_branch(branch_name, 
                 &storage.back()->set_address<double>());
+
+            variable_type_map[branch_name] = "double";
             break;
         }
         case integer:
         {
             m_smart_chain->set_branch(branch_name, 
                 &storage.back()->set_address<int>());
+
+            variable_type_map[branch_name] = "int";
             break;
         }
     }
@@ -136,6 +142,11 @@ void tree_reader::set_branches(const std::string &yamlfile)
         throw std::runtime_error("configuration files must have a map entitled 'branches'");
     }
     
+}
+//----------------------------------------------------------------------------
+std::map<std::string, std::string> tree_reader::get_var_types()
+{
+    return variable_type_map;
 }
 //----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose)
