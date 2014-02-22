@@ -64,9 +64,6 @@ public:
 //-----------------------------------------------------------------------------
 
 	void model_formula(const std::string &formula);
-	// void add_constraint(const std::string &name, const std::string constraint);
-
-	// void make_binned(const std::string &name, const std::vector<double> bins);
 
 //-----------------------------------------------------------------------------
 //  generation and final model frames.
@@ -80,9 +77,15 @@ public:
 	agile::scaling get_scaling();
 	agile::matrix& Y();
 	agile::matrix& X();
+	agile::vector& weighting();
 
 	std::vector<std::string> get_inputs();
 	std::vector<std::string> get_outputs();
+
+	bool is_weighted()
+	{
+		return weights_set;
+	}
 
 private:
 
@@ -96,6 +99,7 @@ private:
 	agile::dataframe DF;
 
 	agile::matrix m_X, m_Y;
+	agile::vector m_weighting;
 	std::string m_formula, weighting_variable;
 
 	// std::map<std::string, std::pair<double, double>> constraints;
@@ -106,7 +110,7 @@ private:
 
 	std::unordered_set<std::string> exclusions;
 
-	bool x_set, y_set;
+	bool x_set, y_set, weights_set;
 
 	agile::scaling m_scaling;
 

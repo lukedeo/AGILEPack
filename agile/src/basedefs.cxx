@@ -1,5 +1,9 @@
+//-----------------------------------------------------------------------------
+//  basedefs.cxx:
+//  base definitions for a bunch of stuff
+//  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//-----------------------------------------------------------------------------
 #include "agile/include/basedefs.hh"
-
 
 //----------------------------------------------------------------------------
 std::mt19937_64& agile::mersenne_engine() // dumb random number generator
@@ -90,7 +94,8 @@ void agile::progress_bar(int percent)
             _prog_bar.replace(i,1," ");
         }
     }
-    std::cout<< "\r" "[" << this_color << _prog_bar << agile::colors::reset() << "] ";
+    std::cout << "\r" "[" << this_color << _prog_bar;
+    std::cout << agile::colors::reset() << "] ";
     std::cout.width( 3 );
     std::cout<< percent << "%     " << std::flush;
 }

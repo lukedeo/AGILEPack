@@ -9,18 +9,6 @@
 
 namespace agile
 {
-
-
-// agile::matrix eigenize(const agile::array &A)
-// {
-//     agile::matrix M(A.rows(), A.cols());
-    
-// }
-
-// agile::vector eigenize(const agile::slice &A)
-// {
-
-// }
 //-----------------------------------------------------------------------------
 //  Constructors, assignment, etc.
 //-----------------------------------------------------------------------------
@@ -207,7 +195,14 @@ std::vector<std::string> dataframe::get_column_names()
 
 std::size_t dataframe::get_column_idx(const std::string &name)
 {
-    return column_names.at(name);
+    try
+    {
+        return column_names.at(name);    
+    }
+    catch(std::out_of_range &e)
+    {
+        throw std::out_of_range("no variable named \'" + name + "\' present.");
+    }   
 }
 //----------------------------------------------------------------------------
 void dataframe::set_column_names(std::vector<std::string> v)
@@ -335,12 +330,6 @@ void dataframe::append(dataframe &&D)
         column_names = std::move(D.column_names);
     }
 }
-
-//-----------------------------------------------------------------------------
-//  iterators
-//-----------------------------------------------------------------------------
-
-    // TO DO
 
 }
 

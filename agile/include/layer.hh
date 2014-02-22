@@ -130,6 +130,11 @@ public:
     {
         return m_layer_type;
     }
+
+    agile::matrix get_weights()
+    {
+        return W;
+    }
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------
@@ -299,7 +304,7 @@ namespace YAML
             return true;
         }
     };
-}
+} // end ns YAML
 
 
 #endif

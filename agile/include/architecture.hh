@@ -38,7 +38,9 @@ public:
 //  Construction, destruction, and copying
 //-----------------------------------------------------------------------------
     explicit architecture(int num_layers = 0);
-    explicit architecture(std::initializer_list<int> il, problem_type type = regress);
+    explicit architecture(std::initializer_list<int> il, 
+        problem_type type = regress);
+
     ~architecture();
     architecture(const architecture &arch);
 
@@ -62,6 +64,7 @@ public:
     template <class T>
     void add_layer(T *L);
 
+    // THIS TAKES OWNERSHIP
     template <class T>
     void emplace_back(T *L);
 
@@ -93,16 +96,18 @@ public:
     agile::vector predict(const agile::vector &v);
     
     void correct(const agile::vector &in, const agile::vector &target);
+    void correct(const agile::vector &in, const agile::vector &target, 
+        double weight);
 
-    void encode(const agile::vector &in, const unsigned int &which, bool noisify = true);
+    void encode(const agile::vector &in, const unsigned int &which, 
+        bool noisify = true);
+
+    void encode(const agile::vector &in, const unsigned int &which, 
+        double weight, bool noisify = true);
 
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------
-    
-    // friend YAML::Emitter& operator << (YAML::Emitter& out, 
-    //     const architecture &arch);
-
     friend struct YAML::convert<architecture>;
 
 protected:
@@ -149,7 +154,7 @@ template <class T>
 void architecture::emplace_back(T *L)
 {
     ++n_layers;
-    stack.emplace_back((T*)(L));
+    stack.emplace_back(std::move((T*)(L)));
 }
 
 template <class T, class ...Args>
@@ -229,7 +234,7 @@ struct convert<architecture>
         return true;
     }
 };
-
+//----------------------------------------------------------------------------
 }
 
 

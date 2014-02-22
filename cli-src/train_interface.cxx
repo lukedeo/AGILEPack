@@ -182,7 +182,8 @@ int main(int argc, char const *argv[])
     if (passed_target == "regress") net_type = linear;
     else if (passed_target == "multiclass") net_type = softmax;
     else if (passed_target == "binary") net_type = sigmoid;
-    else complain("type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+    else complain(
+        "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
     
 //----------------------------------------------------------------------------
 
@@ -239,7 +240,7 @@ int main(int argc, char const *argv[])
     {
         std::cout << "\nDone.\nSaving to " << save_file << "...";
     }
-    net.to_yaml(save_file);
+    net.to_yaml(save_file, TR.get_var_types());
     if (verbose)
     {
         std::cout << "Done." << std::endl;

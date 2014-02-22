@@ -11,13 +11,13 @@ namespace agile
 
 //----------------------------------------------------------------------------
 model_frame::model_frame(const agile::dataframe &D)
-: DF(D), weighting_variable(""), x_set(false), y_set(false)
+: DF(D), weighting_variable(""), x_set(false), y_set(false), weights_set(false)
 {
 }
 // model_frame(agile::dataframe &&D);
 //----------------------------------------------------------------------------
 model_frame::model_frame()
-: weighting_variable(""), x_set(false), y_set(false)
+: weighting_variable(""), x_set(false), y_set(false), weights_set(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -88,7 +88,11 @@ void model_frame::generate(bool verbose)
             }
         }
         y_set = true;
-
+    }
+    if (weighting_variable != "")
+    {
+        m_weighting = T.col(DF.get_column_idx(weighting_variable));
+        weights_set = true;
     }
 }
 
@@ -153,6 +157,18 @@ agile::matrix& model_frame::X()
     return m_X;
 }
 //----------------------------------------------------------------------------
+agile::vector& model_frame::weighting()
+{
+    if (weighting_variable != "")
+    {
+        return m_weighting;
+    }
+    else
+    {
+        throw std::runtime_error("no weighting variable set.");
+    }  
+}
+//----------------------------------------------------------------------------
 // parses formulas of the form bottom ~ pt + eta | weight
 void model_frame::parse_formula(std::string formula)
 {
@@ -162,6 +178,7 @@ void model_frame::parse_formula(std::string formula)
     {
         weighting_variable = agile::no_spaces(formula.substr(pipe + 1));
         formula = formula.substr(0, pipe);
+        exclusions.insert(weighting_variable);
     }
 
     formula = agile::no_spaces(formula);
@@ -252,25 +269,6 @@ std::vector<std::string> model_frame::get_outputs()
 {
     return outputs;
 }
-//----------------------------------------------------------------------------
-
-
-
-
-// // void model_frame::parse_constraint(const std::string &formula);
-
-// 	std::vector<agile::dataframe> datasets;
-
-// 	agile::matrix X, Y;
-// 	std::string m_formula
-
-// 	std::map<std::string, std::pair<double, double>> constraints;
-
-// 	std::map<std::string, std::vector<double> > binner;
-
-// 	std::vector<std::string> inputs, outputs;
-
-
 //----------------------------------------------------------------------------
 parsing_error::parsing_error(const std::string &what)
 : std::runtime_error(what)
