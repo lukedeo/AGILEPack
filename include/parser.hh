@@ -2,8 +2,6 @@
 //  parser.hh -- A Header-Only commandline argument parser
 //  Author: Luke de Oliveira <luke.deoliveira@yale.edu>
 //-----------------------------------------------------------------------------
-
-
 //----------------------------------------------------------------------------
 #ifndef PARSER__HH
 #define PARSER__HH 
@@ -128,35 +126,12 @@ struct option
         m_default_value = std::string(default_value);
         return *this;
     }
-
     template <typename T>
     option &default_value(const T &default_value)
     {
         m_default_value = std::to_string(default_value);
         return *this;
     }
-
-    //     option &default_value(const int &default_value)
-    // {
-    //     m_default_value = std::to_string(default_value);
-    //     return *this;
-    // }
-    // option &default_value(const double &default_value)
-    // {
-    //     m_default_value = std::to_string(default_value);
-    //     return *this;
-    // }
-    // option &default_value(const unsigned int &default_value)
-    // {
-    //     m_default_value = std::to_string(default_value);
-    //     return *this;
-    // }
-    // option &default_value(const float &default_value)
-    // {
-    //     m_default_value = std::to_string(default_value);
-    //     return *this;
-    // }
-
 
     bool m_found = false;
     bool m_required = false;
@@ -396,13 +371,16 @@ void parser::eat_arguments(int argc, char const *argv[])
                             if (opt.default_value() == "")
                             {
                                 std::string e("error, flag '" + 
-                                    opt.long_flag() + "' requires an argument.");
+                                    opt.long_flag() + 
+                                    "' requires an argument.");
+
                                 error(e);
                             }
                             skip = true;
                             if (m_values[opt.dest()].size() == 0)
                             {
-                                m_values[opt.dest()].push_back(opt.default_value());
+                                m_values[opt.dest()].push_back(
+                                    opt.default_value());
                             }
                         }
                         std::string next_arg;
@@ -418,7 +396,8 @@ void parser::eat_arguments(int argc, char const *argv[])
                             {
                                 if (m_values[opt.dest()].size() == 0)
                                 {
-                                    m_values[opt.dest()].push_back(opt.default_value());
+                                    m_values[opt.dest()].push_back(
+                                        opt.default_value());
                                 }
                             }
                         }
@@ -459,7 +438,8 @@ void parser::eat_arguments(int argc, char const *argv[])
                                 if((opt.default_value() != "") && 
                                     (m_values[opt.dest()].size() == 0))
                                 {
-                                    m_values[opt.dest()].push_back(opt.default_value());
+                                    m_values[opt.dest()].push_back(
+                                        opt.default_value());
                                 }
                                 
                             }

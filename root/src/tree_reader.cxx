@@ -115,7 +115,9 @@ void tree_reader::set_branches(const std::string &yamlfile)
     try
     {
         YAML::Node config = tmp["branches"];
-        std::map<std::string, std::string> vars = config.as<std::map<std::string, std::string>>();
+        std::map<std::string, std::string> vars = 
+        config.as<std::map<std::string, std::string>>();
+        
         for (auto &entry : vars)
         {
             auto type = entry.second;
@@ -181,31 +183,6 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start, bool verbose
     }
     return std::move(D);
 }
-//----------------------------------------------------------------------------
-// std::pair<agile::dataframe, agile::dataframe> get_data_pair(
-//     const std::vector<std::string> &inputs, 
-//     const std::vector<std::string> &targets, int entries, int start)
-// {
-//     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
-//     {
-//         throw dimension_error("tried to access element in TTree beyond range.");
-//     }
-//     entries = (entries < 0) ? m_size : entries;
-//     start = (start < 0) ? 0 : start;
-//     auto stop = start + entries;
-
-//     int curr_entry = 0;
-
-//     agile::dataframe X;
-//     X.set_column_names(inputs);
-//     agile::dataframe Y;
-//     Y.set_column_names(targets);
-
-
-    
-
-
-// }
 
 //-----------------------------------------------------------------------------
 //  Element Access
