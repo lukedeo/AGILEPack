@@ -41,6 +41,9 @@ public:
     void to_yaml(const std::string &filename, 
         const std::map<std::string, std::string> &types);
 
+    // template <class T>
+    // void to_yaml(const std::string &filename, const T &R);
+
 	void train_unsupervised(const unsigned int &epochs, bool verbose = false, 
         bool denoising = false, bool tantrum = false);
 
