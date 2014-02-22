@@ -3,13 +3,10 @@
 //  Header for dataset handling, almost in the vain of the R language
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
 //-----------------------------------------------------------------------------
-
-
 #ifndef DATAFRAME__HH
 #define DATAFRAME__HH 
 
 #include "csv_reader.hh"
-// #include "blitz/array.h"
 #include <cstddef>
 #include <map>
 #include <utility>
@@ -17,26 +14,9 @@
 #include <stdexcept>
 #include <initializer_list>
 
-// namespace root
-// {
-//     class tree_reader;
-// }
-
-
-
 
 namespace agile
 {
-
-// typedef blitz::Array<double, 2> array;
-// typedef blitz::Array<double, 1> slice;
-
-
-// agile::matrix eigenize(const agile::array &A);
-
-// agile::vector eigenize(const agile::slice &A);
-
-
 
 class dataframe
 {
@@ -64,10 +44,7 @@ public:
     friend std::ostream& operator << ( std::ostream& os, dataframe &data );
 
     data_t& raw();
-    // agile::matrix eigen_spew();
 
-    // dataframe subset(std::vector<std::string> names);
-// 
 //-----------------------------------------------------------------------------
 //  Size / other Information
 //-----------------------------------------------------------------------------
@@ -83,8 +60,6 @@ public:
 //-----------------------------------------------------------------------------
 
     record_t& at(const std::size_t &idx);
-    // record_t& at(const std::size_t &idx, 
-    //  const std::vector<std::string> &colnames);
 
     double& at(const std::size_t &idx, const std::string &colname);
     record_t& operator[](const std::size_t &idx);
@@ -96,7 +71,6 @@ public:
     void push_back(const record_t &r);
     void push_back(record_t &&r);
     void push_back(std::initializer_list<double> il);
-    // void pop_back();
 
     void append(const dataframe &D);
     void append(dataframe &&D);
@@ -107,12 +81,6 @@ public:
 
     void scale();
 
-//-----------------------------------------------------------------------------
-//  iterators
-//-----------------------------------------------------------------------------
-
-    // TO DO
-
 private:
 //-----------------------------------------------------------------------------
 //  Private data fields
@@ -122,15 +90,9 @@ private:
     
     bool m_columns_set, m_scaled;
     std::size_t m_cols, m_rows;
-    // scaling m_scaling;
-
-
-
-
 };
 
 }
-
 //-----------------------------------------------------------------------------
 //  For invalid appending
 //-----------------------------------------------------------------------------

@@ -2,8 +2,6 @@
 #define NEURAL__NET__HH 
 
 #include "agile/agile_base.hh"
-
-// #include "Core.hh"
 #include "dataframe/dataframe_core.hh"
 #include "model_frame.hh"
 
@@ -18,7 +16,7 @@ namespace YAML
 }
 namespace agile
 {
-
+//----------------------------------------------------------------------------
 class neural_net : public architecture
 {
 public:
@@ -174,19 +172,6 @@ struct convert<agile::neural_net>
 
 
         arch.load_scaling(s);
-        // arch.m_scaling = node["scaling"].as<agile::scaling>();
-
-        // auto merp = node["scaling"]["means"].as<std::map<std::string, double>>();
-
-        // for (auto &entry : merp)
-        // {
-        //     std::cout << "first = " << entry.first << ", second = " << entry.second << std::endl;
-        //     arch.m_scaling.mean[entry.first] = entry.second;
-
-        // }
-
-        // // arch.m_scaling.mean = std::move(node["scaling"]["means"].as<std::map<std::string, double>>());
-        // arch.m_scaling.mean =((node["scaling"]["stdevs"].as<std::map<std::string, double>>()));
 
         return true;
     }

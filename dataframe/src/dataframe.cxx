@@ -9,18 +9,6 @@
 
 namespace agile
 {
-
-
-// agile::matrix eigenize(const agile::array &A)
-// {
-//     agile::matrix M(A.rows(), A.cols());
-    
-// }
-
-// agile::vector eigenize(const agile::slice &A)
-// {
-
-// }
 //-----------------------------------------------------------------------------
 //  Constructors, assignment, etc.
 //-----------------------------------------------------------------------------
@@ -342,12 +330,6 @@ void dataframe::append(dataframe &&D)
         column_names = std::move(D.column_names);
     }
 }
-
-//-----------------------------------------------------------------------------
-//  iterators
-//-----------------------------------------------------------------------------
-
-    // TO DO
 
 }
 
