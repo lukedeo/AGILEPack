@@ -387,6 +387,54 @@ std::map<std::string, double> neural_net::predict_map(
     }
     return std::move(prediction);
 }
+//----------------------------------------------------------------------------
+std::vector<std::string> neural_net::get_inputs()
+{
+    return predictor_order;
+}
+//----------------------------------------------------------------------------
+std::vector<std::string> neural_net::get_outputs()
+{
+    return target_order;
+}
+//----------------------------------------------------------------------------
+void neural_net::load_scaling(const agile::scaling &scale)
+{
+    m_scaling = scale;
+    m_model.load_scaling(scale);
+
+}
+//----------------------------------------------------------------------------
+void neural_net::load_scaling(agile::scaling &&scale)
+{
+    m_scaling = (scale);
+    m_model.load_scaling(std::move(scale));
+}
+//----------------------------------------------------------------------------
+agile::scaling neural_net::get_scaling()
+{
+    return m_scaling;
+}
+//----------------------------------------------------------------------------
+void neural_net::set_X(const agile::matrix &A, bool tantrum = 1)
+{
+    if (tantrum)
+    {
+        std::cout << "Warning, overriding default setting of X. Clearing all previously loaded variable based parameters." << std::endl;
+    }
+    X = A;
+    n_training = A.rows();
+}
+//----------------------------------------------------------------------------
+void neural_net::set_Y(const agile::matrix &A, bool tantrum = 1)
+{
+    if (tantrum)
+    {
+        std::cout << "Warning, overriding default setting of Y. Clearing all previously loaded variable based parameters." << std::endl;
+    }
+    Y = A;
+    n_training = A.rows();
+}
 
 }
 

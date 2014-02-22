@@ -182,7 +182,8 @@ int main(int argc, char const *argv[])
     if (passed_target == "regress") net_type = linear;
     else if (passed_target == "multiclass") net_type = softmax;
     else if (passed_target == "binary") net_type = sigmoid;
-    else complain("type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+    else complain(
+        "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
     
 //----------------------------------------------------------------------------
 

@@ -30,16 +30,10 @@ public:
 	neural_net& operator =(const neural_net &arch);
     neural_net& operator =(neural_net &&arch);
 
-	// void add_data(const std::string &filename);
 	void add_data(const agile::dataframe &D);
 	void add_data(agile::dataframe &&D);
 
-	// void set_formula(const std::string &formula);
-	// void add_predictor(const std::string &name);
-	// void add_target(const std::string &name);
 	void model_formula(const std::string &formula, bool scale = true, bool verbose = false);
-	// agile::dataframe& data();
-	// void finalize(bool scale = true);
 	void from_yaml(const std::string &filename);
 	void to_yaml(const std::string &filename);
 	void train_unsupervised(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
@@ -49,56 +43,17 @@ public:
 
     std::map<std::string, double> predict_map(std::map<std::string, double> v, bool scale = true);
 
-    std::vector<std::string> get_inputs()
-    {
-        return predictor_order;
-    }
-    std::vector<std::string> get_outputs()
-    {
-        return target_order;
-    }
+    std::vector<std::string> get_inputs();
+    std::vector<std::string> get_outputs();
 
-    void load_scaling(const agile::scaling &scale)
-    {
-        m_scaling = scale;
-        m_model.load_scaling(scale);
-
-    }
-
-    void load_scaling(agile::scaling &&scale)
-    {
-        m_scaling = (scale);
-        m_model.load_scaling(std::move(scale));
-    }
-
-    agile::scaling get_scaling()
-    {
-        return m_scaling;
-    }
+    void load_scaling(const agile::scaling &scale);
+    void load_scaling(agile::scaling &&scale);
+    agile::scaling get_scaling();
 
 // Overrides
 //----------------------------------------------------------------------------
-
-    void set_X(const agile::matrix &A, bool tantrum = 1)
-    {
-        if (tantrum)
-        {
-            std::cout << "Warning, overriding default setting of X. Clearing all previously loaded variable based parameters." << std::endl;
-        }
-        X = A;
-        n_training = A.rows();
-    }
-    void set_Y(const agile::matrix &A, bool tantrum = 1)
-    {
-        if (tantrum)
-        {
-            std::cout << "Warning, overriding default setting of Y. Clearing all previously loaded variable based parameters." << std::endl;
-        }
-        Y = A;
-        n_training = A.rows();
-    }
-
-
+    void set_X(const agile::matrix &A, bool tantrum = 1);
+    void set_Y(const agile::matrix &A, bool tantrum = 1);
 
 private:
     void internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
