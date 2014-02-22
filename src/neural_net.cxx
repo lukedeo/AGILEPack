@@ -432,7 +432,7 @@ agile::scaling neural_net::get_scaling()
     return m_scaling;
 }
 //----------------------------------------------------------------------------
-void neural_net::set_X(const agile::matrix &A, bool tantrum = 1)
+void neural_net::set_X(const agile::matrix &A, bool tantrum)
 {
     if (tantrum)
     {
@@ -442,7 +442,7 @@ void neural_net::set_X(const agile::matrix &A, bool tantrum = 1)
     n_training = A.rows();
 }
 //----------------------------------------------------------------------------
-void neural_net::set_Y(const agile::matrix &A, bool tantrum = 1)
+void neural_net::set_Y(const agile::matrix &A, bool tantrum)
 {
     if (tantrum)
     {
