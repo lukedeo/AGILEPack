@@ -139,10 +139,11 @@ void neural_net::to_yaml(const std::string &filename,
         YAML::Emitter out;
         YAML::Node net;
         net["network"] = *this;
+        net["branches"] = types;
         out << net;
         file << out.c_str();
         file.close();
-        net["branches"] = types;
+        
     }
 }
 //----------------------------------------------------------------------------
