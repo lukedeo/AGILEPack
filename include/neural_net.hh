@@ -33,15 +33,21 @@ public:
 	void add_data(const agile::dataframe &D);
 	void add_data(agile::dataframe &&D);
 
-	void model_formula(const std::string &formula, bool scale = true, bool verbose = false);
+	void model_formula(const std::string &formula, 
+        bool scale = true, bool verbose = false);
+
 	void from_yaml(const std::string &filename);
 	void to_yaml(const std::string &filename);
-	void train_unsupervised(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
-	void train_supervised(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
+	void train_unsupervised(const unsigned int &epochs, bool verbose = false, 
+        bool denoising = false, bool tantrum = false);
+
+	void train_supervised(const unsigned int &epochs, bool verbose = false, 
+        bool tantrum = false);
 
 	void check(bool tantrum = true);
 
-    std::map<std::string, double> predict_map(std::map<std::string, double> v, bool scale = true);
+    std::map<std::string, double> predict_map(std::map<std::string, double> v, 
+        bool scale = true);
 
     std::vector<std::string> get_inputs();
     std::vector<std::string> get_outputs();
@@ -56,11 +62,19 @@ public:
     void set_Y(const agile::matrix &A, bool tantrum = 1);
 
 private:
-    void internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
-    void internal_train_supervised_weighted(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
+    void internal_train_unsupervised_weighted(const unsigned int &epochs, 
+        bool verbose = false, bool denoising = false, bool tantrum = false);
 
-    void internal_train_unsupervised(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
-    void internal_train_supervised(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
+    void internal_train_supervised_weighted(const unsigned int &epochs, 
+        bool verbose = false, bool tantrum = false);
+
+
+
+    void internal_train_unsupervised(const unsigned int &epochs, 
+        bool verbose = false, bool denoising = false, bool tantrum = false);
+
+    void internal_train_supervised(const unsigned int &epochs, 
+        bool verbose = false, bool tantrum = false);
 
 	friend struct YAML::convert<neural_net>;
 	std::vector<std::string> predictor_order, target_order;

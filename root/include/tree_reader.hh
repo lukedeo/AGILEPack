@@ -58,10 +58,6 @@ public:
 
     agile::dataframe get_dataframe(int entries = -1, int start = -1, bool verbose = false);
 
-    // std::pair<agile::dataframe, agile::dataframe> get_data_pair(
-    //     const std::vector<std::string> &inputs, 
-    //     const std::vector<std::string> &targets, int entries = -1, 
-    //     int start = -1);
 //-----------------------------------------------------------------------------
 //  Element Access
 //-----------------------------------------------------------------------------
@@ -70,7 +66,6 @@ public:
     std::vector<double> operator()(const unsigned int &idx);
     double operator()(const unsigned int &idx, std::string col_name);
     std::map<std::string, double> operator()(const unsigned int &idx, const std::vector<std::string> &names);
-    // std::vector<double> operator[](std::string col_name);
 
 //-----------------------------------------------------------------------------
 //  Information
