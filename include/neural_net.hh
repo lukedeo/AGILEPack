@@ -76,6 +76,30 @@ public:
         return m_scaling;
     }
 
+// Overrides
+//----------------------------------------------------------------------------
+
+    void set_X(const agile::matrix &A, bool tantrum = 1)
+    {
+        if (tantrum)
+        {
+            std::cout << "Warning, overriding default setting of X. Clearing all previously loaded variable based parameters." << std::endl;
+        }
+        X = A;
+        n_training = A.rows();
+    }
+    void set_Y(const agile::matrix &A, bool tantrum = 1)
+    {
+        if (tantrum)
+        {
+            std::cout << "Warning, overriding default setting of Y. Clearing all previously loaded variable based parameters." << std::endl;
+        }
+        Y = A;
+        n_training = A.rows();
+    }
+
+
+
 private:
     void internal_train_unsupervised_weighted(const unsigned int &epochs, bool verbose = false, bool denoising = false, bool tantrum = false);
     void internal_train_supervised_weighted(const unsigned int &epochs, bool verbose = false, bool tantrum = false);
