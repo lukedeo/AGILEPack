@@ -4,6 +4,7 @@
 #include "yaml-cpp/yaml_core.hh"
 #include "agile/agile_base.hh"
 
+
 namespace agile 
 { 
 namespace root 
@@ -12,19 +13,17 @@ namespace root
 class binner
 {
 public:
-	template <typename T>
-	binner(const std::string &name, const std::initializer_list<T> &il);
+	binner(const std::string &name, const std::initializer_list<double> &il);
 
-	template <typename T>
-	binner(const std::string &name, const std::vector<T> &v);
+	binner(const std::string &name, const std::vector<double> &v);
 	binner(const std::string &name);
 
 	binner();
 
 	void set_name(const std::string &name);
 
-	void set_bins(const std::initializer_list<T> &il);
-	void set_bins(const std::vector<T> &v);
+	void set_bins(const std::initializer_list<double> &il);
+	void set_bins(const std::vector<double> &v);
 
 	template <typename T>
 	double get_bin(const std::map<std::string, T> &map);
@@ -42,32 +41,75 @@ private:
 
 };
 
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+binner::binner(const std::string &name, const std::initializer_list<double> &il)
+: m_name(name), m_bins(il) {}
+//----------------------------------------------------------------------------
+
+binner::binner(const std::string &name, const std::vector<double> &v)
+: m_name(name), m_bins(v) {}
+//----------------------------------------------------------------------------
+binner::binner(const std::string &name)
+: m_name(name) {}
+//----------------------------------------------------------------------------
+
+binner::binner() 
+: m_name("") {}
+//----------------------------------------------------------------------------
+
+void binner::set_name(const std::string &name)
+{
+	m_name = name;
+}
+//----------------------------------------------------------------------------
+
+void binner::set_bins(const std::initializer_list<double> &il)
+{
+	std::vector<double> v(il);
+	m_bins = std::move(v);
+}
+//----------------------------------------------------------------------------
+void binner::set_bins(const std::vector<double> &v)
+{
+	m_bins = v;
+}
+//----------------------------------------------------------------------------
+
 template <typename T>
-binner::binner(const std::string &name, const std::initializer_list<T> &il)
-: m_name(name)
-{}
+double binner::get_bin(const std::map<std::string, T> &map)
+{
+	if (!std::is_arithmetic<T>::value)
+	{
+		throw std::domain_error("nvalid type passed to binner.");
+	}
+	try
+	{
+		return find_bin(dynamic_cast<double>(map.at(m_name)));
+	}
+}
+//----------------------------------------------------------------------------
 
-	template <typename T>
-	binner(const std::string &name, const std::vector<T> &v);
-	binner(const std::string &name);
+template <typename T>
+double binner::get_bin(const T& var)
+{
 
-	binner();
+}
+//----------------------------------------------------------------------------
 
-	void set_name(const std::string &name);
+binner::~binner()
+{
 
-	void set_bins(const std::initializer_list<T> &il);
-	void set_bins(const std::vector<T> &v);
+}
+//----------------------------------------------------------------------------
 
-	template <typename T>
-	double get_bin(const std::map<std::string, T> &map);
 
-	template <typename T>
-	double get_bin(const T& var);
+double binner::find_bin(const double &val)
+{
 
-	~binner();
+}
+//----------------------------------------------------------------------------
 
-private:
-	double find_bin(const double &val);
 
 
 
