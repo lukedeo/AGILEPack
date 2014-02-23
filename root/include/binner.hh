@@ -81,11 +81,16 @@ double binner::get_bin(const std::map<std::string, T> &map)
 {
 	if (!std::is_arithmetic<T>::value)
 	{
-		throw std::domain_error("nvalid type passed to binner.");
+		throw std::domain_error("invalid type passed to binner.");
 	}
 	try
 	{
 		return find_bin(dynamic_cast<double>(map.at(m_name)));
+	}
+	catch(std::out_of_range &e)
+	{
+		throw std::out_of_range("no key named \'" + 
+			m_name +  "\' found in map.");
 	}
 }
 //----------------------------------------------------------------------------
@@ -93,7 +98,11 @@ double binner::get_bin(const std::map<std::string, T> &map)
 template <typename T>
 double binner::get_bin(const T& var)
 {
-
+	if (!std::is_arithmetic<T>::value)
+	{
+		throw std::domain_error("invalid type passed to binner.");
+	}
+	return find_bin(dynamic_cast<double>(var));
 }
 //----------------------------------------------------------------------------
 
@@ -106,7 +115,7 @@ binner::~binner()
 
 double binner::find_bin(const double &val)
 {
-
+	
 }
 //----------------------------------------------------------------------------
 
