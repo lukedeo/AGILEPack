@@ -5,6 +5,13 @@
 #include "agile/agile_base.hh"
 
 
+namespace agile { namespace root { class binner; }}
+
+namespace YAML
+{
+    template <>
+    struct convert<agile::root::binner>;
+}
 namespace agile 
 { 
 namespace root 
@@ -14,7 +21,6 @@ class binner
 {
 public:
 	binner(const std::string &name, const std::initializer_list<double> &il);
-
 	binner(const std::string &name, const std::vector<double> &v);
 	binner(const std::string &name);
 
@@ -38,15 +44,13 @@ public:
 	bool in_range(const T& var);
 
 	~binner();
-
 private:
+	friend struct YAML::convert<binner>;
 	int find_bin(const double &val);
 	std::string m_name;
 	std::vector<double> m_bins;
 	bool m_bins_present;
 	bool m_name_present;
-	// binner m_sub_binner;
-
 };
 
 //----------------------------------------------------------------------------
@@ -175,6 +179,30 @@ int binner::find_bin(const double &val)
 //----------------------------------------------------------------------------
 
 }
+
+}
+
+namespace YAML 
+{
+
+template<>
+struct convert<agile::root::binner> 
+{
+    static Node encode(const agile::root::binner &b)
+    {
+        Node node;
+        node["name"] = b.m_name;
+        node["bins"] = b.m_bins;
+        return node;
+    }
+
+    static bool decode(const Node& node, agile::root::binner &b) 
+    {
+    	b.m_name = node["name"].as<std::string>();
+    	b.m_bins = node["bins"].as<std::vector<double>>();
+        return true;
+    }
+};
 
 }
 
