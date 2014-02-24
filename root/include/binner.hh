@@ -20,33 +20,33 @@ namespace root
 class binner
 {
 public:
-	binner(const std::string &name, const std::initializer_list<double> &il);
-	binner(const std::string &name, const std::vector<double> &v);
-	binner(const std::string &name);
+	inline binner(const std::string &name, const std::initializer_list<double> &il);
+	inline binner(const std::string &name, const std::vector<double> &v);
+	inline binner(const std::string &name);
 
-	binner();
+	inline binner();
 
-	void set_name(const std::string &name);
+	inline void set_name(const std::string &name);
 
-	void set_bins(const std::initializer_list<double> &il);
-	void set_bins(const std::vector<double> &v);
-
-	template <typename T>
-	int get_bin(const std::map<std::string, T> &map);
+	inline void set_bins(const std::initializer_list<double> &il);
+	inline void set_bins(const std::vector<double> &v);
 
 	template <typename T>
-	int get_bin(const T& var);
+	inline int get_bin(const std::map<std::string, T> &map);
 
 	template <typename T>
-	bool in_range(const std::map<std::string, T> &map);
+	inline int get_bin(const T& var);
 
 	template <typename T>
-	bool in_range(const T& var);
+	inline bool in_range(const std::map<std::string, T> &map);
 
-	~binner();
+	template <typename T>
+	inline bool in_range(const T& var);
+
+	inline ~binner();
 private:
 	friend struct YAML::convert<binner>;
-	int find_bin(const double &val);
+	inline int find_bin(const double &val);
 	std::string m_name;
 	std::vector<double> m_bins;
 	bool m_bins_present;
@@ -54,40 +54,40 @@ private:
 };
 
 //----------------------------------------------------------------------------
-binner::binner(const std::string &name, 
+inline binner::binner(const std::string &name, 
 	const std::initializer_list<double> &il)
 : m_name(name), m_bins(il) {}
 //----------------------------------------------------------------------------
-binner::binner(const std::string &name, const std::vector<double> &v)
+inline binner::binner(const std::string &name, const std::vector<double> &v)
 : m_name(name), m_bins(v) {}
 //----------------------------------------------------------------------------
-binner::binner(const std::string &name)
+inline binner::binner(const std::string &name)
 : m_name(name) {}
 //----------------------------------------------------------------------------
-binner::binner() 
+inline binner::binner() 
 : m_name("") {}
 //----------------------------------------------------------------------------
 
-void binner::set_name(const std::string &name)
+inline void binner::set_name(const std::string &name)
 {
 	m_name = name;
 }
 //----------------------------------------------------------------------------
 
-void binner::set_bins(const std::initializer_list<double> &il)
+inline void binner::set_bins(const std::initializer_list<double> &il)
 {
 	std::vector<double> v(il);
 	m_bins = std::move(v);
 }
 //----------------------------------------------------------------------------
-void binner::set_bins(const std::vector<double> &v)
+inline void binner::set_bins(const std::vector<double> &v)
 {
 	m_bins = v;
 }
 //----------------------------------------------------------------------------
 
 template <typename T>
-int binner::get_bin(const std::map<std::string, T> &map)
+inline int binner::get_bin(const std::map<std::string, T> &map)
 {
 	if (!std::is_arithmetic<T>::value)
 	{
@@ -106,7 +106,7 @@ int binner::get_bin(const std::map<std::string, T> &map)
 //----------------------------------------------------------------------------
 
 template <typename T>
-int binner::get_bin(const T& var)
+inline int binner::get_bin(const T& var)
 {
 	if (!std::is_arithmetic<T>::value)
 	{
@@ -117,7 +117,7 @@ int binner::get_bin(const T& var)
 //----------------------------------------------------------------------------
 
 template <typename T>
-bool binner::in_range(const std::map<std::string, T> &map)
+inline bool binner::in_range(const std::map<std::string, T> &map)
 {
 	if (!std::is_arithmetic<T>::value)
 	{
@@ -141,7 +141,7 @@ bool binner::in_range(const std::map<std::string, T> &map)
 //----------------------------------------------------------------------------
 
 template <typename T>
-bool binner::in_range(const T& var)
+inline bool binner::in_range(const T& var)
 {
 	if (!std::is_arithmetic<T>::value)
 	{
@@ -156,25 +156,25 @@ bool binner::in_range(const T& var)
 }
 //----------------------------------------------------------------------------
 
-binner::~binner()
+inline binner::~binner()
 {
 
 }
 //----------------------------------------------------------------------------
 
 
-int binner::find_bin(const double &val)
+inline int binner::find_bin(const double &val)
 {
 	double lower_bound = m_bins.front();
 	for (unsigned int i = 1; i < m_bins.size(); ++i)
 	{
 		if((val >= lower_bound) && (val < m_bins[i]))
 		{
-			return dynamic_cast<int>(i - 1);
+			return static_cast<int>(i - 1);
 		}
 	}
 	throw std::out_of_range("value = " + std::to_string(val) + 
-		" outside of binning range.")
+		" outside of binning range.");
 }
 //----------------------------------------------------------------------------
 

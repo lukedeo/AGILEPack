@@ -10,6 +10,7 @@
 #include <cstddef> //std::size_t
 #include "smart_chain.hh"
 #include "numeric_handler.hh"
+#include "binner.hh"
 #include "dataframe/dataframe_core.hh"
 #include "agile/agile_base.hh"
 #include "yaml-cpp/yaml_core.hh"
