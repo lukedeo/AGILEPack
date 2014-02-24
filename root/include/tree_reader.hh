@@ -53,6 +53,8 @@ public:
 
     void set_branch(std::string branch_name, numeric_type type);
 
+    // void create_binning(const std::string &branch_name, )
+
     void set_branches(const std::string &yamlfile);
 
     std::vector<std::string> get_ordered_branch_names();
@@ -90,6 +92,9 @@ private:
     typedef __INTERNAL::numeric_handler number_container;
     std::vector<std::unique_ptr<number_container>> storage;
     std::vector<std::string> feature_names;
+
+    std::map<std::string, agile::root::binner> m_binned_vars;
+
 };
 
 } // end ns root
