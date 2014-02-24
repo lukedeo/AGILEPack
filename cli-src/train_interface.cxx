@@ -85,6 +85,9 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
     p.add_option("--verbose", "-v") .help("Make the output verbose");
 //----------------------------------------------------------------------------
+    p.add_option("--weights", "-w") .help("print a file with the first layer weight matrix.")
+                                    .mode(optionparser::store_value);
+//----------------------------------------------------------------------------
     p.add_option("-start")          .help("Start index for training. (Default = 0)")
                                     .mode(optionparser::store_value)
                                     .default_value(0);
@@ -246,6 +249,22 @@ int main(int argc, char const *argv[])
         std::cout << "Done." << std::endl;
     }
 
+    if (p.get_value("weights"))
+    {
+        std::ofstream wght(p.get_value<std::string>("weights"));
+        auto W = net.at(0)->get_weights();
+
+        for (int i = 0; i < W.rows(); ++i)
+        {
+            for (int j = 0; j < W.cols(); ++j)
+            {
+                wght << W(i, j) << " ";
+            }
+            wght << "\n";
+        }
+        wght.close();
+    }
+    
     return 0;
 }
 

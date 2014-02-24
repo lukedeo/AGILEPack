@@ -5,7 +5,13 @@
 #include "agile/agile_base.hh"
 
 
-namespace agile { namespace root { class binner; }}
+namespace agile 
+{ 
+namespace root 
+{ 
+	class binner; 
+}
+}
 
 namespace YAML
 {
