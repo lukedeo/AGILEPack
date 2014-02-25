@@ -20,22 +20,22 @@ namespace agile
 class neural_net : public architecture
 {
 public:
-	neural_net(int num_layers = 0);
-	neural_net(std::initializer_list<int> il, problem_type type = regress);
-	neural_net(const neural_net &arch);
-	~neural_net();
+    neural_net(int num_layers = 0);
+    neural_net(std::initializer_list<int> il, problem_type type = regress);
+    neural_net(const neural_net &arch);
+    ~neural_net();
 
-	neural_net& operator =(const neural_net &arch);
+    neural_net& operator =(const neural_net &arch);
     neural_net& operator =(neural_net &&arch);
 
-	void add_data(const agile::dataframe &D);
-	void add_data(agile::dataframe &&D);
+    void add_data(const agile::dataframe &D);
+    void add_data(agile::dataframe &&D);
 
-	void model_formula(const std::string &formula, 
+    void model_formula(const std::string &formula, 
         bool scale = true, bool verbose = false);
 
-	void from_yaml(const std::string &filename);
-	void to_yaml(const std::string &filename);
+    void from_yaml(const std::string &filename);
+    void to_yaml(const std::string &filename);
     void to_yaml(const std::string &filename, 
         const std::map<std::string, std::string> &types);
 
@@ -46,13 +46,13 @@ public:
     // template <class T>
     // void to_yaml(const std::string &filename, const T &R);
 
-	void train_unsupervised(const unsigned int &epochs, bool verbose = false, 
+    void train_unsupervised(const unsigned int &epochs, bool verbose = false, 
         bool denoising = false, bool tantrum = false);
 
-	void train_supervised(const unsigned int &epochs, bool verbose = false, 
+    void train_supervised(const unsigned int &epochs, bool verbose = false, 
         bool tantrum = false);
 
-	void check(bool tantrum = true);
+    void check(bool tantrum = true);
 
     std::map<std::string, double> predict_map(std::map<std::string, double> v, 
         bool scale = true);
@@ -85,14 +85,14 @@ private:
         bool verbose = false, bool tantrum = false);
 
 
-	friend struct YAML::convert<neural_net>;
-	std::vector<std::string> predictor_order, target_order;
+    friend struct YAML::convert<neural_net>;
+    std::vector<std::string> predictor_order, target_order;
 
-	agile::matrix X, Y, pattern_weights;
+    agile::matrix X, Y, pattern_weights;
 
-	agile::model_frame m_model;
-	unsigned int n_training;
-	bool m_checked, m_weighted;
+    agile::model_frame m_model;
+    unsigned int n_training;
+    bool m_checked, m_weighted;
     agile::vector m_tmp_input, m_tmp_output;
     agile::scaling m_scaling;
 };
@@ -170,7 +170,7 @@ struct convert<agile::neural_net>
         }
 
         arch.predictor_order = node["input_order"].as<std::vector<std::string>>();
-		arch.target_order = node["target_order"].as<std::vector<std::string>>();
+        arch.target_order = node["target_order"].as<std::vector<std::string>>();
 
         agile::scaling s = node["scaling"].as<agile::scaling>();
 

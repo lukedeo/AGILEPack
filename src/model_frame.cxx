@@ -27,7 +27,7 @@ model_frame::~model_frame()
 //----------------------------------------------------------------------------
 void model_frame::add_dataset(const agile::dataframe &D)
 {
-	DF.append(D);
+    DF.append(D);
 }
 //----------------------------------------------------------------------------
 void model_frame::add_dataset(agile::dataframe &&D)
@@ -38,7 +38,7 @@ void model_frame::add_dataset(agile::dataframe &&D)
 void model_frame::model_formula(const std::string &formula)
 {
     m_formula = formula;
-	parse_formula(formula);
+    parse_formula(formula);
 }
 
 void model_frame::generate(bool verbose)
@@ -216,9 +216,9 @@ void model_frame::parse_formula(std::string formula)
         auto new_var = lhs.substr(start, end - start);
         outputs.push_back(new_var);
         if (wildcard)
-		{
-			exclusions.insert(new_var);
-		}  
+        {
+            exclusions.insert(new_var);
+        }  
         
         if (end == std::string::npos) parsing = false;
         start = end + 1;
@@ -236,10 +236,10 @@ void model_frame::parse_formula(std::string formula)
         }
         else
         {
-        	if (!wildcard)
-        	{
-        		inputs.push_back(new_var);
-        	}
+            if (!wildcard)
+            {
+                inputs.push_back(new_var);
+            }
         }
         if (end == std::string::npos) parsing = false;
         start = end + 1;
@@ -247,13 +247,13 @@ void model_frame::parse_formula(std::string formula)
     }
     if (wildcard)
     {
-    	for (auto &name : DF.get_column_names())
-    	{
-    		if (exclusions.count(name) == 0)
-    		{
-    			inputs.push_back(name);
-    		}
-    	}    
+        for (auto &name : DF.get_column_names())
+        {
+            if (exclusions.count(name) == 0)
+            {
+                inputs.push_back(name);
+            }
+        }    
     }
     x_set = (inputs.size() == 0) ? false : true;
     y_set = (outputs.size() == 0) ? false : true;
