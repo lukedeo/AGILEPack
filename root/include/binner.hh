@@ -37,6 +37,8 @@ public:
 	inline binner& set_bins(const std::initializer_list<double> &il);
 	inline binner& set_bins(const std::vector<double> &v);
 
+	inline std::vector<double> get_bins();
+
 	template <typename T>
 	inline int get_bin(const std::map<std::string, T> &map);
 
@@ -80,6 +82,11 @@ inline binner& binner::set_name(const std::string &name)
 	return *this;
 }
 //----------------------------------------------------------------------------
+
+inline std::vector<double> binner::get_bins()
+{
+	return std::move(m_bins);
+}
 
 inline binner& binner::set_bins(const std::initializer_list<double> &il)
 {

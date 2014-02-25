@@ -176,13 +176,23 @@ void tree_reader::set_branches(const std::string &yamlfile)
         throw std::runtime_error("configuration files must have a map entitled 'branches'");
     }
     try
-    {
-        YAML::Node binning = tmp["binning"];
-        std::map<std::string, agile::root::binner> bins = binning.as<std::map<std::string, agile::root::binner>>();
+    {   
+        std::cout << "HERE!" << std::endl;
 
-        for (auto &entry : bins)
+        YAML::Node strat = tmp["binning"]["pt"];
+
+        auto vec = strat.as<std::vector<double>>();
+
+
+        YAML::Node binning = tmp["binning"];
+
+        auto bins = binning.as<std::map<std::string, std::vector<double>>>();
+
+
+
+        for (auto &entry : bins["pt"])
         {
-            std::cout << "binner variable: " << entry.first << std::endl;
+            std::cout << "  " << entry << std::endl;
         }
     }
     catch(YAML::BadConversion &e){}
