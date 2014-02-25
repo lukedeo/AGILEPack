@@ -61,12 +61,15 @@ public:
 
     void set_branches(const std::string &yamlfile);
 
+    bool entry_in_range();
+
     std::vector<std::string> get_ordered_branch_names();
 
     agile::dataframe get_dataframe(int entries = -1, int start = -1, 
         bool verbose = false);
 
     std::map<std::string, std::string> get_var_types();
+    std::map<std::string, std::vector<double>> get_binning();
 
 //-----------------------------------------------------------------------------
 //  Element Access
@@ -101,6 +104,7 @@ private:
     std::vector<std::string> feature_names, binned_names;
 
     std::map<std::string, agile::root::binner> m_binned_vars;
+    std::map<std::string, std::vector<double>> m_binning_strategy;
 
 };
 
