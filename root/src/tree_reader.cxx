@@ -109,19 +109,36 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
-void create_binning(const std::string &branch_name, 
+bool tree_reader::entry_in_range()
+{
+    if (!m_binned_present)
+    {
+        return true;
+    }
+    bool ok = true;
+    for (auto &name : binned_names)
+    {
+        ok = ok && m_binned_vars[name].in_range(
+            storage.at(traits[name].pos)->get_value<double>());
+    }
+    return ok;
+}
+//----------------------------------------------------------------------------
+void tree_reader::create_binning(const std::string &branch_name, 
     const std::initializer_list<double> &il)
 {
     binned_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+    m_binned_present = true;
 }
 
 //----------------------------------------------------------------------------
-void create_binning(const std::string &branch_name, 
+void tree_reader::create_binning(const std::string &branch_name, 
     const std::vector<double> &v)
 {
     binned_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
+    m_binned_present = true;
 }
 //----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
@@ -158,6 +175,28 @@ void tree_reader::set_branches(const std::string &yamlfile)
     {
         throw std::runtime_error("configuration files must have a map entitled 'branches'");
     }
+    try
+    {   
+        std::cout << "HERE!" << std::endl;
+
+        YAML::Node strat = tmp["binning"]["pt"];
+
+        auto vec = strat.as<std::vector<double>>();
+
+
+        YAML::Node binning = tmp["binning"];
+
+        auto bins = binning.as<std::map<std::string, std::vector<double>>>();
+
+
+
+        for (auto &entry : bins["pt"])
+        {
+            std::cout << "  " << entry << std::endl;
+        }
+    }
+    catch(YAML::BadConversion &e){}
+
     
 }
 //----------------------------------------------------------------------------
@@ -194,8 +233,14 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
             pct = (double)(curr_entry - start) / (double)(entries);
             agile::progress_bar(pct * 100);
         }
+
+        m_smart_chain->GetEntry(curr_entry);
+
+        if (entry_in_range())
+        {
+            D.push_back(std::move(at((unsigned int)curr_entry)));
+        }
         
-        D.push_back(std::move(at((unsigned int)curr_entry)));
     }
     return std::move(D);
 }
@@ -211,9 +256,14 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     {
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
     }
-    if (!binned_names)
+    if (m_binned_present)
     {
-        /* code */
+        for (auto &name : binned_names)
+        {
+            int bin = m_binned_vars[name].get_bin(
+                storage.at(traits[name].pos)->get_value<double>());
+            v.push_back((double)bin);
+        }
     }
     return std::move(v);
 }
