@@ -140,6 +140,11 @@ std::ostream& operator << ( std::ostream& os, dataframe &data )
     }
     for (auto &row : data.data)
     {
+        // for (auto &entry : row)
+        // {
+        //     os << entry << ", ";
+        // }
+        // os << /*knit(row) << */"\n";
         os << knit(row) << "\n";
     }
     return os;
@@ -273,6 +278,11 @@ void dataframe::push_back(record_t &&r)
         std::string wha("vectors to be push_back()'d must be the same size");
         throw dimension_error(wha);
     }
+    // for (auto &entry : r)
+    // {
+    //     std::cout << entry << "   ";
+    // }
+    // std::cout << std::endl;
     data.push_back(std::move(r));
     ++m_rows;
 }

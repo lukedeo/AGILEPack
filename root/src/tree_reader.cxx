@@ -239,6 +239,11 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
 
         if (entry_in_range())
         {
+            // for (auto &entry : at((unsigned int)curr_entry))
+            // {
+            //     std::cout << entry << "   ";
+            // }
+            // std::cout << std::endl;
             D.push_back(std::move(at((unsigned int)curr_entry)));
         }
         
