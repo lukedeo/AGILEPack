@@ -61,6 +61,8 @@ public:
 
     void set_branches(const std::string &yamlfile);
 
+    bool entry_in_range(const unsigned int &idx);
+
     std::vector<std::string> get_ordered_branch_names();
 
     agile::dataframe get_dataframe(int entries = -1, int start = -1, 
