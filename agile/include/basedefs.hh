@@ -38,7 +38,7 @@ typedef colvec vector;
 typedef Eigen::Map<Eigen::VectorXd> std_2_eigen;
 namespace types
 {
-	enum paradigm { Basic, Autoencoder, Boltzmann, Dropout };
+    enum paradigm { Basic, Autoencoder, Boltzmann, Dropout };
 }
 //----------------------------------------------------------------------------
 std::mt19937_64& mersenne_engine();
@@ -71,49 +71,49 @@ namespace colors
 //----------------------------------------------------------------------------
 inline std::string reset()
 {
-	return "\033[0m";
+    return "\033[0m";
 }
 //----------------------------------------------------------------------------
 inline std::string black()
 {
-	return "\033[30m";
+    return "\033[30m";
 }
 //----------------------------------------------------------------------------
 inline std::string red()
 {
-	return "\033[31m";
+    return "\033[31m";
 }
 //----------------------------------------------------------------------------
 inline std::string green()
 {
-	return "\033[32m";
+    return "\033[32m";
 }
 //----------------------------------------------------------------------------
 inline std::string yellow()
 {
-	return "\033[33m";
+    return "\033[33m";
 }
 //----------------------------------------------------------------------------
 inline std::string blue()
 {
-	return "\033[34m";
+    return "\033[34m";
 }
 //----------------------------------------------------------------------------
 inline std::string magenta()
 {
-	return "\033[35m";
+    return "\033[35m";
 }
 //----------------------------------------------------------------------------
 inline std::string cyan()
 {
-	return "\033[36m";
+    return "\033[36m";
 }
 //----------------------------------------------------------------------------
 inline std::string white()
 {
-	return "\033[37m";
+    return "\033[37m";
 }
-	
+    
 }// end ns colors
 }// end ns agile
 

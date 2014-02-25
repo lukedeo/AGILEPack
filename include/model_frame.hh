@@ -16,14 +16,14 @@ namespace agile
 //----------------------------------------------------------------------------
 struct scaling
 {
-	std::map<std::string, double> mean;
-	std::map<std::string, double> sd;
+    std::map<std::string, double> mean;
+    std::map<std::string, double> sd;
 };
 //----------------------------------------------------------------------------
 inline void calc_normalization(const agile::vector &input, 
-	const std::string col_name, agile::scaling &scale)
+    const std::string col_name, agile::scaling &scale)
 {
-	unsigned int count = input.rows();
+    unsigned int count = input.rows();
     double M = input(0);
     double Q = 0.0;
     for (unsigned int k = 1 ; k < count ; k++) 
@@ -48,44 +48,44 @@ public:
 //  Constructors, destructors, etc.
 //-----------------------------------------------------------------------------
 
-	model_frame(const agile::dataframe &D);
-	// model_frame(agile::dataframe &&D);
-	model_frame();
-	~model_frame();
+    model_frame(const agile::dataframe &D);
+    // model_frame(agile::dataframe &&D);
+    model_frame();
+    ~model_frame();
 //-----------------------------------------------------------------------------
 //  Adding dataframes
 //-----------------------------------------------------------------------------
 
-	void add_dataset(const agile::dataframe &D);
-	void add_dataset(agile::dataframe &&D);
+    void add_dataset(const agile::dataframe &D);
+    void add_dataset(agile::dataframe &&D);
 
 //-----------------------------------------------------------------------------
 //  Parsing!
 //-----------------------------------------------------------------------------
 
-	void model_formula(const std::string &formula);
+    void model_formula(const std::string &formula);
 
 //-----------------------------------------------------------------------------
 //  generation and final model frames.
 //-----------------------------------------------------------------------------
-	void generate(bool verbose = false);
-	void scale(bool verbose = false);
+    void generate(bool verbose = false);
+    void scale(bool verbose = false);
 
 
-	void load_scaling(const agile::scaling &scale);
-	// void load_scaling(agile::scaling &&scale);
-	agile::scaling get_scaling();
-	agile::matrix& Y();
-	agile::matrix& X();
-	agile::vector& weighting();
+    void load_scaling(const agile::scaling &scale);
+    // void load_scaling(agile::scaling &&scale);
+    agile::scaling get_scaling();
+    agile::matrix& Y();
+    agile::matrix& X();
+    agile::vector& weighting();
 
-	std::vector<std::string> get_inputs();
-	std::vector<std::string> get_outputs();
+    std::vector<std::string> get_inputs();
+    std::vector<std::string> get_outputs();
 
-	bool is_weighted()
-	{
-		return weights_set;
-	}
+    bool is_weighted()
+    {
+        return weights_set;
+    }
 
 private:
 
@@ -93,26 +93,26 @@ private:
 //  Internal implementations and private data members.
 //-----------------------------------------------------------------------------
 
-	void parse_formula(std::string formula);
-	// void parse_constraint(std::string formula);
+    void parse_formula(std::string formula);
+    // void parse_constraint(std::string formula);
 
-	agile::dataframe DF;
+    agile::dataframe DF;
 
-	agile::matrix m_X, m_Y;
-	agile::vector m_weighting;
-	std::string m_formula, weighting_variable;
+    agile::matrix m_X, m_Y;
+    agile::vector m_weighting;
+    std::string m_formula, weighting_variable;
 
-	// std::map<std::string, std::pair<double, double>> constraints;
+    // std::map<std::string, std::pair<double, double>> constraints;
 
-	std::map<std::string, std::vector<double> > binner;
+    std::map<std::string, std::vector<double> > binner;
 
-	std::vector<std::string> inputs, outputs;
+    std::vector<std::string> inputs, outputs;
 
-	std::unordered_set<std::string> exclusions;
+    std::unordered_set<std::string> exclusions;
 
-	bool x_set, y_set, weights_set;
+    bool x_set, y_set, weights_set;
 
-	agile::scaling m_scaling;
+    agile::scaling m_scaling;
 
 };
 
@@ -122,7 +122,7 @@ private:
 class parsing_error : public std::runtime_error
 {
 public:
-	parsing_error(const std::string &what);
+    parsing_error(const std::string &what);
 };
 }
 
@@ -145,8 +145,8 @@ struct convert<agile::scaling>
 
     static bool decode(const Node& node, agile::scaling &scale) 
     {
-    	scale.mean = node["mean"].as<std::map<std::string, double>>();
-    	scale.sd = node["sd"].as<std::map<std::string, double>>();
+        scale.mean = node["mean"].as<std::map<std::string, double>>();
+        scale.sd = node["sd"].as<std::map<std::string, double>>();
         return true;
     }
 };
