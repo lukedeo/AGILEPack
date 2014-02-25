@@ -174,6 +174,12 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
     agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
 
+    std::ofstream dframe("testfram.csv");
+   
+    dframe << D;
+
+    dframe.close();
+
     agile::neural_net net;
     net.add_data(D);
 
