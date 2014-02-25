@@ -185,6 +185,8 @@ void tree_reader::set_branches(const std::string &yamlfile)
             std::cout << "binner variable: " << entry.first << std::endl;
         }
     }
+    catch(YAML::BadConversion &e){}
+
     
 }
 //----------------------------------------------------------------------------
