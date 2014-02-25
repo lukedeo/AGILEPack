@@ -140,11 +140,6 @@ std::ostream& operator << ( std::ostream& os, dataframe &data )
     }
     for (auto &row : data.data)
     {
-        // for (auto &entry : row)
-        // {
-        //     os << entry << ", ";
-        // }
-        // os << /*knit(row) << */"\n";
         os << knit(row) << "\n";
     }
     return os;
@@ -154,20 +149,6 @@ data_t& dataframe::raw()
 {
     return data;
 }
-
-// dataframe dataframe::subset(std::vector<std::string> names)
-// {
-//     for (auto &row : raw())
-//     {
-//         record_t tmp(names.size());
-//         int ctr = names.size() - 1;
-//         for (auto &name : names)
-//         {
-//             tmp.at(ctr).at(column_names.at(name));
-//         }
-//     }
-//     return 
-// }
 
 
 
