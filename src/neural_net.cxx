@@ -155,15 +155,13 @@ void neural_net::to_yaml(const std::string &filename,
     {
         YAML::Emitter out;
         YAML::Node net;
+
         net["network"] = *this;
         net["branches"] = types;
+        net["binning"] = binning;
+
         out << net;
-
-        YAML::Node bins;
-
-        bins["binning"] = binning;
-
-        out << YAML::Flow << bins;
+        
         file << out.c_str();
         file.close();    
     }
