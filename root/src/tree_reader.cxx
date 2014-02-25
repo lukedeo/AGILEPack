@@ -223,7 +223,7 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
     {
         for (auto &entry : binned_names)
         {
-            all_names.push_back("categ_"entry);
+            all_names.push_back("categ_" + entry);
         }
     }
     D.set_column_names(all_names);
