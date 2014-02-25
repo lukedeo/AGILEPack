@@ -53,7 +53,11 @@ public:
 
     void set_branch(std::string branch_name, numeric_type type);
 
-    // void create_binning(const std::string &branch_name, )
+    void create_binning(const std::string &branch_name, 
+        const std::initializer_list<double> &il);
+
+    void create_binning(const std::string &branch_name, 
+        const std::vector<double> &v);
 
     void set_branches(const std::string &yamlfile);
 
@@ -91,7 +95,10 @@ private:
     std::map<std::string, std::string> variable_type_map;
     typedef __INTERNAL::numeric_handler number_container;
     std::vector<std::unique_ptr<number_container>> storage;
-    std::vector<std::string> feature_names;
+
+
+    bool m_binned_present;
+    std::vector<std::string> feature_names, binned_names;
 
     std::map<std::string, agile::root::binner> m_binned_vars;
 

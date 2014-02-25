@@ -12,7 +12,7 @@ namespace root
 
 //----------------------------------------------------------------------------
 tree_reader::tree_reader(std::string filename, std::string tree_name)
-: m_smart_chain(0), m_size(0), m_tree_name(tree_name)
+: m_smart_chain(0), m_size(0), m_tree_name(tree_name), m_binned_present(false)
 {
     if(tree_name != "")
     {
@@ -33,7 +33,7 @@ tree_reader::tree_reader(std::string filename, std::string tree_name)
 //----------------------------------------------------------------------------
 tree_reader::tree_reader(const std::vector<std::string>& files, 
     std::string tree_name)
-: m_smart_chain(0), m_size(0), m_tree_name(tree_name)
+: m_smart_chain(0), m_size(0), m_tree_name(tree_name), m_binned_present(false)
 {
     if (tree_name == "")
     {
@@ -107,6 +107,21 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
             break;
         }
     }
+}
+//----------------------------------------------------------------------------
+void create_binning(const std::string &branch_name, 
+    const std::initializer_list<double> &il)
+{
+    binned_names.push_back(branch_name);
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+}
+
+//----------------------------------------------------------------------------
+void create_binning(const std::string &branch_name, 
+    const std::vector<double> &v)
+{
+    binned_names.push_back(branch_name);
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
 }
 //----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
@@ -195,6 +210,10 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     for (auto &name : feature_names)
     {
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
+    }
+    if (!binned_names)
+    {
+        /* code */
     }
     return std::move(v);
 }
