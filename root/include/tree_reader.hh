@@ -61,7 +61,7 @@ public:
 
     void set_branches(const std::string &yamlfile);
 
-    bool entry_in_range(const unsigned int &idx);
+    bool entry_in_range();
 
     std::vector<std::string> get_ordered_branch_names();
 

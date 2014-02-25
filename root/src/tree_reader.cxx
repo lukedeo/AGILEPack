@@ -109,14 +109,19 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
-bool tree_reader::entry_in_range(const unsigned int &idx)
+bool tree_reader::entry_in_range()
 {
-    std::map<std::string, double> map;
-    for (auto &name : names)
+    if (!m_binned_present)
     {
-        map[name] = storage.at(traits[name].pos)->get_value<double>();
+        return true;
     }
-    return std::move(map);
+    bool ok = true;
+    for (auto &name : binned_names)
+    {
+        ok = ok && m_binned_vars[name].in_range(
+            storage.at(traits[name].pos)->get_value<double>());
+    }
+    return ok;
 }
 //----------------------------------------------------------------------------
 void tree_reader::create_binning(const std::string &branch_name, 
@@ -207,7 +212,13 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
             agile::progress_bar(pct * 100);
         }
         
-        D.push_back(std::move(at((unsigned int)curr_entry)));
+        m_smart_chain->GetEntry(curr_entry);
+
+        if (entry_in_range())
+        {
+            D.push_back(std::move(at((unsigned int)curr_entry)));
+        }
+        
     }
     return std::move(D);
 }
