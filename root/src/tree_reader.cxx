@@ -129,6 +129,9 @@ void tree_reader::create_binning(const std::string &branch_name,
 {
     binned_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+
+    std::vector<double> v(il);
+    m_binning_strategy[branch_name] = v;
     m_binned_present = true;
 }
 
@@ -138,6 +141,7 @@ void tree_reader::create_binning(const std::string &branch_name,
 {
     binned_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
+    m_binning_strategy[branch_name] = v;
     m_binned_present = true;
 }
 //----------------------------------------------------------------------------
@@ -177,22 +181,14 @@ void tree_reader::set_branches(const std::string &yamlfile)
     }
     try
     {   
-        std::cout << "HERE!" << std::endl;
-
-        YAML::Node strat = tmp["binning"]["pt"];
-
-        auto vec = strat.as<std::vector<double>>();
-
 
         YAML::Node binning = tmp["binning"];
 
         auto bins = binning.as<std::map<std::string, std::vector<double>>>();
 
-
-
-        for (auto &entry : bins["pt"])
+        for (auto &entry : bins)
         {
-            std::cout << "  " << entry << std::endl;
+            create_binning(entry.first, entry.second);
         }
     }
     catch(YAML::BadConversion &e){}
@@ -203,6 +199,15 @@ void tree_reader::set_branches(const std::string &yamlfile)
 std::map<std::string, std::string> tree_reader::get_var_types()
 {
     return variable_type_map;
+}
+//----------------------------------------------------------------------------
+std::map<std::string, std::vector<double>> tree_reader::get_binning()
+{
+    if(!m_binned_present)
+    {
+        throw std::logic_error("bins not set!");
+    }
+    return m_binning_strategy;
 }
 //----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, 
@@ -225,7 +230,16 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
     int curr_entry = 0;
     double pct;
     agile::dataframe D;
-    D.set_column_names(feature_names);
+
+    auto all_names = feature_names;
+    if (m_binned_present)
+    {
+        for (auto &entry : binned_names)
+        {
+            all_names.push_back("categ_" + entry);
+        }
+    }
+    D.set_column_names(all_names);
     for (curr_entry = start; curr_entry < stop; ++curr_entry)
     {
         if (verbose)
@@ -238,6 +252,11 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
 
         if (entry_in_range())
         {
+            // for (auto &entry : at((unsigned int)curr_entry))
+            // {
+            //     std::cout << entry << "   ";
+            // }
+            // std::cout << std::endl;
             D.push_back(std::move(at((unsigned int)curr_entry)));
         }
         

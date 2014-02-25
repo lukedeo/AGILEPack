@@ -174,6 +174,12 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
     agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
 
+    std::ofstream dframe("testfram.csv");
+   
+    dframe << D;
+
+    dframe.close();
+
     agile::neural_net net;
     net.add_data(D);
 
@@ -243,7 +249,7 @@ int main(int argc, char const *argv[])
     {
         std::cout << "\nDone.\nSaving to " << save_file << "...";
     }
-    net.to_yaml(save_file, TR.get_var_types());
+    net.to_yaml(save_file, TR.get_var_types(), TR.get_binning());
     if (verbose)
     {
         std::cout << "Done." << std::endl;
