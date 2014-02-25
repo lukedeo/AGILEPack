@@ -109,6 +109,19 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
+void create_binning(const std::string &branch_name, 
+    const std::initializer_list<double> &il)
+{
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+}
+
+//----------------------------------------------------------------------------
+void create_binning(const std::string &branch_name, 
+    const std::vector<double> &v)
+{
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+}
+//----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
 {
     YAML::Node tmp = YAML::LoadFile(yamlfile);
