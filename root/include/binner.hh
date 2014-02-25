@@ -5,7 +5,13 @@
 #include "agile/agile_base.hh"
 
 
-namespace agile { namespace root { class binner; }}
+namespace agile 
+{ 
+namespace root 
+{ 
+	class binner; 
+}
+}
 
 namespace YAML
 {
@@ -26,10 +32,10 @@ public:
 
 	inline binner();
 
-	inline void set_name(const std::string &name);
+	inline binner& set_name(const std::string &name);
 
-	inline void set_bins(const std::initializer_list<double> &il);
-	inline void set_bins(const std::vector<double> &v);
+	inline binner& set_bins(const std::initializer_list<double> &il);
+	inline binner& set_bins(const std::vector<double> &v);
 
 	template <typename T>
 	inline int get_bin(const std::map<std::string, T> &map);
@@ -68,21 +74,24 @@ inline binner::binner()
 : m_name("") {}
 //----------------------------------------------------------------------------
 
-inline void binner::set_name(const std::string &name)
+inline binner& binner::set_name(const std::string &name)
 {
 	m_name = name;
+	return *this;
 }
 //----------------------------------------------------------------------------
 
-inline void binner::set_bins(const std::initializer_list<double> &il)
+inline binner& binner::set_bins(const std::initializer_list<double> &il)
 {
 	std::vector<double> v(il);
 	m_bins = std::move(v);
+	return *this;
 }
 //----------------------------------------------------------------------------
-inline void binner::set_bins(const std::vector<double> &v)
+inline binner& binner::set_bins(const std::vector<double> &v)
 {
 	m_bins = v;
+	return *this;
 }
 //----------------------------------------------------------------------------
 
