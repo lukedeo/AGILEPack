@@ -95,7 +95,7 @@ private:
     std::map<std::string, std::string> variable_type_map;
     typedef __INTERNAL::numeric_handler number_container;
     std::vector<std::unique_ptr<number_container>> storage;
-    std::vector<std::string> feature_names;
+    std::vector<std::string> feature_names, binned_names;
 
     std::map<std::string, agile::root::binner> m_binned_vars;
 

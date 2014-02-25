@@ -112,6 +112,7 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
 void create_binning(const std::string &branch_name, 
     const std::initializer_list<double> &il)
 {
+    feature_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
 }
 
@@ -119,7 +120,8 @@ void create_binning(const std::string &branch_name,
 void create_binning(const std::string &branch_name, 
     const std::vector<double> &v)
 {
-    m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+    feature_names.push_back(branch_name);
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
 }
 //----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
