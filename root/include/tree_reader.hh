@@ -69,6 +69,7 @@ public:
         bool verbose = false);
 
     std::map<std::string, std::string> get_var_types();
+    std::map<std::string, std::vector<double>> get_binning();
 
 //-----------------------------------------------------------------------------
 //  Element Access
@@ -103,6 +104,7 @@ private:
     std::vector<std::string> feature_names, binned_names;
 
     std::map<std::string, agile::root::binner> m_binned_vars;
+    std::map<std::string, std::vector<double>> m_binning_strategy;
 
 };
 

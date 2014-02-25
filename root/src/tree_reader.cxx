@@ -129,6 +129,9 @@ void tree_reader::create_binning(const std::string &branch_name,
 {
     binned_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+
+    std::vector<double> v(il);
+    m_binning_strategy[branch_name] = v;
     m_binned_present = true;
 }
 
@@ -138,6 +141,7 @@ void tree_reader::create_binning(const std::string &branch_name,
 {
     binned_names.push_back(branch_name);
     m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
+    m_binning_strategy[branch_name] = v;
     m_binned_present = true;
 }
 //----------------------------------------------------------------------------
@@ -195,6 +199,15 @@ void tree_reader::set_branches(const std::string &yamlfile)
 std::map<std::string, std::string> tree_reader::get_var_types()
 {
     return variable_type_map;
+}
+//----------------------------------------------------------------------------
+std::map<std::string, std::vector<double>> tree_reader::get_binning()
+{
+    if(!m_binned_present)
+    {
+        throw std::logic_error("bins not set!");
+    }
+    return m_binning_strategy;
 }
 //----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, 

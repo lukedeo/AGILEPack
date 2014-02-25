@@ -249,7 +249,7 @@ int main(int argc, char const *argv[])
     {
         std::cout << "\nDone.\nSaving to " << save_file << "...";
     }
-    net.to_yaml(save_file, TR.get_var_types());
+    net.to_yaml(save_file, TR.get_var_types(), TR.get_binning());
     if (verbose)
     {
         std::cout << "Done." << std::endl;
