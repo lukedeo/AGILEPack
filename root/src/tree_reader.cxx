@@ -175,6 +175,16 @@ void tree_reader::set_branches(const std::string &yamlfile)
     {
         throw std::runtime_error("configuration files must have a map entitled 'branches'");
     }
+    try
+    {
+        YAML::Node binning = tmp["binning"];
+        std::map<std::string, agile::root::binner> bins = binning.as<std::map<std::string, agile::root::binner>>();
+
+        for (auto &entry : bins)
+        {
+            std::cout << "binner variable: " << entry.first << std::endl;
+        }
+    }
     
 }
 //----------------------------------------------------------------------------
@@ -211,7 +221,7 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
             pct = (double)(curr_entry - start) / (double)(entries);
             agile::progress_bar(pct * 100);
         }
-        
+
         m_smart_chain->GetEntry(curr_entry);
 
         if (entry_in_range())
