@@ -5,7 +5,13 @@
 #include "agile/agile_base.hh"
 
 
-namespace agile { namespace root { class binner; }}
+namespace agile 
+{ 
+namespace root 
+{ 
+	class binner; 
+}
+}
 
 namespace YAML
 {
@@ -26,10 +32,12 @@ public:
 
 	inline binner();
 
-	inline void set_name(const std::string &name);
+	inline binner& set_name(const std::string &name);
 
-	inline void set_bins(const std::initializer_list<double> &il);
-	inline void set_bins(const std::vector<double> &v);
+	inline binner& set_bins(const std::initializer_list<double> &il);
+	inline binner& set_bins(const std::vector<double> &v);
+
+	inline std::vector<double> get_bins();
 
 	template <typename T>
 	inline int get_bin(const std::map<std::string, T> &map);
@@ -68,21 +76,29 @@ inline binner::binner()
 : m_name("") {}
 //----------------------------------------------------------------------------
 
-inline void binner::set_name(const std::string &name)
+inline binner& binner::set_name(const std::string &name)
 {
 	m_name = name;
+	return *this;
 }
 //----------------------------------------------------------------------------
 
-inline void binner::set_bins(const std::initializer_list<double> &il)
+inline std::vector<double> binner::get_bins()
+{
+	return std::move(m_bins);
+}
+
+inline binner& binner::set_bins(const std::initializer_list<double> &il)
 {
 	std::vector<double> v(il);
 	m_bins = std::move(v);
+	return *this;
 }
 //----------------------------------------------------------------------------
-inline void binner::set_bins(const std::vector<double> &v)
+inline binner& binner::set_bins(const std::vector<double> &v)
 {
 	m_bins = v;
+	return *this;
 }
 //----------------------------------------------------------------------------
 
@@ -95,7 +111,7 @@ inline int binner::get_bin(const std::map<std::string, T> &map)
 	}
 	try
 	{
-		return find_bin(dynamic_cast<double>(map.at(m_name)));
+		return find_bin(static_cast<double>(map.at(m_name)));
 	}
 	catch(std::out_of_range &e)
 	{
@@ -112,7 +128,7 @@ inline int binner::get_bin(const T& var)
 	{
 		throw std::domain_error("invalid type passed to binner.");
 	}
-	return find_bin(dynamic_cast<double>(var));
+	return find_bin(static_cast<double>(var));
 }
 //----------------------------------------------------------------------------
 
@@ -125,7 +141,7 @@ inline bool binner::in_range(const std::map<std::string, T> &map)
 	}
 	try
 	{
-		double val = dynamic_cast<double>(map.at(m_name));
+		double val = static_cast<double>(map.at(m_name));
 		if ((val >= m_bins.front()) && (val <= m_bins.back()))
 		{
 			return true;
@@ -147,7 +163,7 @@ inline bool binner::in_range(const T& var)
 	{
 		throw std::domain_error("invalid type passed to binner.");
 	}
-	double val = dynamic_cast<double>(var);
+	double val = static_cast<double>(var);
 	if ((val >= m_bins.front()) && (val <= m_bins.back()))
 	{
 		return true;
@@ -191,18 +207,22 @@ struct convert<agile::root::binner>
     static Node encode(const agile::root::binner &b)
     {
         Node node;
-        node["name"] = b.m_name;
-        node["bins"] = b.m_bins;
+        node[b.m_name] = b.m_bins;
         return node;
     }
 
     static bool decode(const Node& node, agile::root::binner &b) 
     {
-    	b.m_name = node["name"].as<std::string>();
-    	b.m_bins = node["bins"].as<std::vector<double>>();
+    	auto tmp_map = node.as<std::map<std::string, std::vector<double>>>();
+    	for (auto &entry : tmp_map)
+    	{
+    		b.m_bins = entry.second;
+    		b.m_name = entry.first;
+    	}
         return true;
     }
 };
+
 
 }
 

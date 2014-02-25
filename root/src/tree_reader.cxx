@@ -12,7 +12,7 @@ namespace root
 
 //----------------------------------------------------------------------------
 tree_reader::tree_reader(std::string filename, std::string tree_name)
-: m_smart_chain(0), m_size(0), m_tree_name(tree_name)
+: m_smart_chain(0), m_size(0), m_tree_name(tree_name), m_binned_present(false)
 {
     if(tree_name != "")
     {
@@ -33,7 +33,7 @@ tree_reader::tree_reader(std::string filename, std::string tree_name)
 //----------------------------------------------------------------------------
 tree_reader::tree_reader(const std::vector<std::string>& files, 
     std::string tree_name)
-: m_smart_chain(0), m_size(0), m_tree_name(tree_name)
+: m_smart_chain(0), m_size(0), m_tree_name(tree_name), m_binned_present(false)
 {
     if (tree_name == "")
     {
@@ -109,6 +109,42 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
     }
 }
 //----------------------------------------------------------------------------
+bool tree_reader::entry_in_range()
+{
+    if (!m_binned_present)
+    {
+        return true;
+    }
+    bool ok = true;
+    for (auto &name : binned_names)
+    {
+        ok = ok && m_binned_vars[name].in_range(
+            storage.at(traits[name].pos)->get_value<double>());
+    }
+    return ok;
+}
+//----------------------------------------------------------------------------
+void tree_reader::create_binning(const std::string &branch_name, 
+    const std::initializer_list<double> &il)
+{
+    binned_names.push_back(branch_name);
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+
+    std::vector<double> v(il);
+    m_binning_strategy[branch_name] = v;
+    m_binned_present = true;
+}
+
+//----------------------------------------------------------------------------
+void tree_reader::create_binning(const std::string &branch_name, 
+    const std::vector<double> &v)
+{
+    binned_names.push_back(branch_name);
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
+    m_binning_strategy[branch_name] = v;
+    m_binned_present = true;
+}
+//----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
 {
     YAML::Node tmp = YAML::LoadFile(yamlfile);
@@ -143,12 +179,35 @@ void tree_reader::set_branches(const std::string &yamlfile)
     {
         throw std::runtime_error("configuration files must have a map entitled 'branches'");
     }
+    try
+    {   
+
+        YAML::Node binning = tmp["binning"];
+
+        auto bins = binning.as<std::map<std::string, std::vector<double>>>();
+
+        for (auto &entry : bins)
+        {
+            create_binning(entry.first, entry.second);
+        }
+    }
+    catch(YAML::BadConversion &e){}
+
     
 }
 //----------------------------------------------------------------------------
 std::map<std::string, std::string> tree_reader::get_var_types()
 {
     return variable_type_map;
+}
+//----------------------------------------------------------------------------
+std::map<std::string, std::vector<double>> tree_reader::get_binning()
+{
+    if(!m_binned_present)
+    {
+        throw std::logic_error("bins not set!");
+    }
+    return m_binning_strategy;
 }
 //----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, 
@@ -171,7 +230,16 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
     int curr_entry = 0;
     double pct;
     agile::dataframe D;
-    D.set_column_names(feature_names);
+
+    auto all_names = feature_names;
+    if (m_binned_present)
+    {
+        for (auto &entry : binned_names)
+        {
+            all_names.push_back("categ_" + entry);
+        }
+    }
+    D.set_column_names(all_names);
     for (curr_entry = start; curr_entry < stop; ++curr_entry)
     {
         if (verbose)
@@ -179,8 +247,19 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
             pct = (double)(curr_entry - start) / (double)(entries);
             agile::progress_bar(pct * 100);
         }
+
+        m_smart_chain->GetEntry(curr_entry);
+
+        if (entry_in_range())
+        {
+            // for (auto &entry : at((unsigned int)curr_entry))
+            // {
+            //     std::cout << entry << "   ";
+            // }
+            // std::cout << std::endl;
+            D.push_back(std::move(at((unsigned int)curr_entry)));
+        }
         
-        D.push_back(std::move(at((unsigned int)curr_entry)));
     }
     return std::move(D);
 }
@@ -195,6 +274,15 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     for (auto &name : feature_names)
     {
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
+    }
+    if (m_binned_present)
+    {
+        for (auto &name : binned_names)
+        {
+            int bin = m_binned_vars[name].get_bin(
+                storage.at(traits[name].pos)->get_value<double>());
+            v.push_back((double)bin);
+        }
     }
     return std::move(v);
 }
