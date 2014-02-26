@@ -40,11 +40,12 @@ public:
 
     inline std::vector<double> get_bins();
 
+//----------------------------------------------------------------------------
     template <typename T>
-    inline int get_bin(const std::map<std::string, T> &map);
+    inline int get_bin(const std::map<std::string, T> &map, bool absolute_val = false);
 
     template <typename T>
-    inline int get_bin(const T& var);
+    inline int get_bin(const T& var, bool absolute_val = false);
 
     template <typename T>
     inline bool in_range(const std::map<std::string, T> &map);
@@ -60,21 +61,22 @@ private:
     std::vector<double> m_bins;
     bool m_bins_present;
     bool m_name_present;
+    bool m_abs;
 };
 
 //----------------------------------------------------------------------------
 inline binner::binner(const std::string &name, 
     const std::initializer_list<double> &il)
-: m_name(name), m_bins(il) {}
+: m_name(name), m_bins(il), m_abs(false) {}
 //----------------------------------------------------------------------------
 inline binner::binner(const std::string &name, const std::vector<double> &v)
-: m_name(name), m_bins(v) {}
+: m_name(name), m_bins(v), m_abs(false) {}
 //----------------------------------------------------------------------------
 inline binner::binner(const std::string &name)
-: m_name(name) {}
+: m_name(name), m_abs(false) {}
 //----------------------------------------------------------------------------
 inline binner::binner() 
-: m_name("") {}
+: m_name(""), m_abs(false) {}
 //----------------------------------------------------------------------------
 
 inline binner& binner::set_name(const std::string &name)
@@ -104,7 +106,7 @@ inline binner& binner::set_bins(const std::vector<double> &v)
 //----------------------------------------------------------------------------
 
 template <typename T>
-inline int binner::get_bin(const std::map<std::string, T> &map)
+inline int binner::get_bin(const std::map<std::string, T> &map, bool absolute_val)
 {
     if (!std::is_arithmetic<T>::value)
     {
@@ -112,7 +114,11 @@ inline int binner::get_bin(const std::map<std::string, T> &map)
     }
     try
     {
-        return find_bin(static_cast<double>(map.at(m_name)));
+        if (!absolute_val)
+        {
+            return find_bin(static_cast<double>(map.at(m_name)));
+        }
+        return find_bin(fabs(static_cast<double>(map.at(m_name))));       
     }
     catch(std::out_of_range &e)
     {
@@ -123,13 +129,17 @@ inline int binner::get_bin(const std::map<std::string, T> &map)
 //----------------------------------------------------------------------------
 
 template <typename T>
-inline int binner::get_bin(const T& var)
+inline int binner::get_bin(const T& var, bool absolute_val)
 {
     if (!std::is_arithmetic<T>::value)
     {
         throw std::domain_error("invalid type passed to binner.");
     }
-    return find_bin(static_cast<double>(var));
+    if (!absolute_val)
+    {
+        return find_bin(static_cast<double>(var));
+    }
+    return find_bin(fabs(static_cast<double>(var)));   
 }
 //----------------------------------------------------------------------------
 
