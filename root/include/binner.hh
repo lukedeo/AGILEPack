@@ -42,7 +42,7 @@ public:
 
     inline std::vector<double> get_bins();
 
-    bool is_absolute() {return m_abs;} 
+    inline bool is_absolute() {return m_abs;} 
 
 //----------------------------------------------------------------------------
     template <typename T>
@@ -58,6 +58,7 @@ public:
     inline bool in_range(const T& var);
 
     inline ~binner();
+//----------------------------------------------------------------------------
 private:
     friend struct YAML::convert<binner>;
     inline int find_bin(const double &val);
@@ -92,7 +93,7 @@ inline binner& binner::set_name(const std::string &name)
 
 inline std::vector<double> binner::get_bins()
 {
-    return std::move(m_bins);
+    return (m_bins);
 }
 //----------------------------------------------------------------------------
 inline binner& binner::set_bins(const std::initializer_list<double> &il)
