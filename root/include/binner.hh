@@ -12,12 +12,13 @@ namespace root
     class binner; 
 }
 }
-
+//----------------------------------------------------------------------------
 namespace YAML
 {
     template <>
     struct convert<agile::root::binner>;
 }
+//----------------------------------------------------------------------------
 namespace agile 
 { 
 namespace root 
@@ -87,7 +88,7 @@ inline std::vector<double> binner::get_bins()
 {
     return std::move(m_bins);
 }
-
+//----------------------------------------------------------------------------
 inline binner& binner::set_bins(const std::initializer_list<double> &il)
 {
     std::vector<double> v(il);
