@@ -295,11 +295,6 @@ agile::dataframe tree_reader::get_dataframe(int entries, int start,
 
         if (entry_in_range())
         {
-            // for (auto &entry : at((unsigned int)curr_entry))
-            // {
-            //     std::cout << entry << "   ";
-            // }
-            // std::cout << std::endl;
             D.push_back(std::move(at((unsigned int)curr_entry)));
         }
         
@@ -345,7 +340,15 @@ std::vector<double> tree_reader::operator()(const unsigned int &idx)
 double tree_reader::operator()(const unsigned int &idx, std::string col_name)
 {
     m_smart_chain->GetEntry(idx);
-    return storage.at(traits[col_name].pos)->get_value<double>();
+    try
+    {
+        return storage.at(traits[col_name].pos)->get_value<double>();
+    }
+    catch(std::out_of_range &e)
+    {
+        return (double) m_binned_vars[name].get_bin(
+                storage.at(traits[name].pos)->get_value<double>());
+    }
 }
 
 std::map<std::string, double> tree_reader::operator()(const unsigned int &idx, 
@@ -355,7 +358,18 @@ std::map<std::string, double> tree_reader::operator()(const unsigned int &idx,
     std::map<std::string, double> map;
     for (auto &name : names)
     {
-        map[name] = storage.at(traits[name].pos)->get_value<double>();
+        try
+        {
+            map[name] = storage.at(traits[name].pos)->get_value<double>();
+        }
+        catch(std::out_of_range &e)
+        {
+            int bin = m_binned_vars[name].get_bin(
+                storage.at(traits[name].pos)->get_value<double>());
+
+            map[name] = (double)(bin);
+        }
+        
     }
     return std::move(map);
 
@@ -372,7 +386,15 @@ std::size_t tree_reader::size()
 //----------------------------------------------------------------------------
 std::vector<std::string> tree_reader::get_ordered_branch_names()
 {
-    return feature_names;
+    auto all_names = feature_names;
+    if (m_binned_present)
+    {
+        for (auto &entry : binned_names)
+        {
+            all_names.push_back("categ_" + entry);
+        }
+    }
+    return all_names;
 }
 //----------------------------------------------------------------------------
 
