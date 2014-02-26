@@ -46,10 +46,10 @@ public:
 
 //----------------------------------------------------------------------------
     template <typename T>
-    inline int get_bin(const std::map<std::string, T> &map, bool absolute_val = false);
+    inline int get_bin(const std::map<std::string, T> &map);
 
     template <typename T>
-    inline int get_bin(const T& var, bool absolute_val = false);
+    inline int get_bin(const T& var);
 
     template <typename T>
     inline bool in_range(const std::map<std::string, T> &map);
