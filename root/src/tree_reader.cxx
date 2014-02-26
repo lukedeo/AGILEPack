@@ -346,7 +346,7 @@ double tree_reader::operator()(const unsigned int &idx, std::string col_name)
     }
     catch(std::out_of_range &e)
     {
-        return (double) m_binned_vars[name].get_bin(
+        return (double) m_binned_vars[col_name].get_bin(
             storage.at(traits[col_name].pos)->get_value<double>());
     }
 }
