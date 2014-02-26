@@ -305,7 +305,7 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     std::vector<double> v;
     for (auto &name : feature_names)
     {
-        std::cout << name << ": " << storage.at(traits[name].pos)->get_value<double>() << std::endl;
+        // std::cout << name << ": " << storage.at(traits[name].pos)->get_value<double>() << std::endl;
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
     }
     if (m_binned_present)
