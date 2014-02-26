@@ -27,7 +27,9 @@ namespace root
 class binner
 {
 public:
-    inline binner(const std::string &name, const std::initializer_list<double> &il);
+    inline binner(const std::string &name, 
+        const std::initializer_list<double> &il);
+    
     inline binner(const std::string &name, const std::vector<double> &v);
     inline binner(const std::string &name);
 

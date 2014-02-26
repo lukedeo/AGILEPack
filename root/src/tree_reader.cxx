@@ -128,7 +128,10 @@ void tree_reader::create_binning(const std::string &branch_name,
     const std::initializer_list<double> &il, bool absolute)
 {
     binned_names.push_back(branch_name);
-    m_binned_vars[branch_name].set_name(branch_name).set_bins(il).set_abs(absolute);
+
+    m_binned_vars[branch_name].set_name(branch_name)
+                              .set_bins(il)
+                              .set_abs(absolute);
 
     std::vector<double> v(il);
     if (absolute)
@@ -147,7 +150,10 @@ void tree_reader::create_binning(const std::string &branch_name,
     const std::vector<double> &v, bool absolute)
 {
     binned_names.push_back(branch_name);
-    m_binned_vars[branch_name].set_name(branch_name).set_bins(v).set_abs(absolute);
+
+    m_binned_vars[branch_name].set_name(branch_name)
+                              .set_bins(v)
+                              .set_abs(absolute);
     if (absolute)
     {
         m_binning_strategy["abs(" + branch_name + ")"] = v;
@@ -185,13 +191,15 @@ void tree_reader::set_branches(const std::string &yamlfile)
             }
             else
             {
-                throw std::domain_error("type " + type + " for branch " + entry.first + ".");
+                throw std::domain_error(
+                    "type " + type + " for branch " + entry.first + ".");
             }
         }
     }
     catch(YAML::BadConversion &e)
     {
-        throw std::runtime_error("configuration files must have a map entitled 'branches'");
+        throw std::runtime_error(
+            "configuration files must have a map entitled 'branches'");
     }
     try
     {   
@@ -216,9 +224,12 @@ void tree_reader::set_branches(const std::string &yamlfile)
                 if (close_paren == std::string::npos)
                 {
                     arg = expression.substr(open_paren + 1);
-                    throw std::invalid_argument("missing close parentheses for argument " + arg);
+                    throw std::invalid_argument(
+                        "missing close parentheses for argument " + arg);
                 }
-                arg = expression.substr(open_paren + 1, close_paren - open_paren - 1);
+                arg = expression.substr(
+                    open_paren + 1, close_paren - open_paren - 1);
+
                 create_binning(arg, entry.second, true);
             }      
         }
@@ -305,7 +316,6 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     std::vector<double> v;
     for (auto &name : feature_names)
     {
-        // std::cout << name << ": " << storage.at(traits[name].pos)->get_value<double>() << std::endl;
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
     }
     if (m_binned_present)
