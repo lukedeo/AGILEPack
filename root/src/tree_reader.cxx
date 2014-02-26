@@ -218,7 +218,7 @@ void tree_reader::set_branches(const std::string &yamlfile)
                     arg = expression.substr(open_paren + 1);
                     throw std::invalid_argument("missing close parentheses for argument " + arg);
                 }
-                arg = expression.substr(open_paren + 1, close_paren - open_paren);
+                arg = expression.substr(open_paren + 1, close_paren - open_paren - 1);
                 create_binning(arg, entry.second, true);
             }      
         }
@@ -305,6 +305,7 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     std::vector<double> v;
     for (auto &name : feature_names)
     {
+        std::cout << name << ": " << storage.at(traits[name].pos)->get_value<double>() << std::endl;
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
     }
     if (m_binned_present)
