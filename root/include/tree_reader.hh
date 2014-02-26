@@ -54,10 +54,10 @@ public:
     void set_branch(std::string branch_name, numeric_type type);
 
     void create_binning(const std::string &branch_name, 
-        const std::initializer_list<double> &il);
+        const std::initializer_list<double> &il, bool absolute = false);
 
     void create_binning(const std::string &branch_name, 
-        const std::vector<double> &v);
+        const std::vector<double> &v, bool absolute = false);
 
     void set_branches(const std::string &yamlfile);
 
