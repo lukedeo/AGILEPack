@@ -35,11 +35,16 @@ public:
 
     inline binner& set_name(const std::string &name);
 
+    inline binner& set_abs(bool absv);
+
     inline binner& set_bins(const std::initializer_list<double> &il);
     inline binner& set_bins(const std::vector<double> &v);
 
     inline std::vector<double> get_bins();
 
+    inline bool is_absolute() {return m_abs;} 
+
+//----------------------------------------------------------------------------
     template <typename T>
     inline int get_bin(const std::map<std::string, T> &map);
 
@@ -53,6 +58,7 @@ public:
     inline bool in_range(const T& var);
 
     inline ~binner();
+//----------------------------------------------------------------------------
 private:
     friend struct YAML::convert<binner>;
     inline int find_bin(const double &val);
@@ -60,21 +66,22 @@ private:
     std::vector<double> m_bins;
     bool m_bins_present;
     bool m_name_present;
+    bool m_abs;
 };
 
 //----------------------------------------------------------------------------
 inline binner::binner(const std::string &name, 
     const std::initializer_list<double> &il)
-: m_name(name), m_bins(il) {}
+: m_name(name), m_bins(il), m_abs(false) {}
 //----------------------------------------------------------------------------
 inline binner::binner(const std::string &name, const std::vector<double> &v)
-: m_name(name), m_bins(v) {}
+: m_name(name), m_bins(v), m_abs(false) {}
 //----------------------------------------------------------------------------
 inline binner::binner(const std::string &name)
-: m_name(name) {}
+: m_name(name), m_abs(false) {}
 //----------------------------------------------------------------------------
 inline binner::binner() 
-: m_name("") {}
+: m_name(""), m_abs(false) {}
 //----------------------------------------------------------------------------
 
 inline binner& binner::set_name(const std::string &name)
@@ -86,7 +93,7 @@ inline binner& binner::set_name(const std::string &name)
 
 inline std::vector<double> binner::get_bins()
 {
-    return std::move(m_bins);
+    return (m_bins);
 }
 //----------------------------------------------------------------------------
 inline binner& binner::set_bins(const std::initializer_list<double> &il)
@@ -102,7 +109,12 @@ inline binner& binner::set_bins(const std::vector<double> &v)
     return *this;
 }
 //----------------------------------------------------------------------------
-
+inline binner& binner::set_abs(bool absv)
+{
+    m_abs = absv;
+    return *this;   
+}
+//----------------------------------------------------------------------------
 template <typename T>
 inline int binner::get_bin(const std::map<std::string, T> &map)
 {
@@ -112,7 +124,11 @@ inline int binner::get_bin(const std::map<std::string, T> &map)
     }
     try
     {
-        return find_bin(static_cast<double>(map.at(m_name)));
+        if (!m_abs)
+        {
+            return find_bin(static_cast<double>(map.at(m_name)));
+        }
+        return find_bin(fabs(static_cast<double>(map.at(m_name))));       
     }
     catch(std::out_of_range &e)
     {
@@ -129,7 +145,12 @@ inline int binner::get_bin(const T& var)
     {
         throw std::domain_error("invalid type passed to binner.");
     }
-    return find_bin(static_cast<double>(var));
+    double doubleval = static_cast<double>(var);
+    if (!m_abs)
+    {
+        return find_bin(doubleval);
+    }
+    return find_bin(fabs(doubleval));   
 }
 //----------------------------------------------------------------------------
 
@@ -143,6 +164,7 @@ inline bool binner::in_range(const std::map<std::string, T> &map)
     try
     {
         double val = static_cast<double>(map.at(m_name));
+        val = (m_abs) ? fabs(val) : val;
         if ((val >= m_bins.front()) && (val <= m_bins.back()))
         {
             return true;
@@ -165,6 +187,7 @@ inline bool binner::in_range(const T& var)
         throw std::domain_error("invalid type passed to binner.");
     }
     double val = static_cast<double>(var);
+    val = (m_abs) ? fabs(val) : val;
     if ((val >= m_bins.front()) && (val <= m_bins.back()))
     {
         return true;

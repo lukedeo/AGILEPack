@@ -125,23 +125,37 @@ bool tree_reader::entry_in_range()
 }
 //----------------------------------------------------------------------------
 void tree_reader::create_binning(const std::string &branch_name, 
-    const std::initializer_list<double> &il)
+    const std::initializer_list<double> &il, bool absolute)
 {
     binned_names.push_back(branch_name);
-    m_binned_vars[branch_name].set_name(branch_name).set_bins(il);
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(il).set_abs(absolute);
 
     std::vector<double> v(il);
-    m_binning_strategy[branch_name] = v;
+    if (absolute)
+    {
+        m_binning_strategy["abs(" + branch_name + ")"] = v;
+    }
+    else
+    {
+        m_binning_strategy[branch_name] = v;
+    }
     m_binned_present = true;
 }
 
 //----------------------------------------------------------------------------
 void tree_reader::create_binning(const std::string &branch_name, 
-    const std::vector<double> &v)
+    const std::vector<double> &v, bool absolute)
 {
     binned_names.push_back(branch_name);
-    m_binned_vars[branch_name].set_name(branch_name).set_bins(v);
-    m_binning_strategy[branch_name] = v;
+    m_binned_vars[branch_name].set_name(branch_name).set_bins(v).set_abs(absolute);
+    if (absolute)
+    {
+        m_binning_strategy["abs(" + branch_name + ")"] = v;
+    }
+    else
+    {
+        m_binning_strategy[branch_name] = v;
+    }
     m_binned_present = true;
 }
 //----------------------------------------------------------------------------
@@ -188,7 +202,25 @@ void tree_reader::set_branches(const std::string &yamlfile)
 
         for (auto &entry : bins)
         {
-            create_binning(entry.first, entry.second);
+            auto expression(agile::no_spaces(entry.first));
+
+            if (expression.find("abs(") == std::string::npos)
+            {
+                create_binning(entry.first, entry.second);
+            }
+            else
+            {
+                auto close_paren = expression.find_first_of(")");
+                auto open_paren = expression.find_first_of("(");
+                std::string arg;
+                if (close_paren == std::string::npos)
+                {
+                    arg = expression.substr(open_paren + 1);
+                    throw std::invalid_argument("missing close parentheses for argument " + arg);
+                }
+                arg = expression.substr(open_paren + 1, close_paren - open_paren - 1);
+                create_binning(arg, entry.second, true);
+            }      
         }
     }
     catch(YAML::BadConversion &e){}
@@ -273,6 +305,7 @@ std::vector<double> tree_reader::at(const unsigned int &idx)
     std::vector<double> v;
     for (auto &name : feature_names)
     {
+        // std::cout << name << ": " << storage.at(traits[name].pos)->get_value<double>() << std::endl;
         v.push_back(storage.at(traits[name].pos)->get_value<double>());
     }
     if (m_binned_present)
