@@ -35,7 +35,7 @@ public:
 
     inline binner& set_name(const std::string &name);
 
-    inline binner& set_abs(const bool &absv);
+    inline binner& set_abs(bool absv);
 
     inline binner& set_bins(const std::initializer_list<double> &il);
     inline binner& set_bins(const std::vector<double> &v);
@@ -109,7 +109,7 @@ inline binner& binner::set_bins(const std::vector<double> &v)
     return *this;
 }
 //----------------------------------------------------------------------------
-inline binner& binner::set_abs(const bool &absv)
+inline binner& binner::set_abs(bool absv)
 {
     m_abs = absv;
     return *this;   
@@ -145,11 +145,12 @@ inline int binner::get_bin(const T& var)
     {
         throw std::domain_error("invalid type passed to binner.");
     }
+    double doubleval = static_cast<double>(var);
     if (!m_abs)
     {
-        return find_bin(static_cast<double>(var));
+        return find_bin(doubleval);
     }
-    return find_bin(fabs(static_cast<double>(var)));   
+    return find_bin(fabs(doubleval));   
 }
 //----------------------------------------------------------------------------
 
@@ -186,6 +187,7 @@ inline bool binner::in_range(const T& var)
         throw std::domain_error("invalid type passed to binner.");
     }
     double val = static_cast<double>(var);
+    val = (m_abs) ? fabs(val) : val;
     if ((val >= m_bins.front()) && (val <= m_bins.back()))
     {
         return true;
