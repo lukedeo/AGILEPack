@@ -35,10 +35,14 @@ public:
 
     inline binner& set_name(const std::string &name);
 
+    inline binner& set_abs(const bool &absv);
+
     inline binner& set_bins(const std::initializer_list<double> &il);
     inline binner& set_bins(const std::vector<double> &v);
 
     inline std::vector<double> get_bins();
+
+    bool is_absolute() {return m_abs;} 
 
 //----------------------------------------------------------------------------
     template <typename T>
@@ -104,9 +108,14 @@ inline binner& binner::set_bins(const std::vector<double> &v)
     return *this;
 }
 //----------------------------------------------------------------------------
-
+inline binner& binner::set_abs(const bool &absv)
+{
+    m_abs = absv;
+    return *this;   
+}
+//----------------------------------------------------------------------------
 template <typename T>
-inline int binner::get_bin(const std::map<std::string, T> &map, bool absolute_val)
+inline int binner::get_bin(const std::map<std::string, T> &map)
 {
     if (!std::is_arithmetic<T>::value)
     {
@@ -114,7 +123,7 @@ inline int binner::get_bin(const std::map<std::string, T> &map, bool absolute_va
     }
     try
     {
-        if (!absolute_val)
+        if (!m_abs)
         {
             return find_bin(static_cast<double>(map.at(m_name)));
         }
@@ -129,13 +138,13 @@ inline int binner::get_bin(const std::map<std::string, T> &map, bool absolute_va
 //----------------------------------------------------------------------------
 
 template <typename T>
-inline int binner::get_bin(const T& var, bool absolute_val)
+inline int binner::get_bin(const T& var)
 {
     if (!std::is_arithmetic<T>::value)
     {
         throw std::domain_error("invalid type passed to binner.");
     }
-    if (!absolute_val)
+    if (!m_abs)
     {
         return find_bin(static_cast<double>(var));
     }
@@ -153,6 +162,7 @@ inline bool binner::in_range(const std::map<std::string, T> &map)
     try
     {
         double val = static_cast<double>(map.at(m_name));
+        val = (m_abs) ? fabs(val) : val;
         if ((val >= m_bins.front()) && (val <= m_bins.back()))
         {
             return true;
