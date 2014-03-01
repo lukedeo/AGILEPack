@@ -59,6 +59,12 @@ public:
     void create_binning(const std::string &branch_name, 
         const std::vector<double> &v, bool absolute = false);
 
+    void create_constraint(const std::string &branch_name, 
+        const std::initializer_list<double> &il, bool absolute = false);
+
+    void create_constraint(const std::string &branch_name, 
+        const std::vector<double> &v, bool absolute = false);
+
     void set_branches(const std::string &yamlfile);
 
     bool entry_in_range();
@@ -101,10 +107,13 @@ private:
 
 
     bool m_binned_present;
-    std::vector<std::string> feature_names, binned_names;
+    std::vector<std::string> feature_names, binned_names, constrained names;
 
     std::map<std::string, agile::root::binner> m_binned_vars;
     std::map<std::string, std::vector<double>> m_binning_strategy;
+
+    std::map<std::string, agile::root::binner> m_constraint_vars;
+    std::map<std::string, std::vector<double>> m_constraint_strategy;
 
 };
 
