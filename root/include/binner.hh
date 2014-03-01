@@ -9,7 +9,7 @@ namespace agile
 { 
 namespace root 
 { 
-    class binner; 
+    class binner;
 }
 }
 //----------------------------------------------------------------------------
