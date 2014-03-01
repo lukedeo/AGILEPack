@@ -64,6 +64,7 @@ public:
     virtual agile::vector get_encoding(const agile::vector &v);
     virtual agile::vector reconstruct(const agile::vector &v, 
         bool noisify = true);
+    virtual agile::vector decode(const agile::vector &v);
 
 //-----------------------------------------------------------------------------
 //  Parameter setting
