@@ -148,10 +148,26 @@ int main(int argc, char const *argv[])
     frame.model_formula(model_formula);
     frame.generate(verbose);
     frame.scale(verbose);
-//----------------------------------------------------------------------------
-    agile::neural_net net;
 
+//----------------------------------------------------------------------------
+    
+    agile::neural_net net;
     net.load_model_frame_config(frame);
+    net.check(false);
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
 
     net.from_yaml(load_file);
 
