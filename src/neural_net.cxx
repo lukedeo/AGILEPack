@@ -441,6 +441,13 @@ void neural_net::load_scaling(agile::scaling &&scale)
     m_model.load_scaling(std::move(scale));
 }
 //----------------------------------------------------------------------------
+void neural_net::load_model_frame_config(const agile::model_frame &m)
+{
+    m_scaling = m.get_scaling();
+    predictor_order = m.get_inputs();
+    target_order = m.get_outputs();
+}
+//----------------------------------------------------------------------------
 agile::scaling neural_net::get_scaling()
 {
     return m_scaling;

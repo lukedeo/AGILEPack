@@ -102,26 +102,35 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
 
     p.eat_arguments(argc, argv);
-
-    if (!p.get_value("file")) complain("need to pass at least one file.");
-
-    if (!p.get_value("tree")) complain("need to pass a tree name.");
-
-    if (!p.get_value("load") && p.get_value("predict")) complain("need a neural network to load in prediction mode.");
-
-    if (!p.get_value("config")) complain("need a root branch config file.");
-
-
+    
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
     std::string ttree_name =    p.get_value<std::string>("tree"),
-                load_file =     p.get_value<std::string>("load"),
-                config_file =   p.get_value<std::string>("config");
+                config_file =   p.get_value<std::string>("config"),
+                save_file =     p.get_value<std::string>("save"),
+                model_formula = p.get_value<std::string>("formula");
 
-    int     start =       p.get_value<int>("start"),
-            end =         p.get_value<int>("end");
 
-    // bool    verbose =     p.get_value("verbose");
+    double  learning =    p.get_value<double>("learning"), 
+            momentum =    p.get_value<double>("momentum"),
+            regularizer = p.get_value<double>("regularize");
+
+
+    int     deepauto =    p.get_value<int>("deepauto"),
+            start =       p.get_value<int>("start"),
+            end =         p.get_value<int>("end"),
+            uepochs =      p.get_value<int>("uepochs"),
+            sepochs =      p.get_value<int>("sepochs"),
+            batch =       p.get_value<int>("batch"),
+
+    bool    verbose =     p.get_value("verbose");
+
+    std::vector<int> structure = p.get_value<std::vector<int>>("struct");
+
+    if (deepauto < 0)
+    {
+        deepauto = structure.size();
+    }
 
 //----------------------------------------------------------------------------
 
@@ -134,15 +143,15 @@ int main(int argc, char const *argv[])
     agile::model_frame frame;
 
     frame.add_data(std::move(
-        tree_buf.get_dataframe(start, end - start, p.get_value("verbose"))));
+        tree_buf.get_dataframe(start, end - start, verbose)));
 
-    
-
-
-
-
+    frame.model_formula(model_formula);
+    frame.generate(verbose);
+    frame.scale(verbose);
 //----------------------------------------------------------------------------
     agile::neural_net net;
+
+    net.load_model_frame_config(frame);
 
     net.from_yaml(load_file);
 
