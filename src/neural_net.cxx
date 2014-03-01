@@ -318,13 +318,6 @@ void neural_net::internal_train_supervised(const unsigned int &epochs,
     }
 }
 
-
-
-
-
-
-
-
 //----------------------------------------------------------------------------
 void neural_net::check(bool tantrum)
 {
