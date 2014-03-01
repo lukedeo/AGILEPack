@@ -155,6 +155,12 @@ agile::vector autoencoder::get_encoding(const agile::vector &v)
     return std::move(this->fire());
 }
 //----------------------------------------------------------------------------
+virtual agile::vector autoencoder::decode(const agile::vector &v)
+{
+    decoder.charge(v);
+    return decoder.fire();
+}
+//----------------------------------------------------------------------------
 autoencoder::~autoencoder()
 {
 }   

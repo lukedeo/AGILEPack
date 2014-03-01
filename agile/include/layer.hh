@@ -161,19 +161,24 @@ public:
     }
     virtual void encode(const agile::vector &v, bool noisify = true) 
     {
-        throw std::logic_error("layer::reconstruct() called on class\
+        throw std::logic_error("layer::encode() called on class\
          layer -- only valid for class autoencoder");
     }
 
     virtual void encode(const agile::vector &v, double weight, bool noisify = true) 
     {
-        throw std::logic_error("layer::reconstruct() called on class\
+        throw std::logic_error("layer::encode() called on class\
          layer -- only valid for class autoencoder");
     }
 
     virtual agile::vector get_encoding(const agile::vector &v)
     {
         throw std::logic_error("layer::get_encoding() called on class\
+         layer -- only valid for class autoencoder");
+    }
+    virtual agile::vector decode(const agile::vector &v)
+    {
+        throw std::logic_error("layer::decode() called on class\
          layer -- only valid for class autoencoder");
     }
     
