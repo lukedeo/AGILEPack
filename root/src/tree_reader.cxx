@@ -165,6 +165,47 @@ void tree_reader::create_binning(const std::string &branch_name,
     m_binned_present = true;
 }
 //----------------------------------------------------------------------------
+void tree_reader::create_constraint(const std::string &branch_name, 
+    const std::initializer_list<double> &il, bool absolute)
+{
+    constraint_names.push_back(branch_name);
+
+    m_constraint_vars[branch_name].set_name(branch_name)
+                              .set_bins(il)
+                              .set_abs(absolute);
+
+    std::vector<double> v(il);
+    if (absolute)
+    {
+        m_binning_strategy["abs(" + branch_name + ")"] = v;
+    }
+    else
+    {
+        m_binning_strategy[branch_name] = v;
+    }
+    m_constraint_present = true;
+}
+
+//----------------------------------------------------------------------------
+void tree_reader::create_constraint(const std::string &branch_name, 
+    const std::vector<double> &v, bool absolute)
+{
+    constraint_names.push_back(branch_name);
+
+    m_constraint_vars[branch_name].set_name(branch_name)
+                              .set_bins(v)
+                              .set_abs(absolute);
+    if (absolute)
+    {
+        m_binning_strategy["abs(" + branch_name + ")"] = v;
+    }
+    else
+    {
+        m_binning_strategy[branch_name] = v;
+    }
+    m_constraint_present = true;
+}
+//----------------------------------------------------------------------------
 void tree_reader::set_branches(const std::string &yamlfile)
 {
     YAML::Node tmp = YAML::LoadFile(yamlfile);
