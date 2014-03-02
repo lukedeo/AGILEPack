@@ -21,68 +21,153 @@ int main(int argc, char const *argv[])
 {
 
     optionparser::parser p("A CLI for retraining GAIA.");
-
 //----------------------------------------------------------------------------
     p.add_option("--file", "-f")    .help("Pass at least one file to add to a TChain for testing.")
                                     .mode(optionparser::store_mult_values);
-//----------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
     p.add_option("--tree", "-t")    .help("Name of the TTree to extract.")
                                     .mode(optionparser::store_value);
-//----------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load.")
                                     .mode(optionparser::store_value);
-//----------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
     p.add_option("--config", "-c")  .help("Branch config file")
                                     .mode(optionparser::store_value);
-//----------------------------------------------------------------------------
-    p.add_option("--verbose", "-v") .help("Make the output verbose");
-//----------------------------------------------------------------------------
-    p.add_option("-start")          .help("Start index for testing. (Default = 0)")
+    //----------------------------------------------------------------------------
+    p.add_option("--learning")      .help("Pass a learning rate.")
                                     .mode(optionparser::store_value)
-                                    .default_value(0);
-//----------------------------------------------------------------------------
-    p.add_option("-end")            .help("End index for testing. (Default, whole tree)")
+                                    .default_value(0.1);
+    //----------------------------------------------------------------------------
+    p.add_option("--momentum")      .help("Pass a momentum value.")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0.5);
+    //----------------------------------------------------------------------------
+    p.add_option("--regularize")    .help("Pass an l2 norm regularizer.")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0.00001);
+    p.add_option("--batch")         .help("Mini-batch size.")
+                                    .mode(optionparser::store_value)
+                                    .default_value(10);
+    //----------------------------------------------------------------------------
+    p.add_option("--load")          .help("Name of a YAML neural network file to load to begin training")
+                                    .mode(optionparser::store_value);
+    //----------------------------------------------------------------------------
+    p.add_option("--config", "-c")  .help("pass a config file")
+                                    .mode(optionparser::store_value);
+    //----------------------------------------------------------------------------
+    p.add_option("--struct")        .help("pass the network structure")
+                                    .mode(optionparser::store_mult_values);
+    //----------------------------------------------------------------------------
+    p.add_option("--deepauto", "-d").help("how many autoencoders to train?")
                                     .mode(optionparser::store_value)
                                     .default_value(-1);
-//----------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
+    p.add_option("--type", "-T")    .help("Can be one of 'regress', 'multiclass', or 'binary'.")
+                                    .mode(optionparser::store_value)
+                                    .default_value("regress");
+    //----------------------------------------------------------------------------
+    p.add_option("--verbose", "-v") .help("Make the output verbose");
+    //----------------------------------------------------------------------------
+    p.add_option("--weights", "-w") .help("print a file with the first layer weight matrix.")
+                                    .mode(optionparser::store_value);
+    //----------------------------------------------------------------------------
+    p.add_option("-start")          .help("Start index for training. (Default = 0)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0);
+    //----------------------------------------------------------------------------
+    p.add_option("-end")            .help("End index for training. (Default, whole tree)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(-1);  
+    //----------------------------------------------------------------------------
+    p.add_option("-uepochs")        .help("Number of passes over the Trees for Unsupervised Pretraining(Default = 5)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(5);
+    //----------------------------------------------------------------------------
+    p.add_option("-sepochs")        .help("Number of passes over the Trees for Supervised Training(Default = 10)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(10);
+    //----------------------------------------------------------------------------
+    p.add_option("--formula", "-F") .help("Specify Model Formula")
+                                    .mode(optionparser::store_value);
+    //----------------------------------------------------------------------------
+    p.add_option("-start")          .help("Start index for testing/training. (Default = 0)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0);
+    //----------------------------------------------------------------------------
+    p.add_option("-end")            .help("End index for testing/training. (Default, whole tree)")
+                                    .mode(optionparser::store_value)
+                                    .default_value(-1);
+    //----------------------------------------------------------------------------
     p.add_option("--predict")       .help("Prediction mode!");
-    
+//----------------------------------------------------------------------------
+
     p.eat_arguments(argc, argv);
-
-    if (!p.get_value("file")) complain("need to pass at least one file.");
-
-    if (!p.get_value("tree")) complain("need to pass a tree name.");
-
-    if (!p.get_value("load")) complain("need a neural network to load.");
-
-    if (!p.get_value("config")) complain("need a root branch config file.");
-
-
+    
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
     std::string ttree_name =    p.get_value<std::string>("tree"),
-                load_file =     p.get_value<std::string>("load"),
-                config_file =   p.get_value<std::string>("config");
-
-    int     start =       p.get_value<int>("start"),
-            end =         p.get_value<int>("end");
-
-    // bool    verbose =     p.get_value("verbose");
-
-//----------------------------------------------------------------------------
-
-    agile::root::tree_reader TR;
+                config_file =   p.get_value<std::string>("config"),
+                save_file =     p.get_value<std::string>("save"),
+                model_formula = p.get_value<std::string>("formula");
 
 
-    for (auto &file : root_files)
+    double  learning =    p.get_value<double>("learning"), 
+            momentum =    p.get_value<double>("momentum"),
+            regularizer = p.get_value<double>("regularize");
+
+
+    int     deepauto =    p.get_value<int>("deepauto"),
+            start =       p.get_value<int>("start"),
+            end =         p.get_value<int>("end"),
+            uepochs =      p.get_value<int>("uepochs"),
+            sepochs =      p.get_value<int>("sepochs"),
+            batch =       p.get_value<int>("batch"),
+
+    bool    verbose =     p.get_value("verbose");
+
+    std::vector<int> structure = p.get_value<std::vector<int>>("struct");
+
+    if (deepauto < 0)
     {
-       TR.add_file(file, ttree_name);
+        deepauto = structure.size();
     }
 
-    TR.set_branches(config_file);
+//----------------------------------------------------------------------------
+
+    agile::root::tree_reader tree_buf;
+
+    for (auto &file : root_files) tree_buf.add_file(file, ttree_name);
+
+    tree_buf.set_branches(config_file);
+
+    agile::model_frame frame;
+
+    frame.add_data(std::move(
+        tree_buf.get_dataframe(start, end - start, verbose)));
+
+    frame.model_formula(model_formula);
+    frame.generate(verbose);
+    frame.scale(verbose);
 
 //----------------------------------------------------------------------------
+    
     agile::neural_net net;
+    net.load_model_frame_config(frame);
+    net.check(false);
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
 
     net.from_yaml(load_file);
 
