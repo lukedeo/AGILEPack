@@ -75,7 +75,9 @@ public:
         bool verbose = false);
 
     std::map<std::string, std::string> get_var_types();
+
     std::map<std::string, std::vector<double>> get_binning();
+    std::map<std::string, std::vector<double>> get_constraints();
 
 //-----------------------------------------------------------------------------
 //  Element Access
@@ -106,8 +108,8 @@ private:
     std::vector<std::unique_ptr<number_container>> storage;
 
 
-    bool m_binned_present;
-    std::vector<std::string> feature_names, binned_names, constrained names;
+    bool m_binned_present, m_constraint_present;
+    std::vector<std::string> feature_names, binned_names, constraint_names;
 
     std::map<std::string, agile::root::binner> m_binned_vars;
     std::map<std::string, std::vector<double>> m_binning_strategy;
