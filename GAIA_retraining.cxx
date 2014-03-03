@@ -164,73 +164,13 @@ int main(int argc, char const *argv[])
 
 // Reweighting
 //----------------------------------------------------------------------------
-    int n_estimate = frame.X().rows() / 10;
-    std::vector<std::vector<double>> charm_correction, 
-                                     light_correction, 
-                                     bottom_correction, 
-                                     charm_hist, 
-                                     bottom_hist, 
-                                     light_hist;
 
-    int m_num_pt_bins = tree_buf.get_binning()["categ_pt"].size();
-    int m_num_eta_bins = tree_buf.get_binning()["categ_eta"].size();
+    agile::root::weighting jet_weights;
 
-    charm_correction.resize(m_num_pt_bins);
-    bottom_correction.resize(m_num_pt_bins);
-    light_correction.resize(m_num_pt_bins);
-    charm_hist.resize(m_num_pt_bins);
-    bottom_hist.resize(m_num_pt_bins);
-    light_hist.resize(m_num_pt_bins);
-    double charm_pct = 0.10, bottom_pct = 0.35, light_pct = 0.55;
-    // for (int i = 0; i < m_num_pt_bins; ++i)
-    // {
-    //     charm_correction[i].resize(m_num_eta_bins);
-    //     bottom_correction[i].resize(m_num_eta_bins);
-    //     light_correction[i].resize(m_num_eta_bins);
-
-    //     charm_hist[i].resize(m_num_eta_bins);
-    //     bottom_hist[i].resize(m_num_eta_bins);
-    //     light_hist[i].resize(m_num_eta_bins);
-    // }
-    // for (int cat_pT = 0; cat_pT < m_num_pt_bins; ++cat_pT)
-    // {
-    //     for (int cat_eta = 0; cat_eta < m_num_eta_bins; ++cat_eta)
-    //     {
-    //         light_hist[cat_pT][cat_eta] = 0;
-    //         charm_hist[cat_pT][cat_eta] = 0;
-    //         bottom_hist[cat_pT][cat_eta] = 0;
-    //     }
-    // }
-
-    // for (int i = 0; i < n_estimate; ++i)
-    // {
-    //     at(i);
-    //     if ((fabs(get_value("eta")) < 2.5) && (get_value("pt") > 20) && (get_value("flavor_truth_label") < 8) && (get_value("pt") < 1000))
-    //     {
-    //         if (cast_as_int(*variables["light"]) == 1)
-    //         {
-    //             light_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
-    //         }
-    //         else if (cast_as_int(*variables["charm"]) == 1)
-    //         {
-    //             charm_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
-    //         }
-    //         else if (cast_as_int(*variables["bottom"]) == 1)
-    //         {
-    //             bottom_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
-    //         }
-    //     }
-
-    // }
-
-
-
-
-
-
-
-
-
+    jet_weights.light_percentage(0.54)
+               .charm_percentage(0.11)
+               .bottom_percentage(0.35)
+               .gen_hist(tree_buf);
 
 
 
