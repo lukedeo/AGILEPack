@@ -102,6 +102,12 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
 
     p.eat_arguments(argc, argv);
+
+    if (!p.get_value("file")) complain("need to pass at least one file.");
+    if (!p.get_value("tree")) complain("need to pass a tree name.");
+    if (!p.get_value("config")) complain("need a config file for variable specification.");
+    if (!p.get_value("formula")) complain("need a model formula to train.");
+    if (!p.get_value("struct")) complain("need to pass a network structure.");
     
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
@@ -121,7 +127,7 @@ int main(int argc, char const *argv[])
             end =         p.get_value<int>("end"),
             uepochs =      p.get_value<int>("uepochs"),
             sepochs =      p.get_value<int>("sepochs"),
-            batch =       p.get_value<int>("batch"),
+            batch =       p.get_value<int>("batch");
 
     bool    verbose =     p.get_value("verbose");
 
@@ -142,7 +148,7 @@ int main(int argc, char const *argv[])
 
     agile::model_frame frame;
 
-    frame.add_data(std::move(
+    frame.add_dataset(std::move(
         tree_buf.get_dataframe(start, end - start, verbose)));
 
     frame.model_formula(model_formula);
