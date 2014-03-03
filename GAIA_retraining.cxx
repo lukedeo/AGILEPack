@@ -1,5 +1,6 @@
 #include "Base"
 #include "include/parser.hh"
+#include "weighting.hh"
 
 
 
