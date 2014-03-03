@@ -66,8 +66,6 @@ private:
     inline int find_bin(const double &val);
     std::string m_name;
     std::vector<double> m_bins;
-    bool m_bins_present;
-    bool m_name_present;
     bool m_abs;
 };
 
