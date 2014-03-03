@@ -153,7 +153,7 @@ int main(int argc, char const *argv[])
     jet_weights.light_percentage(0.54)
                .charm_percentage(0.11)
                .bottom_percentage(0.35)
-               .gen_hist(tree_buf, 20000);
+               .gen_hist(tree_buf, 200000);
 //----------------------------------------------------------------------------
 // 
     agile::dataframe D((std::move(
