@@ -102,6 +102,12 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
 
     p.eat_arguments(argc, argv);
+
+    if (!p.get_value("file")) complain("need to pass at least one file.");
+    if (!p.get_value("tree")) complain("need to pass a tree name.");
+    if (!p.get_value("config")) complain("need a config file for variable specification.");
+    if (!p.get_value("formula")) complain("need a model formula to train.");
+    if (!p.get_value("struct")) complain("need to pass a network structure.");
     
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
@@ -121,7 +127,7 @@ int main(int argc, char const *argv[])
             end =         p.get_value<int>("end"),
             uepochs =      p.get_value<int>("uepochs"),
             sepochs =      p.get_value<int>("sepochs"),
-            batch =       p.get_value<int>("batch"),
+            batch =       p.get_value<int>("batch");
 
     bool    verbose =     p.get_value("verbose");
 
@@ -142,7 +148,7 @@ int main(int argc, char const *argv[])
 
     agile::model_frame frame;
 
-    frame.add_data(std::move(
+    frame.add_dataset(std::move(
         tree_buf.get_dataframe(start, end - start, verbose)));
 
     frame.model_formula(model_formula);
@@ -155,9 +161,68 @@ int main(int argc, char const *argv[])
     net.load_model_frame_config(frame);
     net.check(false);
 
+// Reweighting
+//----------------------------------------------------------------------------
+    int n_estimate = frame.X().rows() / 10;
+    std::vector<std::vector<double>> charm_correction, 
+                                     light_correction, 
+                                     bottom_correction, 
+                                     charm_hist, 
+                                     bottom_hist, 
+                                     light_hist;
+
+    int m_num_pt_bins = tree_buf.get_binning()["categ_pt"].size();
+    int m_num_eta_bins = tree_buf.get_binning()["categ_eta"].size();
+
+    // charm_correction.resize();
+    // bottom_correction.resize(m_num_pt_bins);
+    // light_correction.resize(m_num_pt_bins);
+    // charm_hist.resize(m_num_pt_bins);
+    // bottom_hist.resize(m_num_pt_bins);
+    // light_hist.resize(m_num_pt_bins);
+    // double charm_pct = 0.10, bottom_pct = 0.35, light_pct = 0.55;
+    // for (int i = 0; i < m_num_pt_bins; ++i)
+    // {
+    //     charm_correction[i].resize(m_num_eta_bins);
+    //     bottom_correction[i].resize(m_num_eta_bins);
+    //     light_correction[i].resize(m_num_eta_bins);
+
+    //     charm_hist[i].resize(m_num_eta_bins);
+    //     bottom_hist[i].resize(m_num_eta_bins);
+    //     light_hist[i].resize(m_num_eta_bins);
+    // }
+    // for (int cat_pT = 0; cat_pT < m_num_pt_bins; ++cat_pT)
+    // {
+    //     for (int cat_eta = 0; cat_eta < m_num_eta_bins; ++cat_eta)
+    //     {
+    //         light_hist[cat_pT][cat_eta] = 0;
+    //         charm_hist[cat_pT][cat_eta] = 0;
+    //         bottom_hist[cat_pT][cat_eta] = 0;
+    //     }
+    // }
+
+    // for (int i = 0; i < n_estimate; ++i)
+    // {
+    //     at(i);
+    //     if ((fabs(get_value("eta")) < 2.5) && (get_value("pt") > 20) && (get_value("flavor_truth_label") < 8) && (get_value("pt") < 1000))
+    //     {
+    //         if (cast_as_int(*variables["light"]) == 1)
+    //         {
+    //             light_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
+    //         }
+    //         else if (cast_as_int(*variables["charm"]) == 1)
+    //         {
+    //             charm_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
+    //         }
+    //         else if (cast_as_int(*variables["bottom"]) == 1)
+    //         {
+    //             bottom_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
+    //         }
+    //     }
+
+    // }
 
 
-    
 
 
 
@@ -168,21 +233,20 @@ int main(int argc, char const *argv[])
 
 
 
+    // net.from_yaml(load_file);
 
-    net.from_yaml(load_file);
-
-    std::vector<std::string> input_vars {"pt", "bottom", "charm", "light", "MV1"};
+    // std::vector<std::string> input_vars {"pt", "bottom", "charm", "light", "MV1"};
 
 
-    std::cout << "prob_bottom, bottom, charm, light, pt, MV1" << std::endl;
-    for (int i = start; i < end; ++i)
-    {
-        auto pred = net.predict_map(TR(i, net.get_inputs()));
+    // std::cout << "prob_bottom, bottom, charm, light, pt, MV1" << std::endl;
+    // for (int i = start; i < end; ++i)
+    // {
+    //     auto pred = net.predict_map(TR(i, net.get_inputs()));
 
-        auto control = TR(i, input_vars);
+    //     auto control = TR(i, input_vars);
 
-        std::cout << pred["bottom"] << "," << control["bottom"] << "," << control["charm"] << "," << control["light"] << "," << control["pt"] << "," << control["MV1"] << std::endl;
-    }
+    //     std::cout << pred["bottom"] << "," << control["bottom"] << "," << control["charm"] << "," << control["light"] << "," << control["pt"] << "," << control["MV1"] << std::endl;
+    // }
 
 
 
