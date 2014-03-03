@@ -135,7 +135,7 @@ private:
 
 
 template <class T>
-agile::dataframe get_dataframe(const T &weights, int entries, int start, 
+agile::dataframe tree_reader::get_dataframe(const T &weights, int entries, int start, 
     bool verbose)
 {
     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
@@ -182,7 +182,7 @@ agile::dataframe get_dataframe(const T &weights, int entries, int start,
         {
             auto tmp_vec = std::move(at((unsigned int)curr_entry));
             tmp_vec.push_back(weights.get_weight(at((unsigned int)curr_entry, temp_names)));
-            D.push_back();
+            D.push_back(tmp_vec);
 
         }
         
