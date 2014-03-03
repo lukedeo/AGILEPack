@@ -42,6 +42,10 @@ public:
     void to_yaml(const std::string &filename, 
         const std::map<std::string, std::string> &types,
         const std::map<std::string, std::vector<double>> &binning);
+    void to_yaml(const std::string &filename, 
+        const std::map<std::string, std::string> &types,
+        const std::map<std::string, std::vector<double>> &binning,
+        const std::map<std::string, std::vector<double>> &constraints);
 
     // template <class T>
     // void to_yaml(const std::string &filename, const T &R);

@@ -334,6 +334,15 @@ std::map<std::string, std::vector<double>> tree_reader::get_binning()
     return m_binning_strategy;
 }
 //----------------------------------------------------------------------------
+std::map<std::string, std::vector<double>> tree_reader::get_constraints()
+{
+    if(!m_constraint_present)
+    {
+        throw std::logic_error("Constraints not set!");
+    }
+    return m_constraint_strategy;
+}
+//----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, 
     bool verbose)
 {
@@ -433,6 +442,30 @@ double tree_reader::operator()(const unsigned int &idx, std::string col_name)
 }
 
 std::map<std::string, double> tree_reader::operator()(const unsigned int &idx, 
+    const std::vector<std::string> &names)
+{
+    m_smart_chain->GetEntry(idx);
+    std::map<std::string, double> map;
+    for (auto &name : names)
+    {
+        try
+        {
+            map[name] = storage.at(traits[name].pos)->get_value<double>();
+        }
+        catch(std::out_of_range &e)
+        {
+            int bin = m_binned_vars[name].get_bin(
+                storage.at(traits[name].pos)->get_value<double>());
+
+            map[name] = (double)(bin);
+        }
+        
+    }
+    return std::move(map);
+
+}
+//----------------------------------------------------------------------------
+std::map<std::string, double> tree_reader::at(const unsigned int &idx, 
     const std::vector<std::string> &names)
 {
     m_smart_chain->GetEntry(idx);

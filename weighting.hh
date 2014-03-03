@@ -97,8 +97,32 @@ public:
         return *this;
     }
 //----------------------------------------------------------------------------
+    double get_weight(const std::map<std::string, double> &vars)
+    {
+        if ((int)vars["light"] == 1)
+        {
+            return 1.0;
+        }
+        else if ((int)vars["bottom"] == 1)
+        {
+            return bottom_hist[(int)vars["categ_pt"]][(int)vars["categ_eta"]];
+        }
+        else if ((int)vars["charm"] == 1)
+        {
+            return charm_hist[(int)vars["categ_pt"]][(int)vars["categ_eta"]];
+        }
+        else
+        {
+            throw std::domain_error(
+                "Flavor type missing in map passed to weighting class");
+        }
+    }
+
+
 
     ~weighting() = default;
+
+
 
 private:
     double charm_pct, light_pct, bottom_pct;

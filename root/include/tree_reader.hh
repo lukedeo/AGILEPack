@@ -79,6 +79,10 @@ public:
     agile::dataframe get_dataframe(int entries = 1000, int start = -1, 
         bool verbose = false);
 
+    template <class T>
+    agile::dataframe get_dataframe(const T &weights, int entries = 1000, int start = -1, 
+        bool verbose = false);
+
     std::map<std::string, std::string> get_var_types();
 
     std::map<std::string, std::vector<double>> get_binning();
@@ -91,6 +95,8 @@ public:
     std::vector<double> operator[](const unsigned int &idx);
     std::vector<double> operator()(const unsigned int &idx);
     double operator()(const unsigned int &idx, std::string col_name);
+    std::map<std::string, double> at(const unsigned int &idx, 
+        const std::vector<std::string> &names);
     std::map<std::string, double> operator()(const unsigned int &idx, 
         const std::vector<std::string> &names);
 
@@ -123,6 +129,74 @@ private:
     std::map<std::string, std::vector<double>> m_constraint_strategy;
 
 };
+
+// template function implementation
+//----------------------------------------------------------------------------
+
+
+template <class T>
+agile::dataframe get_dataframe(const T &weights, int entries, int start, 
+    bool verbose)
+{
+    if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
+    {
+        throw dimension_error(
+            "tried to access element in TTree beyond range.");
+    }
+
+    if (verbose)
+    {
+        std::cout << "Pulling agile::dataframe from tree_reader..." << std::endl;
+    }
+    entries = (entries < 0) ? m_size : entries;
+    start = (start < 0) ? 0 : start;
+    auto stop = start + entries;
+
+    int curr_entry = 0;
+    double pct;
+    agile::dataframe D;
+
+    auto all_names = feature_names;
+    auto temp_names = feature_names;
+    if (m_binned_present)
+    {
+        for (auto &entry : binned_names)
+        {
+            all_names.push_back("categ_" + entry);
+        }
+        temp_names = all_names;
+    }
+    all_names.push_back("JET_WEIGHT");
+    D.set_column_names(all_names);
+    for (curr_entry = start; curr_entry < stop; ++curr_entry)
+    {
+        if (verbose)
+        {
+            pct = (double)(curr_entry - start) / (double)(entries);
+            agile::progress_bar(pct * 100);
+        }
+
+        m_smart_chain->GetEntry(curr_entry);
+
+        if (entry_in_range())
+        {
+            auto tmp_vec = std::move(at((unsigned int)curr_entry));
+            tmp_vec.push_back(weights.get_weight(at((unsigned int)curr_entry, temp_names)));
+            D.push_back();
+
+        }
+        
+    }
+    return std::move(D);
+}
+
+
+
+
+
+
+
+
 
 } // end ns root
 } // end ns agile

@@ -173,6 +173,49 @@ int main(int argc, char const *argv[])
                .gen_hist(tree_buf);
 
 
+//----------------------------------------------------------------------------
+    if (passed_target == "regress") net_type = linear;
+    else if (passed_target == "multiclass") net_type = softmax;
+    else if (passed_target == "binary") net_type = sigmoid;
+    else complain(
+        "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+    
+//----------------------------------------------------------------------------
+
+    int i;
+    for (i = 0; i < (structure.size() - 2); ++i)
+    {
+        if (i < deepauto)
+        {
+            net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+        }
+        else
+        {
+            net.emplace_back(new layer(structure[i], structure[i + 1], sigmoid));
+        }
+        
+    }
+    if (i < deepauto)
+    {
+        net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
+    }
+    else
+    {
+        net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
+    }
+
+
+
+// Training
+//----------------------------------------------------------------------------
+    std::vector<double> weight_vector;
+    for (int i = 0; i < count; ++i)
+    {
+        /* code */
+    }
+
+
+
 
     // net.from_yaml(load_file);
 
