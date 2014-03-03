@@ -111,7 +111,7 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
 //----------------------------------------------------------------------------
 bool tree_reader::entry_in_range()
 {
-    if (!m_binned_present)
+    if ((!m_binned_present) && (!!m_constraint_present))
     {
         return true;
     }
@@ -120,6 +120,13 @@ bool tree_reader::entry_in_range()
     {
         ok = ok && m_binned_vars[name].in_range(
             storage.at(traits[name].pos)->get_value<double>());
+        if(!ok) return false;
+    }
+    for (auto &name : constraint_names)
+    {
+        ok = ok && m_constraint_vars[name].in_range(
+            storage.at(traits[name].pos)->get_value<double>());
+        if(!ok) return false;
     }
     return ok;
 }
@@ -177,11 +184,11 @@ void tree_reader::create_constraint(const std::string &branch_name,
     std::vector<double> v(il);
     if (absolute)
     {
-        m_binning_strategy["abs(" + branch_name + ")"] = v;
+        m_constraint_strategy["abs(" + branch_name + ")"] = v;
     }
     else
     {
-        m_binning_strategy[branch_name] = v;
+        m_constraint_strategy[branch_name] = v;
     }
     m_constraint_present = true;
 }
@@ -197,11 +204,11 @@ void tree_reader::create_constraint(const std::string &branch_name,
                               .set_abs(absolute);
     if (absolute)
     {
-        m_binning_strategy["abs(" + branch_name + ")"] = v;
+        m_constraint_strategy["abs(" + branch_name + ")"] = v;
     }
     else
     {
-        m_binning_strategy[branch_name] = v;
+        m_constraint_strategy[branch_name] = v;
     }
     m_constraint_present = true;
 }
@@ -244,7 +251,6 @@ void tree_reader::set_branches(const std::string &yamlfile)
     }
     try
     {   
-
         YAML::Node binning = tmp["binning"];
 
         auto bins = binning.as<std::map<std::string, std::vector<double>>>();
@@ -272,6 +278,40 @@ void tree_reader::set_branches(const std::string &yamlfile)
                     open_paren + 1, close_paren - open_paren - 1);
 
                 create_binning(arg, entry.second, true);
+            }      
+        }
+    }
+    catch(YAML::BadConversion &e){}
+    try
+    {   
+
+        YAML::Node binning = tmp["constraints"];
+
+        auto bins = binning.as<std::map<std::string, std::vector<double>>>();
+
+        for (auto &entry : bins)
+        {
+            auto expression(agile::no_spaces(entry.first));
+
+            if (expression.find("abs(") == std::string::npos)
+            {
+                create_constraint(entry.first, entry.second);
+            }
+            else
+            {
+                auto close_paren = expression.find_first_of(")");
+                auto open_paren = expression.find_first_of("(");
+                std::string arg;
+                if (close_paren == std::string::npos)
+                {
+                    arg = expression.substr(open_paren + 1);
+                    throw std::invalid_argument(
+                        "missing close parentheses for constraint argument " + arg);
+                }
+                arg = expression.substr(
+                    open_paren + 1, close_paren - open_paren - 1);
+
+                create_constraint(arg, entry.second, true);
             }      
         }
     }
