@@ -334,6 +334,15 @@ std::map<std::string, std::vector<double>> tree_reader::get_binning()
     return m_binning_strategy;
 }
 //----------------------------------------------------------------------------
+std::map<std::string, std::vector<double>> tree_reader::get_constraints()
+{
+    if(!m_constraint_present)
+    {
+        throw std::logic_error("Constraints not set!");
+    }
+    return m_constraint_strategy;
+}
+//----------------------------------------------------------------------------
 agile::dataframe tree_reader::get_dataframe(int entries, int start, 
     bool verbose)
 {
@@ -421,14 +430,17 @@ std::vector<double> tree_reader::operator()(const unsigned int &idx)
 double tree_reader::operator()(const unsigned int &idx, std::string col_name)
 {
     m_smart_chain->GetEntry(idx);
+
     try
-    {
-        return storage.at(traits[col_name].pos)->get_value<double>();
+    {   
+        return storage.at(traits.at(col_name).pos)->get_value<double>();
     }
     catch(std::out_of_range &e)
-    {
-        return (double) m_binned_vars[col_name].get_bin(
-            storage.at(traits[col_name].pos)->get_value<double>());
+    {   
+        auto categ_split = col_name.find_first_of('_');
+        auto arg = col_name.substr(categ_split + 1);
+        return (double) m_binned_vars.at(arg).get_bin(
+            storage.at(traits.at(arg).pos)->get_value<double>());
     }
 }
 
@@ -441,13 +453,40 @@ std::map<std::string, double> tree_reader::operator()(const unsigned int &idx,
     {
         try
         {
-            map[name] = storage.at(traits[name].pos)->get_value<double>();
+            map[name] = storage.at(traits.at(name).pos)->get_value<double>();
         }
         catch(std::out_of_range &e)
         {
-            int bin = m_binned_vars[name].get_bin(
-                storage.at(traits[name].pos)->get_value<double>());
+            auto categ_split = name.find_first_of('_');
+            auto arg = name.substr(categ_split + 1);
+            int bin = m_binned_vars.at(arg).get_bin(
+                storage.at(traits.at(arg).pos)->get_value<double>());
 
+            map[name] = (double)(bin);
+        }
+        
+    }
+    return std::move(map);
+
+}
+//----------------------------------------------------------------------------
+std::map<std::string, double> tree_reader::at(const unsigned int &idx, 
+    const std::vector<std::string> &names)
+{
+    m_smart_chain->GetEntry(idx);
+    std::map<std::string, double> map;
+    for (auto &name : names)
+    {
+        try
+        {
+            map[name] = storage.at(traits.at(name).pos)->get_value<double>();
+        }
+        catch(std::out_of_range &e)
+        {
+            auto categ_split = name.find_first_of('_');
+            auto arg = name.substr(categ_split + 1);
+            int bin = m_binned_vars.at(arg).get_bin(
+                storage.at(traits.at(arg).pos)->get_value<double>());
             map[name] = (double)(bin);
         }
         

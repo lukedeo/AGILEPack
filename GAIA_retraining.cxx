@@ -104,33 +104,33 @@ int main(int argc, char const *argv[])
 
     p.eat_arguments(argc, argv);
 
+
     if (!p.get_value("file")) complain("need to pass at least one file.");
     if (!p.get_value("tree")) complain("need to pass a tree name.");
     if (!p.get_value("config")) complain("need a config file for variable specification.");
     if (!p.get_value("formula")) complain("need a model formula to train.");
     if (!p.get_value("struct")) complain("need to pass a network structure.");
-    
     std::vector<std::string> root_files(p.get_value<std::vector<std::string>>("file"));
 
     std::string ttree_name =    p.get_value<std::string>("tree"),
                 config_file =   p.get_value<std::string>("config"),
-                save_file =     p.get_value<std::string>("save"),
+                // save_file =     p.get_value<std::string>("save"),
                 model_formula = p.get_value<std::string>("formula");
 
 
-    double  learning =    p.get_value<double>("learning"), 
-            momentum =    p.get_value<double>("momentum"),
-            regularizer = p.get_value<double>("regularize");
 
 
-    int     deepauto =    p.get_value<int>("deepauto"),
-            start =       p.get_value<int>("start"),
-            end =         p.get_value<int>("end"),
-            uepochs =      p.get_value<int>("uepochs"),
-            sepochs =      p.get_value<int>("sepochs"),
-            batch =       p.get_value<int>("batch");
+    double learning =    p.get_value<double>("learning"), 
+           momentum =    p.get_value<double>("momentum"),
+           regularizer = p.get_value<double>("regularize");
 
-    bool    verbose =     p.get_value("verbose");
+    int deepauto =    p.get_value<int>("deepauto"),
+        start =       p.get_value<int>("start"),
+        end =         p.get_value<int>("end"),
+        uepochs =     p.get_value<int>("uepochs"),
+        sepochs =     p.get_value<int>("sepochs"),
+        batch =       p.get_value<int>("batch");
+    bool verbose = p.get_value("verbose");
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
 
@@ -138,39 +138,97 @@ int main(int argc, char const *argv[])
     {
         deepauto = structure.size();
     }
-
 //----------------------------------------------------------------------------
 
     agile::root::tree_reader tree_buf;
 
     for (auto &file : root_files) tree_buf.add_file(file, ttree_name);
-
     tree_buf.set_branches(config_file);
 
-    agile::model_frame frame;
 
-    frame.add_dataset(std::move(
-        tree_buf.get_dataframe(start, end - start, verbose)));
-
-    frame.model_formula(model_formula);
-    frame.generate(verbose);
-    frame.scale(verbose);
-
-//----------------------------------------------------------------------------
-    
-    agile::neural_net net;
-    net.load_model_frame_config(frame);
-    net.check(false);
 
 // Reweighting
 //----------------------------------------------------------------------------
-
     agile::root::weighting jet_weights;
-
     jet_weights.light_percentage(0.54)
                .charm_percentage(0.11)
                .bottom_percentage(0.35)
-               .gen_hist(tree_buf);
+               .gen_hist(tree_buf, 200000);
+//----------------------------------------------------------------------------
+// 
+    agile::dataframe D((std::move(
+        tree_buf.get_dataframe(jet_weights, end - start, start, verbose))));
+    // agile::dataframe D((std::move(
+        // tree_buf.get_dataframe(end - start, start, verbose))));
+
+    std::ofstream dframe("testfram.csv");
+   
+    dframe << D;
+
+    dframe.close();
+
+//     agile::model_frame frame;
+
+//     frame.add_dataset(std::move(
+//         tree_buf.get_dataframe(jet_weights, start, end - start, verbose)));
+
+//     frame.model_formula(model_formula);
+//     frame.generate(verbose);
+//     frame.scale(verbose);
+
+// //----------------------------------------------------------------------------
+    
+//     agile::neural_net net;
+//     net.load_model_frame_config(frame);
+//     net.check(false);
+
+// //----------------------------------------------------------------------------
+
+//     layer_type net_type;
+//     std::string passed_target = p.get_value<std::string>("type");
+
+
+// //----------------------------------------------------------------------------
+//     if (passed_target == "regress") net_type = linear;
+//     else if (passed_target == "multiclass") net_type = softmax;
+//     else if (passed_target == "binary") net_type = sigmoid;
+//     else complain(
+//         "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+    
+// //----------------------------------------------------------------------------
+
+//     int i;
+//     for (i = 0; i < (structure.size() - 2); ++i)
+//     {
+//         if (i < deepauto)
+//         {
+//             net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+//         }
+//         else
+//         {
+//             net.emplace_back(new layer(structure[i], structure[i + 1], sigmoid));
+//         }
+        
+//     }
+//     if (i < deepauto)
+//     {
+//         net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
+//     }
+//     else
+//     {
+//         net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
+//     }
+
+
+
+// Training
+//----------------------------------------------------------------------------
+    // std::vector<double> weight_vector;
+    // for (int i = 0; i < count; ++i)
+    // {
+    //     /* code */
+    // }
+
 
 
 
