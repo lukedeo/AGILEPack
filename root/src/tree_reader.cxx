@@ -433,14 +433,14 @@ double tree_reader::operator()(const unsigned int &idx, std::string col_name)
 
     try
     {   
-        return storage.at(traits[col_name].pos)->get_value<double>();
+        return storage.at(traits.at(col_name).pos)->get_value<double>();
     }
     catch(std::out_of_range &e)
-    {
+    {   
         auto categ_split = col_name.find_first_of('_');
         auto arg = col_name.substr(categ_split + 1);
-        return (double) m_binned_vars[arg].get_bin(
-            storage.at(traits[arg].pos)->get_value<double>());
+        return (double) m_binned_vars.at(arg).get_bin(
+            storage.at(traits.at(arg).pos)->get_value<double>());
     }
 }
 
@@ -453,14 +453,14 @@ std::map<std::string, double> tree_reader::operator()(const unsigned int &idx,
     {
         try
         {
-            map[name] = storage.at(traits[name].pos)->get_value<double>();
+            map[name] = storage.at(traits.at(name).pos)->get_value<double>();
         }
         catch(std::out_of_range &e)
         {
             auto categ_split = name.find_first_of('_');
             auto arg = name.substr(categ_split + 1);
-            int bin = m_binned_vars[arg].get_bin(
-                storage.at(traits[arg].pos)->get_value<double>());
+            int bin = m_binned_vars.at(arg).get_bin(
+                storage.at(traits.at(arg).pos)->get_value<double>());
 
             map[name] = (double)(bin);
         }
@@ -479,15 +479,14 @@ std::map<std::string, double> tree_reader::at(const unsigned int &idx,
     {
         try
         {
-            map[name] = storage.at(traits[name].pos)->get_value<double>();
+            map[name] = storage.at(traits.at(name).pos)->get_value<double>();
         }
         catch(std::out_of_range &e)
         {
             auto categ_split = name.find_first_of('_');
             auto arg = name.substr(categ_split + 1);
-            int bin = m_binned_vars[arg].get_bin(
-                storage.at(traits[arg].pos)->get_value<double>());
-
+            int bin = m_binned_vars.at(arg).get_bin(
+                storage.at(traits.at(arg).pos)->get_value<double>());
             map[name] = (double)(bin);
         }
         
