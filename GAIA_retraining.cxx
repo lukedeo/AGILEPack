@@ -147,10 +147,21 @@ int main(int argc, char const *argv[])
 
     tree_buf.set_branches(config_file);
 
+// Reweighting
+//----------------------------------------------------------------------------
+
+    agile::root::weighting jet_weights;
+
+    jet_weights.light_percentage(0.54)
+               .charm_percentage(0.11)
+               .bottom_percentage(0.35)
+               .gen_hist(tree_buf);
+//----------------------------------------------------------------------------
+
     agile::model_frame frame;
 
     frame.add_dataset(std::move(
-        tree_buf.get_dataframe(start, end - start, verbose)));
+        tree_buf.get_dataframe(jet_weights, start, end - start, verbose)));
 
     frame.model_formula(model_formula);
     frame.generate(verbose);
@@ -162,15 +173,10 @@ int main(int argc, char const *argv[])
     net.load_model_frame_config(frame);
     net.check(false);
 
-// Reweighting
 //----------------------------------------------------------------------------
 
-    agile::root::weighting jet_weights;
-
-    jet_weights.light_percentage(0.54)
-               .charm_percentage(0.11)
-               .bottom_percentage(0.35)
-               .gen_hist(tree_buf);
+    layer_type net_type;
+    std::string passed_target = p.get_value<std::string>("type");
 
 
 //----------------------------------------------------------------------------

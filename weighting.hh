@@ -97,7 +97,7 @@ public:
         return *this;
     }
 //----------------------------------------------------------------------------
-    double get_weight(const std::map<std::string, double> &vars)
+    double get_weight(std::map<std::string, double> &vars)
     {
         if ((int)vars["light"] == 1)
         {
