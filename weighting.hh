@@ -12,12 +12,13 @@ class weighting
 public:
     weighting() : charm_pct(0.11), light_pct(0.54), bottom_pct(0.35) {}
     
-    weighting &gen_hist(const agile::root::tree_reader &tree_buf, int n_entries = 1000, int start = 0)
+    weighting &gen_hist(agile::root::tree_reader &tree_buf, int n_entries = 1000, int start = 0)
     {   
         std::vector<std::string> flavors({"bottom", "charm", "light"});
 
-        int m_num_pt_bins = tree_buf.get_binning()["categ_pt"].size();
-        int m_num_eta_bins = tree_buf.get_binning()["categ_eta"].size();
+        auto bin_strat = tree_buf.get_binning();
+        int m_num_pt_bins = bin_strat["categ_pt"].size();
+        int m_num_eta_bins = bin_strat["categ_eta"].size();
 
         charm_correction.resize(m_num_pt_bins);
         bottom_correction.resize(m_num_pt_bins);
@@ -75,6 +76,7 @@ public:
                 charm_correction[cat_pT][cat_eta] = std::min(std::max(light_hist[cat_pT][cat_eta], 1.0) / (5.0 * std::max(charm_hist[cat_pT][cat_eta], 1.0)), 20.0);
             }
         }
+        return *this;
     }
 //----------------------------------------------------------------------------
     weighting &charm_percentage(const double &pct)
