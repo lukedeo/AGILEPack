@@ -174,13 +174,13 @@ int main(int argc, char const *argv[])
     int m_num_pt_bins = tree_buf.get_binning()["categ_pt"].size();
     int m_num_eta_bins = tree_buf.get_binning()["categ_eta"].size();
 
-    // charm_correction.resize();
-    // bottom_correction.resize(m_num_pt_bins);
-    // light_correction.resize(m_num_pt_bins);
-    // charm_hist.resize(m_num_pt_bins);
-    // bottom_hist.resize(m_num_pt_bins);
-    // light_hist.resize(m_num_pt_bins);
-    // double charm_pct = 0.10, bottom_pct = 0.35, light_pct = 0.55;
+    charm_correction.resize(m_num_pt_bins);
+    bottom_correction.resize(m_num_pt_bins);
+    light_correction.resize(m_num_pt_bins);
+    charm_hist.resize(m_num_pt_bins);
+    bottom_hist.resize(m_num_pt_bins);
+    light_hist.resize(m_num_pt_bins);
+    double charm_pct = 0.10, bottom_pct = 0.35, light_pct = 0.55;
     // for (int i = 0; i < m_num_pt_bins; ++i)
     // {
     //     charm_correction[i].resize(m_num_eta_bins);

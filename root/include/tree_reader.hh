@@ -69,9 +69,14 @@ public:
 
     bool entry_in_range();
 
+    void get_entry(int idx)
+    {
+        m_smart_chain->GetEntry(idx);
+    }
+
     std::vector<std::string> get_ordered_branch_names();
 
-    agile::dataframe get_dataframe(int entries = -1, int start = -1, 
+    agile::dataframe get_dataframe(int entries = 1000, int start = -1, 
         bool verbose = false);
 
     std::map<std::string, std::string> get_var_types();
