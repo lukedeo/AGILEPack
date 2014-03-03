@@ -27,6 +27,7 @@ public:
         bottom_hist.resize(m_num_pt_bins);
         light_hist.resize(m_num_pt_bins);
 
+
         for (int i = 0; i < m_num_pt_bins; ++i)
         {
             charm_correction[i].resize(m_num_eta_bins);
@@ -37,6 +38,9 @@ public:
             bottom_hist[i].resize(m_num_eta_bins);
             light_hist[i].resize(m_num_eta_bins);
         }
+
+
+
         for (int cat_pT = 0; cat_pT < m_num_pt_bins; ++cat_pT)
         {
             for (int cat_eta = 0; cat_eta < m_num_eta_bins; ++cat_eta)
@@ -46,7 +50,7 @@ public:
                 bottom_hist[cat_pT][cat_eta] = 0;
             }
         }
-
+        std::cout << "!!!!reach here line " << __LINE__ << std::endl;
         for (int i = start; i < n_entries; ++i)
         {
             tree_buf.get_entry(i);
@@ -67,7 +71,7 @@ public:
                 }
             }
         }
-
+        std::cout << "!!!!reach here line " << __LINE__ << std::endl;
         for (int cat_pT = 0; cat_pT < m_num_pt_bins; ++cat_pT)
         {
             for (int cat_eta = 0; cat_eta < m_num_eta_bins; ++cat_eta)

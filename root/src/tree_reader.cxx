@@ -430,8 +430,9 @@ std::vector<double> tree_reader::operator()(const unsigned int &idx)
 double tree_reader::operator()(const unsigned int &idx, std::string col_name)
 {
     m_smart_chain->GetEntry(idx);
+
     try
-    {
+    {   
         return storage.at(traits[col_name].pos)->get_value<double>();
     }
     catch(std::out_of_range &e)
