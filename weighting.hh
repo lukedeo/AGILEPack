@@ -58,25 +58,22 @@ public:
                 }
                 else if (vars["light"] > 0.5)
                 {
-                    /* code */
+                    light_hist[(int)tree_buf(i, "categ_pt")][(int)tree_buf(i, "categ_eta")] += 1;
+                }
+                else
+                {
+                    charm_hist[(int)tree_buf(i, "categ_pt")][(int)tree_buf(i, "categ_eta")] += 1;
                 }
             }
-            if ((fabs(get_value("eta")) < 2.5) && (get_value("pt") > 20) && (get_value("flavor_truth_label") < 8) && (get_value("pt") < 1000))
-            {
-                if (cast_as_int(*variables["light"]) == 1)
-                {
-                    light_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
-                }
-                else if (cast_as_int(*variables["charm"]) == 1)
-                {
-                    charm_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
-                }
-                else if (cast_as_int(*variables["bottom"]) == 1)
-                {
-                    bottom_hist[cast_as_int(*(variables["cat_pT"]))][cast_as_int(*(variables["cat_eta"]))] += 1;
-                }
-            }
+        }
 
+        for (int cat_pT = 0; cat_pT < m_num_pt_bins; ++cat_pT)
+        {
+            for (int cat_eta = 0; cat_eta < m_num_eta_bins; ++cat_eta)
+            {
+                bottom_correction[cat_pT][cat_eta] = std::min(std::max(light_hist[cat_pT][cat_eta], 1.0) / ((1.0) * std::max(bottom_hist[cat_pT][cat_eta], 1.0)), 20.0);
+                charm_correction[cat_pT][cat_eta] = std::min(std::max(light_hist[cat_pT][cat_eta], 1.0) / (5.0 * std::max(charm_hist[cat_pT][cat_eta], 1.0)), 20.0);
+            }
         }
     }
 //----------------------------------------------------------------------------
@@ -99,10 +96,7 @@ public:
     }
 //----------------------------------------------------------------------------
 
-
-
-
-    ~weighting();
+    ~weighting() = default;
 
 private:
     double charm_pct, light_pct, bottom_pct;
