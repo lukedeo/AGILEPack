@@ -118,19 +118,19 @@ int main(int argc, char const *argv[])
                 model_formula = p.get_value<std::string>("formula");
 
 
-    double  learning =    p.get_value<double>("learning"), 
-            momentum =    p.get_value<double>("momentum"),
-            regularizer = p.get_value<double>("regularize");
+    double learning =    p.get_value<double>("learning"), 
+           momentum =    p.get_value<double>("momentum"),
+           regularizer = p.get_value<double>("regularize");
 
 
-    int     deepauto =    p.get_value<int>("deepauto"),
-            start =       p.get_value<int>("start"),
-            end =         p.get_value<int>("end"),
-            uepochs =      p.get_value<int>("uepochs"),
-            sepochs =      p.get_value<int>("sepochs"),
-            batch =       p.get_value<int>("batch");
+    int deepauto =    p.get_value<int>("deepauto"),
+        start =       p.get_value<int>("start"),
+        end =         p.get_value<int>("end"),
+        uepochs =     p.get_value<int>("uepochs"),
+        sepochs =     p.get_value<int>("sepochs"),
+        batch =       p.get_value<int>("batch");
 
-    bool    verbose =     p.get_value("verbose");
+    bool verbose = p.get_value("verbose");
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
 
