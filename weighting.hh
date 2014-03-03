@@ -57,18 +57,24 @@ public:
             if (tree_buf.entry_in_range())
             {
                 auto vars = tree_buf(i, flavors);
-                std::cout << "categ_pt = " << tree_buf(i, "categ_pt") << std::endl;
+
                 if (vars["bottom"] > 0.5)
                 {
+                    std::cout << "categ_pt = " << tree_buf(i, "categ_pt") << ", categ_eta = " << tree_buf(i, "categ_eta")<< std::endl;
                     bottom_hist[(int)tree_buf(i, "categ_pt")][(int)tree_buf(i, "categ_eta")] += 1;
+                    std::cout << "written!" << std::endl;
                 }
                 else if (vars["light"] > 0.5)
                 {
+                    std::cout << "categ_pt = " << tree_buf(i, "categ_pt") << ", categ_eta = " << tree_buf(i, "categ_eta")<< std::endl;
                     light_hist[(int)tree_buf(i, "categ_pt")][(int)tree_buf(i, "categ_eta")] += 1;
+                    std::cout << "written!" << std::endl;
                 }
                 else
                 {
+                    std::cout << "categ_pt = " << tree_buf(i, "categ_pt") << ", categ_eta = " << tree_buf(i, "categ_eta")<< std::endl;
                     charm_hist[(int)tree_buf(i, "categ_pt")][(int)tree_buf(i, "categ_eta")] += 1;
+                    std::cout << "written!" << std::endl;
                 }
             }
         }
