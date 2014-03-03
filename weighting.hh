@@ -57,6 +57,7 @@ public:
             if (tree_buf.entry_in_range())
             {
                 auto vars = tree_buf(i, flavors);
+                std::cout << "categ_pt = " << tree_buf(i, "categ_pt") << std::endl;
                 if (vars["bottom"] > 0.5)
                 {
                     bottom_hist[(int)tree_buf(i, "categ_pt")][(int)tree_buf(i, "categ_eta")] += 1;

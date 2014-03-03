@@ -437,7 +437,14 @@ double tree_reader::operator()(const unsigned int &idx, std::string col_name)
     }
     catch(std::out_of_range &e)
     {
-        return (double) m_binned_vars[col_name].get_bin(
+        for (auto &entry : m_binned_vars) 
+        {
+            std::cout << "variable called " << entry.first << std::endl;
+        }
+        auto categ_split = col_name.find_first_of('_');
+        auto arg = col_name.substr(categ_split + 1);
+        std::cout << "arg = " << arg << std::endl;
+        return (double) m_binned_vars[arg].get_bin(
             storage.at(traits[col_name].pos)->get_value<double>());
     }
 }
@@ -455,7 +462,9 @@ std::map<std::string, double> tree_reader::operator()(const unsigned int &idx,
         }
         catch(std::out_of_range &e)
         {
-            int bin = m_binned_vars[name].get_bin(
+            auto categ_split = name.find_first_of('_');
+            auto arg = name.substr(categ_split + 1);
+            int bin = m_binned_vars[arg].get_bin(
                 storage.at(traits[name].pos)->get_value<double>());
 
             map[name] = (double)(bin);
@@ -479,7 +488,9 @@ std::map<std::string, double> tree_reader::at(const unsigned int &idx,
         }
         catch(std::out_of_range &e)
         {
-            int bin = m_binned_vars[name].get_bin(
+            auto categ_split = name.find_first_of('_');
+            auto arg = name.substr(categ_split + 1);
+            int bin = m_binned_vars[arg].get_bin(
                 storage.at(traits[name].pos)->get_value<double>());
 
             map[name] = (double)(bin);
