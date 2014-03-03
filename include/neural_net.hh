@@ -64,7 +64,7 @@ public:
     void load_scaling(agile::scaling &&scale);
     agile::scaling get_scaling();
 
-    void load_model_frame_config(const agile::model_frame &m);
+    void load_model_frame_config(agile::model_frame &m);
 
 // Overrides
 //----------------------------------------------------------------------------
