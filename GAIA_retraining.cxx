@@ -214,11 +214,11 @@ int main(int argc, char const *argv[])
 
 // Training
 //----------------------------------------------------------------------------
-    std::vector<double> weight_vector;
-    for (int i = 0; i < count; ++i)
-    {
-        /* code */
-    }
+    // std::vector<double> weight_vector;
+    // for (int i = 0; i < count; ++i)
+    // {
+    //     /* code */
+    // }
 
 
 

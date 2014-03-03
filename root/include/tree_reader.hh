@@ -80,7 +80,7 @@ public:
         bool verbose = false);
 
     template <class T>
-    agile::dataframe get_dataframe(const T &weights, int entries = 1000, int start = -1, 
+    agile::dataframe get_dataframe(T &weights, int entries = 1000, int start = -1, 
         bool verbose = false);
 
     std::map<std::string, std::string> get_var_types();
@@ -135,7 +135,7 @@ private:
 
 
 template <class T>
-agile::dataframe tree_reader::get_dataframe(const T &weights, int entries, int start, 
+agile::dataframe tree_reader::get_dataframe(T &weights, int entries, int start, 
     bool verbose)
 {
     if ((entries > (int)m_size) || ((start + entries) > (int)m_size))
@@ -181,7 +181,10 @@ agile::dataframe tree_reader::get_dataframe(const T &weights, int entries, int s
         if (entry_in_range())
         {
             auto tmp_vec = std::move(at((unsigned int)curr_entry));
-            tmp_vec.push_back(weights.get_weight(at((unsigned int)curr_entry, temp_names)));
+
+            auto categ_map = at((unsigned int)curr_entry, temp_names);
+            
+            tmp_vec.push_back(weights.get_weight(categ_map));
             D.push_back(tmp_vec);
 
         }
