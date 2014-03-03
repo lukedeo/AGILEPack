@@ -158,57 +158,67 @@ int main(int argc, char const *argv[])
                .gen_hist(tree_buf);
 //----------------------------------------------------------------------------
 
-    agile::model_frame frame;
 
-    frame.add_dataset(std::move(
-        tree_buf.get_dataframe(jet_weights, start, end - start, verbose)));
+    agile::dataframe D((std::move(
+        tree_buf.get_dataframe(jet_weights, start, end - start, verbose))));
 
-    frame.model_formula(model_formula);
-    frame.generate(verbose);
-    frame.scale(verbose);
+    std::ofstream dframe("testfram.csv");
+   
+    dframe << D;
 
-//----------------------------------------------------------------------------
+    dframe.close();
+
+//     agile::model_frame frame;
+
+//     frame.add_dataset(std::move(
+//         tree_buf.get_dataframe(jet_weights, start, end - start, verbose)));
+
+//     frame.model_formula(model_formula);
+//     frame.generate(verbose);
+//     frame.scale(verbose);
+
+// //----------------------------------------------------------------------------
     
-    agile::neural_net net;
-    net.load_model_frame_config(frame);
-    net.check(false);
+//     agile::neural_net net;
+//     net.load_model_frame_config(frame);
+//     net.check(false);
 
-//----------------------------------------------------------------------------
+// //----------------------------------------------------------------------------
 
-    layer_type net_type;
-    std::string passed_target = p.get_value<std::string>("type");
+//     layer_type net_type;
+//     std::string passed_target = p.get_value<std::string>("type");
 
 
-//----------------------------------------------------------------------------
-    if (passed_target == "regress") net_type = linear;
-    else if (passed_target == "multiclass") net_type = softmax;
-    else if (passed_target == "binary") net_type = sigmoid;
-    else complain(
-        "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
+// //----------------------------------------------------------------------------
+//     if (passed_target == "regress") net_type = linear;
+//     else if (passed_target == "multiclass") net_type = softmax;
+//     else if (passed_target == "binary") net_type = sigmoid;
+//     else complain(
+//         "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
     
-//----------------------------------------------------------------------------
+// //----------------------------------------------------------------------------
 
-    int i;
-    for (i = 0; i < (structure.size() - 2); ++i)
-    {
-        if (i < deepauto)
-        {
-            net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
-        }
-        else
-        {
-            net.emplace_back(new layer(structure[i], structure[i + 1], sigmoid));
-        }
+//     int i;
+//     for (i = 0; i < (structure.size() - 2); ++i)
+//     {
+//         if (i < deepauto)
+//         {
+//             net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+//         }
+//         else
+//         {
+//             net.emplace_back(new layer(structure[i], structure[i + 1], sigmoid));
+//         }
         
-    }
-    if (i < deepauto)
-    {
-        net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
-    }
-    else
-    {
-        net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
-    }
+//     }
+//     if (i < deepauto)
+//     {
+//         net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
+//     }
+//     else
+//     {
+//         net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
+//     }
 
 
 
