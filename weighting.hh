@@ -12,7 +12,7 @@ class weighting
 public:
     weighting() : charm_pct(0.11), light_pct(0.54), bottom_pct(0.35) {}
     
-    weighting &gen_hist(agile::root::tree_reader &tree_buf, int n_entries = 1000, int start = 0)
+    weighting &gen_hist(agile::root::tree_reader &tree_buf, int n_entries = 1000, int start = 0, bool verbose = true)
     {   
         std::vector<std::string> flavors({"bottom", "charm", "light"});
 
@@ -76,6 +76,11 @@ public:
                     int cat_eta = (int) tree_buf(i, "categ_eta");
                     charm_hist[cat_pt][cat_eta] += 1;
                 }
+            }
+            if (verbose)
+            {
+                double pct = (double)(i - start) / (double)(n_entries);
+                agile::progress_bar(pct * 100);
             }
         }
         for (int cat_pT = 0; cat_pT < m_num_pt_bins; ++cat_pT)
