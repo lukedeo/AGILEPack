@@ -1,8 +1,9 @@
 #include "Base"
 #include "include/parser.hh"
 #include "weighting.hh"
+#include <time.h>
 
-
+const std::string timestamp(void);
 
 template <class T, class U>
 std::ostream& operator << ( std::ostream& o, const std::map<T, U> &m)
@@ -257,4 +258,14 @@ void complain(const std::string &complaint)
 {
     std::cerr << "Error: " << complaint << std::endl;
     exit(1);
+}
+
+const std::string timestamp(void)  
+{
+    time_t now = time(0);
+    struct tm tstruct;
+    char buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+    return buf;
 }
