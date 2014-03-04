@@ -161,10 +161,10 @@ int main(int argc, char const *argv[])
                .gen_hist(tree_buf, 200000);
 //----------------------------------------------------------------------------
 // 
-    agile::dataframe D((std::move(
-        tree_buf.get_dataframe(jet_weights, end - start, start, verbose))));
     // agile::dataframe D((std::move(
-        // tree_buf.get_dataframe(end - start, start, verbose))));
+    //     tree_buf.get_dataframe(jet_weights, end - start, start, verbose))));
+    agile::dataframe D((std::move(
+        tree_buf.get_dataframe(end - start, start, verbose))));
 
     // std::ofstream dframe("testfram.csv");
    
@@ -172,17 +172,11 @@ int main(int argc, char const *argv[])
 
     // dframe.close();
 
-    agile::model_frame frame;
-    frame.add_dataset(D);
-    frame.model_formula(model_formula);
-    frame.generate(verbose);
-    frame.scale(verbose);
-
 //----------------------------------------------------------------------------
     
     agile::neural_net net;
-    net.load_model_frame_config(frame);
-    net.check(false);
+    // net.load_model_frame_config(frame);
+    net.add_data(D);
 
 //----------------------------------------------------------------------------
 
@@ -221,6 +215,14 @@ int main(int argc, char const *argv[])
         net.emplace_back(new layer(structure[i], structure[i + 1], net_type));
     }
 
+    net.model_formula(model_formula, true, verbose);
+
+    net.set_learning(learning);
+    net.set_regularizer(regularizer);
+    net.set_momentum(momentum);
+    net.set_batch_size(batch);
+
+    net.check(0);
 
 
 // Training

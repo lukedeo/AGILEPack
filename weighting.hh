@@ -20,8 +20,6 @@ public:
         int m_num_pt_bins = bin_strat["pt"].size();
         int m_num_eta_bins = bin_strat["abs(eta)"].size();
 
-        std::cout << "m_num_pt_bins = " << m_num_pt_bins << std::endl;
-        std::cout << "m_num_eta_bins = " << m_num_eta_bins << std::endl;
 
         charm_correction.resize(m_num_pt_bins);
         bottom_correction.resize(m_num_pt_bins);
