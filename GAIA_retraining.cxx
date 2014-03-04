@@ -30,6 +30,10 @@ int main(int argc, char const *argv[])
     p.add_option("--tree", "-t")    .help("Name of the TTree to extract.")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------
+    p.add_option("--save", "-s")    .help("Name of file to save the YAML neural network file to.")
+                                    .mode(optionparser::store_value)
+                                    .default_value(std::string("neural_net" + timestamp() + ".yaml"));
+    //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load.")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------
@@ -115,7 +119,7 @@ int main(int argc, char const *argv[])
 
     std::string ttree_name =    p.get_value<std::string>("tree"),
                 config_file =   p.get_value<std::string>("config"),
-                // save_file =     p.get_value<std::string>("save"),
+                save_file =     p.get_value<std::string>("save"),
                 model_formula = p.get_value<std::string>("formula");
 
 
@@ -222,7 +226,22 @@ int main(int argc, char const *argv[])
 // Training
 //----------------------------------------------------------------------------
 
-    
+    if (verbose)
+    {
+        std::cout << "Performing Unsupervised Pretraining...";
+    }
+    net.train_unsupervised(uepochs, verbose);
+    if (verbose)
+    {
+        std::cout << "\nPerforming Supervised Training...\n";
+    }
+    net.train_supervised(sepochs, verbose);
+    if (verbose)
+    {
+        std::cout << "\nDone.\nSaving to " << save_file << "...";
+    }
+    net.to_yaml(save_file, tree_buf.get_var_types(), 
+        tree_buf.get_binning(), tree_buf.get_constraints());
 
 
 
