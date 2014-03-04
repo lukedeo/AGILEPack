@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
                                     .default_value(0.00001);
     p.add_option("--batch")         .help("Mini-batch size.")
                                     .mode(optionparser::store_value)
-                                    .default_value(10);
+                                    .default_value(1);
     //----------------------------------------------------------------------------
     p.add_option("--load")          .help("Name of a YAML neural network file to load to begin training")
                                     .mode(optionparser::store_value);
@@ -162,10 +162,10 @@ int main(int argc, char const *argv[])
                .gen_hist(tree_buf, 200000, 0, verbose);
 //----------------------------------------------------------------------------
 // 
-    // agile::dataframe D((std::move(
-    //     tree_buf.get_dataframe(jet_weights, end - start, start, verbose))));
     agile::dataframe D((std::move(
-        tree_buf.get_dataframe(end - start, start, verbose))));
+        tree_buf.get_dataframe(jet_weights, end - start, start, verbose))));
+    // agile::dataframe D((std::move(
+        // tree_buf.get_dataframe(end - start, start, verbose))));
 
     // std::ofstream dframe("testfram.csv");
    
