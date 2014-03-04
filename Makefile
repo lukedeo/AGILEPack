@@ -45,12 +45,12 @@ LIBS          += $(AGILELIBS)
 # --- command line interface and library construction
 
 BINARIES      := model_frame.o neural_net.o
-# EXE_OBJ       := test_interface.o
-EXE_OBJ       := train_interface.o
+EXE_OBJ       := test_interface.o
+# EXE_OBJ       := train_interface.o
 
 
-# EXECUTABLE    := DeepLearnTest
-EXECUTABLE    := DeepLearn
+EXECUTABLE    := DeepLearnTest
+# EXECUTABLE    := DeepLearn
 
 ALLOBJ        := $(EXE_OBJ) $(BINARIES) 
 
