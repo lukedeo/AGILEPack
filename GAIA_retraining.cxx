@@ -154,6 +154,7 @@ int main(int argc, char const *argv[])
 
 // Reweighting
 //----------------------------------------------------------------------------
+    std::cout << "Determining Reweighting..." << std::endl;
     agile::root::weighting jet_weights;
     jet_weights.light_percentage(0.54)
                .charm_percentage(0.11)
