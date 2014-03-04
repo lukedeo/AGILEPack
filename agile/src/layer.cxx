@@ -287,6 +287,7 @@ void layer::backpropagate(const agile::vector &v)
 //----------------------------------------------------------------------------
 void layer::backpropagate(const agile::vector &v, double weight)
 {
+    // std::cout << "updating with weight = " << weight  << std::endl;
     delta.noalias() = v;
 
     if (m_layer_type == sigmoid)

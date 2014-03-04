@@ -229,7 +229,6 @@ void neural_net::internal_train_unsupervised_weighted(
     int idx = 0, ctr = 0;
     int total = epochs * n_training;
     double pct;
-
     while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
     {
         if (verbose)

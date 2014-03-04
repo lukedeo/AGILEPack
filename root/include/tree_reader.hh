@@ -146,7 +146,7 @@ agile::dataframe tree_reader::get_dataframe(T &weights, int entries, int start,
 
     if (verbose)
     {
-        std::cout << "Pulling agile::dataframe from tree_reader..." << std::endl;
+        std::cout << "\nPulling agile::dataframe from tree_reader..." << std::endl;
     }
     entries = (entries < 0) ? m_size : entries;
     start = (start < 0) ? 0 : start;
