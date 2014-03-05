@@ -88,6 +88,9 @@ public:
     std::map<std::string, std::vector<double>> get_binning();
     std::map<std::string, std::vector<double>> get_constraints();
 
+    bool is_binned(){return m_binned_present;}
+    bool is_constrained(){return m_constraint_present;}
+
 //-----------------------------------------------------------------------------
 //  Element Access
 //-----------------------------------------------------------------------------

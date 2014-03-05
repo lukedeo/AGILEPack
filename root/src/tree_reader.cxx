@@ -111,7 +111,7 @@ void tree_reader::set_branch(std::string branch_name, numeric_type type)
 //----------------------------------------------------------------------------
 bool tree_reader::entry_in_range()
 {
-    if ((!m_binned_present) && (!!m_constraint_present))
+    if ((!m_binned_present) && (!m_constraint_present))
     {
         return true;
     }
@@ -284,7 +284,6 @@ void tree_reader::set_branches(const std::string &yamlfile)
     catch(YAML::BadConversion &e){}
     try
     {   
-
         YAML::Node binning = tmp["constraints"];
 
         auto bins = binning.as<std::map<std::string, std::vector<double>>>();
