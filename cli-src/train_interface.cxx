@@ -249,11 +249,19 @@ int main(int argc, char const *argv[])
     {
         std::cout << "\nDone.\nSaving to " << save_file << "...";
     }
-    try
+
+    if (TR.is_binned())
     {
-        net.to_yaml(save_file, TR.get_var_types(), TR.get_binning());    
+        if (TR.is_constrained())
+        {
+            net.to_yaml(save_file, TR.get_var_types(), TR.get_binning(), TR.get_constraints());
+        }
+        else
+        {
+            net.to_yaml(save_file, TR.get_var_types(), TR.get_binning());
+        }
     }
-    catch(std::logic_error &e)
+    else
     {
         net.to_yaml(save_file, TR.get_var_types());
     }
