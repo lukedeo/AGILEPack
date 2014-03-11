@@ -90,14 +90,14 @@ int main(int argc, char const *argv[])
     std::vector<std::string> input_vars {"pt", "bottom", "charm", "light", "MV1"};
 
 
-    std::cout << "prob_bottom, bottom, charm, light, pt, MV1" << std::endl;
+    std::cout << "prob_bottom, prob_charm, prob_light, bottom, charm, light, pt, MV1" << std::endl;
     for (int i = start; i < end; ++i)
     {
         auto pred = net.predict_map(TR(i, net.get_inputs()));
 
         auto control = TR(i, input_vars);
 
-        std::cout << pred["bottom"] << "," << control["bottom"] << "," << control["charm"] << "," << control["light"] << "," << control["pt"] << "," << control["MV1"] << std::endl;
+        std::cout << pred["bottom"] << "," << pred["charm"] << "," << pred["light"] << "," << control["bottom"] << "," << control["charm"] << "," << control["light"] << "," << control["pt"] << "," << control["MV1"] << std::endl;
     }
 
 
