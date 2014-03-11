@@ -39,9 +39,7 @@ If you can't use `git` to pull the source code from a web hosted repository, you
 user@computer$ wget https://github.com/lukedeo/AGILEPack/archive/master.zip
 user@computer$ unzip master && mv AGILEPack-master AGILEPack
 ```
-
 To install (assuming `Eigen` is installed), simply type
-
 ```
 user@computer$ cd AGILEPack && cd SOURCECODE
 user@computer$ make
