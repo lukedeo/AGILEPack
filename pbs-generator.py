@@ -1,3 +1,6 @@
+def ToAlphanum(string):
+	return ''.join(ch for ch in string if ch.isalnum())
+
 class PBS_Script(object):
 	'''
 	PBS_Script: class that takes a dictionary of parameters 
@@ -10,20 +13,23 @@ class PBS_Script(object):
 		self.variadic = {}
 
 
-	def set_executable(self, executable):
+	def SetExcecutable(self, executable):
 		if not isinstance(executable, str):
 			raise TypeError('Must pass the name of an excecutable as a string')
 		self.executable = executable
 
-	def add_static_arg(self, argument):
+	def AddStaticArg(self, argument):
 		if not isinstance(argument, str):
-			raise TypeError("Must pass arguments as strings, a la foo.add_static_arg('--file=myfile.txt')")
+			raise TypeError("Must pass arguments as strings, a la foo.AddStaticArg('--file=myfile.txt')")
 		self.addtl_args.append(argument)
 
-	def add_variadic_arg(self, arg_dict):
+	def AddVariadicArg(self, arg_dict):
 		if not isinstance(arg_dict, dict):
 			raise TypeError("Must pass variadic args as a dictionary")
 		self.variadic.update(arg_dict)
+
+
+	
 
 
 # for tagger, tagger_specs in taggerdict.iteritems():		
