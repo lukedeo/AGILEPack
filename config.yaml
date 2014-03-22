@@ -38,3 +38,26 @@ binning:
   abs(eta): [0, 0.6, 1.2, 1.8, 2.5]
 constraints:
   flavor_truth_label: [-1, 8]
+parameters:
+  structure: [27, 30, 25, 18, 7, 3]
+  learning: 0.0009
+  momentum: 0.85
+  unsupervised epochs: 40
+  supervised epochs: 70
+  start: 0
+  end: 11000000
+  type: multiclass
+  files: ~/scratch_space/mc12_8TeV.PowhegPythia_ttbar.root
+  tree: SVTree
+  batch size: 1
+  formula: bottom+charm+light~*-pt-cat_pT-cat_eta-eta-flavor_truth_label-MV1 | JET_WEIGHT
+  regularizer: 0.000001
+  save: AGILEDeepWeightedPartialPretrain.yaml
+  
+
+
+
+
+
+
+
