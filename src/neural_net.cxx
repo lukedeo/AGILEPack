@@ -167,6 +167,49 @@ void neural_net::to_yaml(const std::string &filename,
     }
 }
 //----------------------------------------------------------------------------
+void neural_net::load_config(const std::string &config)
+{
+
+    std::map<std::string, std::string> fields({{"structure", ""}, 
+                                               {"learning", ""},
+                                               {"momentum", ""},
+                                               {"unsupervised epochs", ""},
+                                               {"supervised epochs", ""},
+                                               {"start", ""},
+                                               {"end", ""},
+                                               {"type", ""},
+                                               {"files", ""},
+                                               {"tree", ""},
+                                               {"batch size", ""},
+                                               {"formula", ""},
+                                               {"regularizer", ""},
+                                               {"save", ""}});
+
+    YAML::Node configuration = YAML::LoadFile(config);
+
+
+    try
+    {
+        auto _node = configuration["parameters"];
+    }
+    catch(YAML::BadConversion &e)
+    {
+        throw std::logic_error(
+            "no field named \'parameters\' in config file when neural_net::load_config() called.");
+    }
+
+    for (auto &entry : fields)
+    {
+        try
+        {
+            entry.second = configuration["parameters"][entry.first].as<std::string>();
+        }
+        catch(YAML::BadConversion &e) {}
+    }
+
+
+}
+//----------------------------------------------------------------------------
 void neural_net::to_yaml(const std::string &filename, 
     const std::map<std::string, std::string> &types,
     const std::map<std::string, std::vector<double>> &binning,
