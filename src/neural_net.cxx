@@ -170,6 +170,7 @@ void neural_net::to_yaml(const std::string &filename,
 void neural_net::load_config(const std::string &config)
 {
 
+    std::cout << "HERE" << std::endl;
     std::map<std::string, std::string> fields({{"structure", ""}, 
                                                {"learning", ""},
                                                {"momentum", ""},
@@ -190,10 +191,12 @@ void neural_net::load_config(const std::string &config)
 
     try
     {
-        auto _node = configuration["parameters"];
+        std::cout << "also here" << std::endl;
+        auto node = configuration["parameters"].as<std::map<std::string, std::string>>();
     }
     catch(YAML::BadConversion &e)
     {
+        std::cout << "also here" << std::endl;
         throw std::logic_error(
             "no field named \'parameters\' in config file when neural_net::load_config() called.");
     }
@@ -203,6 +206,7 @@ void neural_net::load_config(const std::string &config)
         try
         {
             entry.second = configuration["parameters"][entry.first].as<std::string>();
+            std::cout << "entry: " << entry.second << std::endl;
         }
         catch(YAML::BadConversion &e) {}
     }
