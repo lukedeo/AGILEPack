@@ -189,14 +189,8 @@ void neural_net::load_config(const std::string &config)
     YAML::Node configuration = YAML::LoadFile(config);
 
 
-    try
+    if (!configuration["parameters"])
     {
-        std::cout << "also here" << std::endl;
-        auto node = configuration["parameters"].as<std::map<std::string, std::string>>();
-    }
-    catch(YAML::BadConversion &e)
-    {
-        std::cout << "also here" << std::endl;
         throw std::logic_error(
             "no field named \'parameters\' in config file when neural_net::load_config() called.");
     }
