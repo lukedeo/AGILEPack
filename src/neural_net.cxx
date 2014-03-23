@@ -169,8 +169,6 @@ void neural_net::to_yaml(const std::string &filename,
 //----------------------------------------------------------------------------
 void neural_net::load_config(const std::string &config)
 {
-
-    std::cout << "HERE" << std::endl;
     std::map<std::string, std::string> fields({{"structure", ""}, 
                                                {"learning", ""},
                                                {"momentum", ""},
@@ -187,8 +185,6 @@ void neural_net::load_config(const std::string &config)
                                                {"save", ""}});
 
     YAML::Node configuration = YAML::LoadFile(config);
-
-
     if (!configuration["parameters"])
     {
         throw std::logic_error(
