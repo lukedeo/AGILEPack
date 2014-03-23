@@ -185,15 +185,24 @@ void neural_net::load_config(const std::string &config)
                                                {"regularizer", ""},
                                                {"save", ""}});
 
-    YAML::Node configuration = YAML::LoadFile(filename);
+    YAML::Node configuration = YAML::LoadFile(config);
 
 
+    try
+    {
+        auto _node = configuration["parameters"];
+    }
+    catch(YAML::BadConversion &e)
+    {
+        throw std::logic_error(
+            "no field named \'parameters\' in config file when neural_net::load_config() called.");
+    }
 
     for (auto &entry : fields)
     {
         try
         {
-            entry.second = configuration["parameters"][entry.first].as<std::string>()
+            entry.second = configuration["parameters"][entry.first].as<std::string>();
         }
         catch(YAML::BadConversion &e) {}
     }
