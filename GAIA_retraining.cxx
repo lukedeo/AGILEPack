@@ -191,6 +191,9 @@ int main(int argc, char const *argv[])
     dframe.close();
 
     agile::neural_net net;
+
+    net.load_config(config_file)
+    
     net.add_data(D);
 
     layer_type net_type;

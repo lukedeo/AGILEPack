@@ -53,12 +53,6 @@ parameters:
   formula: bottom+charm+light~*-pt-cat_pT-cat_eta-eta-flavor_truth_label-MV1 | JET_WEIGHT
   regularizer: 0.000001
   save: AGILEDeepWeightedPartialPretrain.yaml
-  
-  
-
-
-
-
 
 
 
