@@ -19,6 +19,11 @@ neural_net::neural_net(std::initializer_list<int> il, problem_type type)
 {
 }
 //----------------------------------------------------------------------------
+neural_net::neural_net(const std::vector<int> &v, problem_type type) 
+: architecture(v, type),  m_checked(false), m_weighted(false)
+{
+}
+//----------------------------------------------------------------------------
 neural_net::neural_net(const neural_net &arch) 
 : architecture(arch), predictor_order(arch.predictor_order), 
 target_order(arch.target_order), X(arch.X), Y(arch.Y),
@@ -190,6 +195,9 @@ void neural_net::load_config(const std::string &config)
         throw std::logic_error(
             "no field named \'parameters\' in config file when neural_net::load_config() called.");
     }
+
+    
+
 
     for (auto &entry : fields)
     {
