@@ -192,7 +192,7 @@ int main(int argc, char const *argv[])
 
     agile::neural_net net;
 
-    net.load_config(config_file)
+    net.load_config(config_file);
     
     net.add_data(D);
 
