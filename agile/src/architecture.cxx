@@ -43,6 +43,12 @@ architecture::architecture(std::initializer_list<int> il, problem_type type)
     }
 }
 //----------------------------------------------------------------------------
+architecture::architecture(const std::vector<int> &v, problem_type type)
+: n_layers(0), stack(0)
+{
+
+}
+//----------------------------------------------------------------------------
 architecture::architecture(const architecture &arch) 
 : n_layers(0), stack(0)
 {

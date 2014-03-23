@@ -191,6 +191,9 @@ void neural_net::load_config(const std::string &config)
             "no field named \'parameters\' in config file when neural_net::load_config() called.");
     }
 
+    
+
+
     for (auto &entry : fields)
     {
         try
