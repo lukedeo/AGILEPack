@@ -174,29 +174,48 @@ void neural_net::to_yaml(const std::string &filename,
 //----------------------------------------------------------------------------
 void neural_net::load_config(const std::string &config)
 {
-    std::map<std::string, std::string> fields({{"structure", ""}, 
-                                               {"learning", ""},
-                                               {"momentum", ""},
-                                               {"unsupervised epochs", ""},
-                                               {"supervised epochs", ""},
-                                               {"start", ""},
-                                               {"end", ""},
-                                               {"type", ""},
-                                               {"files", ""},
-                                               {"tree", ""},
-                                               {"batch size", ""},
-                                               {"formula", ""},
-                                               {"regularizer", ""},
-                                               {"save", ""}});
+    std::vector<std::string> fields({"structure", 
+                                     "learning",
+                                     "momentum",
+                                     "unsupervised epochs",
+                                     "supervised epochs",
+                                     "start",
+                                     "end",
+                                     "type",
+                                     "batch size",
+                                     "formula",
+                                     "regularizer",
+                                     "save"});
 
     YAML::Node configuration = YAML::LoadFile(config);
+
+
     if (!configuration["parameters"])
     {
         throw std::logic_error(
-            "no field named \'parameters\' in config file when neural_net::load_config() called.");
+            "no field named \'parameters\' in config file "+
+            "when neural_net::load_config() called.");
+    }
+
+    for (auto &entry : fields)
+    {
+        if (!configuration[entry])
+        {
+            throw std::logic_error(
+                "missing parameter field \'" + entry + "\'.");
+        }
     }
 
     YAML::Node parameters = configuration["parameters"];
+
+
+
+
+
+
+
+
+
 
     if (parameters["structure"])
     {
@@ -214,36 +233,24 @@ void neural_net::load_config(const std::string &config)
             }
             else
             {
-                if (type == multiclass)
+                if (parameters["type"] == "multiclass")
                 {
                 stack.emplace_back(new layer(prev, *value, softmax));
                 }
-                else if (type == classify)
+                else if (parameters["type"] == "classify")
                 {
                 stack.emplace_back(new layer(prev, *value, sigmoid));
                 }
                 else
                 {
                 stack.emplace_back(new layer(prev, *value, linear));    
-                }           
+                }
             }
             ++n_layers;
             prev = *value;
         }
     }
 
-    
-
-
-    for (auto &entry : fields)
-    {
-        try
-        {
-            entry.second = configuration["parameters"][entry.first].as<std::string>();
-            std::cout << "entry: " << entry.second << std::endl;
-        }
-        catch(YAML::BadConversion &e) {}
-    }
 
 
 }
