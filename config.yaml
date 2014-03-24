@@ -47,8 +47,6 @@ parameters:
   start: 0
   end: 11000000
   type: multiclass
-  files: ~/scratch_space/mc12_8TeV.PowhegPythia_ttbar.root
-  tree: SVTree
   batch size: 1
   formula: bottom+charm+light~*-pt-cat_pT-cat_eta-eta-flavor_truth_label-MV1 | JET_WEIGHT
   regularizer: 0.000001

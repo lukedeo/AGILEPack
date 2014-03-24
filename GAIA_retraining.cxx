@@ -164,9 +164,6 @@ int main(int argc, char const *argv[])
 
     agile::root::tree_reader TR;
 
-
-
-
     for (auto &file : root_files)
     {
        TR.add_file(file, ttree_name);
@@ -192,7 +189,7 @@ int main(int argc, char const *argv[])
 
     agile::neural_net net;
 
-    net.load_config(config_file);
+    // net.load_config(config_file);
     
     net.add_data(D);
 
