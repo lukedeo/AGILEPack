@@ -22,6 +22,7 @@ class neural_net : public architecture
 public:
     neural_net(int num_layers = 0);
     neural_net(std::initializer_list<int> il, problem_type type = regress);
+    neural_net(const std::vector<int> &v, problem_type type = regress);
     neural_net(const neural_net &arch);
     ~neural_net();
 

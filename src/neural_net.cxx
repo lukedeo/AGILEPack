@@ -19,6 +19,11 @@ neural_net::neural_net(std::initializer_list<int> il, problem_type type)
 {
 }
 //----------------------------------------------------------------------------
+neural_net::neural_net(const std::vector<int> &v, problem_type type) 
+: architecture(v, type),  m_checked(false), m_weighted(false)
+{
+}
+//----------------------------------------------------------------------------
 neural_net::neural_net(const neural_net &arch) 
 : architecture(arch), predictor_order(arch.predictor_order), 
 target_order(arch.target_order), X(arch.X), Y(arch.Y),
@@ -169,43 +174,83 @@ void neural_net::to_yaml(const std::string &filename,
 //----------------------------------------------------------------------------
 void neural_net::load_config(const std::string &config)
 {
-
-    std::map<std::string, std::string> fields({{"structure", ""}, 
-                                               {"learning", ""},
-                                               {"momentum", ""},
-                                               {"unsupervised epochs", ""},
-                                               {"supervised epochs", ""},
-                                               {"start", ""},
-                                               {"end", ""},
-                                               {"type", ""},
-                                               {"files", ""},
-                                               {"tree", ""},
-                                               {"batch size", ""},
-                                               {"formula", ""},
-                                               {"regularizer", ""},
-                                               {"save", ""}});
+    std::vector<std::string> fields({"structure", 
+                                     "learning",
+                                     "momentum",
+                                     "unsupervised epochs",
+                                     "supervised epochs",
+                                     "start",
+                                     "end",
+                                     "type",
+                                     "batch size",
+                                     "formula",
+                                     "regularizer",
+                                     "save"});
 
     YAML::Node configuration = YAML::LoadFile(config);
 
 
-    try
-    {
-        auto _node = configuration["parameters"];
-    }
-    catch(YAML::BadConversion &e)
+    if (!configuration["parameters"])
     {
         throw std::logic_error(
-            "no field named \'parameters\' in config file when neural_net::load_config() called.");
+            "no field named \'parameters\' in config file "+
+            "when neural_net::load_config() called.");
     }
 
     for (auto &entry : fields)
     {
-        try
+        if (!configuration[entry])
         {
-            entry.second = configuration["parameters"][entry.first].as<std::string>();
+            throw std::logic_error(
+                "missing parameter field \'" + entry + "\'.");
         }
-        catch(YAML::BadConversion &e) {}
     }
+
+    YAML::Node parameters = configuration["parameters"];
+
+
+
+
+
+
+
+
+
+
+    if (parameters["structure"])
+    {
+        stack.clear();
+        n_layers = 0;
+        
+        std::vector<int> v = parameters["structure"].as<std::vector<int>>();
+        int prev = *(v.begin());
+
+        for (auto value = (v.begin() + 1); value != v.end(); ++value)
+        {
+            if (value != (v.end() - 1))
+            {
+                stack.emplace_back(new layer(prev, *value, sigmoid));
+            }
+            else
+            {
+                if (parameters["type"] == "multiclass")
+                {
+                stack.emplace_back(new layer(prev, *value, softmax));
+                }
+                else if (parameters["type"] == "classify")
+                {
+                stack.emplace_back(new layer(prev, *value, sigmoid));
+                }
+                else
+                {
+                stack.emplace_back(new layer(prev, *value, linear));    
+                }
+            }
+            ++n_layers;
+            prev = *value;
+        }
+    }
+
 
 
 }

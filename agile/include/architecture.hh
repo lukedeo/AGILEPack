@@ -40,6 +40,8 @@ public:
     explicit architecture(int num_layers = 0);
     explicit architecture(std::initializer_list<int> il, 
         problem_type type = regress);
+    explicit architecture(const std::vector<int> &v, 
+        problem_type type = regress);
 
     ~architecture();
     architecture(const architecture &arch);
