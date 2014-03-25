@@ -171,44 +171,42 @@ void neural_net::to_yaml(const std::string &filename,
         file.close();    
     }
 }
-//----------------------------------------------------------------------------
-void neural_net::load_config(const std::string &config)
-{
-    std::vector<std::string> fields({"structure", 
-                                     "learning",
-                                     "momentum",
-                                     "unsupervised epochs",
-                                     "supervised epochs",
-                                     "start",
-                                     "end",
-                                     "type",
-                                     "batch size",
-                                     "formula",
-                                     "regularizer",
-                                     "save"});
+// //----------------------------------------------------------------------------
+// void neural_net::load_config(const std::string &config)
+// {
+//     std::vector<std::string> fields({"structure", 
+//                                      "learning",
+//                                      "momentum",
+//                                      "unsupervised epochs",
+//                                      "supervised epochs",
+//                                      "start",
+//                                      "end",
+//                                      "type",
+//                                      "batch size",
+//                                      "formula",
+//                                      "regularizer",
+//                                      "save"});
 
-    YAML::Node configuration = YAML::LoadFile(config);
-
-
-    if (!configuration["parameters"])
-    {
-        throw std::logic_error(
-            "no field named \'parameters\' in config file "+
-            "when neural_net::load_config() called.");
-    }
-
-    for (auto &entry : fields)
-    {
-        if (!configuration[entry])
-        {
-            throw std::logic_error(
-                "missing parameter field \'" + entry + "\'.");
-        }
-    }
-
-    YAML::Node parameters = configuration["parameters"];
+//     YAML::Node configuration = YAML::LoadFile(config);
 
 
+//     if (!configuration["parameters"])
+//     {
+//         throw std::logic_error(
+//             "no field named \'parameters\' in config file "+
+//             "when neural_net::load_config() called.");
+//     }
+
+//     for (auto &entry : fields)
+//     {
+//         if (!configuration[entry])
+//         {
+//             throw std::logic_error(
+//                 "missing parameter field \'" + entry + "\'.");
+//         }
+//     }
+
+//     YAML::Node parameters = configuration["parameters"];
 
 
 
@@ -217,43 +215,45 @@ void neural_net::load_config(const std::string &config)
 
 
 
-    if (parameters["structure"])
-    {
-        stack.clear();
-        n_layers = 0;
+
+
+//     if (parameters["structure"])
+//     {
+//         stack.clear();
+//         n_layers = 0;
         
-        std::vector<int> v = parameters["structure"].as<std::vector<int>>();
-        int prev = *(v.begin());
+//         std::vector<int> v = parameters["structure"].as<std::vector<int>>();
+//         int prev = *(v.begin());
 
-        for (auto value = (v.begin() + 1); value != v.end(); ++value)
-        {
-            if (value != (v.end() - 1))
-            {
-                stack.emplace_back(new layer(prev, *value, sigmoid));
-            }
-            else
-            {
-                if (parameters["type"] == "multiclass")
-                {
-                stack.emplace_back(new layer(prev, *value, softmax));
-                }
-                else if (parameters["type"] == "classify")
-                {
-                stack.emplace_back(new layer(prev, *value, sigmoid));
-                }
-                else
-                {
-                stack.emplace_back(new layer(prev, *value, linear));    
-                }
-            }
-            ++n_layers;
-            prev = *value;
-        }
-    }
+//         for (auto value = (v.begin() + 1); value != v.end(); ++value)
+//         {
+//             if (value != (v.end() - 1))
+//             {
+//                 stack.emplace_back(new layer(prev, *value, sigmoid));
+//             }
+//             else
+//             {
+//                 if (parameters["type"] == "multiclass")
+//                 {
+//                 stack.emplace_back(new layer(prev, *value, softmax));
+//                 }
+//                 else if (parameters["type"] == "classify")
+//                 {
+//                 stack.emplace_back(new layer(prev, *value, sigmoid));
+//                 }
+//                 else
+//                 {
+//                 stack.emplace_back(new layer(prev, *value, linear));    
+//                 }
+//             }
+//             ++n_layers;
+//             prev = *value;
+//         }
+//     }
 
 
 
-}
+// }
 //----------------------------------------------------------------------------
 void neural_net::to_yaml(const std::string &filename, 
     const std::map<std::string, std::string> &types,
