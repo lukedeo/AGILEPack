@@ -48,7 +48,7 @@ public:
         const std::map<std::string, std::vector<double>> &binning,
         const std::map<std::string, std::vector<double>> &constraints);
 
-    void load_config(const std::string &config);
+    // void load_config(const std::string &config);
 
     // template <class T>
     // void to_yaml(const std::string &filename, const T &R);
