@@ -20,7 +20,6 @@ int main(int argc, char const *argv[])
     reader.add_file(rootfile, tree);
     reader.set_branches(config); 
 
-    // the true means the program will inform you of progress
     // agile::dataframe data = reader.get_dataframe(0.5 * reader.size()); 
     agile::dataframe data = reader.get_dataframe(6000); 
 
