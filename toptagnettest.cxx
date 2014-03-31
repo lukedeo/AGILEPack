@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     reader.set_branches(config); 
 
     // agile::dataframe data = reader.get_dataframe(0.5 * reader.size()); 
-    agile::dataframe data = reader.get_dataframe(6000); 
+    agile::dataframe data = reader.get_dataframe(200000); 
 
     std::ofstream dframe("topjets.csv");
    
@@ -33,8 +33,8 @@ int main(int argc, char const *argv[])
 
     net.add_data(data);
 
-    net.emplace_back(new autoencoder(4, 5, sigmoid));
-    net.emplace_back(new autoencoder(5, 3, sigmoid));
+    net.emplace_back(new autoencoder(4, 4, sigmoid));
+    net.emplace_back(new autoencoder(4, 3, sigmoid));
     net.emplace_back(new autoencoder(3, 1, sigmoid));
 
     // first true is to scale variables, second is for verbosity
@@ -48,10 +48,11 @@ int main(int argc, char const *argv[])
     net.check(false);
 
     // pretraining
-    net.train_unsupervised(5, true);
+    net.train_unsupervised(10, true);
 
     // fine tuning 
-    net.train_supervised(5, true);
+    std::cout << "\nSupervised Training..." << std::endl;
+    net.train_supervised(20, true);
 
     net.to_yaml(savefile, reader.get_var_types());
 
