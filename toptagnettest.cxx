@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     reader.set_branches(config); 
 
     // agile::dataframe data = reader.get_dataframe(0.5 * reader.size()); 
-    agile::dataframe data = reader.get_dataframe(100000); 
+    agile::dataframe data = reader.get_dataframe(200000); 
 
     std::ofstream dframe("topjets.csv");
    
@@ -48,11 +48,11 @@ int main(int argc, char const *argv[])
     net.check(false);
 
     // pretraining
-    net.train_unsupervised(5, true);
+    net.train_unsupervised(10, true);
 
     // fine tuning 
     std::cout << "\nSupervised Training..." << std::endl;
-    net.train_supervised(13, true);
+    net.train_supervised(20, true);
 
     net.to_yaml(savefile, reader.get_var_types());
 
