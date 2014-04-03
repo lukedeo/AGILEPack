@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     reader.set_branches(config); 
 
     // agile::dataframe data = reader.get_dataframe(0.5 * reader.size()); 
-    agile::dataframe data = reader.get_dataframe(200000); 
+    agile::dataframe data = reader.get_dataframe(600000); 
 
     std::ofstream dframe("topjets.csv");
    
@@ -33,22 +33,31 @@ int main(int argc, char const *argv[])
 
     net.add_data(data);
 
-    net.emplace_back(new autoencoder(4, 4, sigmoid));
-    net.emplace_back(new autoencoder(4, 3, sigmoid));
-    net.emplace_back(new autoencoder(3, 1, sigmoid));
+    net.emplace_back(new autoencoder(4, 20, sigmoid));
+    net.emplace_back(new autoencoder(20,15, sigmoid));
+    net.emplace_back(new autoencoder(15,10, sigmoid));
+    net.emplace_back(new autoencoder(10,5, sigmoid));
+    net.emplace_back(new autoencoder(5, 1, sigmoid));
+// 
+    // net.emplace_back(new autoencoder(4, 5, sigmoid));
+    // net.emplace_back(new autoencoder(5, 3, sigmoid));
+    // net.emplace_back(new autoencoder(3, 2, sigmoid));
+    // net.emplace_back(new autoencoder(2, 1, sigmoid));
 
     // first true is to scale variables, second is for verbosity
-    net.model_formula("top ~ * -mcevt_weight_flat", true, true);
+ 
+    net.model_formula("top ~ * -mcevt_weight_flat -fjet_pt_flat -fjet_eta_flat", true, true);
+    // net.model_formula("top ~ fjet_Tau1_flat + fjet_Tau2_flat + fjet_Tau3_flat + fjet_SPLIT23_flat", true, true);
 
     net.set_learning(0.0005);
-    net.set_regularizer(0.0000001);
-    net.set_batch_size(1);
-    net.set_momentum(0.79);
+    net.set_regularizer(0.00001);
+    net.set_batch_size(2);
+    net.set_momentum(0.7);
 
     net.check(false);
 
     // pretraining
-    net.train_unsupervised(10, true);
+    net.train_unsupervised(9, true);
 
     // fine tuning 
     std::cout << "\nSupervised Training..." << std::endl;
