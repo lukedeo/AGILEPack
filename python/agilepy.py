@@ -16,15 +16,12 @@ def _scale(arr, scaling):
 
 class Layer(object):
 	'''Layer class which will hold W, b, and activation function'''
-	def __init__(self, W = None, b = None, activation = None):
+	def __init__(self, parms = [None, None, None]):
 		super(Layer, self).__init__()
-		self.W = W
-		self.b = b
-		self.activation = activation
+		self.W, self.b, self.activation = parms
 	
-	def _set(self, W, b, activation):
-		self.W, self.b = W, b
-		self.activation = activation
+	def _set(self, parms):
+		self.W, self.b, self.activation = parms
 
 	def _fire(self, M):
 		return self.activation(self.W * M + b)
@@ -41,6 +38,7 @@ class NeuralNet(object):
 		super(NeuralNet, self).__init__()
 		self.has_branches = False
 		self.has_inputs = False
+		self.has_targets = False
 		self.has_scaling = False
 		self.has_outputs = False
 		self.has_binning = False
@@ -63,6 +61,13 @@ class NeuralNet(object):
 
 		if y.has_key('binning'):
 			self.binning = y['binning']
+			self.has_binning = True
+
+		if y['network'].has_key('target_order'):
+			self.outputs = y['network']['target_order']
+			self.has_targets = True
+
+		self.architecture = [Layer(parameters) for parameters in ]
 
 
 
