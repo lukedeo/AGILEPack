@@ -1,8 +1,7 @@
 class NeuralNet(object):
 	'''
-	NeuralNet: a class for holding a serialized network estimated using AGILEPackj
+	NeuralNet: a class for holding a serialized network estimated using AGILEPack.
 	'''
-	def __init__(self, arg):
+	def __init__(self):
 		super(NeuralNet, self).__init__()
-		self.arg = arg
 		
