@@ -1,10 +1,11 @@
+
 import yaml
 import numpy as np
 from numpy.lib import recfunctions
 
 def sigmoid(x):
     '''
-    Calculates 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
+    Calculates sigmoid non-linearity 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
     '''
     return 1 / (1 + np.exp(-x))
 
@@ -97,12 +98,11 @@ def generate_bins(data, rule, binning):
     return np.array([float(_find_bin(x, binning)) for x in data[rule]])
 
 
-    
-
 
 class Layer(object):
     '''
-    Layer class which will hold W, b, and activation function
+    Layer class which will hold W, b, and activation function. Only users planning
+    on extending functionality should modify or interact with this class.
     '''
     def __init__(self, parms = [None, None, None]):
         super(Layer, self).__init__()
@@ -114,13 +114,47 @@ class Layer(object):
     def _fire(self, M):
         return self.activation(self.W.dot(M) + self.b)
         
-
-        
-
-
 class NeuralNet(object):
     '''
     NeuralNet: a class for holding a serialized network estimated using AGILEPack.
+
+    Attrbutes
+    ---------
+
+    inputs: list of strings (existance depends on net)
+        A list containing all variables used as inputs into the network.
+
+    outputs: list of strings (existance depends on net)
+        A list containing all variables used as outputs from the network.
+
+    branches: list of strings (existance depends on net)
+        A list containing all branch names used in training.
+    
+    scaling: a dictionary of dictionaries
+        A mapping {mean, sd} to branch names to estimated values.
+
+    Methods
+    -------
+
+    load(self, filename): 
+        loads a neural network
+
+    predict(self, data): 
+        when passed a {record, structured} array, provides predictions.
+
+    apply_binning(self, data):
+        Applies the binning specified in the network file loaded to 'data',
+        and returns a record array with the appropriate fields appended.
+
+
+    Usage
+    -----
+        >>> net = agilepy.NeuralNet()
+        >>> net.load('MyNetwork.yaml')
+        >>> predictions = net.predict(net.apply_binning(mydata))
+
+
+
     '''
     def __init__(self):
         super(NeuralNet, self).__init__()
