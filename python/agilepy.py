@@ -1,6 +1,6 @@
 import yaml
 import numpy as np
-
+from numpy.lib import recfunctions
 def sigmoid(x):
 	'''
 	Calculates 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
@@ -50,6 +50,10 @@ def _layer_from_yaml(d):
 	return [W, b, f]
 
 
+def generate_bins(data, rule, binnning):
+	
+
+
 class Layer(object):
 	'''
 	Layer class which will hold W, b, and activation function
@@ -87,7 +91,6 @@ class NeuralNet(object):
 		'''
 		with open(filename, 'r') as f:
 			y = yaml.load(f.read())
-
 		if y.has_key('branches'):
 			self.branches = y['branches'].keys()
 			self.has_branches = True
@@ -128,9 +131,23 @@ class NeuralNet(object):
 			d = layer._fire(d)
 		d = d.T
 		if self.has_targets:
-			dtypes_out = [('predicted' + name, '<f8') for name in self.outputs]
+			dtypes_out = [(name + '_predicted', '<f8') for name in self.outputs]
 			return np.array(d, dtype = dtypes_out)
 		return d
+
+	def apply_binning(self, data):
+		if not self.has_binning or not self.has_inputs:
+			return data
+
+		for name in self.inputs:
+			if 'categ_' in name:
+
+
+
+
+
+
+
 
 
 
