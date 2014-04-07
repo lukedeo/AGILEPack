@@ -146,6 +146,15 @@ class NeuralNet(object):
         Applies the binning specified in the network file loaded to 'data',
         and returns a record array with the appropriate fields appended.
 
+
+    Usage
+    -----
+        >>> net = agilepy.NeuralNet()
+        >>> net.load('MyNetwork.yaml')
+        >>> predictions = net.predict(net.apply_binning(mydata))
+
+
+
     '''
     def __init__(self):
         super(NeuralNet, self).__init__()
