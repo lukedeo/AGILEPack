@@ -12,8 +12,11 @@ def softmax(x):
     '''
     Induces a discrete probability distribution over an exponentially weighted 'x'. Defined for any 'x' such that np.exp(x) is valid.
     '''
-    tmp = np.exp(x)
-    return tmp / np.sum(tmp)
+    def _internal(x):
+        tmp = np.exp(x)
+        return tmp / np.sum(tmp)
+
+    return np.apply_along_axis(_internal, 0, x)
 
 def identity(x):
     '''
@@ -61,11 +64,16 @@ def _find_bin(point, strategy, abs_val = identity):
             return i - 1;
     return -1
 
+def _abs_strip(string):
+    return string.replace('abs(', '').replace(')', '')
+
 def generate_bins(data, rule, binning):
     if 'abs(' in rule:
-        name = rule.replace('abs(', '').replace(')', '')
+        name = _abs_strip(rule)
         return np.array([float(_find_bin(x, binning, np.abs)) for x in data[name]])
-    return np.array([float(_find_bin(x, binning)) for x in data[name]])
+    return np.array([float(_find_bin(x, binning)) for x in data[rule]])
+
+
     
 
 
@@ -131,11 +139,14 @@ class NeuralNet(object):
     def predict(self, data):
         if self.has_inputs:
             for name in self.inputs:
-                if name not in data.dtype.names:
+                if name not in data.dtype.names and 'categ' not in name:
                     raise IndexError('field \'{}\' not found in data passed.'.format(name))
             data = data[self.inputs]
-        
+        # if self.has_binning:
+            # data = self.apply_binning(data)
+
         data = data.astype([(k, float) for k in data.dtype.names])
+
         if self.has_scaling:
             d = _scale(data, self.scaling)
         else:
@@ -147,15 +158,16 @@ class NeuralNet(object):
         d = d.T
         if self.has_targets:
             dtypes_out = [(name + '_predicted', '<f8') for name in self.outputs]
-            return np.array(d, dtype = dtypes_out)
+            return np.core.records.fromarrays(d.T, dtype = dtypes_out)
         return d
 
     def apply_binning(self, data):
         if not self.has_binning or not self.has_inputs:
             return data
+        D = [generate_bins(data, rule, binning) for rule, binning in self.binning.iteritems()]
+        return recfunctions.append_fields(data, 
+            ['categ_' + _abs_strip(name) for name in self.binning.keys()], D, usemask=False, asrecarray=True)
 
-        for name in self.inputs:
-            if 'categ_' in name:
 
 
 
