@@ -2,13 +2,22 @@ import yaml
 import numpy as np
 
 def sigmoid(x):
+	'''
+	Calculates 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
+	'''
 	return 1 / (1+ np.exp(-x))
 
 def softmax(x):
+	'''
+	Induces a discrete probability distribution over an exponentially weighted 'x'. Defined for any 'x' such that np.exp(x) is valid.
+	'''
 	tmp = np.exp(x)
 	return tmp / np.sum(tmp)
 
 def identity(x):
+	'''
+	Placeholder for the identity function.
+	'''
 	return x
 
 
@@ -21,8 +30,10 @@ def _destringify(nrow, ncol, string):
 	M = np.zeros(shape=(nrow, ncol))
 	data = [float(num) for num in string[(string.find(',') + 1):].split(',')]
 	for i in range(0, nrow):
-		M[i, :] = data[ (i * ncol) : (i * ncol + ncol)]
-	return M
+		for j in range(0, ncol):
+			M[i, j] = data[i * ncol + j]
+
+	return np.matrix(M)
 
 def _layer_from_yaml(d):
 	W = _destringify(d['outputs'], d['inputs'], d['weights'])
@@ -51,7 +62,7 @@ class Layer(object):
 		self.W, self.b, self.activation = parms
 
 	def _fire(self, M):
-		return self.activation(self.W * M + self.b)
+		return self.activation(self.W.dot(M) + self.b)
 		
 
 		
@@ -71,6 +82,9 @@ class NeuralNet(object):
 		self.has_binning = False
 
 	def load(self, filename):
+		'''
+		
+		'''
 		with open(filename, 'r') as f:
 			y = yaml.load(f.read())
 
@@ -83,7 +97,7 @@ class NeuralNet(object):
 			self.has_inputs = True
 
 		if y['network'].has_key('scaling'):
-			self.means, self.sd = y['network']['scaling']['mean'], y['network']['scaling']['sd']
+			self.scaling = y['network']['scaling']
 			self.has_scaling = True
 
 		if y.has_key('binning'):
@@ -97,10 +111,26 @@ class NeuralNet(object):
 		self.architecture = [Layer(_layer_from_yaml(y['network'][idx])) for idx in y['network']['layer_access']]
 
 	def predict(self, data):
-		data = data.T
+		if self.has_inputs:
+			for name in self.inputs:
+				if name not in data.dtype.names:
+					raise IndexError('field \'{}\' not found in data passed.'.format(name))
+			data = data[self.inputs]
+		
+		data = data.astype([(k, float) for k in data.dtype.names])
+		if self.has_scaling:
+			d = _scale(data, self.scaling)
+		else:
+			d = data
+		d = d.view((np.float64, len(d.dtype.names)))
+		d = np.matrix(d.T)
 		for layer in self.architecture:
-			data = layer._fire(data)
-		return data
+			d = layer._fire(d)
+		d = d.T
+		if self.has_targets:
+			dtypes_out = [('predicted' + name, '<f8') for name in self.outputs]
+			return np.array(d, dtype = dtypes_out)
+		return d
 
 
 
