@@ -68,6 +68,29 @@ def _abs_strip(string):
     return string.replace('abs(', '').replace(')', '')
 
 def generate_bins(data, rule, binning):
+    '''
+    Creates binned values based on the 'binning' parameter (an array or list).
+
+    Parameters
+    ----------
+
+    data: a numpy structured array or record array.
+        Input data.
+    rule: string
+        Rule specifies which variable the binning strategy specified by 'binning' is 
+        to be applied to. For a variable 'x_i', a rule can be either 'x_i' or 
+        'abs(x_i)', the latter of which will result in absolute value based binning.
+    binning: an array (numpy) or a list
+        The bin edges for the binning to be used. For example, [1, 3.2, 5.5] could 
+        be used.
+
+    Returns:
+    --------
+
+    A numpy array with the same shape as 'data', with each entry corresponing to 
+    the binning. If an element isn't in the binning range, the method imputes '-1'.
+
+    '''
     if 'abs(' in rule:
         name = _abs_strip(rule)
         return np.array([float(_find_bin(x, binning, np.abs)) for x in data[name]])
