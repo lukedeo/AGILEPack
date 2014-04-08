@@ -1,7 +1,7 @@
 """
 agilepy -- A (currently) simple pythonic thin client for AGILEPack
 Author: Luke de Oliveira
-email: luke.deoliveira@yale.edu2
+email: luke.deoliveira@yale.edu
 """
 
 import yaml
