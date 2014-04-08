@@ -46,17 +46,34 @@ namespace types
 /**
  * @brief Random Number Generator
  * @details Generates random numbers using the <random> header.
- * @return [description]
+ * @return A 64 bit mersenne number generator.
  */
 std::mt19937_64& mersenne_engine();
 //----------------------------------------------------------------------------
+/**
+ * @brief Converts an agile::matrix to a string for storage in yaml.
+ * 
+ * @param M An agile::matrix.
+ * @return a std::string containing the data from the agile::matrix
+ */
 std::string stringify(const agile::matrix &M);
 //----------------------------------------------------------------------------
+/**
+ * @brief Converts a string created by agile::stringify() to an agile::matrix.
+ * 
+ * @param s A string produced by agile::stringify()
+ * @return An agile::matrix.
+ */
 agile::matrix destringify(const std::string &s);
 //----------------------------------------------------------------------------
+/**
+ * @brief Converts a std::vector<numeric> to an agile::vector.
+ * 
+ * @param v A std::vector<numeric>
+ * @return The corresponding agile::vector
+ */
 agile::vector std_to_Eigen(std::vector<numeric> &v);
 //----------------------------------------------------------------------------
-
 template<class D>
 inline agile::matrix eigen_spew(D &d)
 {
