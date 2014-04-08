@@ -164,11 +164,27 @@ class NeuralNet(object):
         self.has_scaling = False
         self.has_outputs = False
         self.has_binning = False
+        self.branches = None
+        self.inputs = None
+        self.binning = None
+        self.outputs = None
+        self.architecture = None
 
     def load(self, filename):
         '''
         
         '''
+        self.has_branches = False
+        self.has_inputs = False
+        self.has_targets = False
+        self.has_scaling = False
+        self.has_outputs = False
+        self.has_binning = False
+        self.branches = None
+        self.inputs = None
+        self.binning = None
+        self.outputs = None
+        self.architecture = None
         with open(filename, 'r') as f:
             y = yaml.load(f.read())
         if y.has_key('branches'):
@@ -221,9 +237,10 @@ class NeuralNet(object):
     def apply_binning(self, data):
         if not self.has_binning or not self.has_inputs:
             return data
-        D = [generate_bins(data, rule, binning) for rule, binning in self.binning.iteritems()]
-        return recfunctions.append_fields(data, 
-            ['categ_' + _abs_strip(name) for name in self.binning.keys()], D, usemask=False, asrecarray=True)
+        return recfunctions.append_fields(
+            data, ['categ_' + _abs_strip(name) for name in self.binning.keys()], 
+            [generate_bins(data, rule, binning) for rule, binning in self.binning.iteritems()], 
+            usemask=False, asrecarray=True)
 
 
 
