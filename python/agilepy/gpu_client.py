@@ -1,5 +1,5 @@
 """
-agilepy -- A (currently) simple pythonic thin client for AGILEPack
+gpu_client.py -- A (currently) simple pythonic, GPU driven thin client for AGILEPack
 Author: Luke de Oliveira
 email: luke.deoliveira@yale.edu
 """
@@ -7,12 +7,13 @@ email: luke.deoliveira@yale.edu
 import yaml
 import numpy as np
 from numpy.lib import recfunctions
+import gnumpy as gpu
 
 def sigmoid(x):
     '''
     Calculates sigmoid non-linearity 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
     '''
-    return 1 / (1 + np.exp(-x))
+    return x.logistic()
 
 
 def softmax(x):
@@ -44,7 +45,7 @@ def _destringify(nrow, ncol, string):
         for j in range(0, ncol):
             M[i, j] = data[i * ncol + j]
 
-    return np.matrix(M)
+    return gpu.garray(M)
 
 def _layer_from_yaml(d):
     W = _destringify(d['outputs'], d['inputs'], d['weights'])
@@ -230,8 +231,8 @@ class NeuralNet(object):
             d = _scale(data, self.scaling)
         else:
             d = data
-        d = d.view((np.float64, len(d.dtype.names)))
-        d = np.matrix(d.T)
+        d = d.view((np.float32, len(d.dtype.names)))
+        d = gpu.garray(np.matrix(d.T))
         for layer in self.architecture:
             d = layer._fire(d)
         d = d.T

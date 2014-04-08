@@ -25,6 +25,8 @@
 #include "yaml-cpp/yaml_core.hh"
 
 typedef double numeric;
+
+
 enum layer_type { linear, rectified, sigmoid, softmax };
 
 namespace agile
@@ -41,6 +43,11 @@ namespace types
     enum paradigm { Basic, Autoencoder, Boltzmann, Dropout };
 }
 //----------------------------------------------------------------------------
+/**
+ * @brief Random Number Generator
+ * @details Generates random numbers using the <random> header.
+ * @return [description]
+ */
 std::mt19937_64& mersenne_engine();
 //----------------------------------------------------------------------------
 std::string stringify(const agile::matrix &M);
@@ -49,6 +56,7 @@ agile::matrix destringify(const std::string &s);
 //----------------------------------------------------------------------------
 agile::vector std_to_Eigen(std::vector<numeric> &v);
 //----------------------------------------------------------------------------
+
 template<class D>
 inline agile::matrix eigen_spew(D &d)
 {
@@ -62,11 +70,18 @@ inline agile::matrix eigen_spew(D &d)
     return std::move(M);
 }
 //----------------------------------------------------------------------------
+/**
+ * @brief A simple function for a progress bar.
+ * @details The function colors the color bar based on how far progress is. 
+ * If <33%, then it is colored red, if >33% and <66%, it is colored yellow, and 
+ * if >66% it is colored green.
+ * 
+ * @param percent An integer percent
+ */
 void progress_bar(int percent);
 
 namespace colors
 {
-
 
 //----------------------------------------------------------------------------
 inline std::string reset()
