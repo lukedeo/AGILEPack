@@ -1,3 +1,8 @@
+"""
+agilepy -- A (currently) simple pythonic thin client for AGILEPack
+Author: Luke de Oliveira
+email: luke.deoliveira@yale.edu
+"""
 
 import yaml
 import numpy as np
@@ -8,6 +13,7 @@ def sigmoid(x):
     Calculates sigmoid non-linearity 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
     '''
     return 1 / (1 + np.exp(-x))
+
 
 def softmax(x):
     '''
