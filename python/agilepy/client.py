@@ -238,7 +238,7 @@ class NeuralNet(object):
         if self.has_targets:
             dtypes_out = [(name + '_predicted', '<f8') for name in self.outputs]
             return np.core.records.fromarrays(d.T, dtype = dtypes_out)
-        return d
+        return d[0]
 
     def apply_binning(self, data):
         if not self.has_binning or not self.has_inputs:
