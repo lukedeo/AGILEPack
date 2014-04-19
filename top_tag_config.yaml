@@ -1,9 +1,5 @@
 branches:
     top: int
-# RunNumber_flat: int
-# EventNumber_flat: int
-# averageIntPerXing_flat: float
-# mc_channel_number_flat: int
     mcevt_weight_flat: float
     fjet_pt_flat: double
     fjet_eta_flat: double
@@ -40,16 +36,7 @@ branches:
     # fjet_Pull_C11_flat: double
     Tau21: double
     Tau32: double
-    # CONF_sample: int
-# fjettruth_pt_flat: double
-# fjettruth_eta_flat: double
-# fjettruth_phi_flat: double
-# fjettruth_m_flat: double
-# top_pt_flat: double
-# top_eta_flat: double
-# top_phi_flat: double
-# top_m_flat: double
-# top_pdgId_flat: int
+    CONF_sample: int
 constraints:
     fjet_Tau2_flat: [-100, 100]
     fjet_Tau3_flat: [-100, 100]
