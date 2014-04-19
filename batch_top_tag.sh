@@ -8,6 +8,8 @@
 #PBS -q hep
 #PBS -o output/out.txt # <-- send output to this file
 #PBS -e output/error.txt
+#PBS -m ae
+#PBS -M luke.deoliveira@yale.edu
 
 
 declare -a formulas=("top~fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_SPLIT23_flat" "top~Tau32+Tau21+fjet_SPLIT23_flat" "top~fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_SPLIT23_flat+Tau32+Tau21")
