@@ -1,4 +1,3 @@
-#include "weighting.hh"
 #include "Base"
 #include "include/parser.hh"
 #include <time.h>
@@ -13,7 +12,7 @@ const std::string timestamp(void);
 //----------------------------------------------------------------------------
 int main(int argc, char const *argv[])
 {
-    std::string s("A simple CLI for AGILEPack centered around providing ");
+    std::string s("A simple CLI for AGILETopTagger centered around providing ");
     s += "functionality for \ntraining and testing Deep Learning";
 
     optionparser::parser p(s + " models on ROOT TTrees");
@@ -171,21 +170,13 @@ int main(int argc, char const *argv[])
 
     TR.set_branches(config_file);
 
-    agile::root::weighting jet_weights;
-    jet_weights.light_percentage(0.54)
-               .charm_percentage(0.11)
-               .bottom_percentage(0.35)
-               .gen_hist(TR, 200000, 0, verbose);
 
 //----------------------------------------------------------------------------
-    agile::dataframe D = TR.get_dataframe(jet_weights, end - start, start, verbose);
-    // agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
+    // agile::dataframe D = TR.get_dataframe(jet_weights, end - start, start, verbose);
+    agile::dataframe D = TR.get_dataframe(end - start, start, verbose);
 
-    std::ofstream dframe("testfram.csv");
    
-    dframe << D;
 
-    dframe.close();
 
     agile::neural_net net;
 
