@@ -33,35 +33,36 @@ int main(int argc, char const *argv[])
 
     net.add_data(data);
 
-    net.emplace_back(new autoencoder(4, 20, sigmoid));
-    net.emplace_back(new autoencoder(20,15, sigmoid));
+    net.emplace_back(new autoencoder(4, 24, sigmoid));
+    net.emplace_back(new autoencoder(24,15, sigmoid));
     net.emplace_back(new autoencoder(15,10, sigmoid));
     net.emplace_back(new autoencoder(10,5, sigmoid));
-    net.emplace_back(new autoencoder(5, 1, sigmoid));
+    net.emplace_back(new autoencoder(5, 3, sigmoid));
+    net.emplace_back(new autoencoder(3, 1, sigmoid));
 // 
-    // net.emplace_back(new autoencoder(4, 5, sigmoid));
-    // net.emplace_back(new autoencoder(5, 3, sigmoid));
-    // net.emplace_back(new autoencoder(3, 2, sigmoid));
+    // net.emplace_back(new autoencoder(6, 5, sigmoid));
+    // net.emplace_back(new autoencoder(5, 4, sigmoid));
+    // net.emplace_back(new autoencoder(4, 2, sigmoid));
     // net.emplace_back(new autoencoder(2, 1, sigmoid));
-
+// 
     // first true is to scale variables, second is for verbosity
- 
+ // 
     net.model_formula("top ~ * -mcevt_weight_flat -fjet_pt_flat -fjet_eta_flat", true, true);
-    // net.model_formula("top ~ fjet_Tau1_flat + fjet_Tau2_flat + fjet_Tau3_flat + fjet_SPLIT23_flat", true, true);
+    // net.model_formula("top ~ fjet_Tau1_flat + fjet_Tau2_flat + fjet_Tau3_flat + fjet_SPLIT23_flat + Tau32 + Tau21", true, true);
 
-    net.set_learning(0.0005);
+    net.set_learning(0.00086);
     net.set_regularizer(0.00001);
-    net.set_batch_size(2);
-    net.set_momentum(0.7);
+    net.set_batch_size(1);
+    net.set_momentum(0.8);
 
     net.check(false);
 
     // pretraining
-    net.train_unsupervised(9, true);
+    net.train_unsupervised(10, true);
 
     // fine tuning 
     std::cout << "\nSupervised Training..." << std::endl;
-    net.train_supervised(20, true);
+    net.train_supervised(30, true);
 
     net.to_yaml(savefile, reader.get_var_types());
 

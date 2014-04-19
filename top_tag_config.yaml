@@ -38,6 +38,9 @@ branches:
     # fjet_Pull_C01_flat: double
     # fjet_Pull_C10_flat: double
     # fjet_Pull_C11_flat: double
+    Tau21: double
+    Tau32: double
+    # CONF_sample: int
 # fjettruth_pt_flat: double
 # fjettruth_eta_flat: double
 # fjettruth_phi_flat: double
