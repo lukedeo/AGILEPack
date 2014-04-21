@@ -9,9 +9,9 @@
 
 
 form="top~fjet_WIDTH_flat+fjet_PlanarFlow_flat+fjet_SPLIT12_flat+fjet_SPLIT23_flat+\
-	fjet_SPLIT34_flat+fjet_ZCUT12_flat+fjet_ZCUT23_flat+fjet_ZCUT34_flat+fjet_Angularity_flat+\
-	Tau21+Tau32+fjet_Dip12_flat+fjet_Dip13_flat+fjet_Dip23_flat+fjet_DipExcl12_flat+fjet_PullMag_flat+\
-	fjet_PullPhi_flat+fjet_QW_flat+fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_m_flat"
+fjet_SPLIT34_flat+fjet_ZCUT12_flat+fjet_ZCUT23_flat+fjet_ZCUT34_flat+fjet_Angularity_flat+\
+Tau21+Tau32+fjet_Dip12_flat+fjet_Dip13_flat+fjet_Dip23_flat+fjet_DipExcl12_flat+fjet_PullMag_flat+\
+fjet_PullPhi_flat+fjet_QW_flat+fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_m_flat"
 
 
 cd $PBS_O_WORKDIR 
