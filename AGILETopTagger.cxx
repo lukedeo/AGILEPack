@@ -202,14 +202,7 @@ int main(int argc, char const *argv[])
     {
         if (i < deepauto)
         {
-            if (i == 0)
-            {
-                net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
-            }
-            else
-            {
-                net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid, sigmoid));
-            }
+            net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
         }
         else
         {
