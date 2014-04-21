@@ -17,8 +17,8 @@ mkdir -p output
 echo 'submitted from: ' $PBS_O_WORKDIR 
 
 
-./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger_no_pretrain_"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.00086 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=10 -d0 -sepochs=40 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
-./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.00086 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=0 -d0 -sepochs=40 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
+./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger_no_pretrain_"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.00086 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=0 -d0 -sepochs=40 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
+./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.00086 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=10 -sepochs=40 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
 
 
 
