@@ -10,7 +10,7 @@
 
 
 declare -a formulas=("top~fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_SPLIT23_flat" "top~Tau32+Tau21+fjet_SPLIT23_flat" "top~fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_SPLIT23_flat+Tau32+Tau21")
-declare -a structures=("4 5 3 2 1" "3 5 4 2 1" "6 5 3 2 1")
+declare -a structures=("4 5 3 2 1" "3 5 4 2 1" "6 7 5 3 1")
 
 cd $PBS_O_WORKDIR 
 mkdir -p output
