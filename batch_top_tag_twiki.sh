@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#PBS -l mem=16gb, walltime=00:15:00:00
+#PBS -l mem=8gb,walltime=00:10:00:00
 #PBS -l nodes=1:ppn=1
 #PBS -q hep
 #PBS -o output/out.txt
