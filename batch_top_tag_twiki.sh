@@ -19,7 +19,7 @@ mkdir -p output
 echo 'submitted from: ' $PBS_O_WORKDIR 
 
 
-./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTaggerTwikiVariables.yaml --learning=0.0006 --momentum=0.86 --batch=1 --config=./top_tag_config.yaml -uepochs=30 -sepochs=80 -start=0 -end=1671000 --type=binary --formula=${form} --struct=22 25 21 16 8 4 1
+./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTaggerTwikiVariables.yaml --learning=0.0006 --momentum=0.86 --batch=1 --config=./top_tag_config.yaml -uepochs=30 -sepochs=80 -start=0 -end=1671000 --type=binary --formula="${form}" --struct=22 25 21 16 8 4 1
 
 
 
