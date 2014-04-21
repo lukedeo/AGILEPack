@@ -10,15 +10,15 @@
 
 
 declare -a formulas=("top~fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_SPLIT23_flat" "top~Tau32+Tau21+fjet_SPLIT23_flat" "top~fjet_Tau1_flat+fjet_Tau2_flat+fjet_Tau3_flat+fjet_SPLIT23_flat+Tau32+Tau21")
-declare -a structures=("4 5 3 2 1" "3 5 4 2 1" "6 7 5 3 1")
+declare -a structures=("4 5 3 2 1" "3 5 4 2 1" "6 7 5 4 2 1")
 
 cd $PBS_O_WORKDIR 
 mkdir -p output
 echo 'submitted from: ' $PBS_O_WORKDIR 
 
 
-./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger_no_pretrain_"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.00086 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=0 -d0 -sepochs=40 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
-./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.00086 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=25 -sepochs=85 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
+./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger_no_pretrain_"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.001 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=0 -d0 -sepochs=45 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
+./AGILETopTagger --file=~/scratch_space/mc12_8TeV_JZX_Zprime_perfntuple_shuffled.root --tree=top_train_ntup --save=AGILETopTagger"$(echo -n "${formulas[$PBS_ARRAYID-1]}" | openssl dgst -sha1 -hmac "key")".yaml --learning=0.001 --momentum=0.8 --batch=1 --config=./top_tag_config.yaml -uepochs=35 -sepochs=45 -start=0 -end=1671000 --type=binary --formula=${formulas[$PBS_ARRAYID-1]} --struct=${structures[$PBS_ARRAYID-1]}
 
 
 
