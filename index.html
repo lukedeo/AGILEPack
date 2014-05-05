@@ -518,14 +518,14 @@ Algorithms for Generalized Inference, Learning, and Extraction Package </p>
 <p>A standard autoencoder, defined by the loss function<br/>
 <span class="math">\[L(X;\theta)=\frac{1}{2n}\Vert X-g(W_{2}f(W_{1}X+b_{1}{{\mathbf{1}}}^{T})+b_{2}\mathbf{1}^{T})\Vert_{F}^{2},\]</span> </p>
 
-<p>has no regularization terms, and aims to build the <em>best reconstruction</em> possible. That is, in any applications where we care about being able to build as close a reconstruction as possible, an unmodified autoencoder will be optimized to preserve as much of the intrinsic variation as possible. However, we must take note of the fact that no regularization will make such a building block \emph{highly} susceptible to overtraining. In instances where the user has a large training set and is sure that the samples being shown to the learner are in no way biased compared to the test sample or true population, then such a method could be appropriate, as this will attempt to create exact reconstructions of data vectors. </p>
+<p>has no regularization terms, and aims to build the <em>best reconstruction</em> possible. That is, in any applications where we care about being able to build as close a reconstruction as possible, an unmodified autoencoder will be optimized to preserve as much of the intrinsic variation as possible. However, we must take note of the fact that no regularization will make such a building block <em>highly</em> susceptible to overtraining. In instances where the user has a large training set and is sure that the samples being shown to the learner are in no way biased compared to the test sample or true population, then such a method could be appropriate, as this will attempt to create exact reconstructions of data vectors. </p>
 
 <h4 id="regularizedautoencoders">Regularized Autoencoders</h4>
 
 <p>The regularized autoencoder is defined by the loss function<br/>
 <span class="math">\[L(X;\theta)=\frac{1}{2n}\Vert X-g(W_{2}f(W_{1}X+b_{1}{{\mathbf{1}}}^{T})+b_{2}\mathbf{1}^{T})\Vert_{F}^{2}+\lambda_{1}\Vert W_{1}\Vert_{F}^{2}+\lambda_{2}\Vert W_{2}\Vert_{F}^{2},\]</span> </p>
 
-<p>where <span class="math">\(\lambda_{i}\)</span> are chosen to penalize large weights in the autoencoder. This regularization &#8211; in essence forcing weights to be nearer to zero &#8211; works to help the autoencoder learn <em>robust reconstructions.</em> Overfit models tend to have large (magnitudally) parameters which blow up due to statistical fluctuations that can be exploited in minimizing the loss function. The regularization terms make the reconstructions \emph{robust }with respect to variations in the features present in the training set. </p>
+<p>where <span class="math">\(\lambda_{i}\)</span> are chosen to penalize large weights in the autoencoder. This regularization &#8211; in essence forcing weights to be nearer to zero &#8211; works to help the autoencoder learn <em>robust reconstructions.</em> Overfit models tend to have large (magnitudally) parameters which blow up due to statistical fluctuations that can be exploited in minimizing the loss function. The regularization terms make the reconstructions <em>robust </em>with respect to variations in the features present in the training set. </p>
 
 <h4 id="denoisingautoencoders">Denoising Autoencoders</h4>
 
