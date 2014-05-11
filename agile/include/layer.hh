@@ -118,7 +118,7 @@ public:
     agile::vector fire(); // Fire the charge.
     agile::vector dump_below();
 
-    void backpropagate(const agile::vector &v);
+    virtual void backpropagate(const agile::vector &v);
     void backpropagate(const agile::vector &v, double weight);
 
     void update();
@@ -149,6 +149,11 @@ public:
     virtual void set_regularizer(const numeric &value)
     {
         regularizer = value;
+    }
+    virtual void set_jacobian_regularizer(const numeric &value)
+    {
+        throw std::logic_error(
+            "Standard layers have no Contraction -- cannot set_jacobian_regularizer()");
     }
     void set_layer_type(const layer_type &type)
     {

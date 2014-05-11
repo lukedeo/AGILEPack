@@ -10,20 +10,20 @@ autoencoder::autoencoder(int n_inputs, int n_outputs,
     layer_type encoder_type, layer_type decoder_type) :
 layer(n_inputs, n_outputs, encoder_type), 
 decoder(n_outputs, n_inputs, decoder_type),
-m_paradigm(agile::types::Autoencoder)
+m_paradigm(agile::types::Autoencoder), jacobian_regularizer(0)
 
 {
 }
 //----------------------------------------------------------------------------
 autoencoder::autoencoder(const autoencoder &L) :
 layer(L), 
-decoder(L.decoder)
+decoder(L.decoder), jacobian_regularizer(L.jacobian_regularizer)
 {
 }
 //----------------------------------------------------------------------------
 autoencoder::autoencoder(autoencoder *L) :
 layer(*L), 
-decoder(L->decoder)
+decoder(L->decoder), jacobian_regularizer(L->jacobian_regularizer)
 {
 }
 //----------------------------------------------------------------------------
@@ -51,6 +51,7 @@ autoencoder& autoencoder::operator= (const autoencoder &L)
     m_layer_type = (L.m_layer_type);
     decoder = (L.decoder);
 
+    jacobian_regularizer = (L.jacobian_regularizer);
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -78,6 +79,8 @@ autoencoder& autoencoder::operator= (autoencoder &&L)
     m_layer_type = std::move(L.m_layer_type);
     m_paradigm = std::move(L.m_paradigm);
     decoder = std::move(L.decoder);
+
+    jacobian_regularizer = std::move(L.jacobian_regularizer);
 
     return *this;
 }
@@ -159,6 +162,34 @@ agile::vector autoencoder::decode(const agile::vector &v)
 {
     decoder.charge(v);
     return decoder.fire();
+}
+//----------------------------------------------------------------------------
+void autoencoder::backpropagate(const agile::vector &v)
+{
+    delta.noalias() = v;
+
+    if (m_layer_type == sigmoid)
+    {
+        delta = delta.array() * (agile::functions::exp_sigmoid_deriv(
+            agile::functions::exp_sigmoid(m_out))).array();
+    }
+    if (m_layer_type == rectified)
+    {
+        delta = delta.array() * (agile::functions::rect_lin_unit_deriv(
+            agile::functions::rect_lin_unit(m_out))).array();
+    }
+    // we need something to make this not happen for base 0layer
+    m_dump_below.noalias() = W.transpose() * delta; 
+
+    W_change += delta * m_in.transpose(); 
+    b_change += delta;
+
+    ++ctr;
+    if (ctr >= m_batch_size) // if we need to start a new batch
+    {   
+        ctr = 0;
+        update();
+    }
 }
 //----------------------------------------------------------------------------
 autoencoder::~autoencoder()

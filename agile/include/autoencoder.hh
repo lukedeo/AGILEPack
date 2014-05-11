@@ -45,6 +45,8 @@ public:
 
     virtual void resize_input(int n_inputs);
     virtual void resize_output(int n_outputs);
+
+    virtual void backpropagate(const agile::vector &v);
     
     void reset_weights(numeric bound);
     ~autoencoder(); 
@@ -52,6 +54,11 @@ public:
     virtual agile::types::paradigm get_paradigm()
     {
         return m_paradigm;
+    }
+
+    virtual void set_jacobian_regularizer(const numeric &value)
+    {
+        jacobian_regularizer = value;
     }
 
 //-----------------------------------------------------------------------------
@@ -115,6 +122,7 @@ protected:
 //-----------------------------------------------------------------------------
     layer decoder; // decoder layer
     agile::types::paradigm m_paradigm;
+    double jacobian_regularizer;
 
 };
 
