@@ -170,6 +170,7 @@ void autoencoder::backpropagate(const agile::vector &v)
 
     if (m_layer_type == sigmoid)
     {
+        
         delta = delta.array() * (agile::functions::exp_sigmoid_deriv(
             agile::functions::exp_sigmoid(m_out))).array();
     }
