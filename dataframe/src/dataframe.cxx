@@ -231,6 +231,24 @@ double& dataframe::at(const std::size_t &idx, const std::string &colname)
     }
     
 }
+std::map<std::string, double> dataframe::at(const std::size_t &idx, const std::vector<std::string> cols)
+{
+    std::map<std::string, double> retval;
+    for (auto &colname : cols)
+    {
+        try
+        {
+            retval[colname] = data.at(idx).at(column_names.at(colname));
+        }
+        catch(std::out_of_range &e)
+        {
+            std::string wha(
+                "tried to access non-existent column \'" + colname + "\'.");
+            throw std::out_of_range(wha);
+        }
+    }
+    return retval;
+}
 //----------------------------------------------------------------------------
 record_t& dataframe::operator[](const std::size_t &idx)
 {

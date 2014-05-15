@@ -57,7 +57,7 @@ public:
         bool denoising = false, bool tantrum = false);
 
     void train_supervised(const unsigned int &epochs, bool verbose = false, 
-        bool tantrum = false);
+        bool tantrum = false, int freq = 0, const std::string &filename = "tempnet.yaml");
 
     void check(bool tantrum = true);
 
@@ -83,7 +83,8 @@ private:
         bool verbose = false, bool denoising = false, bool tantrum = false);
 
     void internal_train_supervised_weighted(const unsigned int &epochs, 
-        bool verbose = false, bool tantrum = false);
+        bool verbose = false, bool tantrum = false,
+         int freq = 0, const std::string &filename = "tempnet.yaml");
 
 
 
@@ -91,7 +92,8 @@ private:
         bool verbose = false, bool denoising = false, bool tantrum = false);
 
     void internal_train_supervised(const unsigned int &epochs, 
-        bool verbose = false, bool tantrum = false);
+        bool verbose = false, bool tantrum = false, 
+        int freq = 0, const std::string &filename = "tempnet.yaml");
 
 
     friend struct YAML::convert<neural_net>;
