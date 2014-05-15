@@ -293,15 +293,15 @@ void neural_net::train_unsupervised(const unsigned int &epochs, bool verbose,
 }
 //----------------------------------------------------------------------------
 void neural_net::train_supervised(const unsigned int &epochs, 
-    bool verbose, bool tantrum)
+    bool verbose, bool tantrum, int freq, const std::string &filename)
 {
     if (m_weighted)
     {
-        internal_train_supervised_weighted(epochs, verbose, tantrum);
+        internal_train_supervised_weighted(epochs, verbose, tantrum, freq, filename);
     }
     else
     {
-        internal_train_supervised(epochs, verbose, tantrum);
+        internal_train_supervised(epochs, verbose, tantrum, freq, filename);
     }
 }
 
@@ -343,7 +343,8 @@ void neural_net::internal_train_unsupervised_weighted(
 }
 //----------------------------------------------------------------------------
 void neural_net::internal_train_supervised_weighted(
-    const unsigned int &epochs, bool verbose, bool tantrum)
+    const unsigned int &epochs, bool verbose, bool tantrum, 
+    int freq, const std::string &filename)
 {
     if (!m_checked)
     {
@@ -352,6 +353,7 @@ void neural_net::internal_train_supervised_weighted(
     int ctr = 0;
     int total = n_training * epochs;
     double pct;
+    int bu_ctr = 0;
     for (int e = 0; e < epochs; ++e)
     {
         for (int i = 0; i < n_training; ++i)
@@ -363,6 +365,12 @@ void neural_net::internal_train_supervised_weighted(
             }
             correct(X.row(i), Y.row(i), pattern_weights(i));
             ++ctr;
+        }
+        ++bu_ctr;
+        if (bu_ctr == freq)
+        {
+            to_yaml("backup_" + std::to_string(e) + "_" + filename);
+            bu_ctr = 0;
         }
     }
 }
@@ -404,7 +412,7 @@ void neural_net::internal_train_unsupervised(const unsigned int &epochs,
 }
 //----------------------------------------------------------------------------
 void neural_net::internal_train_supervised(const unsigned int &epochs, 
-    bool verbose, bool tantrum)
+    bool verbose, bool tantrum, int freq, const std::string &filename)
 {
     if (!m_checked)
     {
@@ -413,6 +421,8 @@ void neural_net::internal_train_supervised(const unsigned int &epochs,
     int ctr = 0;
     int total = n_training * epochs;
     double pct;
+
+    int bu_ctr = 0;
     for (int e = 0; e < epochs; ++e)
     {
         for (int i = 0; i < n_training; ++i)
@@ -424,6 +434,12 @@ void neural_net::internal_train_supervised(const unsigned int &epochs,
             }
             correct(X.row(i), Y.row(i));
             ++ctr;
+        }
+        ++bu_ctr;
+        if (bu_ctr == freq)
+        {
+            to_yaml("backup_" + std::to_string(e) + "_" + filename);
+            bu_ctr = 0;
         }
     }
 }

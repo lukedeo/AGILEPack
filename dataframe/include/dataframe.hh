@@ -62,6 +62,7 @@ public:
     record_t& at(const std::size_t &idx);
 
     double& at(const std::size_t &idx, const std::string &colname);
+    std::map<std::string, double> at(const std::size_t &idx, const std::vector<std::string> cols);
     record_t& operator[](const std::size_t &idx);
 
 //-----------------------------------------------------------------------------
