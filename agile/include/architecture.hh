@@ -107,6 +107,8 @@ public:
     void encode(const agile::vector &in, const unsigned int &which, 
         double weight, bool noisify = true);
 
+    double encoding_mse(const agile::matrix &A, const unsigned int &which);
+
 //-----------------------------------------------------------------------------
 //  Access for YAML serialization
 //-----------------------------------------------------------------------------

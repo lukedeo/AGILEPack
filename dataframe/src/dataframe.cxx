@@ -261,7 +261,7 @@ record_t& dataframe::operator[](const std::size_t &idx)
 
 void dataframe::push_back(const record_t &r)
 {
-    if (r.size() != m_cols)
+    if ((r.size() != m_cols) && (m_cols > 0))
     {
         std::string wha("vectors to be push_back()'d must be the same size");
         throw dimension_error(wha);
@@ -272,7 +272,7 @@ void dataframe::push_back(const record_t &r)
 //----------------------------------------------------------------------------
 void dataframe::push_back(record_t &&r)
 {
-    if (r.size() != m_cols)
+    if ((r.size() != m_cols) && (m_cols > 0))
     {
         std::string wha("vectors to be push_back()'d must be the same size");
         throw dimension_error(wha);

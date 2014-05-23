@@ -213,6 +213,35 @@ void architecture::encode(const agile::vector &in, const unsigned int &which,
     agile::vector v = stack.at(which - 1)->fire();
     stack.at(which)->encode(v, weight, noisify);
 }
+//----------------------------------------------------------------------------
+double architecture::encoding_mse(const agile::matrix &A, const unsigned int &which)
+{
+    double MSE = 0.0;
+    if (which == 0)
+    {
+        for (int i = 0; i < A.rows(); ++i)
+        {
+            agile::vector t(A.row(i));
+            t -= stack.at(0)->reconstruct(A.row(i));
+            MSE += t.array().square().sum();
+        }
+        return MSE / A.rows();
+    }
+
+    for (int i = 0; i < A.rows(); ++i)
+    {
+        stack.at(0)->charge(A.row(i));
+        for (unsigned int l = 1; l < which; ++l)
+        {
+            stack.at(l)->charge(stack.at(l - 1)->fire());
+        }
+        agile::vector v = stack.at(which - 1)->fire();
+        v -= stack.at(which)->reconstruct(v);
+        MSE += v.array().square().sum();
+    }
+    return MSE / A.rows();    
+}
+//----------------------------------------------------------------------------
 void architecture::set_batch_size(int size)
 {
     if (n_layers < 1)
