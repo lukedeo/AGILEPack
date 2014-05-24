@@ -76,7 +76,7 @@ autoencoder& autoencoder::operator= (autoencoder &&L)
     regularizer = std::move(L.regularizer);
 
     m_layer_type = std::move(L.m_layer_type);
-    m_paradigm = std::move(L.m_paradigm);
+    m_paradigm = (L.m_paradigm);
     decoder = std::move(L.decoder);
 
     return *this;

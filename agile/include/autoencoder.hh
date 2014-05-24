@@ -115,6 +115,11 @@ protected:
 //-----------------------------------------------------------------------------
     layer decoder; // decoder layer
     agile::types::paradigm m_paradigm;
+private:
+    virtual layer* clone()
+    {
+        return new autoencoder(*this);   
+    }
 
 };
 

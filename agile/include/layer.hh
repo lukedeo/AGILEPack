@@ -40,6 +40,7 @@ layer_factory(Args&& ...args)
 
 class layer;
 class architecture;
+class autoencoder;
 
 namespace YAML
 {
@@ -239,9 +240,9 @@ protected:
     agile::types::paradigm m_paradigm; //type of pre-training
 
 private:
-    layer* clone()
+    virtual layer* clone()
     {
-        return new layer(*this);
+        return new layer(*this);   
     }
 
 };
