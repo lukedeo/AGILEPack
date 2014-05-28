@@ -85,7 +85,9 @@ int main(int argc, char const *argv[])
     //----------------------------------------------------------------------------
     p.add_option("--verbose", "-v") .help("Make the output verbose");
     //----------------------------------------------------------------------------
-    p.add_option("--denoising", "-D") .help("Make the stacked autoencoders denoising.");
+    p.add_option("--nonlinear")     .help("Make the decoders nonlinear.");
+    //----------------------------------------------------------------------------
+    p.add_option("--denoising","-D").help("Make the stacked autoencoders denoising.");
     //----------------------------------------------------------------------------
     p.add_option("--weights", "-w") .help("print a file with the first layer weight matrix.")
                                     .mode(optionparser::store_value);
@@ -153,6 +155,7 @@ int main(int argc, char const *argv[])
             prog =        p.get_value<int>("prog");
 
     bool    verbose =     p.get_value("verbose"),
+            nonlinear =     p.get_value("nonlinear"),
             denoising =     p.get_value("denoising");
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
@@ -187,7 +190,7 @@ int main(int argc, char const *argv[])
     
     net.add_data(D);
 
-    layer_type net_type;
+    layer_type net_type, decoder_type;
     std::string passed_target = p.get_value<std::string>("type");
 
 //----------------------------------------------------------------------------
@@ -198,6 +201,17 @@ int main(int argc, char const *argv[])
     else complain(
         "type of target needs to be one of 'regress', 'multiclass', or 'binary'.");
     
+//----------------------------------------------------------------------------
+
+
+    if (nonlinear)
+    {
+        decoder_type = sigmoid;
+    }
+    else
+    {
+        decoder_type = linear
+    }
 //----------------------------------------------------------------------------
 
     int i;
@@ -211,7 +225,7 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid, sigmoid));
+                net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid, decoder_type));
             }
             
         }
