@@ -85,6 +85,8 @@ int main(int argc, char const *argv[])
     //----------------------------------------------------------------------------
     p.add_option("--verbose", "-v") .help("Make the output verbose");
     //----------------------------------------------------------------------------
+    p.add_option("--denoising", "-D") .help("Make the stacked autoencoders denoising.");
+    //----------------------------------------------------------------------------
     p.add_option("--weights", "-w") .help("print a file with the first layer weight matrix.")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------
@@ -150,7 +152,8 @@ int main(int argc, char const *argv[])
             batch =       p.get_value<int>("batch"),
             prog =        p.get_value<int>("prog");
 
-    bool    verbose =     p.get_value("verbose");
+    bool    verbose =     p.get_value("verbose"),
+            denoising =     p.get_value("denoising");
 
     std::vector<int> structure = p.get_value<std::vector<int>>("struct");
 
@@ -242,7 +245,7 @@ int main(int argc, char const *argv[])
     {
         std::cout << "Performing Unsupervised Pretraining...";
     }
-    net.train_unsupervised(uepochs, verbose);
+    net.train_unsupervised(uepochs, verbose, denoising);
     if (verbose)
     {
         std::cout << "\nPerforming Supervised Training...\n";
