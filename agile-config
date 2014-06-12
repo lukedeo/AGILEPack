@@ -2,6 +2,9 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+DEFAULT_COMPILER=$(echo "$(make -p -f /dev/null 2>&1 | grep -vi '\$\|\*' | grep -i "cxx")" | cut -f2 -d"="  | tr -d ' ')
+
+CLANG_CHECK=$DEFAULT_COMPILER 2>&1 | grep "clang"
 
 GOAL=$1
 
@@ -29,6 +32,14 @@ if [[ "$GOAL" == "build" ]]; then
 		ROOTCFLAGS="`root-config --cflags`"
 	fi
 	COMMAND="-std=c++11 -Wall -fPIC -I$DIR $ROOTCFLAGS -L$DIR/lib -lAGILEPack $ROOTSTUFF"
+fi
+
+if [[ "$GOAL" == "build" ]] || [["$GOAL" == "link"]]; then
+	echo "checking for inclusion of libc++..."
+	if [[ -n "$CLANG_CHECK" ]] && [[ -z "$(echo $COMMAND | grep "-stdlib=libc++")" ]]; then
+		echo "not found!"
+		COMMAND="$COMMAND -stdlib=libc++"
+	fi
 fi
 
 
