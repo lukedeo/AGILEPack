@@ -1,12 +1,12 @@
 #!/bin/bash
 
+GOAL=$1
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 DEFAULT_COMPILER=$(echo "$(make -p -f /dev/null 2>&1 | grep -vi '\$\|\*' | grep -i "cxx")" | cut -f2 -d"="  | tr -d ' ')
 
 CLANG_CHECK=$DEFAULT_COMPILER 2>&1 | grep "clang"
-
-GOAL=$1
 
 if [[ -z "$GOAL" ]]; then
 	echo "usage: agile-config {compile, link, build} [--root]"
