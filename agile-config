@@ -35,7 +35,6 @@ if [[ "$GOAL" == "build" ]]; then
 fi
 
 if [[ "$GOAL" == "build" ]] || [["$GOAL" == "link"]]; then
-	echo "checking for inclusion of libc++..."
 	if [[ -n "$CLANG_CHECK" ]] && [[ -z "$(echo $COMMAND | grep "-stdlib=libc++")" ]]; then
 		echo "not found!"
 		COMMAND="$COMMAND -stdlib=libc++"
