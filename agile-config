@@ -36,7 +36,6 @@ fi
 
 if [[ "$GOAL" == "build" ]] || [["$GOAL" == "link"]]; then
 	if [[ -n "$CLANG_CHECK" ]] && [[ -z "$(echo $COMMAND | grep "-stdlib=libc++")" ]]; then
-		echo "not found!"
 		COMMAND="$COMMAND -stdlib=libc++"
 	fi
 fi
