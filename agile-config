@@ -35,7 +35,7 @@ if [[ "$GOAL" == "build" ]]; then
 fi
 
 if [[ "$GOAL" == "build" ]] || [["$GOAL" == "link"]]; then
-	if [[ -n "$CLANG_CHECK" ]] && [[ -z "$(echo $COMMAND | grep "-stdlib=libc++")" ]]; then
+	if [[ -n "$CLANG_CHECK" ]]; then
 		COMMAND="$COMMAND -stdlib=libc++"
 	fi
 fi
