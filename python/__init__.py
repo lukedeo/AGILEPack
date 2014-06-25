@@ -1,1 +1,1 @@
-from client import NeuralNet
+from .client import NeuralNet
