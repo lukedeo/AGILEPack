@@ -8,6 +8,10 @@ import yaml
 import numpy as np
 from numpy.lib import recfunctions
 
+# def dict2numpy(dictionary, order):
+    # for var in order:
+    # ar = np.array([float(0.0 + dictionary[elem]) for elem in order], dtype = dict(names = order, formats = ['f8' for thing in order]))
+
 def sigmoid(x):
     '''
     Calculates sigmoid non-linearity 1 / (1 + e^(-x)) for any 'x' such np.exp(x) is defined. 
@@ -100,7 +104,11 @@ def generate_bins(data, rule, binning):
     '''
     if 'abs(' in rule:
         name = _abs_strip(rule)
+        if data.__class__ is dict:
+            return float(_find_bin(data[name], binning, np.abs))
         return np.array([float(_find_bin(x, binning, np.abs)) for x in data[name]])
+    if data.__class__ is dict:
+        return float(_find_bin(data[rule], binning))
     return np.array([float(_find_bin(x, binning)) for x in data[rule]])
 
 
@@ -242,6 +250,10 @@ class NeuralNet(object):
 
     def apply_binning(self, data):
         if not self.has_binning or not self.has_inputs:
+            return data
+        if data.__class__ is dict:
+            for rule, binning in self.binning.iteritems():
+                data.update({'categ_' + _abs_strip(rule) : generate_bins(data, rule, binning)})
             return data
         return recfunctions.append_fields(
             data, ['categ_' + _abs_strip(name) for name in self.binning.keys()], 
