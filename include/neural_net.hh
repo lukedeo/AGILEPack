@@ -36,6 +36,7 @@ public:
         bool scale = true, bool verbose = false);
 
     void from_yaml(const std::string &filename);
+    void from_yaml(std::stringstream &s);
     void to_yaml(const std::string &filename);
     void to_yaml(const std::string &filename, 
         const std::map<std::string, std::string> &types);
