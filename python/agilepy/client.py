@@ -7,6 +7,10 @@ email: luke.deoliveira@yale.edu
 import yaml
 import numpy as np
 from numpy.lib import recfunctions
+import matplotlib.pyplot as plt
+# def dict2numpy(dictionary, order):
+    # for var in order:
+    # ar = np.array([float(0.0 + dictionary[elem]) for elem in order], dtype = dict(names = order, formats = ['f8' for thing in order]))
 
 def sigmoid(x):
     '''
@@ -100,7 +104,11 @@ def generate_bins(data, rule, binning):
     '''
     if 'abs(' in rule:
         name = _abs_strip(rule)
+        if data.__class__ is dict:
+            return float(_find_bin(data[name], binning, np.abs))
         return np.array([float(_find_bin(x, binning, np.abs)) for x in data[name]])
+    if data.__class__ is dict:
+        return float(_find_bin(data[rule], binning))
     return np.array([float(_find_bin(x, binning)) for x in data[rule]])
 
 
@@ -243,10 +251,76 @@ class NeuralNet(object):
     def apply_binning(self, data):
         if not self.has_binning or not self.has_inputs:
             return data
+        if data.__class__ is dict:
+            for rule, binning in self.binning.iteritems():
+                data.update({'categ_' + _abs_strip(rule) : generate_bins(data, rule, binning)})
+            return data
         return recfunctions.append_fields(
             data, ['categ_' + _abs_strip(name) for name in self.binning.keys()], 
             [generate_bins(data, rule, binning) for rule, binning in self.binning.iteritems()], 
             usemask=False, asrecarray=True)
+
+
+
+def get_filter(net, layer=0, node=0):
+    # if layer is 0:
+        # return net.architecture[0].W[node, :]
+    filt = np.eye(net.architecture[0].W.shape[1])
+    ctr = 0
+    for L in net.architecture:
+        filt = L.W * filt
+        if ctr is layer:
+            break
+        ctr += 1
+    filt = filt[node, :] / np.sum(filt[node, :])
+    return np.array(filt.tolist()[0])
+
+def filterplot(net, layer=0, node=0, absolute = False, show = False):
+    _filter = get_filter(net, layer, node)
+
+    fig = plt.figure(figsize=(15, 7.5), dpi=100) 
+    ax = plt.subplot(1,1,1)
+
+    width = 0.65
+
+    ind = np.arange(len(net.inputs))
+
+    if absolute:
+        _filter = np.abs(_filter)
+
+    idx = np.argsort(_filter)
+    _filter = np.sort(_filter)
+
+    if not absolute:
+        rects1 = ax.barh(ind[_filter < 0], _filter[_filter < 0], width, color='b')
+        rects2 = ax.barh(ind[_filter >= 0], _filter[_filter >= 0], width, color='r')
+    else:
+        rects1 = ax.barh(ind, _filter, width, color='r')
+
+
+    prepend = ''
+
+    if absolute:
+        prepend = 'Absolute '
+    ax.set_xlabel(prepend + 'Relative filter influence (normed)')
+
+    title_str = 'Approximate Linear Filter learned by node {} in layer {}'.format(node + 1, layer + 1)
+    
+    ax.set_title(title_str)
+
+    ax.set_yticks(ind + 0.25)
+
+    # if absolute:
+        # ax.set_yticklabels( net.inputs , size = 'small', multialignment = 'left')
+    # else:
+    ax.set_yticklabels( [net.inputs[i] for i in idx] , size = 'small', multialignment = 'left')
+
+    fig.tight_layout()
+
+    if show:
+        plt.show()
+
+    return fig
 
 
 

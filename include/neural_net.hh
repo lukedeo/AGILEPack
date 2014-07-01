@@ -36,6 +36,7 @@ public:
         bool scale = true, bool verbose = false);
 
     void from_yaml(const std::string &filename);
+    void from_yaml(std::stringstream &s);
     void to_yaml(const std::string &filename);
     void to_yaml(const std::string &filename, 
         const std::map<std::string, std::string> &types);
@@ -54,7 +55,7 @@ public:
     // void to_yaml(const std::string &filename, const T &R);
 
     void train_unsupervised(const unsigned int &epochs, bool verbose = false, 
-        bool denoising = false, bool tantrum = false);
+        bool denoising = true, bool tantrum = false);
 
     void train_supervised(const unsigned int &epochs, bool verbose = false, 
         bool tantrum = false, int freq = 0, const std::string &filename = "tempnet.yaml");

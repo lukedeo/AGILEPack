@@ -121,6 +121,12 @@ void neural_net::from_yaml(const std::string &filename)
     YAML::convert<agile::neural_net>::decode(config["network"], *this);
 }
 //----------------------------------------------------------------------------
+void neural_net::from_yaml(std::stringstream &s)
+{
+    YAML::Node config = YAML::Load(s.str());
+    YAML::convert<agile::neural_net>::decode(config["network"], *this);
+}
+//----------------------------------------------------------------------------
 void neural_net::to_yaml(const std::string &filename)
 {
     std::ofstream file(filename);
