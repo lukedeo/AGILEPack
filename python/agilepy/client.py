@@ -7,6 +7,8 @@ email: luke.deoliveira@yale.edu
 import yaml
 import numpy as np
 from numpy.lib import recfunctions
+import matplotlib
+matplotlib.use('PDF')
 import matplotlib.pyplot as plt
 # def dict2numpy(dictionary, order):
     # for var in order:
