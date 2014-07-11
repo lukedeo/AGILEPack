@@ -33,6 +33,7 @@ dataframe::dataframe(std::string filename, bool colnames)
                 std::stringstream fs( field );
 
                 column_names[agile::no_quotes(agile::trim(fs.str()))] = ctr;
+                expr_buf[agile::no_quotes(agile::trim(fs.str()))] = 0.0;
                 ++ctr;
             }
         }
@@ -47,13 +48,13 @@ dataframe::dataframe(std::string filename, bool colnames)
     }
 }
 dataframe::dataframe(const dataframe &D) 
-: column_names(D.column_names), data(D.data), m_columns_set(D.m_columns_set), 
+: column_names(D.column_names), expr_buf(D.expr_buf), data(D.data), m_columns_set(D.m_columns_set), 
 m_scaled(false), m_cols(D.m_cols), m_rows(D.m_rows)
 {
 }
 //----------------------------------------------------------------------------
 dataframe::dataframe(dataframe &&D)
-: column_names(std::move(D.column_names)), data(std::move(D.data)),
+: column_names(std::move(D.column_names)), expr_buf(std::move(D.expr_buf)), data(std::move(D.data)),
  m_columns_set(std::move(D.m_columns_set)), m_scaled(false), 
  m_cols(std::move(D.m_cols)), m_rows(std::move(D.m_rows))
 {
@@ -62,6 +63,7 @@ dataframe::dataframe(dataframe &&D)
 dataframe& dataframe::operator=(const dataframe &D)
 {
     column_names = (D.column_names);
+    expr_buf = (D.column_names);
     data = (D.data);
     m_columns_set = (D.m_columns_set);
     m_cols = (D.m_cols);
@@ -73,6 +75,7 @@ dataframe& dataframe::operator=(const dataframe &D)
 dataframe& dataframe::operator=(dataframe &&D)
 {
     column_names = std::move(D.column_names);
+    expr_buf = std::move(D.expr_buf);
     data = std::move(D.data);
     m_columns_set = std::move(D.m_columns_set);
     m_cols = std::move(D.m_cols);
@@ -106,6 +109,7 @@ void dataframe::from_csv(std::string filename, bool colnames)
         {
             std::stringstream fs( field );
             column_names[agile::no_quotes(agile::trim(fs.str()))] = ctr;
+            expr_buf[agile::no_quotes(agile::trim(fs.str()))] = 0.0;
             ++ctr;
         }
     }
@@ -202,6 +206,7 @@ void dataframe::set_column_names(std::vector<std::string> v)
     for (auto &e : v)
     {
         column_names[agile::trim(e)] = ctr;
+        expr_buf[agile::trim(e)] = 0.0;
         ++ctr;
     }
     m_columns_set = true;
@@ -339,8 +344,23 @@ void dataframe::append(dataframe &&D)
         column_names = std::move(D.column_names);
     }
 }
+// //----------------------------------------------------------------------------
+// void dataframe::add_column(const std::string &name, double fill)
+// {
+//     column_names[name] = m_cols;
+//     ++m_cols;
+//     for (auto &row : data)
+//     {
+//         row.push_back(fill);
+//     }
+// }
+// //----------------------------------------------------------------------------
+// void dataframe::add_column(const std::string &name, const std::string &math_expr)
+// {
 
-}
+// }
+
+// }
 
 
 dimension_error::dimension_error(const std::string& what_arg)
