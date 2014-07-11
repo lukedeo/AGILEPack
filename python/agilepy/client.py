@@ -264,6 +264,22 @@ class NeuralNet(object):
 
 
 
+def _correlation_matrix(X):
+    X = X.astype([(k, float) for k in X.dtype.names])
+    return np.corrcoef(X.view((np.float64, len(X.dtype.names))).T)
+
+# def correlation_map(X):
+#     _X = _correlation_matrix(X)
+#     fig, ax = plt.subplots()
+#     im = ax.imshow(_X, interpolation='nearest')
+#     # ax.set_xticklabels(list(X.dtype.names))
+#     # ax.set_yticklabels(list(X.dtype.names))
+#     cbar = fig.colorbar(im)
+#     plt.show()
+#     return fig
+
+
+
 def get_filter(net, layer=0, node=0):
     # if layer is 0:
         # return net.architecture[0].W[node, :]
@@ -323,6 +339,11 @@ def filterplot(net, layer=0, node=0, absolute = False, show = False):
         plt.show()
 
     return fig
+
+
+
+
+
 
 
 
