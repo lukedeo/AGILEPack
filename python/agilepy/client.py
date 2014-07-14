@@ -10,6 +10,7 @@ from numpy.lib import recfunctions
 import matplotlib
 matplotlib.use('PDF')
 import matplotlib.pyplot as plt
+import sklearn.metrics as sm
 # def dict2numpy(dictionary, order):
     # for var in order:
     # ar = np.array([float(0.0 + dictionary[elem]) for elem in order], dtype = dict(names = order, formats = ['f8' for thing in order]))
@@ -339,6 +340,38 @@ def filterplot(net, layer=0, node=0, absolute = False, show = False):
         plt.show()
 
     return fig
+
+
+
+
+
+def _sort_nets(netlist):
+    return [netlist[i] for i in np.argsort(np.array([float("".join(_ for _ in f if _ in "1234567890")) for f in netlist]))]
+
+def batch_auc(netlist, X):
+    net = apy.NeuralNet()
+    def _net_to_auc(net, filename, X):
+        net.load(filename)
+        fpr, tpr, _ = sm.roc_curve(X['signal'], net.predict(X)[0]['signal_predicted'])
+        return sm.auc(fpr, tpr)
+    return netlist, np.array([_net_to_auc(net, filename, X) for filename in netlist])
+
+def best_model(netlist, X):
+    _, _auc = batch_auc(netlist, X)
+    return netlist[_auc.argmax()], _auc.max()
+
+def auc_plot(netlist, X):
+    netlist, auc = batch_auc(_sort_nets(netlist), X)
+    fig = plt.figure(figsize=(15, 7.5), dpi=100) 
+    ax = plt.subplot(1,1,1)
+    plt.plot(range(0, len(netlist)), auc, color = 'red')
+
+    ax.set_title('Area Under Curve (AUC) versus training time')
+    ax.set_xlabel('Epochs')
+
+
+    return fig
+
 
 
 
