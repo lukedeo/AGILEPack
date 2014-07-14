@@ -368,9 +368,15 @@ def auc_plot(netlist, X):
 
     ax.set_title('Area Under Curve (AUC) versus training time')
     ax.set_xlabel('Epochs')
+    ax.set_ylabel('AUC')
 
-
+    plt.grid(b = True, which = 'minor')
+    plt.grid(b = True, which = 'major')
+    
     return fig
+
+
+
 
 
 
