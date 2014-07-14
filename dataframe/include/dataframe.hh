@@ -13,7 +13,6 @@
 #include <memory>
 #include <stdexcept>
 #include <initializer_list>
-#include "exprtk.hh"
 
 
 namespace agile
@@ -88,8 +87,6 @@ private:
 //  Private data fields
 //-----------------------------------------------------------------------------
     std::map<std::string, std::size_t> column_names;
-    std::map<std::string, double> expr_buf;
-    exprtk::symbol_table<T> symbol_table;
     data_t data;
     
     bool m_columns_set, m_scaled;
