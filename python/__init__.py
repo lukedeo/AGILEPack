@@ -1,2 +1,2 @@
 import client
-from client import NeuralNet
+from client import NeuralNet, filterplot, auc_plot

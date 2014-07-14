@@ -83,13 +83,6 @@ public:
 
     void scale();
 
-//-----------------------------------------------------------------------------
-//  column addition
-//-----------------------------------------------------------------------------
-
-    // void add_column(const std::string &name, double fill = 0.0);
-    // void add_column(const std::string &name, const std::string &math_expr);
-
 private:
 //-----------------------------------------------------------------------------
 //  Private data fields

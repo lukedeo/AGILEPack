@@ -344,23 +344,6 @@ void dataframe::append(dataframe &&D)
         column_names = std::move(D.column_names);
     }
 }
-// //----------------------------------------------------------------------------
-// void dataframe::add_column(const std::string &name, double fill)
-// {
-//     column_names[name] = m_cols;
-//     ++m_cols;
-//     for (auto &row : data)
-//     {
-//         row.push_back(fill);
-//     }
-// }
-// //----------------------------------------------------------------------------
-// void dataframe::add_column(const std::string &name, const std::string &math_expr)
-// {
-
-// }
-
-// }
 
 
 dimension_error::dimension_error(const std::string& what_arg)
