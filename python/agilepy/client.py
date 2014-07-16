@@ -268,6 +268,27 @@ class NeuralNet(object):
 def _correlation_matrix(X):
     X = X.astype([(k, float) for k in X.dtype.names])
     return np.corrcoef(X.view((np.float64, len(X.dtype.names))).T)
+    
+def correlation_dict(X):
+    X = X.astype([(k, float) for k in X.dtype.names])
+    cor = np.corrcoef(X.view((np.float64, len(X.dtype.names))).T)
+    _dict = {}
+    for i in xrange(0, len(X.dtype.names)):
+        _subdict = {}
+        for j in xrange(0, len(X.dtype.names)):
+            if i is not j:
+                _subdict.update({X.dtype.names[j] : cor[i, j]})
+        _dict.update({X.dtype.names[i] : _subdict})
+    return _dict
+
+def pretty_print_correlations(X):
+    _dict = correlation_dict(X)
+    print 'Correlations:'
+    print '----------------'
+    for first, _subdict in _dict.iteritems():
+        print '\n\'{}\' correlation coefficients:'.format(first)
+        for second, correlation in _subdict.iteritems():
+            print '    |--> {} --> {}'.format(second, correlation)
 
 # def correlation_map(X):
 #     _X = _correlation_matrix(X)
@@ -349,7 +370,7 @@ def _sort_nets(netlist):
     return [netlist[i] for i in np.argsort(np.array([float("".join(_ for _ in f if _ in "1234567890")) for f in netlist]))]
 
 def batch_auc(netlist, X):
-    net = apy.NeuralNet()
+    net = NeuralNet()
     def _net_to_auc(net, filename, X):
         net.load(filename)
         fpr, tpr, _ = sm.roc_curve(X['signal'], net.predict(X)[0]['signal_predicted'])
