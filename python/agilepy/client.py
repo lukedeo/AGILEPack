@@ -10,7 +10,16 @@ from numpy.lib import recfunctions
 import matplotlib
 matplotlib.use('PDF')
 import matplotlib.pyplot as plt
-import sklearn.metrics as sm
+
+
+__SCIKITLEARN = True
+
+try:
+    import sklearn.metrics as sm
+except Exception, e:
+    print 'Warning: Scikit learn not found, certain functions deprecated.'
+    __SCIKITLEARN = False
+
 # def dict2numpy(dictionary, order):
     # for var in order:
     # ar = np.array([float(0.0 + dictionary[elem]) for elem in order], dtype = dict(names = order, formats = ['f8' for thing in order]))
@@ -370,12 +379,16 @@ def _sort_nets(netlist):
     return [netlist[i] for i in np.argsort(np.array([float("".join(_ for _ in f if _ in "1234567890")) for f in netlist]))]
 
 def batch_auc(netlist, X):
-    net = NeuralNet()
-    def _net_to_auc(net, filename, X):
-        net.load(filename)
-        fpr, tpr, _ = sm.roc_curve(X['signal'], net.predict(X)[0]['signal_predicted'])
-        return sm.auc(fpr, tpr)
-    return netlist, np.array([_net_to_auc(net, filename, X) for filename in netlist])
+    if __SCIKITLEARN:
+            pass
+        net = NeuralNet()
+        def _net_to_auc(net, filename, X):
+            net.load(filename)
+            fpr, tpr, _ = sm.roc_curve(X['signal'], net.predict(X)[0]['signal_predicted'])
+            return sm.auc(fpr, tpr)
+        return netlist, np.array([_net_to_auc(net, filename, X) for filename in netlist])
+    else:
+        raise ImportError('Cannot calculate AUC without scikit-learn')
 
 def best_model(netlist, X):
     _, _auc = batch_auc(netlist, X)
@@ -398,25 +411,59 @@ def auc_plot(netlist, X):
 
 
 
+def _sensitivity(truth, predicted, bins = 2000):
+
+    bincount = bins
+
+    sig_ind = truth == 1
+    bkg_ind = truth == 0
+
+    predicted_bins = np.linspace(np.min(predicted), np.max(predicted), bins)
+
+    sig, _ = np.histogram(predicted[sig_ind], predicted_bins)
+    bkd, _ = np.histogram(predicted[bkg_ind], predicted_bins)
+
+    s = np.add.accumulate(sig[::-1])
+    b = np.add.accumulate(bkd[::-1])
+    _tmp = np.divide(s, np.sqrt(b))
+    _tmp = _tmp[np.isinf(_tmp) == False]
+    _tmp = _tmp[np.isnan(_tmp) == False]
+    return _tmp, i
 
 
+def sensitivity_discriminant(truth, predicted, bins = 2000):
+    fig = plt.figure(figsize=(15, 7.5), dpi=100) 
+    ax = plt.subplot(1,1,1)
+    plt.plot(np.linspace(np.min(predicted), np.max(predicted), bins - 1), _sensitivity(truth, predicted, bins), color = 'red')
+
+    ax.set_title(r'$s/\sqrt{b}$ versus $p_{\mathrm{signal}}$')
+    ax.set_xlabel('Epochs')
+    ax.set_ylabel(r'$s/\sqrt{b}$')
+
+    plt.grid(b = True, which = 'minor')
+    plt.grid(b = True, which = 'major')
+    
+    return fig
+
+def batch_sensitivity(netlist, X):
+    net = NeuralNet()
+    def _net_to_sensitivity(net, filename, X):
+        net.load(filename)
+        return np.max(_sensitivity(X['signal'], net.predict(X)[0]['signal_predicted']))
+    return np.array([_net_to_sensitivity(net, filename, X) for filename in netlist])
 
 
+def sensitivity_plot(netlist, X):
+    auc = batch_sensitivity(_sort_nets(netlist), X)
+    fig = plt.figure(figsize=(15, 7.5), dpi=100) 
+    ax = plt.subplot(1,1,1)
+    plt.plot(range(0, len(netlist)), auc, color = 'red')
 
+    ax.set_title(r'$s/\sqrt{b}$ versus training time')
+    ax.set_xlabel('Epochs')
+    ax.set_ylabel(r'$s/\sqrt{b}$')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+    plt.grid(b = True, which = 'minor')
+    plt.grid(b = True, which = 'major')
+    
+    return fig
