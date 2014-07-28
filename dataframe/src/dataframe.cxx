@@ -339,6 +339,12 @@ void dataframe::append(dataframe &&D)
         column_names = std::move(D.column_names);
     }
 }
+//----------------------------------------------------------------------------
+dataframe& dataframe::shuffle()
+{
+    std::random_shuffle(data.begin(), data.end());
+    return *this;
+}
 
 }//end ns agile
 
