@@ -380,7 +380,6 @@ def _sort_nets(netlist):
 
 def batch_auc(netlist, X):
     if __SCIKITLEARN:
-            pass
         net = NeuralNet()
         def _net_to_auc(net, filename, X):
             net.load(filename)
