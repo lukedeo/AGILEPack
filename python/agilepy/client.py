@@ -378,12 +378,12 @@ def filterplot(net, layer=0, node=0, absolute = False, show = False):
 def _sort_nets(netlist):
     return [netlist[i] for i in np.argsort(np.array([float("".join(_ for _ in f if _ in "1234567890")) for f in netlist]))]
 
-def batch_auc(netlist, X):
+def batch_auc(netlist, X, fieldname = 'signal'):
     if __SCIKITLEARN:
         net = NeuralNet()
         def _net_to_auc(net, filename, X):
             net.load(filename)
-            fpr, tpr, _ = sm.roc_curve(X['signal'], net.predict(X)[0]['signal_predicted'])
+            fpr, tpr, _ = sm.roc_curve(X[fieldname], net.predict(X)[0][fieldname + '_predicted'])
             return sm.auc(fpr, tpr)
         return netlist, np.array([_net_to_auc(net, filename, X) for filename in netlist])
     else:
@@ -393,8 +393,8 @@ def best_model(netlist, X):
     _, _auc = batch_auc(netlist, X)
     return netlist[_auc.argmax()], _auc.max()
 
-def auc_plot(netlist, X):
-    netlist, auc = batch_auc(_sort_nets(netlist), X)
+def auc_plot(netlist, X, fieldname = 'signal'):
+    netlist, auc = batch_auc(_sort_nets(netlist), X, fieldname)
     fig = plt.figure(figsize=(15, 7.5), dpi=100) 
     ax = plt.subplot(1,1,1)
     plt.plot(range(0, len(netlist)), auc, color = 'red')
@@ -427,7 +427,7 @@ def _sensitivity(truth, predicted, bins = 2000):
     _tmp = np.divide(s, np.sqrt(b))
     _tmp = _tmp[np.isinf(_tmp) == False]
     _tmp = _tmp[np.isnan(_tmp) == False]
-    return _tmp, i
+    return _tmp
 
 
 def sensitivity_discriminant(truth, predicted, bins = 2000):
@@ -444,16 +444,16 @@ def sensitivity_discriminant(truth, predicted, bins = 2000):
     
     return fig
 
-def batch_sensitivity(netlist, X):
+def batch_sensitivity(netlist, X, fieldname = 'signal'):
     net = NeuralNet()
     def _net_to_sensitivity(net, filename, X):
         net.load(filename)
-        return np.max(_sensitivity(X['signal'], net.predict(X)[0]['signal_predicted']))
+        return np.max(_sensitivity(X[fieldname], net.predict(X)[0][fieldname + '_predicted']))
     return np.array([_net_to_sensitivity(net, filename, X) for filename in netlist])
 
 
-def sensitivity_plot(netlist, X):
-    auc = batch_sensitivity(_sort_nets(netlist), X)
+def sensitivity_plot(netlist, X, fieldname = 'signal'):
+    auc = batch_sensitivity(_sort_nets(netlist), X, fieldname)
     fig = plt.figure(figsize=(15, 7.5), dpi=100) 
     ax = plt.subplot(1,1,1)
     plt.plot(range(0, len(netlist)), auc, color = 'red')
