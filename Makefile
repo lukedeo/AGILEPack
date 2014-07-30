@@ -7,6 +7,11 @@ SRC           := src
 INC           := include
 LIB           := $(CURDIR)/lib
 
+# --- Set Eigen directory explicitly
+ifdef athena
+EIGEN_DIR := # /path/to/eigen/
+INC += $(EIGEN_DIR)
+endif
 
 # --- Directories for subdir make invocations.
 ROOT_DIR      := $(CURDIR)/root
