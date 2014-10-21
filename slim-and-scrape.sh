@@ -220,12 +220,17 @@ vpath %.o    \$(BIN)
 vpath %.cxx  \$(SRC) 
 vpath %.hh    \$(INC) 
 
+# --- Set Eigen directory explicitly
+ifdef athena
+EIGEN := # /path/to/eigen/
+endif
+
 # --- set compiler and flags 
 
 DEBUG        := -g
 
 CXX          ?= g++
-CXXFLAGS     += -O2 -Wall -fPIC -I\$(INC) -I./ \$(DEBUG) -std=c++11 
+CXXFLAGS     += -O2 -Wall -fPIC -I\$(INC) -I\$(EIGEN) -I./ \$(DEBUG) -std=c++11 
 
 ifeq (\$(CXX),clang++)
 CXXFLAGS += -stdlib=libc++
