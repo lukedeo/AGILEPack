@@ -222,7 +222,9 @@ vpath %.hh    \$(INC)
 
 # --- Set Eigen directory explicitly
 ifdef athena
-EIGEN ?= # /path/to/eigen/
+EIGEN            ?= # /path/to/eigen/
+BOOST_ROOT       ?= # /path/to/boost/
+BOOST_INCLUDEDIR ?= 
 endif
 
 # --- set compiler and flags 
@@ -230,7 +232,7 @@ endif
 DEBUG        := -g
 
 CXX          ?= g++
-CXXFLAGS     += -O2 -Wall -fPIC -I\$(INC) -I\$(EIGEN) -I./ \$(DEBUG) -std=c++11 
+CXXFLAGS     += -O2 -Wall -fPIC -I\$(INC) -I\$(EIGEN) -I\$(BOOST_ROOT)/\$(BOOST_INCLUDEDIR) -I./ \$(DEBUG) -std=c++11 
 
 ifeq (\$(CXX),clang++)
 CXXFLAGS += -stdlib=libc++
