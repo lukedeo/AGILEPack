@@ -222,7 +222,7 @@ vpath %.hh    \$(INC)
 
 # --- Set Eigen directory explicitly
 ifdef athena
-EIGEN := # /path/to/eigen/
+EIGEN ?= # /path/to/eigen/
 endif
 
 # --- set compiler and flags 
