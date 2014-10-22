@@ -181,7 +181,6 @@ cd $SUBDIR
 mv *.hh include/ 
 mv *.cxx src/
 
-
 perl -pi -e 's/include \"yaml-cpp\//include \"/g' include/*.hh
 perl -pi -e 's/include \"yaml-cpp\//include \"/g' src/*.cxx
 perl -pi -e 's/include \"agile\//include \"/g' include/*.hh
@@ -204,6 +203,9 @@ perl -pi -e 's/include \"agile\//include \"/g' AGILEPack Base
 perl -pi -e 's/include \"dataframe\//include \"/g' AGILEPack Base
 perl -pi -e 's/include \"root\//include \"/g' AGILEPack Base
 perl -pi -e 's/include \"include\//include \"/g' AGILEPack Base
+perl -pi -e 's/Core/include\/Core/g' Base
+perl -pi -e 's/ROOT/include\/ROOT/g' Base
+perl -pi -e 's/neural_net/include\/neural_net/g' Base
 
 echo "
 # Makefile for slimmed agilepack
@@ -303,7 +305,3 @@ purge:
 
 rmdep: 
 	rm -f \$(DEP)/*.d" > Makefile
-
-
-
-
