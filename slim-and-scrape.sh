@@ -107,31 +107,27 @@ for file in *.cpp; do
     mv "$file" "`basename $file .cpp`.cxx"
 done
 
-for file in *.h; do
-    mv "$file" "`basename $file .h`.hh"
+for file in *.hh; do
+    mv "$file" "`basename $file .hh`.h"
 done
 
-
-
 mkdir -p src 
-mkdir -p include 
+mkdir -p AGILEPack
 
-mv *.hh include/ 
+mv *.h AGILEPack/ 
 mv *.cxx src/
 
-perl -pi -e 's/include \"yaml-cpp\/yaml-cpp\//include \"/g' include/*.hh
-perl -pi -e 's/include \"yaml-cpp\//include \"/g' include/*.hh
-perl -pi -e 's/include \"node\//include \"/g' include/*.hh
-perl -pi -e 's/include \"detail\//include \"detail-/g' include/*.hh
-perl -pi -e 's/include \"contrib\//include \"/g' include/*.hh
-perl -pi -e 's/include \"boost_mod\//include <boost\//g' include/*.hh
+perl -pi -e 's/include \"yaml-cpp\/yaml-cpp\//include \"/g' AGILEPack/*.h
+perl -pi -e 's/include \"yaml-cpp\//include \"/g' AGILEPack/*.h
+perl -pi -e 's/include \"node\//include \"/g' AGILEPack/*.h
+perl -pi -e 's/include \"detail\//include \"detail-/g' AGILEPack/*.h
+perl -pi -e 's/include \"contrib\//include \"/g' AGILEPack/*.h
+perl -pi -e 's/include \"boost_mod\//include <boost\//g' AGILEPack/*.h
 
-perl -pi -e 's/\.hpp\"/\.hpp>/g' include/*.hh 
-perl -pi -e 's/\.h\"/\.hh\"/g' include/*.hh 
-perl -pi -e 's/\.hpp\"/\.hpp>/g' src/*.cxx 
-perl -pi -e 's/\.h\"/\.hh\"/g' src/*.cxx 
+perl -pi -e 's/\.hpp\"/\.hpp>/g' AGILEPack/*.h
+perl -pi -e 's/\.hpp\"/\.hpp>/g' src/*.cxx
 
-perl -pi -e 's/include \"\.\.\//include \"/g' include/*.hh
+perl -pi -e 's/include \"\.\.\//include \"/g' AGILEPack/*.h
 
 perl -pi -e 's/include \"yaml-cpp\/yaml-cpp\//include \"/g' src/*.cxx
 perl -pi -e 's/include \"yaml-cpp\//include \"/g' src/*.cxx
@@ -143,8 +139,6 @@ perl -pi -e 's/include \"boost_mod\//include <boost\//g' src/*.cxx
 
 cd $OLDPWD
 
-cp AGILEPack ${SUBDIR}/
-cp Base ${SUBDIR}/
 cp Core.hh ${SUBDIR}/
 cp ROOT.hh ${SUBDIR}/
 cp agile/agile_base.hh ${SUBDIR}/
@@ -178,130 +172,67 @@ cp src/neural_net.cxx ${SUBDIR}/
 
 
 cd $SUBDIR 
-mv *.hh include/ 
+
+for file in *.hh; do
+    mv "$file" "`basename $file .hh`.h"
+done
+
+mv *.h AGILEPack/ 
 mv *.cxx src/
 
-perl -pi -e 's/include \"yaml-cpp\//include \"/g' include/*.hh
+perl -pi -e 's/include \"yaml-cpp\//include \"/g' AGILEPack/*.h
 perl -pi -e 's/include \"yaml-cpp\//include \"/g' src/*.cxx
-perl -pi -e 's/include \"agile\//include \"/g' include/*.hh
+perl -pi -e 's/include \"agile\//include \"/g' AGILEPack/*.h
 perl -pi -e 's/include \"agile\//include \"/g' src/*.cxx
-perl -pi -e 's/include \"dataframe\//include \"/g' include/*.hh
+perl -pi -e 's/include \"dataframe\//include \"/g' AGILEPack/*.h
 perl -pi -e 's/include \"dataframe\//include \"/g' src/*.cxx
-perl -pi -e 's/include \"root\//include \"/g' include/*.hh
+perl -pi -e 's/include \"root\//include \"/g' AGILEPack/*.h
 perl -pi -e 's/include \"root\//include \"/g' src/*.cxx
-perl -pi -e 's/include \"include\//include \"/g' include/*.hh
+perl -pi -e 's/include \"include\//include \"/g' AGILEPack/*.h
 perl -pi -e 's/include \"include\//include \"/g' src/*.cxx
-perl -pi -e 's/include \"yaml-cpp\/yaml-cpp\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"yaml-cpp\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"node\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"contrib\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"boost_mod\//include <boost\//g' AGILEPack Base
-perl -pi -e 's/\.hpp\"/\.hpp>/g' AGILEPack Base 
-perl -pi -e 's/\.h\"/\.hh\"/g' AGILEPack Base 
-perl -pi -e 's/include \"yaml-cpp\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"agile\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"dataframe\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"root\//include \"/g' AGILEPack Base
-perl -pi -e 's/include \"include\//include \"/g' AGILEPack Base
-perl -pi -e 's/Core/include\/Core/g' Base
-perl -pi -e 's/ROOT/include\/ROOT/g' Base
-perl -pi -e 's/neural_net/include\/neural_net/g' Base
+perl -pi -e 's/\.hh\"/\.h\"/g' AGILEPack/*.h
+perl -pi -e 's/\.hh\"/\.h\"/g' src/*.cxx
+
+# don't know why this is necessary for compilation
+perl -pi -e 's/token\.h/\.\.\/AGILEPack\/token\.h/g' src/tag.cxx
 
 echo "
-# Makefile for slimmed agilepack
-# Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+# Makefile for athena agilepack
 
-# --- set dirs
-BIN          := bin
-SRC          := src
-INC          := include
-LIB          := \$(CURDIR)/lib
+# --- depends on ROOT, Eigen and Boost
+EIGEN = /afs/cern.ch/atlas/offline/external/Eigen/3.2.1/x86_64-slc6-gcc48-opt
+BOOST = /afs/cern.ch/sw/lcg/external/Boost/1.55.0_python2.7/x86_64-slc6-gcc47-opt/include/boost-1_55
 
-#  set search path
-vpath %.o    \$(BIN)
-vpath %.cxx  \$(SRC) 
-vpath %.hh    \$(INC) 
-
-# --- Set Eigen directory explicitly
-ifdef athena
-EIGEN            ?= # /path/to/eigen/
-BOOST_ROOT       ?= # /path/to/boost/
-BOOST_INCLUDEDIR ?= 
-endif
-
-# --- set compiler and flags 
-
-DEBUG        := -g
-
-CXX          ?= g++
-CXXFLAGS     += -O2 -Wall -fPIC -I\$(INC) -I\$(EIGEN) -I\$(BOOST_ROOT)/\$(BOOST_INCLUDEDIR) -I./ \$(DEBUG) -std=c++11 
+# --- set compiler and flags
+CC  = gcc
+CXX = g++
+CPPFLAGS = -I./AGILEPack -I\$(EIGEN) -I\$(BOOST)  -I./ -std=c++11
 
 ifeq (\$(CXX),clang++)
 CXXFLAGS += -stdlib=libc++
 endif
 
 ROOTCFLAGS    := \$(shell root-config --cflags)
-# ROOTLIBS      := -L\$(shell root-config --libdir)
-# ROOTLIBS      += -lCore -lTree -lRIO 
-# ROOTLIBS      += -lCint		# don't know why we need this...
-# ROOTLDFLAGS   := \$(shell root-config --ldflags)
+CXXFLAGS      += \$(ROOTCFLAGS)
 
+# --- define objects
+SRCS=\$(shell ls ./src/*.cxx | xargs -n 1 basename)
+OBJS=\$(subst .cxx,.o,\$(SRCS))
 
-CXXFLAGS     += \$(ROOTCFLAGS)
-
-# ---- define objects
-
-LIBRARY      = \$(LIB)/libAGILEPack.a
-
-SOURCES      = \$(shell ls src/*.cxx | xargs -n 1 basename)
-
-OBJ          = \$(SOURCES:%.cxx=%.o)
-
-all: \$(LIB)/libAGILEPack.a
-	@echo \"libAGILEPack.a build successful.\"
-
-\$(LIB)/libAGILEPack.a: \$(OBJ:%=\$(BIN)/%)
-	@mkdir -p \$(LIB)
-	@echo \"linking objects to --> \$@\"
-	@ar rc \$@ \$^ && ranlib \$@
-
-# --------------------------------------------------
+# -----------------------------------------------------
 
 # compile rule
-\$(BIN)/%.o: %.cxx
-	@echo compiling \$<
-	@mkdir -p \$(BIN)
-	@\$(CXX) -c \$(CXXFLAGS) \$< -o \$@
+all: libAGILEPack.a
+	@echo \"libAGILEPack.a build successful.\"
 
-# use auto dependency generation
-DEP = \$(BIN)
+libAGILEPack.a: \$(OBJS:%=%)
+	@echo \"linking objects to --> \$@\"
+	@ar rc \$@ $^ && ranlib \$@
 
-ifneq (\$(MAKECMDGOALS),clean)
-ifneq (\$(MAKECMDGOALS),rmdep)
-ifneq (\$(MAKECMDGOALS),purge)
-include  \$(OBJ:%.o=\$(DEP)/%.d)
-endif
-endif
-endif
-
-DEPTARGSTR = -MT \$(BIN)/\$*.o -MT \$(DEP)/\$*.d
-\$(DEP)/%.d: %.cxx
-	@echo making dependencies for \$<
-	@mkdir -p \$(DEP)
-	@\$(CXX) -MM -MP \$(DEPTARGSTR) \$(CXXFLAGS) \$< -o \$@ 
+./%.o:./src/%.cxx
+	@echo compiling $<
+	@\$(CXX) -c \$(CXXFLAGS) \$(CPPFLAGS) $< -o \$@
 
 # clean
-.PHONY : clean rmdep purge
-
-CLEANLIST     = *~ *.o *.o~ *.d core 
 clean:
-	rm -fr \$(CLEANLIST) \$(CLEANLIST:%=\$(BIN)/%) \$(CLEANLIST:%=\$(DEP)/%)
-	rm -fr \$(BIN)
-
-purge:
-	rm -fr \$(CLEANLIST) \$(CLEANLIST:%=\$(BIN)/%) \$(CLEANLIST:%=\$(DEP)/%)
-	rm -fr \$(BIN)
-	rm -fr \$(LIB)
-
-rmdep: 
-	rm -f \$(DEP)/*.d" > Makefile
+	rm -f *.o *.d libAGILEPack.a core" > Makefile
