@@ -139,6 +139,8 @@ perl -pi -e 's/include \"boost_mod\//include <boost\//g' src/*.cxx
 
 cd $OLDPWD
 
+cp AGILEPack ${SUBDIR}/AGILEPack.h
+cp Base ${SUBDIR}/Base.h
 cp Core.hh ${SUBDIR}/
 cp ROOT.hh ${SUBDIR}/
 cp agile/agile_base.hh ${SUBDIR}/
@@ -192,6 +194,7 @@ perl -pi -e 's/include \"include\//include \"/g' AGILEPack/*.h
 perl -pi -e 's/include \"include\//include \"/g' src/*.cxx
 perl -pi -e 's/\.hh\"/\.h\"/g' AGILEPack/*.h
 perl -pi -e 's/\.hh\"/\.h\"/g' src/*.cxx
+perl -pi -e 's/Base/Base\.h/g' AGILEPack/AGILEPack.h
 
 # don't know why this is necessary for compilation
 perl -pi -e 's/token\.h/\.\.\/AGILEPack\/token\.h/g' src/tag.cxx
