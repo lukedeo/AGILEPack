@@ -136,7 +136,6 @@ perl -pi -e 's/include \"detail\//include \"detail-/g' src/*.cxx
 perl -pi -e 's/include \"contrib\//include \"/g' src/*.cxx
 perl -pi -e 's/include \"boost_mod\//include <boost\//g' src/*.cxx
 
-
 cd $OLDPWD
 
 cp AGILEPack ${SUBDIR}/AGILEPack.h
@@ -195,9 +194,11 @@ perl -pi -e 's/include \"include\//include \"/g' src/*.cxx
 perl -pi -e 's/\.hh\"/\.h\"/g' AGILEPack/*.h
 perl -pi -e 's/\.hh\"/\.h\"/g' src/*.cxx
 perl -pi -e 's/Base/Base\.h/g' AGILEPack/AGILEPack.h
+perl -pi -e 's/include \"/include \"AGILEPack\//g' src/*.cxx
+perl -pi -e 's/AGILEPack\/T/T/g' src/*.cxx # fix for root includes
 
 # don't know why this is necessary for compilation
-perl -pi -e 's/token\.h/\.\.\/AGILEPack\/token\.h/g' src/tag.cxx
+#perl -pi -e 's/token\.h/\.\.\/AGILEPack\/token\.h/g' src/tag.cxx
 
 echo "
 # Makefile for athena agilepack
