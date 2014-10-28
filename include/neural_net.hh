@@ -26,6 +26,7 @@ public:
     neural_net(const neural_net &arch);
     ~neural_net();
 
+    using architecture::operator=;
     neural_net& operator =(const neural_net &arch);
     neural_net& operator =(neural_net &&arch);
 
