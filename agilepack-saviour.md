@@ -139,7 +139,7 @@ If you forget what the flags do, invoke this to get a reminder. No matter what o
 
 ####`--file, -f`
 `Pass at least one file to add to a smart_chain for training.`
-Here, we pass the ROOT files for training. If youre using *more than one file*, makes sure the tree names are the same across files, since we make a chain over the files.
+Here, we pass the ROOT files for training. If youre using *more than one file*, makes sure the tree names are the same across files, since we make a chain over the files. Passed as either `--file=file1.root file2.root ...`, `--file file1.root file2.root ...`, or `-ffile1.root file2.root ...`.
 ####`--tree, -t           Name of the TTree to extract from the ROOT file.
 ####`--save, -s           Name of file to save the YAML neural network file to. Something like my-model.yaml
 ####`--learning           Pass a learning rate.
