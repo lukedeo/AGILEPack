@@ -97,7 +97,7 @@ void model_frame::generate(bool verbose)
 }
 
 //----------------------------------------------------------------------------
-void model_frame::scale(bool verbose)
+void model_frame::scale(bool verbose, bool scale_outs)
 {
     if (!x_set)
     {
@@ -120,6 +120,23 @@ void model_frame::scale(bool verbose)
         {
             pct = (double)(idx) / (double)(columns_to_extract);
             agile::progress_bar(pct * 100);
+        }
+    }
+    if (scale_outs)
+    {
+        idx = 0;
+        columns_to_extract = outputs.size();
+        for (auto &name : outputs)
+        {
+            agile::calc_normalization(m_Y.col(idx), name, m_scaling);
+            m_Y.col(idx).array() -= m_scaling.mean[name];
+            m_Y.col(idx) /= m_scaling.sd[name];
+            ++idx;
+            if (verbose)
+            {
+                pct = (double)(idx) / (double)(columns_to_extract);
+                agile::progress_bar(pct * 100);
+            }
         }
     }
     if (verbose)
