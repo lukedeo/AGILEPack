@@ -140,17 +140,26 @@ If you forget what the flags do, invoke this to get a reminder. No matter what o
 ####`--file, -f`
 `Pass at least one file to add to a smart_chain for training.`
 Here, we pass the ROOT files for training. If youre using *more than one file*, makes sure the tree names are the same across files, since we make a chain over the files. Passed as either `--file=file1.root file2.root ...`, `--file file1.root file2.root ...`, or `-ffile1.root file2.root ...`.
-####`--tree, -t           Name of the TTree to extract from the ROOT file.
-####`--save, -s           Name of file to save the YAML neural network file to. Something like my-model.yaml
-####`--learning           Pass a learning rate.
-####`--momentum           Pass a momentum value.
-####`--regularize         Pass an l2 norm regularizer.
-####`--batch              Mini-batch size.
-####`--config, -c         Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.
-####`--struct             Pass the structure of the neural network. For example, one
-                     could specify --struct=13 24 23 15 3 [other flags]. If not passed, a heuristic will choose one for you.
-####`--quiet, -q          Make the output quiet. If not passed, the training procedure will tell you things, show you progress bars, etc.
-####`--shuffle            If passed, AGILEPack will re-shuffle the data you pass before training. This is HIGHLY recommended.
+####`--tree, -t`
+`Name of the TTree to extract from the ROOT file.` 
+This should simply be the name of the TTree you plan to train on
+####`--save, -s`
+`Name of file to save the YAML neural network file to. Something like my-model.yaml`
+This is the name of the file that AGILEPack will save YAML files to. YAML is the markup language I chose to perform serialization of networks.
+
+####`--quiet, -q`
+`Make the output quiet. If not passed, the training procedure will tell you things, show you progress bars, etc.`
+If you submit in a batch system, DEFINITELY pass the `--quiet` flag, as the amount of output will be nasty to deal with in the output files. It's nice to see if you're running interactively.
+
+####`--shuffle`
+`If passed, AGILEPack will re-shuffle the data you pass before training. This is HIGHLY recommended.`
+
+Many times, people have seperate signal and background ntuples. In this instance, if the tree names are the same, you can invoke the program as
+```
+luke@hep [~/AGILEPack]$ AGILEPackTrainer --file=signalfile.root backgroundfile.root --tree=physics --shuffle
+```
+and AGILEPack will combine and randomize the training file for you.
+
 ####`--regression         By default, AGILEPack assumes classification. If you are performing regression, pass this flag.
 ####`--start              Start index for training. (Default = 0)
 ####`--end                End index for training. (Default, whole tree)
@@ -159,6 +168,15 @@ Here, we pass the ROOT files for training. If youre using *more than one file*, 
 ####`--prog               Output progress files every (n) epochs. If n isn't passed,
                      uses default. (Default = 1)
 ####`--formula, -F        Specify Model Formula. Has to be of the form --formula="signal~var1+var2"
+
+####`--config, -c         Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.
+####`--learning           Pass a learning rate.
+####`--momentum           Pass a momentum value.
+####`--regularize         Pass an l2 norm regularizer.
+####`--batch              Mini-batch size.
+####`--struct             Pass the structure of the neural network. For example, one
+                     could specify --struct=13 24 23 15 3 [other flags]. If not passed, a heuristic will choose one for you.
+
 
 
 
