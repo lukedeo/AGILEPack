@@ -192,7 +192,7 @@ const std::string timestamp(void)
 
 optionparser::parser generate_parser()
 {
-    std::string s("A simple interface for Hcc studies using AGILEPack.");
+    std::string s("A simple interface for studies using AGILEPack.");
 
     optionparser::parser p(s);
 
