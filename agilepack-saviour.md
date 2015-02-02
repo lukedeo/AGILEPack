@@ -1,13 +1,13 @@
 AGILEPack 
 =========
-###A guide to installing it, using it, and not dying from frustration.
+##A guide to installing it, using it, and not dying from frustration.
 
 First, a little background -- AGILEPack was the codebase for my senior thesis, and while I tried my best to write good code, I have never and will never purport to be a software engineer. Thus, you should not always assume that an error is without a doubt your fault -- it very well could be, but it could also be a bug. This is also an open invitation -- feel free to edit then tell me / open an issue.
 
 
 First, I will walk through installation, then configuration, then actually running the darn thing and how to "get plots".
 
-####Installation
+###Installation
 
 
 AGILEPack does not have a ton of dependencies, but those which it has are mandatory. 
@@ -43,7 +43,7 @@ echo "export PATH+=:$(pwd)" >> ~/.bash_profile
 depending on what you use.
 
 
-####File format and Formulas
+###File format and Formulas
 
 The API for AGILEPack was designed to be as versatile as possible, while still allowing a power user to tweak the package to their own desires. However, there are a few formatting requirements which are NOT negotiable. I will assume that the user will be using the command line interface rather than the API. 
 
@@ -93,7 +93,7 @@ would mean "predict `bottom` using all other variables *except* `eta` as inputs"
 ``` 
 Is simply "predict `bottom` and `pt` as functions of everything on the right hand side". Note that formulas aren't space sensitive -- the formulas `bott om    ~ pt+eta +     ip3d_pb` and `bottom ~ pt + eta + ip3d_pb` are the exact same thing.
 
-####Command Line Interface
+###Command Line Interface
 
 Now we will examine how to train a neural network using AGILEPack. After you invoke `make`, you should have an executable called `AGILEPackTrainer`. You should type `AGILEPackTrainer --help` at your terminal and see the following.
 
@@ -126,6 +126,34 @@ A simple interface for studies using AGILEPack.
                          uses default. (Default = 1)
     --formula, -F        Specify Model Formula. Has to be of the form --formula="signal~var1+var2"
 ```
+Let's look further!
+
+###Training Parameters
+
+Now, we will go through each parameter and give an explanation.
+
+    --help, -h           Display this help message and exit.
+    --file, -f           Pass at least one file to add to a smart_chain for training.
+    --tree, -t           Name of the TTree to extract from the ROOT file.
+    --save, -s           Name of file to save the YAML neural network file to. Something like my-model.yaml
+    --learning           Pass a learning rate.
+    --momentum           Pass a momentum value.
+    --regularize         Pass an l2 norm regularizer.
+    --batch              Mini-batch size.
+    --config, -c         Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.
+    --struct             Pass the structure of the neural network. For example, one
+                         could specify --struct=13 24 23 15 3 [other flags]. If not passed, a heuristic will choose one for you.
+    --quiet, -q          Make the output quiet. If not passed, the training procedure will tell you things, show you progress bars, etc.
+    --shuffle            If passed, AGILEPack will re-shuffle the data you pass before training. This is HIGHLY recommended.
+    --regression         By default, AGILEPack assumes classification. If you are performing regression, pass this flag.
+    --start              Start index for training. (Default = 0)
+    --end                End index for training. (Default, whole tree)
+    --uepochs            Number of passes over the Trees for Unsupervised Pretraining(Default = 5)
+    --sepochs            Number of passes over the Trees for Supervised Training(Default = 10)
+    --prog               Output progress files every (n) epochs. If n isn't passed,
+                         uses default. (Default = 1)
+    --formula, -F        Specify Model Formula. Has to be of the form --formula="signal~var1+var2"
+
 
 
 

@@ -224,7 +224,7 @@ optionparser::parser generate_parser()
                                     .default_value(1);
     //----------------------------------------------------------------------------
 
-    p.add_option("--config", "-c")  .help("Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.")
+    p.add_option("--config", "-c")  .help("Pass a configuration file containing branch names and numeric types of interest.")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------
     std::string struct_help = "Pass the structure of the neural network. For example, one\n";
