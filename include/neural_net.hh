@@ -33,7 +33,7 @@ public:
     void add_data(agile::dataframe &&D);
 
     void model_formula(const std::string &formula, 
-        bool scale = true, bool verbose = false);
+        bool scale = true, bool verbose = false, bool scale_outs = false);
 
     void from_yaml(const std::string &filename);
     void from_yaml(std::stringstream &s);
