@@ -24,20 +24,20 @@ git clone https://github.com/lukedeo/AGILEPack.git
 
 and is relatively basic to install. As long as `Eigen` is in a place such that
 
-```
+```c++
 #include <Eigen/Dense>
 ```
 
 
 Won't cause your compiler to yell at you, you should be able to build the entire project with `make -j`. Afterwards, I recommend you add the path you built AGILEPack in to your `PATH`. If you don't know what that means, you should paste
 
-```
+```bash
 echo "export PATH+=:$(pwd)" >> ~/.bashrc
 ```
 
 or 
 
-```
+```bash
 echo "export PATH+=:$(pwd)" >> ~/.bash_profile
 ```
 depending on what you use.
