@@ -132,27 +132,33 @@ Let's look further!
 
 Now, we will go through each parameter and give an explanation.
 
-    --help, -h           Display this help message and exit.
-    --file, -f           Pass at least one file to add to a smart_chain for training.
-    --tree, -t           Name of the TTree to extract from the ROOT file.
-    --save, -s           Name of file to save the YAML neural network file to. Something like my-model.yaml
-    --learning           Pass a learning rate.
-    --momentum           Pass a momentum value.
-    --regularize         Pass an l2 norm regularizer.
-    --batch              Mini-batch size.
-    --config, -c         Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.
-    --struct             Pass the structure of the neural network. For example, one
-                         could specify --struct=13 24 23 15 3 [other flags]. If not passed, a heuristic will choose one for you.
-    --quiet, -q          Make the output quiet. If not passed, the training procedure will tell you things, show you progress bars, etc.
-    --shuffle            If passed, AGILEPack will re-shuffle the data you pass before training. This is HIGHLY recommended.
-    --regression         By default, AGILEPack assumes classification. If you are performing regression, pass this flag.
-    --start              Start index for training. (Default = 0)
-    --end                End index for training. (Default, whole tree)
-    --uepochs            Number of passes over the Trees for Unsupervised Pretraining(Default = 5)
-    --sepochs            Number of passes over the Trees for Supervised Training(Default = 10)
-    --prog               Output progress files every (n) epochs. If n isn't passed,
-                         uses default. (Default = 1)
-    --formula, -F        Specify Model Formula. Has to be of the form --formula="signal~var1+var2"
+####`--help, -h`       
+`Display this help message and exit.`
+
+If you forget what the flags do, invoke this to get a reminder. No matter what other stuff you pass to AGILEPackTrainer, this message will be displayed instead if you pass `--help`.
+
+####`--file, -f`
+`Pass at least one file to add to a smart_chain for training.`
+Here, we pass the ROOT files for training. If youre using *more than one file*, makes sure the tree names are the same across files, since we make a chain over the files.
+####`--tree, -t           Name of the TTree to extract from the ROOT file.
+####`--save, -s           Name of file to save the YAML neural network file to. Something like my-model.yaml
+####`--learning           Pass a learning rate.
+####`--momentum           Pass a momentum value.
+####`--regularize         Pass an l2 norm regularizer.
+####`--batch              Mini-batch size.
+####`--config, -c         Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.
+####`--struct             Pass the structure of the neural network. For example, one
+                     could specify --struct=13 24 23 15 3 [other flags]. If not passed, a heuristic will choose one for you.
+####`--quiet, -q          Make the output quiet. If not passed, the training procedure will tell you things, show you progress bars, etc.
+####`--shuffle            If passed, AGILEPack will re-shuffle the data you pass before training. This is HIGHLY recommended.
+####`--regression         By default, AGILEPack assumes classification. If you are performing regression, pass this flag.
+####`--start              Start index for training. (Default = 0)
+####`--end                End index for training. (Default, whole tree)
+####`--uepochs            Number of passes over the Trees for Unsupervised Pretraining(Default = 5)
+####`--sepochs            Number of passes over the Trees for Supervised Training(Default = 10)
+####`--prog               Output progress files every (n) epochs. If n isn't passed,
+                     uses default. (Default = 1)
+####`--formula, -F        Specify Model Formula. Has to be of the form --formula="signal~var1+var2"
 
 
 
