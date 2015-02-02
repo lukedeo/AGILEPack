@@ -13,7 +13,7 @@ First, I will walk through installation, then configuration, then actually runni
 AGILEPack does not have a ton of dependencies, but those which it has are mandatory. 
 
 - [`Eigen`](http://eigen.tuxfamily.org/) matrix library (header only) for fast matrix operations.
-- Compiler support for C++11. If you're not sure and want to cross check your compiler version to see if it's ok, here's some support info about [GCC](http://gcc.gnu.org/projects/cxx0x.html) and [Clang](http://clang.llvm.org/cxx_status.html). Other compilers haven't been tested yet.
+- Compiler support for C++11. If you're not sure and want to cross check your compiler version to see if it's ok, here's some support info about [GCC](http://gcc.gnu.org/projects/cxx0x.html) and [Clang](http://clang.llvm.org/cxx_status.html). Other compilers haven't been tested yet. You need this as I use features that are new to C++11.
 - ROOT. I'm not an expert in it, I know it can be a pain. I have minimal dependencies on ROOT -- entirely for data reading.
 
 
