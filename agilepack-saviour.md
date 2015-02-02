@@ -298,7 +298,7 @@ Now, how would we train this? We could call:
 
 ```bash
 
-luke@hep [~/AGILEPack]$ AGILEPackTrainer --file=training.root --tree=physics --config=config.yaml --shuffle --learning=0.001 --momentum=0.9 --regularize=0.000001 --sepochs=15 --save=agilepack-model.yaml
+luke@hep [~/AGILEPack]$ AGILEPackTrainer --file=training.root --tree=physics --config=config.yaml --shuffle --learning=0.001 --momentum=0.9 --regularize=0.000001 --sepochs=15 --save=agilepack-model.yaml --formula="bottom ~ * -eta"
 
 ```
 
