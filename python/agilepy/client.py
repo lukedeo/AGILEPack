@@ -55,11 +55,13 @@ def _scale(arr, scaling):
 
 def _destringify(nrow, ncol, string):
     M = np.zeros(shape=(nrow, ncol))
-    data = [float(num) for num in string[(string.find(',') + 1):].split(',')]
-    for i in range(0, nrow):
-        for j in range(0, ncol):
-            M[i, j] = data[i * ncol + j]
-
+    try:
+        data = [float(num) for num in string[(string.find(',') + 1):].split(',')]
+        for i in range(0, nrow):
+            for j in range(0, ncol):
+                M[i, j] = data[i * ncol + j]
+    except Exception, e:
+        print 'Warning -- a layer was initialized to a zero matrix. Dimensions: {} x {}'.format(nrow, ncol)
     return np.matrix(M)
 
 def _layer_from_yaml(d):
