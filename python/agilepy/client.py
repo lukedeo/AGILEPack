@@ -47,6 +47,14 @@ def identity(x):
     '''
     return x
 
+def rectified(x):
+    '''
+    Placeholder for the identity function.
+    '''
+    # try:
+    return x[x > 0]
+    # except
+
 
 def _scale(arr, scaling):
     for key in scaling['mean'].keys():
@@ -70,6 +78,8 @@ def _layer_from_yaml(d):
 
     if d['activation'] == 'sigmoid':
         f = sigmoid
+    elif d['activation'] == 'rectified':
+        f = rectified
     elif d['activation'] == 'linear':
         f = identity
     elif d['activation'] == 'softmax':

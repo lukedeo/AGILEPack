@@ -116,10 +116,10 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
 
     int i = 0;
-    net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+    net.emplace_back(new autoencoder(structure[i], structure[i + 1], rectified));
     for (i = 1; i < (structure.size() - 2); ++i)
     {
-        net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+        net.emplace_back(new autoencoder(structure[i], structure[i + 1], rectified));
     }
     
     net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
