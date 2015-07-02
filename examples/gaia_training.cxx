@@ -1,9 +1,10 @@
 //-----------------------------------------------------------------------------
-//  AGILEPackTrainer.cxx
+//  gaia_training.cxx -- a commandline interface for training a deep net
 //  Author: Luke de Oliveira (lukedeo@stanford.edu)
-//  Description: A commandline interface for training a deep net on ROOT files
+//  This shows the user how to use the weighting class in a simple example.
 //-----------------------------------------------------------------------------
 
+#include "weighting.hh"
 #include "AGILEPack"
 #include "parser.hh"
 #include "struct_generator.hh"
@@ -46,7 +47,10 @@ int main(int argc, char const *argv[])
 
     double  learning =    p.get_value<double>("learning"), 
             momentum =    p.get_value<double>("momentum"),
-            regularizer = p.get_value<double>("regularize");
+            regularizer = p.get_value<double>("regularize"),
+            bottom_pct =  p.get_value<double>("bottom"),
+            light_pct =   p.get_value<double>("light"),
+            charm_pct =   p.get_value<double>("charm");
 
 
     int     start = p.get_value<int>("start"),
@@ -63,7 +67,7 @@ int main(int argc, char const *argv[])
     if (verbose)
     {
         std::cout << "\n-------------------------------------------------" << std::endl;
-        std::cout << "|         AGILEPack training procedure.         |" << std::endl;
+        std::cout << "|       AGILEPack gaia training procedure.       |" << std::endl;
         std::cout << "-------------------------------------------------\n" << std::endl;
     }
 
@@ -93,36 +97,40 @@ int main(int argc, char const *argv[])
 
 //----------------------------------------------------------------------------
 
-    // pull the data out of the tree, and stick it in a data frame...
-    agile::dataframe D = reader.get_dataframe(end - start, start, verbose);
+    agile::root::weighting jet_weights;
 
-    if (p.get_value("shuffle"))
-    {
-        D.shuffle();
-    }
+    jet_weights.light_percentage(light_pct)
+               .charm_percentage(charm_pct)
+               .bottom_percentage(bottom_pct)
+               .gen_hist(reader, 400000, 0, true);
+    // pull the data out of the tree, and stick it in a data frame...
+    agile::dataframe D = reader.get_dataframe(jet_weights, end - start, start, verbose);
+    // this interface allows for                  A
+    // the weights to be calculated               |
+    // as it moves through the tree --------------/
+    // you can create a custom class that gives you weights, 
+    // the only thing you need is a method in the class called
+    // double get_weight(std::map<std::string, double> &vars)
+    // which takes as input a map of branch names to values and
+    // returns the weight. (see weighting.hh for an example)
 
     agile::neural_net net;
     
     // ...and give it to the net.
     net.add_data(D);
 
-    layer_type net_type = sigmoid;
-
-    if (p.get_value("regression"))
-    {
-        net_type = linear;
-    }
-
+    layer_type net_type = softmax;
+    
 //----------------------------------------------------------------------------
 
     int i = 0;
-    net.emplace_back(new autoencoder(structure[i], structure[i + 1], rectified));
+    net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
     for (i = 1; i < (structure.size() - 2); ++i)
     {
-        net.emplace_back(new autoencoder(structure[i], structure[i + 1], rectified));
+        net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid, linear));
     }
     
-    net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
+    net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type, linear));
     
     if (verbose)
     {
@@ -142,25 +150,19 @@ int main(int argc, char const *argv[])
     
     net.check(0);
 
-    if (uepochs > 0)
+    if (verbose)
     {
-        if (verbose && (uepochs > 0))
-        {
-            std::cout << "Performing Unsupervised Pretraining...";
-        }
-        // unsupervised pretraining
-        net.train_unsupervised(uepochs, verbose);
-        
+        std::cout << "Performing Unsupervised Pretraining...";
     }
-    if (sepochs > 0)
+    // unsupervised pretraining
+    net.train_unsupervised(uepochs, verbose);
+    if (verbose)
     {
-        if (verbose)
-        {
-            std::cout << "\nPerforming Supervised Training...\n";
-        }
-        // supervised fine tuning
-        net.train_supervised(sepochs, verbose, false, prog, save_file);
+        std::cout << "\nPerforming Supervised Training...\n";
     }
+
+    // supervised fine tuning
+    net.train_supervised(sepochs, verbose, false, prog, save_file);
 
     if (verbose)
     {
@@ -168,7 +170,7 @@ int main(int argc, char const *argv[])
     }
 
     // aaaaand save it.
-    net.to_yaml(save_file, reader.get_var_types());
+    net.to_yaml(save_file, reader.get_var_types(), reader.get_binning());
     //   along with the branch info ~~~~~^
     
     if (verbose)
@@ -198,7 +200,7 @@ const std::string timestamp(void)
 
 optionparser::parser generate_parser()
 {
-    std::string s("A simple interface for studies using AGILEPack.");
+    std::string s("A simple interface for gaia studies using AGILEPack.");
 
     optionparser::parser p(s);
 
@@ -209,7 +211,7 @@ optionparser::parser generate_parser()
     p.add_option("--tree", "-t")    .help("Name of the TTree to extract from the ROOT file.")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------
-    p.add_option("--save", "-s")    .help("Name of file to save the YAML neural network file to. Something like my-model.yaml")
+    p.add_option("--save", "-s")    .help("Name of file to save the YAML neural network file to. Something like my_gaia_learner.yaml")
                                     .mode(optionparser::store_value)
                                     .default_value(std::string("neural_net" + timestamp() + ".yaml"));
     //----------------------------------------------------------------------------
@@ -221,16 +223,16 @@ optionparser::parser generate_parser()
                                     .mode(optionparser::store_value)
                                     .default_value(0.8);
     //----------------------------------------------------------------------------
-    p.add_option("--regularize")    .help("Pass an l2 norm regularizer.")
+    p.add_option("--regularize")    .help("Pass an l2 frobenius norm regularizer.")
                                     .mode(optionparser::store_value)
                                     .default_value(0.00001);
 
     p.add_option("--batch")         .help("Mini-batch size.")
                                     .mode(optionparser::store_value)
-                                    .default_value(15);
+                                    .default_value(1);
     //----------------------------------------------------------------------------
 
-    p.add_option("--config", "-c")  .help("Pass a configuration file containing branch names and numeric types of interest.")
+    p.add_option("--config", "-c")  .help("Pass a configuration file containing branch names and numeric types of interest. Look at READMEPLZ for the format.")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------
     std::string struct_help = "Pass the structure of the neural network. For example, one\n";
@@ -242,10 +244,8 @@ optionparser::parser generate_parser()
 
     //----------------------------------------------------------------------------
     p.add_option("--quiet", "-q")   .help("Make the output quiet. If not passed, the training procedure will tell you things, show you progress bars, etc.");
-    p.add_option("--shuffle")       .help("If passed, AGILEPack will re-shuffle the data you pass before training. This is HIGHLY recommended.");
-    p.add_option("--regression")    .help("By default, AGILEPack assumes classification. If you are performing regression, pass this flag.");
     //----------------------------------------------------------------------------
-    p.add_option("--start")         .help("Start index for training. (Default = 0)")
+    p.add_option("--start")          .help("Start index for training. (Default = 0)")
                                     .mode(optionparser::store_value)
                                     .default_value(0);
     //----------------------------------------------------------------------------
@@ -270,6 +270,18 @@ optionparser::parser generate_parser()
     p.add_option("--formula", "-F") .help("Specify Model Formula. Has to be of the form --formula=\"signal~var1+var2\"")
                                     .mode(optionparser::store_value);
     //----------------------------------------------------------------------------  
+    p.add_option("--charm")         .help("charm percentage to reweight to, (0, 1), default = 0.33")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0.33);  
+    //----------------------------------------------------------------------------  
+    p.add_option("--bottom")        .help("bottom percentage to reweight to, (0, 1), default = 0.33")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0.33);  
+    //----------------------------------------------------------------------------  
+    p.add_option("--light")         .help("light percentage to reweight to, (0, 1), default = 0.33")
+                                    .mode(optionparser::store_value)
+                                    .default_value(0.33);  
+
 
     return p; 
     
