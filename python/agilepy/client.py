@@ -12,13 +12,13 @@ matplotlib.use('PDF')
 import matplotlib.pyplot as plt
 
 
-__SCIKITLEARN = True
+USE_SCIKITLEARN = True
 
 try:
     import sklearn.metrics as sm
 except Exception, e:
     print 'Warning: Scikit learn not found, certain functions deprecated.'
-    __SCIKITLEARN = False
+    USE_SCIKITLEARN = False
 
 # def dict2numpy(dictionary, order):
     # for var in order:
@@ -52,7 +52,8 @@ def rectified(x):
     Placeholder for the identity function.
     '''
     # try:
-    return x[x > 0]
+    x[x < 0] = 0.0
+    return x
     # except
 
 
