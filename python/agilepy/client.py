@@ -12,13 +12,13 @@ matplotlib.use('PDF')
 import matplotlib.pyplot as plt
 
 
-__SCIKITLEARN = True
+USE_SCIKITLEARN = True
 
 try:
     import sklearn.metrics as sm
 except Exception, e:
     print 'Warning: Scikit learn not found, certain functions deprecated.'
-    __SCIKITLEARN = False
+    USE_SCIKITLEARN = False
 
 # def dict2numpy(dictionary, order):
     # for var in order:
@@ -47,6 +47,15 @@ def identity(x):
     '''
     return x
 
+def rectified(x):
+    '''
+    Placeholder for the identity function.
+    '''
+    # try:
+    x[x < 0] = 0.0
+    return x
+    # except
+
 
 def _scale(arr, scaling):
     for key in scaling['mean'].keys():
@@ -70,6 +79,8 @@ def _layer_from_yaml(d):
 
     if d['activation'] == 'sigmoid':
         f = sigmoid
+    elif d['activation'] == 'rectified':
+        f = rectified
     elif d['activation'] == 'linear':
         f = identity
     elif d['activation'] == 'softmax':

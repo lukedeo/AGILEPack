@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
-//  Hcc_training.cxx -- a commandline interface for training a deep net for
-//  For: Joshua Loyal
+//  AGILEPackTrainer.cxx
 //  Author: Luke de Oliveira (lukedeo@stanford.edu)
+//  Description: A commandline interface for training a deep net on ROOT files
 //-----------------------------------------------------------------------------
 
 #include "AGILEPack"
@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
     if (verbose)
     {
         std::cout << "\n-------------------------------------------------" << std::endl;
-        std::cout << "|       AGILEPack Hcc training procedure.       |" << std::endl;
+        std::cout << "|         AGILEPack training procedure.         |" << std::endl;
         std::cout << "-------------------------------------------------\n" << std::endl;
     }
 
@@ -116,10 +116,10 @@ int main(int argc, char const *argv[])
 //----------------------------------------------------------------------------
 
     int i = 0;
-    net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+    net.emplace_back(new autoencoder(structure[i], structure[i + 1], rectified));
     for (i = 1; i < (structure.size() - 2); ++i)
     {
-        net.emplace_back(new autoencoder(structure[i], structure[i + 1], sigmoid));
+        net.emplace_back(new autoencoder(structure[i], structure[i + 1], rectified));
     }
     
     net.emplace_back(new autoencoder(structure[i], structure[i + 1], net_type));
@@ -142,19 +142,25 @@ int main(int argc, char const *argv[])
     
     net.check(0);
 
-    if (verbose)
+    if (uepochs > 0)
     {
-        std::cout << "Performing Unsupervised Pretraining...";
+        if (verbose && (uepochs > 0))
+        {
+            std::cout << "Performing Unsupervised Pretraining...";
+        }
+        // unsupervised pretraining
+        net.train_unsupervised(uepochs, verbose);
+        
     }
-    // unsupervised pretraining
-    net.train_unsupervised(uepochs, verbose);
-    if (verbose)
+    if (sepochs > 0)
     {
-        std::cout << "\nPerforming Supervised Training...\n";
+        if (verbose)
+        {
+            std::cout << "\nPerforming Supervised Training...\n";
+        }
+        // supervised fine tuning
+        net.train_supervised(sepochs, verbose, false, prog, save_file);
     }
-
-    // supervised fine tuning
-    net.train_supervised(sepochs, verbose, false, prog, save_file);
 
     if (verbose)
     {
@@ -221,7 +227,7 @@ optionparser::parser generate_parser()
 
     p.add_option("--batch")         .help("Mini-batch size.")
                                     .mode(optionparser::store_value)
-                                    .default_value(1);
+                                    .default_value(15);
     //----------------------------------------------------------------------------
 
     p.add_option("--config", "-c")  .help("Pass a configuration file containing branch names and numeric types of interest.")
