@@ -85,9 +85,7 @@ g++ -o MyExcecutable prog.o [other *.o ...] `/path/to/AGILEPack/agile-config lin
   - [x] Softmax layers with Cross Entropy loss.
   - [x] Rectified linear unit layers.
   - [x] Autoencoder pre-training (stacked, denoising, etc.)
-  - [ ] Restricted Boltzmann Machine pre-training.
   - [ ] Dropout/DropConnect layers.
-  - [ ] Inverted Deep Network Encoding. 
 - [x] Dynamic changes to layers (additions, deletions).
 - [x] Interface with the CERN `ROOT` framework.
 - [x] Complete serialization of network structure with `YAML` file.
