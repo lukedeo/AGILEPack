@@ -122,8 +122,8 @@ public:
     void backpropagate(const agile::vector &v);
     void backpropagate(const agile::vector &v, double weight);
 
-    void update();
-    void update(double weight);
+    void update(bool adam=true);
+    void update(double weight, bool adam=true);
 //-----------------------------------------------------------------------------
 //  Parameter Setting methods
 //-----------------------------------------------------------------------------
@@ -221,12 +221,14 @@ protected:
         ctr;          // number of examples we've considered so far
 
     agile::matrix W,       // current weight matrix
-                  W_old,   // previous weight matrix
-                  W_change;// the change to make to W
+                  W_cache,   // previous weight matrix / first moment
+                  W_cache_2,   // previous weight matrix / second moment
+                  W_grad;  // the change to make to W
 
     agile::vector b,            // bias vector
-                  b_old,        // previous bias vector
-                  b_change,     // change to make to b
+                  b_cache,        // previous bias vector / first moment
+                  b_cache_2,        // previous bias vector / second moment
+                  b_grad,       // change to make to b
                   m_out,        // untransformed layer output
                   m_in,         // input to the layer
                   delta,        // intermediate derivative
@@ -234,12 +236,14 @@ protected:
 
     numeric learning,    // learning rate
             momentum,    // momentum (gradient smoothing) parameter
+            momentum,    // momentum (gradient smoothing) parameter
             regularizer; // l2 regularization scalar
 
     layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
     agile::types::paradigm m_paradigm; //type of pre-training
 
 private:
+    numeric momentum_2 = 0.999; // the momentum smoothing of the second moment (Adam)
     virtual layer* clone()
     {
         return new layer(*this);   
