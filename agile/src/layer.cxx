@@ -384,7 +384,6 @@ void layer::update(bool adam)
     }
     else
     {
-
         double decay_factor = std::pow(m_lambda, m_iterations);
 
         double beta_1_t = momentum * decay_factor;
