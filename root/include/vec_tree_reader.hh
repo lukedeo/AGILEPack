@@ -7,7 +7,6 @@
 #ifndef ROOT__vec_tree_reader_HH
 #define ROOT__vec_tree_reader_HH 
 
-#include <cstddef> //std::size_t
 #include "smart_chain.hh"
 #include "vector_handler.hh"
 #include "binner.hh"
@@ -15,28 +14,13 @@
 #include "agile/agile_base.hh"
 #include "yaml-cpp/yaml_core.hh"
 
+#include "common_utils.hh"
+
 
 namespace agile
 {
 namespace root
 {
-
-//-----------------------------------------------------------------------------
-//  Typedefs and utility structures
-//-----------------------------------------------------------------------------
-enum loading_phase { naming, access };
-enum numeric_type { single_precision, double_precision, integer };
-
-
-struct var_traits
-{
-    var_traits() {}
-    var_traits(std::size_t size, numeric_type type)
-    : pos(size), type(type) {}
-
-    std::size_t pos;
-    numeric_type type;
-};
 
 //-----------------------------------------------------------------------------
 //  Tree reader class
