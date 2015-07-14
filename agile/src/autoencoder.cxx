@@ -34,12 +34,14 @@ autoencoder& autoencoder::operator= (const autoencoder &L)
     m_batch_size = (L.m_batch_size);
 
     W = (L.W);
-    W_old = (L.W_old);
-    W_change = (L.W_change);
+    W_cache = (L.W_cache);
+    W_cache_2 = (L.W_cache_2);
+    W_grad = (L.W_grad);
 
     b = (L.b);
-    b_old = (L.b_old);
-    b_change = (L.b_change);
+    b_cache = (L.b_cache);
+    b_cache_2 = (L.b_cache_2);
+    b_grad = (L.b_grad);
 
     m_out = (L.m_out);
     m_in = (L.m_in);
@@ -61,12 +63,14 @@ autoencoder& autoencoder::operator= (autoencoder &&L)
     m_batch_size = std::move(L.m_batch_size);
 
     W = std::move(L.W);
-    W_old = std::move(L.W_old);
-    W_change = std::move(L.W_change);
+    W_cache = std::move(L.W_cache);
+    W_cache_2 = std::move(L.W_cache_2);
+    W_grad = std::move(L.W_grad);
 
     b = std::move(L.b);
-    b_old = std::move(L.b_old);
-    b_change = std::move(L.b_change);
+    b_cache = std::move(L.b_cache);
+    b_cache_2 = std::move(L.b_cache_2);
+    b_grad = std::move(L.b_grad);
 
     m_out = std::move(L.m_out);
     m_in = std::move(L.m_in);
@@ -95,8 +99,9 @@ void autoencoder::resize_input(int n_inputs)
     decoder.resize_output(n_inputs);
     m_inputs = n_inputs;
     W.resize(m_outputs, n_inputs);
-    W_change.resize(m_outputs, n_inputs);
-    W_old.resize(m_outputs, n_inputs);
+    W_grad.resize(m_outputs, n_inputs);
+    W_cache.resize(m_outputs, n_inputs);
+    W_cache_2.resize(m_outputs, n_inputs);
     m_in.resize(n_inputs, Eigen::NoChange);
     reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }
@@ -106,11 +111,13 @@ void autoencoder::resize_output(int n_outputs)
     decoder.resize_input(n_outputs);
     m_outputs = n_outputs;
     W.resize(n_outputs, m_inputs);
-    W_change.resize(n_outputs, m_inputs);
-    W_old.resize(n_outputs, m_inputs);
+    W_grad.resize(n_outputs, m_inputs);
+    W_cache.resize(n_outputs, m_inputs);
+    W_cache_2.resize(n_outputs, m_inputs);
     b.resize(n_outputs, Eigen::NoChange);
-    b_change.resize(n_outputs, Eigen::NoChange);
-    b_old.resize(n_outputs, Eigen::NoChange);
+    b_grad.resize(n_outputs, Eigen::NoChange);
+    b_cache.resize(n_outputs, Eigen::NoChange);
+    b_cache_2.resize(n_outputs, Eigen::NoChange);
     m_out.resize(n_outputs, Eigen::NoChange);
     reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
 }

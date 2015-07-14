@@ -29,12 +29,14 @@ m_in(n_inputs),
 learning(0.2), 
 momentum(0.5), 
 regularizer(0.00), 
+m_momentum_2(0.999),
 
 m_layer_type(type),
 m_paradigm(agile::types::Basic)
 
 {
     ctr = 0;
+    m_iterations = 0;
     reset_weights(sqrt((numeric)5 / (numeric)(n_inputs + n_outputs)));
 }
 //----------------------------------------------------------------------------
@@ -59,12 +61,14 @@ m_in(L.m_in),
 learning(L.learning),
 momentum(L.momentum),
 regularizer(L.regularizer),
+m_momentum_2(L.m_momentum_2),
 
 m_layer_type(L.m_layer_type),
 m_paradigm(L.m_paradigm)
 
 {
     ctr = 0;
+    m_iterations = 0;
 }
 //----------------------------------------------------------------------------
 layer::layer(layer &&L): 
@@ -88,12 +92,14 @@ m_in(std::move(L.m_in)),
 learning(std::move(L.learning)),
 momentum(std::move(L.momentum)),
 regularizer(std::move(L.regularizer)),
+m_momentum_2(std::move(L.m_momentum_2)),
 
 m_layer_type(std::move(L.m_layer_type)),
 m_paradigm(std::move(L.m_paradigm))
 
 {
     ctr = 0;
+    m_iterations = 0;
 }
 //----------------------------------------------------------------------------
 layer::layer(layer *L): 
@@ -117,12 +123,14 @@ m_in(L->m_in),
 learning(L->learning),
 momentum(L->momentum),
 regularizer(L->regularizer),
+m_momentum_2(L->m_momentum_2),
 
 m_layer_type(L->m_layer_type),
 m_paradigm(L->m_paradigm)
 
 {
     ctr = 0;
+    m_iterations = 0;
 }
 //----------------------------------------------------------------------------
 layer& layer::operator= (const layer &L)
@@ -147,10 +155,13 @@ layer& layer::operator= (const layer &L)
     learning = (L.learning);
     momentum = (L.momentum);
     regularizer = (L.regularizer);
+    m_momentum_2 = (L.m_momentum_2);
 
     m_layer_type = (L.m_layer_type);
     m_paradigm = (L.m_paradigm);
 
+    m_iterations = 0;
+    ctr = 0;
     return *this;
 }
 //----------------------------------------------------------------------------
@@ -176,9 +187,13 @@ layer& layer::operator= (layer &&L)
     learning = std::move(L.learning);
     momentum = std::move(L.momentum);
     regularizer = std::move(L.regularizer);
+    m_momentum_2 = std::move(L.m_momentum_2);
 
     m_layer_type = std::move(L.m_layer_type);
     m_paradigm = std::move(L.m_paradigm);
+
+    m_iterations = 0;
+    ctr = 0;
 
     return *this;
 }
@@ -189,6 +204,7 @@ void layer::construct(int n_inputs, int n_outputs, layer_type type)
     m_batch_size = 3;
     learning = 0.2;
     momentum = 0.5;
+    m_momentum_2 = 0.999;
     regularizer = 0.00;
 
     m_inputs = n_inputs;
@@ -208,6 +224,9 @@ void layer::construct(int n_inputs, int n_outputs, layer_type type)
     m_in.resize(n_inputs, Eigen::NoChange);
     m_layer_type = type;
     m_paradigm = agile::types::Basic;
+
+    m_iterations = 0;
+    ctr = 0;
 
     reset_weights(sqrt((numeric)6 / (numeric)(n_inputs + n_outputs)));
 }
@@ -232,7 +251,7 @@ void layer::reset_weights(numeric bound)
         b_cache_2(row) = 0;
         b_grad(row) = 0;
     }
-
+    m_iterations = 0;
 }
 //----------------------------------------------------------------------------
 void layer::resize_input(int n_inputs)
@@ -244,7 +263,7 @@ void layer::resize_input(int n_inputs)
     W_cache_2.resize(m_outputs, n_inputs);
     m_in.resize(n_inputs, Eigen::NoChange);
     reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
-
+    m_iterations = 0;
 }
 //----------------------------------------------------------------------------
 void layer::resize_output(int n_outputs)
@@ -260,6 +279,7 @@ void layer::resize_output(int n_outputs)
     b_cache_2.resize(n_outputs, Eigen::NoChange);
     m_out.resize(n_outputs, Eigen::NoChange);
     reset_weights(sqrt((numeric)6 / (numeric)(m_inputs + m_outputs)));
+    m_iterations = 0;
 }
 //----------------------------------------------------------------------------
 void layer::charge(const agile::vector& v)
@@ -364,17 +384,30 @@ void layer::update(bool adam)
     }
     else
     {
+
+        double decay_factor = std::pow(m_lambda, m_iterations);
+
+        double beta_1_t = momentum * decay_factor;
+        double beta_2_t = m_momentum_2 * decay_factor; 
+
+
         W_grad += m_batch_size * regularizer * W;
-        W_cache = momentum * W_cache + (1 - momentum) * W_grad;
-        W_cache_2 = momentum_2 * W_cache_2 + (1 - momentum_2) * W_grad.array() * W_grad.array();
-        std::pow(
-        b_cache = momentum * b_cache + (1 - momentum) * b_grad;
-        b_cache_2 = momentum_2 * b_cache_2 + (1 - momentum_2) * b_grad.array() * b_grad.array();
+        W_cache = beta_1_t * W_cache + (1 - beta_1_t) * W_grad;
+        W_cache_2 = beta_2_t * W_cache_2.array() + (1 - beta_2_t) * W_grad.array() * W_grad.array();
+
+        b_cache = beta_1_t * b_cache + (1 - beta_1_t) * b_grad;
+        b_cache_2 = beta_2_t * b_cache_2.array() + (1 - beta_2_t) * b_grad.array() * b_grad.array();
+
+        auto alpha_t = learning * (sqrt(1 - beta_2_t) / (1 - beta_1_t));
+
+        W = W.array() - (alpha_t * W_cache).array() / (W_cache_2.array().sqrt() + 1e-8);
+        b = b.array() - (alpha_t * b_cache).array() / (b_cache_2.array().sqrt() + 1e-8);
     }
 
 
     b_grad.fill(0.00);
     W_grad.fill(0.00);
+    m_iterations += 1;
 }
 //----------------------------------------------------------------------------
 void layer::update(double weight, bool adam) // will soon be deprecated

@@ -218,7 +218,8 @@ protected:
     int m_inputs,     // number of inputs to the layer
         m_outputs,    // number of outputs leaving the layer
         m_batch_size, // number of examples to consider when updating gradient
-        ctr;          // number of examples we've considered so far
+        ctr,          // number of examples we've considered so far
+        m_iterations; // number of total gradient updates so far
 
     agile::matrix W,       // current weight matrix
                   W_cache,   // previous weight matrix / first moment
@@ -236,14 +237,18 @@ protected:
 
     numeric learning,    // learning rate
             momentum,    // momentum (gradient smoothing) parameter
-            momentum,    // momentum (gradient smoothing) parameter
+            // m_momentum_2,    // m_momentum_2 (gradient^2 smoothing) parameter
             regularizer; // l2 regularization scalar
 
     layer_type m_layer_type; // what type of layer (linear, sigmoid, etc.)
     agile::types::paradigm m_paradigm; //type of pre-training
+    
+    numeric m_momentum_2 = 0.999; // the momentum smoothing of the second moment (Adam)
+    numeric m_lambda = 1.0 - 1e-8;
 
 private:
-    numeric momentum_2 = 0.999; // the momentum smoothing of the second moment (Adam)
+    
+    
     virtual layer* clone()
     {
         return new layer(*this);   
