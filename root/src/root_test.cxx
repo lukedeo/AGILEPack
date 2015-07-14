@@ -1,4 +1,6 @@
-#include "include/tree_reader.hh"
+//#include "include/vec_tree_reader.hh"
+//#include "include/tree_reader.hh"
+#include "AGILEPack"
 #include <iomanip>
 
 int main(int argc, char const *argv[])
@@ -6,8 +8,8 @@ int main(int argc, char const *argv[])
     std::string tree_name(argv[2]);
     std::string file(argv[1]);
 
-    agile::root::tree_reader D;
-
+    agile::root::vec_tree_reader D;
+    //agile::root::tree_reader D;
     D.add_file(file, tree_name);
 
     D.set_branch("pt", agile::root::double_precision);

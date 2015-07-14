@@ -1,11 +1,12 @@
 //-----------------------------------------------------------------------------
-//  numeric_handler.hh:
-//  Header for setting ROOT branches, handling int, float, double
+//  vector_handler.hh:
+//  Header for setting ROOT branches, handling vector<int>, vector<float>, vector<double>
 //  Author: Luke de Oliveira (luke.deoliveira@yale.edu)
+//          Michela Paganini (michela.paganini@yale.edu)
 //-----------------------------------------------------------------------------
 
-#ifndef INTERNAL__NUMERIC__HH
-#define INTERNAL__NUMERIC__HH 
+#ifndef INTERNAL__VECTOR__HH
+#define INTERNAL__VECTOR__HH 
 
 #include <stdexcept>
 #include <iostream>
@@ -21,16 +22,16 @@
 namespace __INTERNAL 
 {
 //-----------------------------------------------------------------------------
-//  numeric_handler -- a generic numeric container
+//  vector_handler -- a generic numeric container
 //-----------------------------------------------------------------------------
-class numeric_handler //union (one can be set at a time)
+class vector_handler //union (one can be set at a time)
 {
 public:
-    numeric_handler() = default;
-    ~numeric_handler() = default;
+    vector_handler() = default;
+    ~vector_handler() = default;
 
     template <typename T>
-    T& set_address()
+    std::vector<T>& set_address()
     {
         // defaults to an exception, T needs to be instantiated with a type
         // that has been specialized (below)
@@ -44,40 +45,55 @@ public:
     {
         switch(contains)
         {
-            case has_double: return static_cast<T>(_double);
-            case has_int: return static_cast<T>(_int);
-            case has_float: return static_cast<T>(_float);
+	case has_double:
+	  {
+	  //	  std::vector<double> v_double(_double.begin(), _double.end());
+	  T v_double(_double.begin(), _double.end());
+	  return v_double;
+	  }
+	case has_int:
+	  {
+	  // std::vector<double> v_int(_int.begin(), _int.end());
+	  T v_int(_int.begin(), _int.end());
+	  return v_int;
+	  }	
+	case has_float:
+	  { 
+	  //std::vector<double> v_float(_float.begin(), _float.end());
+          T v_float(_float.begin(), _float.end());
+	  return v_float;
+	  }    
         }
         throw std::runtime_error(
             "something weird happened in the numeric_handler.");
     }
 private:    
-    double _double = 0;
-    int _int = 0;
-    float _float = 0;
+  std::vector<double> _double;
+  std::vector<int> _int;
+  std::vector<float> _float;
 
-    container_contents contains;
+  container_contents contains;
 };
 
 //-----------------------------------------------------------------------------
 //  Template specializations!
 //-----------------------------------------------------------------------------
 template<>
-inline double& numeric_handler::set_address<double>()
+inline std::vector<double>& vector_handler::set_address<double>()
 {
     contains = has_double;
     return _double;
 }
 //----------------------------------------------------------------------------
 template<>
-inline float& numeric_handler::set_address<float>()
+inline std::vector<float>& vector_handler::set_address<float>()
 {
     contains = has_float;
     return _float;
 }
 //----------------------------------------------------------------------------
 template<>
-inline int& numeric_handler::set_address<int>()
+inline std::vector<int>& vector_handler::set_address<int>()
 {
     contains = has_int;
     return _int;

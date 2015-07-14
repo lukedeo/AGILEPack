@@ -9,7 +9,6 @@ namespace agile
 {
 namespace root
 {
-
 //----------------------------------------------------------------------------
 tree_reader::tree_reader(std::string filename, std::string tree_name)
 : m_smart_chain(0), m_size(0), m_tree_name(tree_name), m_binned_present(false)

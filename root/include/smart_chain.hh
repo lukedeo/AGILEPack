@@ -57,7 +57,7 @@ public:
 template<typename T, typename Z>
 void smart_chain::set_branch(T name, Z branch)
 {
-    *branch = 0; 
+    //*branch = NULL; 
     SetBranchAddressPrivate(name, branch); 
 }
 

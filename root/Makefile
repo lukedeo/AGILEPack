@@ -18,7 +18,7 @@ vpath %.hh   $(INC)
 # --- set compiler and flags (roll c options and include paths together)
 
 CXX          ?= g++
-CXXFLAGS     := -Wall -fPIC -I$(INC) -I./ -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
+CXXFLAGS     := -Wall -fPIC -I$(INC) -I./ -I../ -g -std=c++11 $(ADDTL_FLG) -I$(DFRAME_INC)
 
 ifeq ($(CXX),clang++)
 CXXFLAGS += -stdlib=libc++
@@ -27,7 +27,7 @@ endif
 ROOTCFLAGS    := $(shell root-config --cflags)
 ROOTLIBS      := -L$(shell root-config --libdir)
 ROOTLIBS      += -lCore -lTree -lRIO 
-ROOTLIBS      += -lCint		# don't know why we need this...
+#ROOTLIBS      += -lCint		# don't know why we need this...
 ROOTLDFLAGS   := $(shell root-config --ldflags)
 
 
@@ -42,13 +42,14 @@ LIBRARY = $(LIB)/libROOTinterface.a
 
 # ---- define objects
 
-UTIL_OBJ     := smart_chain.o tree_reader.o
+UTIL_OBJ     := smart_chain.o tree_reader.o vec_tree_reader.o
 
 # - command line interface
 EXE_OBJ      := root_test.o
 
+test         := $(TEST_EXEC)
 
-#TEST_EXEC   := root_test
+TEST_EXEC   := root_test
 
 LIB_OBJ      := $(UTIL_OBJ)
 ALLOBJ       := $(EXE_OBJ) $(UTIL_OBJ)
@@ -58,7 +59,7 @@ ALLOUTPUT    := $(LIBRARY)
 all: $(ALLOUTPUT)
 	@echo "libROOTinterface.a build successful."
 
-$(TEST_EXEC): $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
+root_test: $(LIB_OBJ:%=$(BIN)/%) $(EXE_OBJ:%=$(BIN)/%)
 	@echo "linking $^ --> $@"
 	@$(CXX) -o $@ $^ $(LIBS) $(LDFLAGS)
 
