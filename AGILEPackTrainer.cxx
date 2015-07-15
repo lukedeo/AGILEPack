@@ -215,11 +215,11 @@ optionparser::parser generate_parser()
     //----------------------------------------------------------------------------
     p.add_option("--learning")      .help("Pass a learning rate.")
                                     .mode(optionparser::store_value)
-                                    .default_value(0.0001);
+                                    .default_value(0.001);
     //----------------------------------------------------------------------------
     p.add_option("--momentum")      .help("Pass a momentum value.")
                                     .mode(optionparser::store_value)
-                                    .default_value(0.8);
+                                    .default_value(0.9);
     //----------------------------------------------------------------------------
     p.add_option("--regularize")    .help("Pass an l2 norm regularizer.")
                                     .mode(optionparser::store_value)
