@@ -47,11 +47,11 @@ LIBS          += $(AGILELIBS)
 
 BINARIES      := model_frame.o neural_net.o
 # EXE_OBJ       := test_interface.o
-EXE_OBJ       := train_interface.o
+EXE_OBJ       := AGILEPackTrainer.o
 
 
 # EXECUTABLE    := DeepLearnTest
-EXECUTABLE    := DeepLearn
+EXECUTABLE    := AGILEPackTrainer
 
 ALLOBJ        := $(EXE_OBJ) $(BINARIES) 
 

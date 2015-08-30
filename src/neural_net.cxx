@@ -89,13 +89,13 @@ void neural_net::add_data(agile::dataframe &&D)
 
 }
 void neural_net::model_formula(const std::string &formula, 
-    bool scale, bool verbose)
+    bool scale, bool verbose, bool scale_outs)
 {
     m_model.model_formula(formula);
     m_model.generate(verbose);
     if (scale)
     {
-        m_model.scale(verbose);
+        m_model.scale(verbose, scale_outs);
     }
     predictor_order = m_model.get_inputs();
     target_order = m_model.get_outputs();

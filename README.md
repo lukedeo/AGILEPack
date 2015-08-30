@@ -6,7 +6,6 @@ Algorithms for Generalized Inference, Learning, and Extraction Package, By Luke 
 ####Dependencies
 - [`Eigen`](http://eigen.tuxfamily.org/) matrix library (header only) for fast matrix operations.
 - Compiler support for C++11. If you're not sure and want to cross check your compiler version to see if it's ok, here's some support info about [GCC](http://gcc.gnu.org/projects/cxx0x.html) and [Clang](http://clang.llvm.org/cxx_status.html). Other compilers haven't been tested yet.
-- [`yaml-cpp`](https://code.google.com/p/yaml-cpp/ "yaml-cpp Homepage") for [`YAML`](http://www.yaml.org/ "YAML Homepage") parsing, but a version is made locally by default.
 
 ####Summary
 
@@ -27,12 +26,16 @@ and is relatively basic to install. As long as `Eigen` is in a place such that
 won't cause your compiler to yell at you, you should be able to build the whole shebang with
 
 ```
-make
+make -j
 ```
 
-This will build a static library called `lib/libAGILEPack.a`, which you can then link against to do sweet things like build Deep Learners.
+This will build a static library called `lib/libAGILEPack.a`, which you can then link against to do sweet things like build deep nets for physics.
 
-####Basic Usage
+####Command line usage
+
+AGILEPack ships with a command line interface for training. Run `./AGILEPackTrainer --help` for more info.
+
+####Basic Usage (API)
 
 Let's say you have a program called `prog.cxx` that uses AGILEPack with ROOT stuff. Provided that your file takes the form
 ```c++
@@ -57,6 +60,8 @@ g++ -o prog prog.cxx `/path/to/AGILEPack/agile-config build --root`
 which will produce an excecutable called `prog`.
 
 The ordering of these arguments is **very important** on Linux (particularly on SLC)!
+
+
 
 
 ####More compiling and linking stuff
@@ -85,9 +90,7 @@ g++ -o MyExcecutable prog.o [other *.o ...] `/path/to/AGILEPack/agile-config lin
   - [x] Softmax layers with Cross Entropy loss.
   - [x] Rectified linear unit layers.
   - [x] Autoencoder pre-training (stacked, denoising, etc.)
-  - [ ] Restricted Boltzmann Machine pre-training.
   - [ ] Dropout/DropConnect layers.
-  - [ ] Inverted Deep Network Encoding. 
 - [x] Dynamic changes to layers (additions, deletions).
 - [x] Interface with the CERN `ROOT` framework.
 - [x] Complete serialization of network structure with `YAML` file.
@@ -95,7 +98,7 @@ g++ -o MyExcecutable prog.o [other *.o ...] `/path/to/AGILEPack/agile-config lin
 
 ####I have qualms with AGILEPack
 
-If there's something wrong with *anything* here, please bother me at `luke.deoliveira@yale.edu`.
+If there's something wrong with *anything* here, please bother me at `lukedeo@stanford.edu`.
 
 
 

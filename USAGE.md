@@ -41,7 +41,7 @@ btag_reader.set_branch("mass", agile::root::single_precision);
 btag_reader.set_branch("significance3d", agile::root::single_precision);
 btag_reader.set_branch("pt", agile::root::single_precision);
 btag_reader.set_branch("eta", agile::root::single_precision);
-//                     ^~~~^  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~^  
+//                     ^~~~^  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 //                  branch name       the numeric type
 ```
 
