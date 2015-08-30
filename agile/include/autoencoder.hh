@@ -37,6 +37,7 @@ public:
     autoencoder(const autoencoder &L);
     autoencoder(autoencoder *L);
 
+    using layer::operator=;
     virtual autoencoder& operator= (const autoencoder &L);
     virtual autoencoder& operator= (autoencoder &&L);
 

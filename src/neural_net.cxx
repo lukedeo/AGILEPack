@@ -89,13 +89,13 @@ void neural_net::add_data(agile::dataframe &&D)
 
 }
 void neural_net::model_formula(const std::string &formula, 
-    bool scale, bool verbose)
+    bool scale, bool verbose, bool scale_outs)
 {
     m_model.model_formula(formula);
     m_model.generate(verbose);
     if (scale)
     {
-        m_model.scale(verbose);
+        m_model.scale(verbose, scale_outs);
     }
     predictor_order = m_model.get_inputs();
     target_order = m_model.get_outputs();
@@ -320,7 +320,7 @@ void neural_net::internal_train_unsupervised_weighted(
     {
         check(tantrum);
     }
-    int idx = 0, ctr = 0;
+    unsigned int idx = 0, ctr = 0;
     int total = epochs * n_training;
     double pct;
     while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
@@ -329,9 +329,9 @@ void neural_net::internal_train_unsupervised_weighted(
         {
             std::cout << "\nPretraining Layer " << idx << ":" << std::endl;
         }
-        for (int e = 0; e < epochs; ++e)
+        for (unsigned int e = 0; e < epochs; ++e)
         {
-            for (int i = 0; i < n_training; ++i)
+            for (unsigned int i = 0; i < n_training; ++i)
             {
                 if (verbose && (ctr % 2 == 0))
                 {
@@ -360,9 +360,9 @@ void neural_net::internal_train_supervised_weighted(
     int total = n_training * epochs;
     double pct;
     int bu_ctr = 0;
-    for (int e = 0; e < epochs; ++e)
+    for (unsigned int e = 0; e < epochs; ++e)
     {
-        for (int i = 0; i < n_training; ++i)
+        for (unsigned int i = 0; i < n_training; ++i)
         {
             if (verbose && (ctr % 2 == 0))
             {
@@ -388,7 +388,7 @@ void neural_net::internal_train_unsupervised(const unsigned int &epochs,
     {
         check(tantrum);
     }
-    int idx = 0, ctr = 0;
+    unsigned int idx = 0, ctr = 0;
     int total = epochs * n_training;
     double pct;
     while(stack.at(idx)->get_paradigm() == agile::types::Autoencoder)
@@ -397,9 +397,9 @@ void neural_net::internal_train_unsupervised(const unsigned int &epochs,
         {
             std::cout << "\nPretraining Layer " << idx << ":" << std::endl;
         }
-        for (int e = 0; e < epochs; ++e)
+        for (unsigned int e = 0; e < epochs; ++e)
         {
-            for (int i = 0; i < n_training; ++i)
+            for (unsigned int i = 0; i < n_training; ++i)
             {
                 if (verbose && (ctr % 2 == 0))
                 {
@@ -429,9 +429,9 @@ void neural_net::internal_train_supervised(const unsigned int &epochs,
     double pct;
 
     int bu_ctr = 0;
-    for (int e = 0; e < epochs; ++e)
+    for (unsigned int e = 0; e < epochs; ++e)
     {
-        for (int i = 0; i < n_training; ++i)
+        for (unsigned int i = 0; i < n_training; ++i)
         {
             if (verbose && (ctr % 2 == 0))
             {
@@ -469,7 +469,7 @@ void neural_net::check(bool tantrum)
             stack.front()->resize_input(X.cols());
 
         }
-        for (int l = 1; l < (stack.size() - 1); ++l)
+        for (unsigned int l = 1; l < (stack.size() - 1); ++l)
         {
             if (stack.at(l - 1)->num_outputs() != stack.at(l)->num_inputs())
             {

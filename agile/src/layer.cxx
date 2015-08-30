@@ -328,11 +328,11 @@ agile::vector layer::dump_below()
 //----------------------------------------------------------------------------
 void layer::update()
 {
-    W_change /= m_batch_size;
+    // W_change /= m_batch_size;
     W_old = momentum * W_old - learning * (W_change + regularizer * W);
-
     W += W_old;
-    b_change /= m_batch_size;
+    
+    // b_change /= m_batch_size;
     b_old = momentum * b_old - learning * b_change;
     b += b_old;
 
@@ -342,11 +342,11 @@ void layer::update()
 //----------------------------------------------------------------------------
 void layer::update(double weight)
 {
-    W_change /= m_batch_size;
+    // W_change /= m_batch_size;
     W_old = momentum * W_old - learning * (W_change + regularizer * W);
     W += weight * W_old;
     
-    b_change /= m_batch_size;
+    // b_change /= m_batch_size;
     b_old = momentum * b_old - learning * b_change;
     b += weight * b_old;
 
