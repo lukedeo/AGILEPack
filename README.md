@@ -1,4 +1,4 @@
-AGILEPack
+AGILEPack [NOT ACTIVELY MAINTAINED]
 =========
 
 Algorithms for Generalized Inference, Learning, and Extraction Package, By Luke de Oliveira.
