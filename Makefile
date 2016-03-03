@@ -8,6 +8,7 @@ INC           := include
 LIB           := $(CURDIR)/lib
 
 
+
 # --- Directories for subdir make invocations.
 ROOT_DIR      := $(CURDIR)/root
 AGILE_DIR     := $(CURDIR)/agile

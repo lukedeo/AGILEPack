@@ -34,7 +34,7 @@ template <class T>
 inline std::string knit(std::vector<T> v, std::string knitter = ",")
 {
     std::stringstream ss;
-    for (int i = 0; i < v.size() - 1; ++i)
+    for (unsigned int i = 0; i < v.size() - 1; ++i)
     {
         ss << v.at(i) << knitter;
     }

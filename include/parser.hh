@@ -276,7 +276,7 @@ void parser::eat_arguments(int argc, char const *argv[])
 
     // for each argument cluster
     
-    for (int arg = 0; arg < arguments.size(); ++arg)
+    for (unsigned int arg = 0; arg < arguments.size(); ++arg)
     {
         auto argument = arguments[arg];
         bool match_found = false;
@@ -466,7 +466,7 @@ void parser::eat_arguments(int argc, char const *argv[])
             !(match_found) &&
             (argument[1] != '-'))
         {
-            for (int i = 1; i < argument.size(); ++i)
+            for (unsigned int i = 1; i < argument.size(); ++i)
             {
                 std::string key(1, argument[i]);
                 bool value_flag = (with_val.count(key) > 0);
@@ -591,7 +591,7 @@ void parser::eat_arguments(int argc, char const *argv[])
     {
         std::string e = "Missing required flags: ";
         e += missing.at(0);
-        for (int i = 1; i < missing.size(); ++i)
+        for (unsigned int i = 1; i < missing.size(); ++i)
         {
             e += ", ";
             e += missing.at(i);
